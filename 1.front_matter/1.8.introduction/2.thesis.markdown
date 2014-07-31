@@ -1,0 +1,1 @@
+The in this thesis introduced implementation Retext (and other projects in the Retext family) are a new approach to the syntax of natural text. My goal in this paper is to design an extensible system for multipurpose analysis of language.

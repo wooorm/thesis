@@ -1,0 +1,112 @@
+### Implementations
+
+While researching algorithms to tokenise natural language I found few viable options. Most algorithms look at one or two (or both) kinds of tokenisation: sentence tokenisation and word tokenisation. In this section the current implementations, where they excel, and what they lack.
+
+#### Stages
+
+##### Sentence tokenisation
+
+Often referred to as sentence boundary disambiguation[^1], sentence tokenisation is a very basic, but important part of NLP. Its almost always a stage in an NLP pipeline and not a pipelines end goal. Sentence tokenisation helps following stages (e.g., detecting plagiarism or POS tagging) to work more accurately.
+
+Oftentimes, one of three symbols[^2] are used to denote the end of a sentences: Either a full stop (`.`), an interrogative point (`?`), or an exclamation point (`!`). Detecting sentence boundaries is however not so easy, as the previously mentioned terminal markers might have other purposes: full stops are often suffixed to abbreviations or titles, in numbers, included in initialisms[^3], or in embedded content[^4]. The interrogative- and exclamation points too can occur ambiguously, most often in a quote (e.g., `"Of course!", she screamed`). Disambiguation gets even harder when the previous mentioned exceptions are in fact also a sentence boundary, such as in `...use the feminine form of idem, ead.` or in `"Of course!", she screamed, "I'll do it!"`, where the last terminal markers end their respective sentence.
+
+##### Word tokenisation
+
+Like sentence tokenisation, word tokenisation is another elementary, but important stage in NLP pipelines. Whether stemming, finding phonetics, or POS tagging, tokenising words is an important precursory step.
+
+Frequently, words are seen as everything that is not white space (i.e., spaces, tabs, feeds), thereby their boundaries denoted by those white spaces[^5]. A smarter algorithm would also treat punctuation marks as word boundaries, but such a general rule would wrongly classify inter-word as not being part of words[^6]. Many exceptions to this rule exist, e.g., elision (whether full stops, `e.g.`; apostrophes, the Dutch `'s`; or slashes, `N/A`), hyphenation points, or colons.
+
+#### Pipelines
+
+In the previous section implementations were covered that solve tokenisation stages in NLP pipelines, such as Natural's word tokenisers. Concluded was that these implementations are lacking. In this section several implementations are covered that solve these tokenisation stages as part of a larger pipeline.
+
+##### Sentiment Analysis
+
+Sentiment analysis is an NLP task which is concerned with the polarity (positive, negative) and subjectivity (objective, subjective) of text. It's pipeline could look as follows.
+
+1. Detect language --- Often omitted if only a certain (often English) language is supported.
+2. Optionally tokenising sentences --- Different sentences could have different sentiments, tokenising them helps provide better outcomes.
+3. Tokenising words --- Needed to compare with the database (see the last stage).
+4. Optionally detecting lemmas or stems --- Might help classification.
+5. Detecting sentiment --- Typically, sentiment analysers include a database mapping words (or stems, lemmas) to their respective polarity and/or subjectivity[^7].
+
+Many implementations exist for this task[^8] on the web platform, many of which exclude non-alphabetic characters form their definition of words, resulting in less than perfect results[^9].
+
+##### Automatic Summarisation
+
+Automatic summarisation is an NLP task concerned with reducing a text in order to create a summary of the major points retaining the original document. In contradiction with sentiment analysers, implementations of automatic summarisation algorithms on the web are less ubiquitously available[^10].
+
+An example pipeline for automatic summarisation could be as follows.
+
+1. Detect language --- Often omitted if only a certain (often English) language is supported.
+2. Tokenising sentences --- Unless even finer grained control over the document is possible (tokenising phrases), sentences are the smallest unit that should stay intact in the resulting summary.
+3. Tokenising words --- Used to calculate keywords (words which occur more often than expected by chance alone).
+4. Automatic summarisation --- Ranking the tokenised grammatical units (sentences, phrases) and return the highest ranking units.
+
+Several factors can be used to determine whether or not a phrase or sentence should be included in a summary:
+
+1. Number of words (an ideal sentence is neither too short nor too long);
+2. Number of keywords (see stage 3., this metric is most widely implemented);
+3. Number of words from the document’s title it contains;
+4. Position inside a paragraph (initial and final sentences are often more important than sentences buried somewhere in the middle of a paragraph).
+
+Some implementations only include keyword metrics[@jbrooksuk/node-summary-source-code], others include all aforementioned features[@MojoJolo/textteaser-source-code], or even more advanced factors[@summly].
+
+The only project working on the web, [@jbrooksuk/node-summary-source-code], takes a naive approach to sentence tokenisation, for example, ignoring sentences terminated by an exclamation point. Note that both other implementations, and many more, use a whole different approach to sentence tokenisation (see the next section).
+
+#### Using Corpora for NLP
+
+A corpus is a large, structured set of texts used for many linguistic tasks, as well as NLP. Oftentimes, each item (most frequently words, but some corpora include sentences, phrases, clauses, or other units) in a corpus is annotated ("tagged") with information about the item (for example, part-of-speech tags or lemmas).
+
+These huge (often more than a million words[^11]) chunks of information are the basis of many of the newer revolutions in NLP[@mitkov-ruslan-ea-importance-corpora]. Supervised learned[^12] parsing (in NLP, based on annotated corpora), is the direct antagonist of rule-based parsing[^13]. Instead of defining rules, exceptions to these rules, exceptions to these exceptions, and so on, supervised learning delegates this task to machines, creating a more performant, scalable, program.
+
+Generally, corpus linguistics have proven to be better in several ways over rule-based linguistics. However, they do have their disadvantages:
+
+- Some rule-based approaches for pre- and post processing are still required;
+- Good training sets are required;
+- If the corpus was created from news articles, algorithms based on it won't fair so well on microblogs (e.g., Twitter posts);
+
+Most important is the fact that supervised learning will not fare well on the web: Loading corpora over the network each time a user request a web page is unfeasible for most web sites or applications[^14].
+
+Two viable alternative approaches exist for the web: the aforementioned rule-based tokenisation, or connecting to a server over the network.
+
+#### Using a web API
+
+Where the term API (Application Programming Interface) stands for the interface between two programs, the term is often defined in the context of web development as requests (from a web browser) to, and responses (from a web server) over HTTP (Hypertext Transfer Protocol). For example, Twitter has such a service to allow developers to list, replace, create, and delete so-called "Tweets" and other objects (users, images, &.). In the context of this paper, the term Web API is used for the latter, whereas API is used for any programming interface.
+
+With the rise of the asynchronous web[^15], supervised learning too became widely available through web API's (e.g., [@textteaser-web-api], [@wordnet-web-api], [@textrazor-web-api]). The new web API's made it possible to implement supervised learning techniques on the web, without the need for downloading a whole corpus to your or your users' computer.
+
+However, accessing NLP web API's over a network has disadvantages. Most importantly the time involved when sending data over the network (especially on mobile networks), the bandwidth used, and heightened security risks.
+
+[^1]: Both sentence tokenisation and sentence boundary disambiguation are based on the same thing—detecting where sentences stop. Sentence boundary disambiguation focusses on the position where a sentence breaks (as in, 'One sentence.| Two sentences.|', where the pipe symbol refers to the end of one sentence and the beginning of another), whereas sentence tokenisation lays focus on where a sentence starts and where it ends (as in, '{One sentence.} {Two sentences.}', where everything between curly brackets, both start and end boundaries, are detected and classified as s sentence).
+
+[^2]: One could argue the in 1962 introduced obscure interrobang (`‽`) should be in this list.
+
+[^3]: Although the definition of initialism is ambiguous, this paper defines its use as an acronym (an abbreviation formed from initial components, such as `sonar` or `FBI`) with full stops depicting elision (such as `e.g.`, or `K.G.B.`).
+
+[^4]: Embedded content in this paper refers to an external (non-grammatical) value embedded into a grammatical unit, for example a hyperlink or an emoticon. Note that these embedded values oftentimes consist of valid words and punctuation, but most always shouldn't be tokenised as such.
+
+[^5]: For example, Knwl[@knwl-source-code] counts words using this method.
+
+[^6]: Natural's[@natural-source-code] tokenisers are such an example.
+
+[^7]: For example, the AFINN database mapping words to polarity[@nielsen-finn-arup-afinn].
+
+[^8]: For example, [@thinkroth/sentimental-source-code], [@mileszim/sediment-source-code], and [@thisandagain/sentiment-source-code].
+
+[^9]: If fact, all of the researched implementations[^7] deploy lacks tokenisations steps. Controversial, as they each create unreachable code through their naivety: all tested libraries remove dashes from words, while words such as `self-deluded` are in the databases they use.
+
+[^10]: For example, [@jbrooksuk/node-summary-source-code] on the web, [@MojoJolo/textteaser-source-code] in Scala.
+
+[^11]: The Brown Corpus[@francis-nelson-brown-corpus] contains about a million words, the Google N-Gram Corpus contains 155 billion[@brants-thorsten-google-ngram-corpus].
+
+[^12]: "[From] a set of labeled examples as training data ... [, make] predictions for all unseen points", [@mohri-mehryar-foundations-machine-learning]
+
+[^13]: A simple rule-based sentence tokeniser could be implemented as follows:
+    - If it's a period, it ends a sentence;
+    - If the period is preceded by an abbreviation, it does not end a sentence;
+    - If the next token is capitalised, it ends a sentence.
+
+[^14]: Currently, almost no technologies exist for storing large datasets in a browser exist. The only exception to the rule is the HTML5 File System API, but its currently not widely supported[@caniuse-filesystem-api]. Still, even when widely supported, letting every website store gigabytes of corpora is not a solution.
+
+[^15]: Starting around 2000 AJAX (an acronym for Asynchronous JavaScript and XML) started to transform the web. Beforehand, websites only really changed when a user navigated to a new page. With AJAX however, new content arrived to users without the need for a full page refresh. One of the first examples are the Outlook Web App in 2000[@technet-outlook-web-access] and Gmail in 2004[@gmailblog-gmail-ajax], both examples of how AJAX made the web feel more "app-like".
