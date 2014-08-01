@@ -34,6 +34,14 @@ interface Location {
 }
 ```
 
+##### Position
+```idl
+interface Position {
+    line: uint32 >= 1;
+    column: uint32 >= 1;
+}
+```
+
 ##### RootNode
 Root (Parent) represents the document.
 
