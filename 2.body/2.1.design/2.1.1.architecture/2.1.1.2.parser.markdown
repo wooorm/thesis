@@ -10,107 +10,107 @@ An example of how parse-latin tokenises the paragraph "A simple sentence. Anothe
 
 ```json
 {
-    "type": "RootNode",
-    "children": [
+  "type": "RootNode",
+  "children": [
+    {
+      "type": "ParagraphNode",
+      "children": [
         {
-            "type": "ParagraphNode",
-            "children": [
-                {
-                    "type": "SentenceNode",
-                    "children": [
-                        {
-                            "type": "WordNode",
-                            "children": [{
-                                "type": "TextNode",
-                                "value": "A"
-                            }]
-                        },
-                        {
-                            "type": "WhiteSpaceNode",
-                            "children": [{
-                                "type": "TextNode",
-                                "value": " "
-                            }]
-                        },
-                        {
-                            "type": "WordNode",
-                            "children": [{
-                                "type": "TextNode",
-                                "value": "simple"
-                            }]
-                        },
-                        {
-                            "type": "WhiteSpaceNode",
-                            "children": [{
-                                "type": "TextNode",
-                                "value": " "
-                            }]
-                        },
-                        {
-                            "type": "WordNode",
-                            "children": [{
-                                "type": "TextNode",
-                                "value": "sentence"
-                            }]
-                        },
-                        {
-                            "type": "PunctuationNode",
-                            "children": [{
-                                "type": "TextNode",
-                                "value": "."
-                            }]
-                        }
-                    ]
-                },
-                {
-                    "type": "WhiteSpaceNode",
-                    "children": [
-                        {
-                            "type": "TextNode",
-                            "value": " "
-                        }
-                    ]
-                },
-                {
-                    "type": "SentenceNode",
-                    "children": [
-                        {
-                            "type": "WordNode",
-                            "children": [{
-                                "type": "TextNode",
-                                "value": "Another"
-                            }]
-                        },
-                        {
-                            "type": "WhiteSpaceNode",
-                            "children": [{
-                                "type": "TextNode",
-                                "value": " "
-                            }]
-                        },
-                        {
-                            "type": "WordNode",
-                            "children": [{
-                                "type": "TextNode",
-                                "value": "sentence"
-                            }]
-                        },
-                        {
-                            "type": "PunctuationNode",
-                            "children": [{
-                                "type": "TextNode",
-                                "value": "."
-                            }]
-                        }
-                    ]
-                }
-            ]
+          "type": "SentenceNode",
+          "children": [
+            {
+              "type": "WordNode",
+              "children": [{
+                "type": "TextNode",
+                "value": "A"
+              }]
+            },
+            {
+              "type": "WhiteSpaceNode",
+              "children": [{
+                "type": "TextNode",
+                "value": " "
+              }]
+            },
+            {
+              "type": "WordNode",
+              "children": [{
+                "type": "TextNode",
+                "value": "simple"
+              }]
+            },
+            {
+              "type": "WhiteSpaceNode",
+              "children": [{
+                "type": "TextNode",
+                "value": " "
+              }]
+            },
+            {
+              "type": "WordNode",
+              "children": [{
+                "type": "TextNode",
+                "value": "sentence"
+              }]
+            },
+            {
+              "type": "PunctuationNode",
+              "children": [{
+                "type": "TextNode",
+                "value": "."
+              }]
+            }
+          ]
+        },
+        {
+          "type": "WhiteSpaceNode",
+          "children": [
+            {
+              "type": "TextNode",
+              "value": " "
+            }
+          ]
+        },
+        {
+          "type": "SentenceNode",
+          "children": [
+            {
+              "type": "WordNode",
+              "children": [{
+                "type": "TextNode",
+                "value": "Another"
+              }]
+            },
+            {
+              "type": "WhiteSpaceNode",
+              "children": [{
+                "type": "TextNode",
+                "value": " "
+              }]
+            },
+            {
+              "type": "WordNode",
+              "children": [{
+                "type": "TextNode",
+                "value": "sentence"
+              }]
+            },
+            {
+              "type": "PunctuationNode",
+              "children": [{
+                "type": "TextNode",
+                "value": "."
+              }]
+            }
+          ]
         }
-    ]
+      ]
+    }
+  ]
 }
 ```
 
-By using the CST as described NLCST and the parse-latin parser, the intermediate representation can be used by developers to create independent modules
+By using the CST as described by NLCST and the parse-latin parser, the intermediate representation can be used by developers to create independent modules.
 
-[^1]: Whether Old-English (“þā gewearþ þǣm hlāforde and þǣm hȳrigmannum wiþ ānum penninge”), Icelandic (“Hvað er að frétta”), French (“Où sont les toilettes?”), or even scripts slightly similar, such as Cyrillic (“Добро пожаловать!”), Georgian (“როგორა ხარ?”), Armenian (“Շատ հաճելի է”), pretty well!
+[^1]: Whether Old-English (“þā gewearþ þǣm hlāforde and þǣm hȳrigmannum wiþ ānum penninge”), Icelandic (“Hvað er að frétta”), French (“Où sont les toilettes?”), or even scripts slightly similar, such as Cyrillic (“Добро пожаловать!”), Georgian (“როგორა ხარ?”), Armenian (“Շատ հաճելի է”).
 
