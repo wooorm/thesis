@@ -112,5 +112,42 @@ An example of how parse-latin tokenises the paragraph "A simple sentence. Anothe
 
 By using the CST as described by NLCST and the parser as described by parse-latin, the intermediate representation can be used by developers to create independent modules.
 
+##### parse-latin
+
+Basically, parse-latin splits text into white space, word, and punctuation tokens. parse-latin starts out with a pretty simple definition, one that most other tokenizers use:
+
+- A “word” is one or more letter or number characters;
+- A “white space” is one or more white space characters;
+- A “punctuation” is one or more of anything else;
+
+Then, it manipulates and merges those tokens into a syntax tree, adding sentences and paragraphs where needed.
+
+- Some punctuation marks are part of the word they occur in, e.g., non-profit, she\'s, G.I., 11:00, N/A;
+- Some full-stops do not mark a sentence end, e.g., 1., e.g., id.;
+- Although full-stops, question marks, and exclamation marks (sometimes) end a sentence, that end might not occur directly after the mark, e.g., .), .";
+
+##### parse-english
+
+parse-english has the same interface as parse-latin, but returns results better suited for English natural language. For example:
+
+- Unit abbreviations (tsp., tbsp., oz., ft., &c.);
+- Time references (sec., min., tues., thu., feb., &c.);
+- Business Abbreviations (Inc. and Ltd);
+- Social titles (Mr., Mmes., Sr., &c.);
+- Rank and academic titles (Dr., Rep., Gen., Prof., Pres., &c.);
+- Geographical abbreviations (Ave., Blvd., Ft., Hwy., &c.);
+- American state abbreviations (Ala., Minn., La., Tex., &c.);
+- Canadian province abbreviations (Alta., Qué., Yuk., &c.);
+- English county abbreviations (Beds., Leics., Shrops., &c.);
+- Common elision (omission of letters) ('n', 'o, 'em, 'twas, '80s, &c.).
+
+##### parse-dutch
+
+parse-dutch has, just like parse-english, the same API as parse-latin, but returns results better suited for Dutch natural language. For example:
+
+- Unit and time abbreviations (gr., sec., min., ma., vr., vrij., febr, mrt, &c.);
+- Many other common abbreviations: (Mr., Mv., Sr., Em., bijv., zgn., amb., &c.);
+- Common elision (omission of letters) (d’, ’n, ’ns, ’t, ’s, ’er, ’em, ’ie, &c.).
+
 [^1]: Whether Old-English (“þā gewearþ þǣm hlāforde and þǣm hȳrigmannum wiþ ānum penninge”), Icelandic (“Hvað er að frétta”), French (“Où sont les toilettes?”), or even scripts slightly similar, such as Cyrillic (“Добро пожаловать!”), Georgian (“როგორა ხარ?”), Armenian (“Շատ հաճելի է”).
 
