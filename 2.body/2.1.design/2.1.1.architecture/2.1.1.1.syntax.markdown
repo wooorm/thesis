@@ -2,7 +2,13 @@
 
 To develop natural language tools in ECMAScript, an intermediate representation of natural language is useful: instead of each module defining their own representation of text, using a single syntax leads to better results, interoperability, and performance.
 
-The elements defined by NLCST are based on the the grammatical hierarchy, but by default do not expose all its constituents[^1]. Additionally, more elements are provided to cover other semantic units in natural language[^2].
+The elements defined by NLCST (Natural Language Concrete Syntax Tree) are based on the the grammatical hierarchy, but by default do not expose all its constituents[^1]. Additionally, more elements are provided to cover other semantic units in natural language[^2].
+
+The definitions of exposed nodes were heavily based on other specifications of syntax trees for manipulation on the web platform, such as CSS (aptly named for the CSS language)[^3] and the Mozilla JavaScript AST (for ECMAScript)[^4]. Both implementations are widely used. CSS by Rework[^5], and Mozilla JavaScript AST by Esprima[^6], Acorn[^7], and Escodegen[^8].
+
+Note that the aforementioned syntax tree specifications are both abstract syntax trees, whereas NLCST is a a concrete syntax tree. A concrete synax tree is a one-to-one mapping of source to result. All information stored in the original input is also available through the resulting tree[^9].
+
+The information stored in CST's is very verbose and could lead to trees that are hard to work with. On the other hand, the fact that every part of the input is housed in the tree, makes it easy for developers to save the output or pass it on to unsupporting libraries for further processing.
 
 ##### Node
 ```idl
@@ -117,3 +123,17 @@ interface TextNode < Text {
 [^1]: The grammatical hierarchy of text is constituted by words, phrases, clauses, and sentences. NLCST only implements the sentence and word constituents by default, although clauses and phrases could be provided by implementations.
 
 [^2]: Most notably, punctuation, symbol, and white space elements.
+
+[^3]: https://github.com/reworkcss/css#ast
+
+[^4]: https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Parser_API
+
+[^5]: https://github.com/reworkcss/rework/
+
+[^6]: https://github.com/ariya/esprima
+
+[^7]: http://marijnhaverbeke.nl/acorn/
+
+[^8]: https://github.com/Constellation/escodegen
+
+[^9]: http://eli.thegreenplace.net/2009/02/16/abstract-vs-concrete-syntax-trees/
