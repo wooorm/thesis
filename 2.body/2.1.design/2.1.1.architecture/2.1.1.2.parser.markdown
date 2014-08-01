@@ -110,7 +110,7 @@ An example of how parse-latin tokenises the paragraph "A simple sentence. Anothe
 }
 ```
 
-By using the CST as described by NLCST and the parse-latin parser, the intermediate representation can be used by developers to create independent modules.
+By using the CST as described by NLCST and the parser as described by parse-latin, the intermediate representation can be used by developers to create independent modules.
 
 [^1]: Whether Old-English (“þā gewearþ þǣm hlāforde and þǣm hȳrigmannum wiþ ānum penninge”), Icelandic (“Hvað er að frétta”), French (“Où sont les toilettes?”), or even scripts slightly similar, such as Cyrillic (“Добро пожаловать!”), Georgian (“როგორა ხარ?”), Armenian (“Շատ հաճելի է”).
 
