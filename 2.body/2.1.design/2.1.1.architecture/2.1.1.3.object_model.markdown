@@ -1,2 +1,32 @@
 #### Object Model: TextOM
 
+To modify NLCST nodes in ECMAScript, this paper proposes TextOM. A library designed to be similar to the DOM[^1], the mechanism used by browsers to expose HTML through ECMAScript to developers, thus familiar to the target audience.
+
+TextOM provides events (a mechanism for detecting changes), modification functionality (inserting, removing, and replacing children into/from parents), and traversal (e.g., finding all words inside a sentence).
+
+[^1]:
+    The DOM specification defines a platform-neutral model for errors, events, and (for this paper, the primary feature) node trees. XML-based documents can be represented by the DOM. Consider the following HTML document: 
+
+    ```html
+    <!DOCTYPE html>
+    <html class=e>
+        <head><title>Aliens?</title></head>
+        <body>Why yes.</body>
+    </html>
+    ```
+
+    Is represented by the DOM as follows:
+
+    ```html
+    |- Document
+       |- Doctype: html
+       |- Element: html class="e"
+          |- Element: head
+          |  |- Element: title
+          |     |- Text: Aliens?
+          |- Text: ⏎␣
+          |- Element: body
+            |- Text: Why yes.⏎
+    ```
+
+    The DOM interfaces of bygone times were widely considered horrible, but newer features seem to be gaining popularity in the web authoring community as broader implementation across user agents is reached.
