@@ -1,0 +1,116 @@
+#### Parser: Parse-latin
+
+ECMAScript is used extensively. Because of this, many ECMAScript tools are being developed. This includes tools for Natural Language Processing. These ECMAScript tools however, when run on the client-side, can not implement supervised learning based on corpora, and web API usage too is not ideal. Thus, a rule-based parser is needed to tokenise text.
+
+For creating such intermediate representations from Latin-script based languages, parse-latin is presented in this paper[^1]. As proof-of-concept, two other libraries are also presentend, parse-english and parse-dutch, using parse-latin as a base and providing better support for several language specific features, respecivly English and Dutch.
+
+By following NLCST (also proposed in this paper), modules building on parse-latin may receive better results or performance over implementing their own parsing tools.
+
+An example of how parse-latin tokenises the paragraph "A simple sentence. Another sentence.", is represented as follows,
+
+```json
+{
+    "type": "RootNode",
+    "children": [
+        {
+            "type": "ParagraphNode",
+            "children": [
+                {
+                    "type": "SentenceNode",
+                    "children": [
+                        {
+                            "type": "WordNode",
+                            "children": [{
+                                "type": "TextNode",
+                                "value": "A"
+                            }]
+                        },
+                        {
+                            "type": "WhiteSpaceNode",
+                            "children": [{
+                                "type": "TextNode",
+                                "value": " "
+                            }]
+                        },
+                        {
+                            "type": "WordNode",
+                            "children": [{
+                                "type": "TextNode",
+                                "value": "simple"
+                            }]
+                        },
+                        {
+                            "type": "WhiteSpaceNode",
+                            "children": [{
+                                "type": "TextNode",
+                                "value": " "
+                            }]
+                        },
+                        {
+                            "type": "WordNode",
+                            "children": [{
+                                "type": "TextNode",
+                                "value": "sentence"
+                            }]
+                        },
+                        {
+                            "type": "PunctuationNode",
+                            "children": [{
+                                "type": "TextNode",
+                                "value": "."
+                            }]
+                        }
+                    ]
+                },
+                {
+                    "type": "WhiteSpaceNode",
+                    "children": [
+                        {
+                            "type": "TextNode",
+                            "value": " "
+                        }
+                    ]
+                },
+                {
+                    "type": "SentenceNode",
+                    "children": [
+                        {
+                            "type": "WordNode",
+                            "children": [{
+                                "type": "TextNode",
+                                "value": "Another"
+                            }]
+                        },
+                        {
+                            "type": "WhiteSpaceNode",
+                            "children": [{
+                                "type": "TextNode",
+                                "value": " "
+                            }]
+                        },
+                        {
+                            "type": "WordNode",
+                            "children": [{
+                                "type": "TextNode",
+                                "value": "sentence"
+                            }]
+                        },
+                        {
+                            "type": "PunctuationNode",
+                            "children": [{
+                                "type": "TextNode",
+                                "value": "."
+                            }]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+```
+
+By using the CST as described NLCST and the parse-latin parser, the intermediate representation can be used by developers to create independent modules
+
+[^1]: Whether Old-English (“þā gewearþ þǣm hlāforde and þǣm hȳrigmannum wiþ ānum penninge”), Icelandic (“Hvað er að frétta”), French (“Où sont les toilettes?”), or even scripts slightly similar, such as Cyrillic (“Добро пожаловать!”), Georgian (“როგორა ხარ?”), Armenian (“Շատ հաճելի է”), pretty well!
+
