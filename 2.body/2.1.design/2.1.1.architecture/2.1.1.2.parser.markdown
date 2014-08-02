@@ -112,8 +112,6 @@ An example of how parse-latin tokenises the paragraph "A simple sentence. Anothe
 
 By using the CST as described by NLCST and the parser as described by parse-latin, the intermediate representation can be used by developers to create independent modules.
 
-##### parse-latin
-
 Basically, parse-latin splits text into white space, word, and punctuation tokens. parse-latin starts out with a pretty simple definition, one that most other tokenizers use:
 
 - A “word” is one or more letter or number characters;
@@ -143,7 +141,7 @@ parse-english has the same interface as parse-latin, but returns results better 
 
 ##### parse-dutch
 
-parse-dutch has, just like parse-english, the same API as parse-latin, but returns results better suited for Dutch natural language. For example:
+parse-dutch has, just like parse-english, the same interface as parse-latin, but returns results better suited for Dutch natural language. For example:
 
 - Unit and time abbreviations (gr., sec., min., ma., vr., vrij., febr, mrt, &c.);
 - Many other common abbreviations: (Mr., Mv., Sr., Em., bijv., zgn., amb., &c.);
