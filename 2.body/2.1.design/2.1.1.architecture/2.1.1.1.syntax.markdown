@@ -6,7 +6,7 @@ The elements defined by NLCST (Natural Language Concrete Syntax Tree) are based 
 
 The definitions of exposed nodes were heavily based on other specifications of syntax trees for manipulation on the web platform, such as CSS (aptly named for the CSS language)[^3] and the Mozilla JavaScript AST (for ECMAScript)[^4]. Both implementations are widely used. CSS by Rework[^5], and Mozilla JavaScript AST by Esprima[^6], Acorn[^7], and Escodegen[^8].
 
-Note that the aforementioned syntax tree specifications are both abstract syntax trees, whereas NLCST is a a concrete syntax tree. A concrete synax tree is a one-to-one mapping of source to result. All information stored in the original input is also available through the resulting tree[^9].
+Note that the aforementioned syntax tree specifications are both abstract syntax trees (AST), whereas NLCST is a a concrete syntax tree (CST). A concrete synax tree is a one-to-one mapping of source to result. All information stored in the original input is also available through the resulting tree[^9].
 
 The information stored in CST's is very verbose and could lead to trees that are hard to work with. On the other hand, the fact that every part of the input is housed in the tree, makes it easy for developers to save the output or pass it on to unsupporting libraries for further processing.
 
