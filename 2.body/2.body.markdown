@@ -2,7 +2,7 @@
 
 {{Needs a nice quote about the definition of NLP}}
 
-This focus of this paper is Natural Language Processing—abbreviated as NLP throughout. NLP is related to human--computer interaction. NLP concerns itself with enabling machines to understand human language. Human language, a medium in which humans understand quite easily, can be difficult for machines.
+The focus of this paper is Natural Language Processing---abbreviated as NLP throughout. NLP is related to human--computer interaction. NLP concerns itself with enabling machines to understand human language. Human language, a medium in which humans understand quite easily, can be difficult for machines.
 
 That understanding of human language by machines is quite difficult, is depicted by one of the first application of NLP was during the Georgetown-IBM experiment, where a Russian-english machine translation system was showcased in New York in 1945[@hutchins-john-georgetown-ibm-system]. More than sixty sentences were translated from Russian to English. The experiment was well publicised in the press, and resulted in optimism about machine-translation being a solved problem within three five years. The results in the following ten years were disappointing and eventually led to reduced funding.
 
@@ -12,13 +12,13 @@ Summarisation, named entity recognition, and sentiment analyses could all be cla
 
 ```
 
-- Detect the input language — **Language Detection**: Based on the language of the given text, the algorithms behind the following steps will change significantly.
-- Optionally break sentences — **Sentence Tokenisation**: Breaking sentences can elevate performance and heighten accuracy of the following stages, in particular POS tagging.
-- Breaking words — **Word Tokenisation**: To detect entities, one must of course break those entities (words) free from their surroundings.
-- Detecting word-categories — **Part-of-Speech Tagging**: When linking entities in an encyclopaedia, one would typically not want to link every entity to another entry, but most often only nouns or even proper nouns. POS tagging helps make that decision.
-- Optionally detecting noun phrases — **Noun Phrase Detection**: Although "apple" and "juice" are both words and could both be linked to separate entities, it would be more apt to link both words to one entity: "apple juice", noun phrase detection helps here.
-- Optionally detecting lemmas or stems — **Lemmatisation or Stemming**: All forms of walk could link to the same entity, be it "walk", "walked", or "walking", detecting the lemma or stem for a word makes this possible.
-- Linking the possible entities to their reference — **Entity Linking**
+- Detect the input language --- **Language Detection**: Based on the language of the given text, the algorithms behind the following steps will change significantly.
+- Optionally break sentences --- **Sentence Tokenisation**: Breaking sentences can elevate performance and heighten accuracy of the following stages, in particular POS tagging.
+- Breaking words --- **Word Tokenisation**: To detect entities, one must of course break those entities (words) free from their surroundings.
+- Detecting word-categories --- **Part-of-Speech Tagging**: When linking entities in an encyclopaedia, one would typically not want to link every entity to another entry, but most often only nouns or even proper nouns. POS tagging helps make that decision.
+- Optionally detecting noun phrases --- **Noun Phrase Detection**: Although "apple" and "juice" are both words and could both be linked to separate entities, it would be more apt to link both words to one entity: "apple juice", noun phrase detection helps here.
+- Optionally detecting lemmas or stems --- **Lemmatisation or Stemming**: All forms of walk could link to the same entity, be it "walk", "walked", or "walking", detecting the lemma or stem for a word makes this possible.
+- Linking the possible entities to their reference --- **Entity Linking**
 
 ```
 
@@ -116,7 +116,7 @@ With the rise of the asynchronous web[^implementations-15], supervised learning 
 
 However, accessing NLP web API's over a network has disadvantages. Most importantly the time involved when sending data over the network (especially on mobile networks), the bandwidth used, and heightened security risks.
 
-[^implementations-1]: Both sentence tokenisation and sentence boundary disambiguation are based on the same thing—detecting where sentences stop. Sentence boundary disambiguation focusses on the position where a sentence breaks (as in, 'One sentence.| Two sentences.|', where the pipe symbol refers to the end of one sentence and the beginning of another), whereas sentence tokenisation lays focus on where a sentence starts and where it ends (as in, '{One sentence.} {Two sentences.}', where everything between curly brackets, both start and end boundaries, are detected and classified as s sentence).
+[^implementations-1]: Both sentence tokenisation and sentence boundary disambiguation are based on the same thing---detecting where sentences stop. Sentence boundary disambiguation focusses on the position where a sentence breaks (as in, 'One sentence.| Two sentences.|', where the pipe symbol refers to the end of one sentence and the beginning of another), whereas sentence tokenisation lays focus on where a sentence starts and where it ends (as in, '{One sentence.} {Two sentences.}', where everything between curly brackets, both start and end boundaries, are detected and classified as s sentence).
 
 [^implementations-2]: One could argue the in 1962 introduced obscure interrobang (`‽`) should be in this list.
 
@@ -276,7 +276,7 @@ The use cases of the target audience, the front-end developer, in the field of N
 - The practitioner may intent to recognise which language a given document is written in (analysation);
 - The practitioner may intent to find words based on a search term, with regards for the lemma (or stem) and/or phonetics (so that a search for "smit" also returns similar words, such as "Schmidt" or "Smith") (analysation and manipulation);
 
-Natural Language Processing is a broad field concerned with the interactions between computers and human languages, with bases in computer science, artificial intelligence, and linguistics. NLP poses may challenges, but not every challenge challenge in the field is of interest to the web developer--the developer enabling machines to respond to humans through the world wide web. Most importantly, the more academic areas of NLP do not fit well with the goals of web developers, e.g., speech recognition, optical character recognition, text-to-speech transformation, translation, or machine learning.
+Natural Language Processing is a broad field concerned with the interactions between computers and human languages, with bases in computer science, artificial intelligence, and linguistics. NLP poses may challenges, but not every challenge challenge in the field is of interest to the web developer---the developer enabling machines to respond to humans through the world wide web. Most importantly, the more academic areas of NLP do not fit well with the goals of web developers, e.g., speech recognition, optical character recognition, text-to-speech transformation, translation, or machine learning.
 
 ### Open Source
 
@@ -296,10 +296,10 @@ The in this paper proposed implementations were produced with high regards for p
 
 With the development of the in this paper introduced software, testing was given high priority. Testing, in software developments, refers to multiple subgroups of validating that the software does what it is supposed to do.
 
-- Unit testing -- Validation of each specific section of code;
-- Integration testing -- Validation of how programs work together;
-- System testing -- Validation of a system to see that it meets requirements;
-- Acceptance testing -- Validating the end product.
+- Unit testing --- Validation of each specific section of code;
+- Integration testing --- Validation of how programs work together;
+- System testing --- Validation of a system to see that it meets requirements;
+- Acceptance testing --- Validating the end product.
 
 Great care was given to develop a full test suite with 100% coverage for every program. Coverage, is a term used to describe the tested amount of code that. 100% coverage stands for full coverage (every part of the code is covered).
 
