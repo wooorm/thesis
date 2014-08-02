@@ -1,1 +1,3 @@
 ### Performance
+
+The in this paper proposed implementations were produced with high regards for performance. Performance includes the software having a small file size, but most importantly executing code efficiently at at high speeds.

@@ -1,1 +1,10 @@
 ### Testing
+
+With the development of the in this paper introduced software, testing was given high priority. Testing, in software developments, refers to multiple subgroups of validating that the software does what it is supposed to do.
+
+- Unit testing -- Validation of each specific section of code;
+- Integration testing -- Validation of how programs work together;
+- System testing -- Validation of a system to see that it meets requirements;
+- Acceptance testing -- Validating the end product.
+
+Great care was given to develop a full test suite with 100% coverage for every program. Coverage, is a term used to describe the tested amount of code that. 100% coverage stands for full coverage (every part of the code is covered).
