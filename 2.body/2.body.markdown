@@ -1,0 +1,326 @@
+## Context
+
+{{Needs a nice quote about the definition of NLP}}
+
+This focus of this paper is Natural Language Processing—abbreviated as NLP throughout. NLP is related to human--computer interaction. NLP concerns itself with enabling machines to understand human language. Human language, a medium in which humans understand quite easily, can be difficult for machines.
+
+That understanding of human language by machines is quite difficult, is depicted by one of the first application of NLP was during the Georgetown-IBM experiment, where a Russian-english machine translation system was showcased in New York in 1945[@hutchins-john-georgetown-ibm-system]. More than sixty sentences were translated from Russian to English. The experiment was well publicised in the press, and resulted in optimism about machine-translation being a solved problem within three five years. The results in the following ten years were disappointing and eventually led to reduced funding.
+
+Machine translation is just one of many major tasks involved with NLP. Other applications include automatic summarisation (generating a summary), named entity recognition (detecting references to people or places), sentiment analysis (extracting opinion), and many major tasks.
+
+Summarisation, named entity recognition, and sentiment analyses could all be classified as information extraction comprising an extraction pipeline. For example, the extraction pipeline of linking references in a text pipeline[^context-1] could be as follows for entity linking[@stanbol-enhancer-nlp]:
+
+```
+
+- Detect the input language — **Language Detection**: Based on the language of the given text, the algorithms behind the following steps will change significantly.
+- Optionally break sentences — **Sentence Tokenisation**: Breaking sentences can elevate performance and heighten accuracy of the following stages, in particular POS tagging.
+- Breaking words — **Word Tokenisation**: To detect entities, one must of course break those entities (words) free from their surroundings.
+- Detecting word-categories — **Part-of-Speech Tagging**: When linking entities in an encyclopaedia, one would typically not want to link every entity to another entry, but most often only nouns or even proper nouns. POS tagging helps make that decision.
+- Optionally detecting noun phrases — **Noun Phrase Detection**: Although "apple" and "juice" are both words and could both be linked to separate entities, it would be more apt to link both words to one entity: "apple juice", noun phrase detection helps here.
+- Optionally detecting lemmas or stems — **Lemmatisation or Stemming**: All forms of walk could link to the same entity, be it "walk", "walked", or "walking", detecting the lemma or stem for a word makes this possible.
+- Linking the possible entities to their reference — **Entity Linking**
+
+```
+
+Although many different fields are covered by NLP, the process of reaching those goals touches on some well defined stages as seen above.
+
+[@stanbol-enhancer-nlp]: http://stanbol.apache.org/docs/trunk/components/enhancer/nlp/
+
+[^context-1]: A pipeline in this paper is defined as "a set of processes chained by their standard streams".
+
+### Scope
+
+The stages mentioned in the previous section are implemented in many NLP pipelines. This paper (the captured use cases and requirements, the proposed standard, and the example implementation) however will only cover one stage: tokenisation. Tokenisation here includes sentence boundary detection, word tokenisation, and tokenisation of other grammatical units.
+
+Another decision made in scoping the NLP problem is that that this paper lays its focus on syntactic, and largely ignores semantic units (i.e., phrases and clauses).
+
+Lastly, this paper ignores spoken language, and lays its focus on Latin script language: written languages using an alphabet depending on the letters of the classical Latin alphabet.
+
+### Implementations
+
+While researching algorithms to tokenise natural language I found few viable options. Most algorithms look at one or two (or both) kinds of tokenisation: sentence tokenisation and word tokenisation. In this section the current implementations, where they excel, and what they lack.
+
+#### Stages
+
+##### Sentence tokenisation
+
+Often referred to as sentence boundary disambiguation[^implementations-1], sentence tokenisation is a very basic, but important part of NLP. Its almost always a stage in an NLP pipeline and not a pipelines end goal. Sentence tokenisation helps following stages (e.g., detecting plagiarism or POS tagging) to work more accurately.
+
+Oftentimes, one of three symbols[^implementations-2] are used to denote the end of a sentences: Either a full stop (`.`), an interrogative point (`?`), or an exclamation point (`!`). Detecting sentence boundaries is however not so easy, as the previously mentioned terminal markers might have other purposes: full stops are often suffixed to abbreviations or titles, in numbers, included in initialisms[^implementations-3], or in embedded content[^implementations-4]. The interrogative- and exclamation points too can occur ambiguously, most often in a quote (e.g., `"Of course!", she screamed`). Disambiguation gets even harder when the previous mentioned exceptions are in fact also a sentence boundary, such as in `...use the feminine form of idem, ead.` or in `"Of course!", she screamed, "I'll do it!"`, where the last terminal markers end their respective sentence.
+
+##### Word tokenisation
+
+Like sentence tokenisation, word tokenisation is another elementary, but important stage in NLP pipelines. Whether stemming, finding phonetics, or POS tagging, tokenising words is an important precursory step.
+
+Frequently, words are seen as everything that is not white space (i.e., spaces, tabs, feeds), thereby their boundaries denoted by those white spaces[^implementations-5]. A smarter algorithm would also treat punctuation marks as word boundaries, but such a general rule would wrongly classify inter-word as not being part of words[^implementations-6]. Many exceptions to this rule exist, e.g., elision (whether full stops, `e.g.`; apostrophes, the Dutch `'s`; or slashes, `N/A`), hyphenation points, or colons.
+
+#### Pipelines
+
+In the previous section implementations were covered that solve tokenisation stages in NLP pipelines, such as Natural's word tokenisers. Concluded was that these implementations are lacking. In this section several implementations are covered that solve these tokenisation stages as part of a larger pipeline.
+
+##### Sentiment Analysis
+
+Sentiment analysis is an NLP task which is concerned with the polarity (positive, negative) and subjectivity (objective, subjective) of text. It's pipeline could look as follows.
+
+1. Detect language --- Often omitted if only a certain (often English) language is supported.
+2. Optionally tokenising sentences --- Different sentences could have different sentiments, tokenising them helps provide better outcomes.
+3. Tokenising words --- Needed to compare with the database (see the last stage).
+4. Optionally detecting lemmas or stems --- Might help classification.
+5. Detecting sentiment --- Typically, sentiment analysers include a database mapping words (or stems, lemmas) to their respective polarity and/or subjectivity[^implementations-7].
+
+Many implementations exist for this task[^implementations-8] on the web platform, many of which exclude non-alphabetic characters form their definition of words, resulting in less than perfect results[^implementations-9].
+
+##### Automatic Summarisation
+
+Automatic summarisation is an NLP task concerned with reducing a text in order to create a summary of the major points retaining the original document. In contradiction with sentiment analysers, implementations of automatic summarisation algorithms on the web are less ubiquitously available[^implementations-10].
+
+An example pipeline for automatic summarisation could be as follows.
+
+1. Detect language --- Often omitted if only a certain (often English) language is supported.
+2. Tokenising sentences --- Unless even finer grained control over the document is possible (tokenising phrases), sentences are the smallest unit that should stay intact in the resulting summary.
+3. Tokenising words --- Used to calculate keywords (words which occur more often than expected by chance alone).
+4. Automatic summarisation --- Ranking the tokenised grammatical units (sentences, phrases) and return the highest ranking units.
+
+Several factors can be used to determine whether or not a phrase or sentence should be included in a summary:
+
+1. Number of words (an ideal sentence is neither too short nor too long);
+2. Number of keywords (see stage 3., this metric is most widely implemented);
+3. Number of words from the document’s title it contains;
+4. Position inside a paragraph (initial and final sentences are often more important than sentences buried somewhere in the middle of a paragraph).
+
+Some implementations only include keyword metrics[@jbrooksuk/node-summary-source-code], others include all aforementioned features[@MojoJolo/textteaser-source-code], or even more advanced factors[@summly].
+
+The only project working on the web, [@jbrooksuk/node-summary-source-code], takes a naive approach to sentence tokenisation, for example, ignoring sentences terminated by an exclamation point. Note that both other implementations, and many more, use a whole different approach to sentence tokenisation (see the next section).
+
+#### Using Corpora for NLP
+
+A corpus is a large, structured set of texts used for many linguistic tasks, as well as NLP. Oftentimes, each item (most frequently words, but some corpora include sentences, phrases, clauses, or other units) in a corpus is annotated ("tagged") with information about the item (for example, part-of-speech tags or lemmas).
+
+These huge (often more than a million words[^implementations-11]) chunks of information are the basis of many of the newer revolutions in NLP[@mitkov-ruslan-ea-importance-corpora]. Supervised learned[^implementations-12] parsing (in NLP, based on annotated corpora), is the direct antagonist of rule-based parsing[^implementations-13]. Instead of defining rules, exceptions to these rules, exceptions to these exceptions, and so on, supervised learning delegates this task to machines, creating a more performant, scalable, program.
+
+Generally, corpus linguistics have proven to be better in several ways over rule-based linguistics. However, they do have their disadvantages:
+
+- Some rule-based approaches for pre- and post processing are still required;
+- Good training sets are required;
+- If the corpus was created from news articles, algorithms based on it won't fair so well on microblogs (e.g., Twitter posts);
+
+Most important is the fact that supervised learning will not fare well on the web: Loading corpora over the network each time a user request a web page is unfeasible for most web sites or applications[^implementations-14].
+
+Two viable alternative approaches exist for the web: the aforementioned rule-based tokenisation, or connecting to a server over the network.
+
+#### Using a web API
+
+Where the term API (Application Programming Interface) stands for the interface between two programs, the term is often defined in the context of web development as requests (from a web browser) to, and responses (from a web server) over HTTP (Hypertext Transfer Protocol). For example, Twitter has such a service to allow developers to list, replace, create, and delete so-called "Tweets" and other objects (users, images, &.). In the context of this paper, the term Web API is used for the latter, whereas API is used for any programming interface.
+
+With the rise of the asynchronous web[^implementations-15], supervised learning too became widely available through web API's (e.g., [@textteaser-web-api], [@wordnet-web-api], [@textrazor-web-api]). The new web API's made it possible to implement supervised learning techniques on the web, without the need for downloading a whole corpus to your or your users' computer.
+
+However, accessing NLP web API's over a network has disadvantages. Most importantly the time involved when sending data over the network (especially on mobile networks), the bandwidth used, and heightened security risks.
+
+[^implementations-1]: Both sentence tokenisation and sentence boundary disambiguation are based on the same thing—detecting where sentences stop. Sentence boundary disambiguation focusses on the position where a sentence breaks (as in, 'One sentence.| Two sentences.|', where the pipe symbol refers to the end of one sentence and the beginning of another), whereas sentence tokenisation lays focus on where a sentence starts and where it ends (as in, '{One sentence.} {Two sentences.}', where everything between curly brackets, both start and end boundaries, are detected and classified as s sentence).
+
+[^implementations-2]: One could argue the in 1962 introduced obscure interrobang (`‽`) should be in this list.
+
+[^implementations-3]: Although the definition of initialism is ambiguous, this paper defines its use as an acronym (an abbreviation formed from initial components, such as `sonar` or `FBI`) with full stops depicting elision (such as `e.g.`, or `K.G.B.`).
+
+[^implementations-4]: Embedded content in this paper refers to an external (non-grammatical) value embedded into a grammatical unit, for example a hyperlink or an emoticon. Note that these embedded values oftentimes consist of valid words and punctuation, but most always shouldn't be tokenised as such.
+
+[^implementations-5]: For example, Knwl[@knwl-source-code] counts words using this method.
+
+[^implementations-6]: Natural's[@natural-source-code] tokenisers are such an example.
+
+[^implementations-7]: For example, the AFINN database mapping words to polarity[@nielsen-finn-arup-afinn].
+
+[^implementations-8]: For example, [@thinkroth/sentimental-source-code], [@mileszim/sediment-source-code], and [@thisandagain/sentiment-source-code].
+
+[^implementations-9]: If fact, all of the researched implementations[^implementations-7] deploy lacks tokenisations steps. Controversial, as they each create unreachable code through their naivety: all tested libraries remove dashes from words, while words such as `self-deluded` are in the databases they use.
+
+[^implementations-10]: For example, [@jbrooksuk/node-summary-source-code] on the web, [@MojoJolo/textteaser-source-code] in Scala.
+
+[^implementations-11]: The Brown Corpus[@francis-nelson-brown-corpus] contains about a million words, the Google N-Gram Corpus contains 155 billion[@brants-thorsten-google-ngram-corpus].
+
+[^implementations-12]: "[From] a set of labeled examples as training data ... [, make] predictions for all unseen points", [@mohri-mehryar-foundations-machine-learning]
+
+[^implementations-13]: A simple rule-based sentence tokeniser could be implemented as follows:
+    - If it's a period, it ends a sentence;
+    - If the period is preceded by an abbreviation, it does not end a sentence;
+    - If the next token is capitalised, it ends a sentence.
+
+[^implementations-14]: Currently, almost no technologies exist for storing large datasets in a browser exist. The only exception to the rule is the HTML5 File System API, but its currently not widely supported[@caniuse-filesystem-api]. Still, even when widely supported, letting every website store gigabytes of corpora is not a solution.
+
+[^implementations-15]: Starting around 2000 AJAX (an acronym for Asynchronous JavaScript and XML) started to transform the web. Beforehand, websites only really changed when a user navigated to a new page. With AJAX however, new content arrived to users without the need for a full page refresh. One of the first examples are the Outlook Web App in 2000[@technet-outlook-web-access] and Gmail in 2004[@gmailblog-gmail-ajax], both examples of how AJAX made the web feel more "app-like".
+
+## Design
+
+### Architecture
+
+#### Syntax: NLCST
+
+To develop natural language tools in ECMAScript, an intermediate representation of natural language is useful: instead of each module defining their own representation of text, using a single syntax leads to better results, interoperability, and performance.
+
+The elements defined by NLCST (Natural Language Concrete Syntax Tree) are based on the the grammatical hierarchy, but by default do not expose all its constituents[^architecture-syntax-1]. Additionally, more elements are provided to cover other semantic units in natural language[^architecture-syntax-2].
+
+The definitions of exposed nodes were heavily based on other specifications of syntax trees for manipulation on the web platform, such as CSS (aptly named for the CSS language)[^architecture-syntax-3] and the Mozilla JavaScript AST (for ECMAScript)[^architecture-syntax-4]. Both implementations are widely used. CSS by Rework[^architecture-syntax-5], and Mozilla JavaScript AST by Esprima[^architecture-syntax-6], Acorn[^architecture-syntax-7], and Escodegen[^architecture-syntax-8].
+
+Note that the aforementioned syntax tree specifications are both abstract syntax trees (AST), whereas NLCST is a a concrete syntax tree (CST). A concrete synax tree is a one-to-one mapping of source to result. All information stored in the original input is also available through the resulting tree[^architecture-syntax-9].
+
+The information stored in CST's is very verbose and could lead to trees that are hard to work with. On the other hand, the fact that every part of the input is housed in the tree, makes it easy for developers to save the output or pass it on to unsupporting libraries for further processing.
+
+See the appendices for a complete list of specified nodes of NLCST.
+
+[^architecture-syntax-1]: The grammatical hierarchy of text is constituted by words, phrases, clauses, and sentences. NLCST only implements the sentence and word constituents by default, although clauses and phrases could be provided by implementations.
+
+[^architecture-syntax-2]: Most notably, punctuation, symbol, and white space elements.
+
+[^architecture-syntax-3]: https://github.com/reworkcss/css#ast
+
+[^architecture-syntax-4]: https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Parser_API
+
+[^architecture-syntax-5]: https://github.com/reworkcss/rework/
+
+[^architecture-syntax-6]: https://github.com/ariya/esprima
+
+[^architecture-syntax-7]: http://marijnhaverbeke.nl/acorn/
+
+[^architecture-syntax-8]: https://github.com/Constellation/escodegen
+
+[^architecture-syntax-9]: http://eli.thegreenplace.net/2009/02/16/abstract-vs-concrete-syntax-trees/
+
+
+#### Parser: Parse-latin
+
+ECMAScript is used extensively. Because of this, many ECMAScript tools are being developed. This includes tools for Natural Language Processing. These ECMAScript tools however, when run on the client-side, can not implement supervised learning based on corpora, and web API usage too is not ideal. Thus, a rule-based parser is needed to tokenise text.
+
+For creating such intermediate representations from Latin-script based languages, parse-latin is presented in this paper[^architecture-parser-1]. As proof-of-concept, two other libraries are also presentend, parse-english and parse-dutch, using parse-latin as a base and providing better support for several language specific features, respecivly English and Dutch.
+
+By following NLCST (also proposed in this paper), modules building on parse-latin may receive better results or performance over implementing their own parsing tools.
+
+By using the CST as described by NLCST and the parser as described by parse-latin, the intermediate representation can be used by developers to create independent modules.
+
+Basically, parse-latin splits text into white space, word, and punctuation tokens. parse-latin starts out with a pretty simple definition, one that most other tokenizers use:
+
+- A “word” is one or more letter or number characters;
+- A “white space” is one or more white space characters;
+- A “punctuation” is one or more of anything else;
+
+Then, it manipulates and merges those tokens into a syntax tree, adding sentences and paragraphs where needed.
+
+- Some punctuation marks are part of the word they occur in, e.g., non-profit, she\'s, G.I., 11:00, N/A;
+- Some full-stops do not mark a sentence end, e.g., 1., e.g., id.;
+- Although full-stops, question marks, and exclamation marks (sometimes) end a sentence, that end might not occur directly after the mark, e.g., .), .";
+
+See the appendices for example output provided by the parse-latin parser.
+
+##### parse-english
+
+parse-english has the same interface as parse-latin, but returns results better suited for English natural language. For example:
+
+- Unit abbreviations (tsp., tbsp., oz., ft., &c.);
+- Time references (sec., min., tues., thu., feb., &c.);
+- Business Abbreviations (Inc. and Ltd);
+- Social titles (Mr., Mmes., Sr., &c.);
+- Rank and academic titles (Dr., Rep., Gen., Prof., Pres., &c.);
+- Geographical abbreviations (Ave., Blvd., Ft., Hwy., &c.);
+- American state abbreviations (Ala., Minn., La., Tex., &c.);
+- Canadian province abbreviations (Alta., Qué., Yuk., &c.);
+- English county abbreviations (Beds., Leics., Shrops., &c.);
+- Common elision (omission of letters) ('n', 'o, 'em, 'twas, '80s, &c.).
+
+##### parse-dutch
+
+parse-dutch has, just like parse-english, the same interface as parse-latin, but returns results better suited for Dutch natural language. For example:
+
+- Unit and time abbreviations (gr., sec., min., ma., vr., vrij., febr, mrt, &c.);
+- Many other common abbreviations: (Mr., Mv., Sr., Em., bijv., zgn., amb., &c.);
+- Common elision (omission of letters) (d’, ’n, ’ns, ’t, ’s, ’er, ’em, ’ie, &c.).
+
+[^architecture-parser-1]: Whether Old-English (“þā gewearþ þǣm hlāforde and þǣm hȳrigmannum wiþ ānum penninge”), Icelandic (“Hvað er að frétta”), French (“Où sont les toilettes?”), or even scripts slightly similar, such as Cyrillic (“Добро пожаловать!”), Georgian (“როგორა ხარ?”), Armenian (“Շատ հաճելի է”).
+
+#### Object Model: TextOM
+
+To modify NLCST nodes in ECMAScript, this paper proposes TextOM. TextOM implements the nodes defined by NLCST, but provides an object-oriented style[^architecture-object-model-1]. TextOM was designed to be similar to the Document Object Model (DOM)[^architecture-object-model-2], the mechanism used by browsers to expose HTML through ECMAScript to developers. Because of TextOM's likeness to the DOM, TextOM is easy to learn and familiar to the target audience.
+
+TextOM provides events (a mechanism for detecting changes), modification functionality (inserting, removing, and replacing children into/from parents), and traversal (e.g., finding all words in a sentence).
+
+NLCST allows authors to extend the specification by defining their own nodes, for example creating phrase or clause nodes. TextOM allows for the same extension, and is build to work well with “unknown” node types.
+
+[^architecture-object-model-1]: Object-oriented programming is a style of programming, where classes, instances, attributes, and methods are important.
+
+[^architecture-object-model-2]:
+    The DOM specification defines a platform-neutral model for errors, events, and (for this paper, the primary feature) node trees. XML-based documents can be represented by the DOM.
+
+    See the appendices for example conversion provided by the DOM for an HTML document.
+
+    The DOM interfaces of bygone times were widely considered horrible, but newer features seem to be gaining popularity in the web authoring community as broader implementation across user agents is reached.
+
+#### Natural Language System: Retext
+
+For natural language processing on the client side, this paper proposes Retext. Retext combines a parser, such as parse-latin or parse-dutch, with a manipulatable object model (TextOM).
+
+In adittion, Retext provides a minimalistic plugin mechanism so developers can create and publish plugins for others, and in turn can use others' plugins inside their projects.
+
+### Production
+
+### Target Audience
+
+### Requirements
+
+### Use cases
+
+The use cases of the target audience, the front-end developer, in the field of NLP are many. Research for this paper found several use cases, although it is expected many more could be defined. The tasks below can be categorised into three broad fields: analysation, manipulation, and creation.
+
+- The practitioner may intent summarise natural text (mostly analysation, potentially also manipulation);
+- The practitioner may intent to create natural language, e.g., displaying the number of unread messages: "You have 1 unread message," or "You have 0 unread messages" (creation);
+- The practitioner may intent to recognise sentiment in text: is a Tweet positive, negative, or spam? (analysation);
+- The practitioner may intent to replace so-called "dumb" punctuation with so-called "smart" punctuation, e.g., dumb quotation with (“) or (”); three dots with an ellipsis (…), or two hyphens with an en-dash (–) (manipulation);
+- The practitioner may intent to count the number of certain elements in the grammatical hierarchy in a document, e.g, words, white space, punctuation, sentences, or paragraphs (analysation);
+- The practitioner may intent to recognise which language a given document is written in (analysation);
+- The practitioner may intent to find words based on a search term, with regards for the lemma (or stem) and/or phonetics (so that a search for "smit" also returns similar words, such as "Schmidt" or "Smith") (analysation and manipulation);
+
+Natural Language Processing is a broad field concerned with the interactions between computers and human languages, with bases in computer science, artificial intelligence, and linguistics. NLP poses may challenges, but not every challenge challenge in the field is of interest to the web developer--the developer enabling machines to respond to humans through the world wide web. Most importantly, the more academic areas of NLP do not fit well with the goals of web developers, e.g., speech recognition, optical character recognition, text-to-speech transformation, translation, or machine learning.
+
+### Open Source
+
+To reach the target audience and validate its use, the software was developed as open source software---software that is free for all to use and redistribute. All projects were licensed under The MIT License[^production-open-source-1], a license which provides rights for others to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of these projects.
+
+In addition, the software was developed under the all-seeing-eye of the GitHub community. GitHub is a hosted version control[^production-open-source-2] service with social networking features. On GitHub, many web developers follow their peers to track what they are working on, watch their favourite projects to get notified of changes, and raise issues or feature requests.
+
+[^production-open-source-1]: http://opensource.org/licenses/MIT
+
+[^production-open-source-2]: Version control services manage revisions to documents, popularly used for controlling and tracking changes in software.
+
+### Performance
+
+The in this paper proposed implementations were produced with high regards for performance. Performance includes the software having a small file size, but most importantly executing code efficiently at at high speeds.
+
+### Testing
+
+With the development of the in this paper introduced software, testing was given high priority. Testing, in software developments, refers to multiple subgroups of validating that the software does what it is supposed to do.
+
+- Unit testing -- Validation of each specific section of code;
+- Integration testing -- Validation of how programs work together;
+- System testing -- Validation of a system to see that it meets requirements;
+- Acceptance testing -- Validating the end product.
+
+Great care was given to develop a full test suite with 100% coverage for every program. Coverage, is a term used to describe the tested amount of code that. 100% coverage stands for full coverage (every part of the code is covered).
+
+#### Implementation
+
+#### Parser
+
+#### Object Model
+
+#### System
+
+## Validation
+
+### Plugins
+
+### Open source
+
+## Conclusion
+
+### Summary
+
+### Future Work
+
+### Advice

@@ -1,5 +1,0 @@
-#### Natural Language System: Retext
-
-For natural language processing on the client side, this paper proposes Retext. Retext combines a parser, such as parse-latin or parse-dutch, with a manipulatable object model (TextOM).
-
-In adittion, Retext provides a minimalistic plugin mechanism so developers can create and publish plugins for others, and in turn can use others' plugins inside their projects.

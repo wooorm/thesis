@@ -1,0 +1,23 @@
+Consider the following HTML document: 
+
+```html
+<!DOCTYPE html>
+<html class=e>
+    <head><title>Aliens?</title></head>
+    <body>Why yes.</body>
+</html>
+```
+
+Is represented by the DOM as follows:
+
+```html
+|- Document
+   |- Doctype: html
+   |- Element: html class="e"
+      |- Element: head
+      |  |- Element: title
+      |     |- Text: Aliens?
+      |- Text: ⏎␣
+      |- Element: body
+        |- Text: Why yes.⏎
+```

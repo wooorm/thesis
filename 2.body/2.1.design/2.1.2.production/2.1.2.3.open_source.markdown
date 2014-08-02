@@ -1,9 +1,0 @@
-### Open Source
-
-To reach the target audience and validate its use, the software was developed as open source software---software that is free for all to use and redistribute. All projects were licensed under The MIT License[^1], a license which provides rights for others to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of these projects.
-
-In addition, the software was developed under the all-seeing-eye of the GitHub community. GitHub is a hosted version control[^2] service with social networking features. On GitHub, many web developers follow their peers to track what they are working on, watch their favourite projects to get notified of changes, and raise issues or feature requests.
-
-[^1]: http://opensource.org/licenses/MIT
-
-[^2]: Version control services manage revisions to documents, popularly used for controlling and tracking changes in software.

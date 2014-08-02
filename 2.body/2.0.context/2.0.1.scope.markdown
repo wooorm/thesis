@@ -1,7 +1,0 @@
-### Scope
-
-The stages mentioned in the previous section are implemented in many NLP pipelines. This paper (the captured use cases and requirements, the proposed standard, and the example implementation) however will only cover one stage: tokenisation. Tokenisation here includes sentence boundary detection, word tokenisation, and tokenisation of other grammatical units.
-
-Another decision made in scoping the NLP problem is that that this paper lays its focus on syntactic, and largely ignores semantic units (i.e., phrases and clauses).
-
-Lastly, this paper ignores spoken language, and lays its focus on Latin script language: written languages using an alphabet depending on the letters of the classical Latin alphabet.
