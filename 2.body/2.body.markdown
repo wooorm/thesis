@@ -161,9 +161,9 @@ The elements defined by NLCST (Natural Language Concrete Syntax Tree) are based 
 
 The definitions of exposed nodes were heavily based on other specifications of syntax trees for manipulation on the web platform, such as CSS (aptly named for the CSS language)[^architecture-syntax-3] and the Mozilla JavaScript AST (for ECMAScript)[^architecture-syntax-4]. Both implementations are widely used. CSS by Rework[^architecture-syntax-5], and Mozilla JavaScript AST by Esprima[^architecture-syntax-6], Acorn[^architecture-syntax-7], and Escodegen[^architecture-syntax-8].
 
-Note that the aforementioned syntax tree specifications are both abstract syntax trees (AST), whereas NLCST is a a concrete syntax tree (CST). A concrete synax tree is a one-to-one mapping of source to result. All information stored in the original input is also available through the resulting tree[^architecture-syntax-9].
+Note that the aforementioned syntax tree specifications are both abstract syntax trees (AST), whereas NLCST is a a concrete syntax tree (CST). A concrete syntax tree is a one-to-one mapping of source to result. All information stored in the original input is also available through the resulting tree[^architecture-syntax-9].
 
-The information stored in CST's is very verbose and could lead to trees that are hard to work with. On the other hand, the fact that every part of the input is housed in the tree, makes it easy for developers to save the output or pass it on to unsupporting libraries for further processing.
+The information stored in CST's is very verbose and could lead to trees that are hard to work with. On the other hand, the fact that every part of the input is housed in the tree, makes it easy for developers to save the output or pass it on to other libraries for further processing.
 
 See the appendices for a complete list of specified nodes of NLCST.
 
@@ -190,13 +190,13 @@ See the appendices for a complete list of specified nodes of NLCST.
 
 ECMAScript is used extensively. Because of this, many ECMAScript tools are being developed. This includes tools for Natural Language Processing. These ECMAScript tools however, when run on the client-side, can not implement supervised learning based on corpora, and web API usage too is not ideal. Thus, a rule-based parser is needed to tokenise text.
 
-For creating such intermediate representations from Latin-script based languages, parse-latin is presented in this paper[^architecture-parser-1]. As proof-of-concept, two other libraries are also presentend, parse-english and parse-dutch, using parse-latin as a base and providing better support for several language specific features, respecivly English and Dutch.
+For creating such intermediate representations from Latin-script based languages, parse-latin is presented in this paper[^architecture-parser-1]. As proof-of-concept, two other libraries are also presented, parse-english and parse-dutch, using parse-latin as a base and providing better support for several language specific features, respectively English and Dutch.
 
 By following NLCST (also proposed in this paper), modules building on parse-latin may receive better results or performance over implementing their own parsing tools.
 
 By using the CST as described by NLCST and the parser as described by parse-latin, the intermediate representation can be used by developers to create independent modules.
 
-Basically, parse-latin splits text into white space, word, and punctuation tokens. parse-latin starts out with a pretty simple definition, one that most other tokenizers use:
+Basically, parse-latin splits text into white space, word, and punctuation tokens. parse-latin starts out with a pretty simple definition, one that most other tokenisers use:
 
 - A “word” is one or more letter or number characters;
 - A “white space” is one or more white space characters;
@@ -256,7 +256,7 @@ NLCST allows authors to extend the specification by defining their own nodes, fo
 
 For natural language processing on the client side, this paper proposes Retext. Retext combines a parser, such as parse-latin or parse-dutch, with a manipulatable object model (TextOM).
 
-In adittion, Retext provides a minimalistic plugin mechanism so developers can create and publish plugins for others, and in turn can use others' plugins inside their projects.
+In addition, Retext provides a minimalistic plugin mechanism so developers can create and publish plugins for others, and in turn can use others' plugins inside their projects.
 
 ### Production
 
