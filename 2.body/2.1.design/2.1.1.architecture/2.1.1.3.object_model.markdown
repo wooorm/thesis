@@ -1,8 +1,10 @@
 #### Object Model: TextOM
 
-To modify NLCST nodes in ECMAScript, this paper proposes TextOM. A library designed to be similar to the DOM[^1], the mechanism used by browsers to expose HTML through ECMAScript to developers, thus familiar to the target audience.
+To modify NLCST nodes in ECMAScript, this paper proposes TextOM. A library designed to be similar to the Document Object Model (DOM)[^1], the mechanism used by browsers to expose HTML through ECMAScript to developers, thus familiar to the target audience.
 
-TextOM provides events (a mechanism for detecting changes), modification functionality (inserting, removing, and replacing children into/from parents), and traversal (e.g., finding all words inside a sentence).
+TextOM provides events (a mechanism for detecting changes), modification functionality (inserting, removing, and replacing children into/from parents), and traversal (e.g., finding all words in a sentence).
+
+TextOM implements the nodes as defined by NLCST, but provides a object-oriented style[^2]. Especially because of TextOM likeness to the DOM, TextOM is easy to learn for new users of the library.
 
 [^1]:
     The DOM specification defines a platform-neutral model for errors, events, and (for this paper, the primary feature) node trees. XML-based documents can be represented by the DOM. Consider the following HTML document: 
@@ -30,3 +32,5 @@ TextOM provides events (a mechanism for detecting changes), modification functio
     ```
 
     The DOM interfaces of bygone times were widely considered horrible, but newer features seem to be gaining popularity in the web authoring community as broader implementation across user agents is reached.
+
+[^2]: Object-oriented programming is a style of programming, where classes, instances, attributes, and methods are important.
