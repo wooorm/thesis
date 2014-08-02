@@ -1,0 +1,11 @@
+### Use cases
+
+The use cases of the target audience, the front-end developer, in the field of NLP are many. Research for this paper found several use cases, although it is expected many more could be defined. The tasks below can be categorised into three broad fields: analysation, manipulation, and creation.
+
+- The practitioner may intent summarise natural text (mostly analysation, potentially also manipulation);
+- The practitioner may intent to create natural language, e.g., displaying the number of unread messages: "You have 1 unread message," or "You have 0 unread messages" (creation);
+- The practitioner may intent to recognise sentiment in text: is a Tweet positive, negative, or spam? (analysation);
+- The practitioner may intent to replace so-called "dumb" punctuation with so-called "smart" punctuation, e.g., dumb quotation with (“) or (”); three dots with an ellipsis (…), or two hyphens with an en-dash (–) (manipulation);
+- The practitioner may intent to count the number of certain elements in the grammatical hierarchy in a document, e.g, words, white space, punctuation, sentences, or paragraphs (analysation);
+- The practitioner may intent to recognise which language a given document is written in (analysation);
+- The practitioner may intent to find words based on a search term, with regards for the lemma (or stem) and/or phonetics (so that a search for "smit" also returns similar words, such as "Schmidt" or "Smith") (analysation and manipulation);
