@@ -28,7 +28,7 @@
 [@mileszim/sediment-source-code]: https://github.com/mileszim/sediment
 [@thisandagain/sentiment-source-code]: https://github.com/thisandagain/sentiment
 
-
+[@stanbol-enhancer-nlp]: http://stanbol.apache.org/docs/trunk/components/enhancer/nlp/
 
 [@summly]: http://summly.com
 
