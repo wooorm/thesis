@@ -149,6 +149,15 @@ However, accessing NLP web API's over a network has disadvantages. Most importan
 
 ### Architecture
 
+The in this paper proposed solution to the problem of NLP on the client side is split up in multiple small proposals. Each proposal solves a subproblem.
+
+- NLCST --- Defines a standard for classifying grammatical units understandable for machines;
+- Parse-latin --- Classifies natural language according to NLCST;
+- TextOM --- Provides an interface for analysing and manipulating output provided by parse-latin;
+- Retext --- Provides an interface for transforming natural language into an object model and exposes an interface for plugins.
+
+The decoupled approach taken by the provided solution enables other developers to provide their own software to replace one of the sub-proposals. For example, other parties can create a parser for the Chinese language and use it instead of parse-latin to classify natural language according to NLCST.
+
 #### Syntax: NLCST
 
 To develop natural language tools in ECMAScript, an intermediate representation of natural language is useful: instead of each module defining their own representation of text, using a single syntax leads to better results, interoperability, and performance.
@@ -180,7 +189,6 @@ See the appendices for a complete list of specified nodes of NLCST.
 [^architecture-syntax-8]: https://github.com/Constellation/escodegen
 
 [^architecture-syntax-9]: http://eli.thegreenplace.net/2009/02/16/abstract-vs-concrete-syntax-trees/
-
 
 #### Parser: Parse-latin
 
