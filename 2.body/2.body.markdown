@@ -296,22 +296,61 @@ In addition, the software was developed under the all-seeing-eye of the GitHub c
 
 [^production-open-source-2]: Version control services manage revisions to documents, popularly used for controlling and tracking changes in software.
 
-### Performance
+#### Performance
 
 The in this paper proposed implementations were produced with high regards for performance. Performance includes the software having a small file size in order to reach the client over the network with high speed, but most importantly the executing of code should operate efficiently and at at high speeds.
 
-### Testing
+#### Testing
 
-With the development of the in this paper introduced software, testing was given high priority. Testing, in software developments, refers to multiple subgroups of validating that the software does what it is supposed to do.
+With the development of the in this paper introduced software, testing was given high priority. Testing, in software development, refers to multiple subgroups of validating if software does what it is supposed to do.
 
 - Unit testing --- Validation of each specific section of code;
 - Integration testing --- Validation of how programs work together;
-- System testing --- Validation of a system to see that it meets requirements;
-- Acceptance testing --- Validating the end product.
+- System testing --- Validation of if system meets its requirements;
+- Acceptance testing --- Validation of the end product.
 
-Great care was given to develop a full test suite with 100% coverage for every program. Coverage, is a term used to describe the tested amount of code that. 100% coverage stands for full coverage (every part of the code is covered).
+Great care was given to develop a full test suite with 100% coverage for every program. Coverage, in software development, is a term used to describe the tested amount of code that. 100% coverage stands for full coverage (every part of the code is covered).
 
-#### Implementation
+Unit test were run through Mocha[^production-testing-mocha], coverage was detected with Istanbul[^production-testing-istanbul].
+
+[^production-testing-mocha]: http://visionmedia.github.io/mocha/
+[^production-testing-istanbul]: http://gotwarlost.github.io/istanbul/
+
+#### Code quality
+
+Great attention was given to code quality, how readable for humans the software was. Special focus was given to consistency and clearness.
+
+##### Suspicious Code and Bugs
+
+{{Eslint}}
+
+##### Style
+
+{{JSCS}}
+
+##### Commenting
+
+{{JSDoc}}
+
+#### Automation
+
+Great focus was given to develop using several automated continuous integration (CI) environments. When suspicious, ambiguous, or buggy code was introduced in the software, the error was automatically detected and in some cases deployment was prevented.
+
+{{Travis}}
+{{Code Climate}}
+
+#### Ease of use
+
+##### API
+http://henrikwarne.com/2014/06/30/what-makes-a-good-programmer/
+https://speakerdeck.com/ariya/javascript-api-design-principles
+https://www.joyent.com/developers/node/design#codingstyle
+
+##### Installation
+
+{{NPM}}, {{BOWER}}, {{COMPONENT}}
+
+### Implementation
 
 #### Parser
 
