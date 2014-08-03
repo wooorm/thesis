@@ -268,8 +268,6 @@ In addition, Retext provides a minimalistic plugin mechanism so developers can c
 
 The audience that would benefit the most from such a solution are web developers: programmers who specialise in creating software for the world wide web. Web developers engage in client side development (building the interface between a human and a machine on the web), and sometimes also in server side development (building the interface between the client side and a server). Typical areas of work consist of programming in ECMAScript, marking up documents in HTML, graphic design through CSS, creating a back end in node.js, PHP, &c., contacting a database through MongoDB, MySQL, and more. In addition, many interdisciplinary skills are also of concern to web developers, such as usability, accessibility, copywriting, information architecture, optimisation.
 
-### Requirements
-
 ### Use cases
 
 The use cases of the target audience, the front-end developer, in the field of NLP are many. Research for this paper found several use cases, although it is expected many more could be defined. The tasks below can be categorised into three broad fields: analysation, manipulation, and creation.
@@ -284,7 +282,11 @@ The use cases of the target audience, the front-end developer, in the field of N
 
 Natural Language Processing is a broad field concerned with the interactions between computers and human languages, with bases in computer science, artificial intelligence, and linguistics. NLP poses may challenges, but not every challenge challenge in the field is of interest to the web developer---the developer enabling machines to respond to humans through the world wide web. Most importantly, the more academic areas of NLP do not fit well with the goals of web developers, e.g., speech recognition, optical character recognition, text-to-speech transformation, translation, or machine learning.
 
-### Open Source
+### Requirements
+
+The in the previous section covered use cases are required to be reachable through the proposed solution. In addition, this section covers other requirements to better suit the wishes of the target audience.
+
+#### Open Source
 
 To reach the target audience and validate its use, the software was developed as open source software---software that is free for all to use and redistribute. All projects were licensed under The MIT License[^production-open-source-1], a license which provides rights for others to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of these projects.
 
@@ -296,7 +298,7 @@ In addition, the software was developed under the all-seeing-eye of the GitHub c
 
 ### Performance
 
-The in this paper proposed implementations were produced with high regards for performance. Performance includes the software having a small file size, but most importantly executing code efficiently at at high speeds.
+The in this paper proposed implementations were produced with high regards for performance. Performance includes the software having a small file size in order to reach the client over the network with high speed, but most importantly the executing of code should operate efficiently and at at high speeds.
 
 ### Testing
 
