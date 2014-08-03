@@ -2,7 +2,7 @@
 
 {{Needs a nice quote about the definition of NLP}}
 
-The focus of this paper is Natural Language Processing---abbreviated as NLP throughout. NLP concerns itself with enabling machines to understand human language, thus it's a field related to human--computer interaction. Human language, a medium which humans understand quite easily, can pose problems for machines.
+The focus of this paper is Natural Language Processing---abbreviated as NLP throughout. NLP concerns itself with enabling machines to understand human language, thus it is a field related to human--computer interaction. Human language, a medium which humans understand quite easily, can pose problems for machines.
 
 That understanding of human language by machines is quite difficult, is depicted by one of the first application of NLP, during the Georgetown--IBM experiment, where a Russian-english machine translation system was showcased in New York in 1945[@hutchins-john-georgetown-ibm-system]. More than sixty sentences were translated by a machine from Russian to English. The experiment was well publicised in the press and resulted in optimism for machine-translation. Machine-translation was thought of as being a solved problem within three to five years. The results in the following ten years were however disappointing and eventually led to reduced funding.
 
@@ -40,7 +40,7 @@ While researching algorithms to tokenise natural language I found few viable opt
 
 ##### Sentence tokenisation
 
-Often referred to as sentence boundary disambiguation[^implementations-1], sentence tokenisation is a very basic, but important part of NLP. It's almost always a stage in an NLP application and not an end goal. Sentence tokenisation helps subsequent stages (e.g., detecting plagiarism or POS tagging) work more accurately.
+Often referred to as sentence boundary disambiguation[^implementations-1], sentence tokenisation is a very basic, but important part of NLP. It is almost always a stage in an NLP application and not an end goal. Sentence tokenisation helps subsequent stages (e.g., detecting plagiarism or POS tagging) work more accurately.
 
 Oftentimes, one of three symbols is used to denote the end of a sentences: Either a full stop (`.`), an interrogative point (`?`), or an exclamation point (`!`)[^implementations-2]. Detecting sentence boundaries is however not so easy as simply breaking sentences at these markers. The previously mentioned terminal markers might have other purposes: full stops are often suffixed to abbreviations or titles, in numbers, included in initialisms[^implementations-3], or in embedded content[^implementations-4]. The interrogative- and exclamation points too can occur ambiguously, most often in a quote (e.g., `"Of course!", she screamed`). Disambiguation gets even harder when the previous mentioned exceptions are in fact also a sentence boundary, such as in `...use the feminine form of idem, ead.` or in `"Of course!", she screamed, "I'll do it!"`, where in both examples the last terminal markers end their respective sentence.
 
@@ -137,11 +137,11 @@ However, accessing NLP web API's over a network has disadvantages. Most importan
 [^implementations-12]: "[From] a set of labeled examples as training data ... [, make] predictions for all unseen points", [@mohri-mehryar-foundations-machine-learning]
 
 [^implementations-13]: A simple rule-based sentence tokeniser could be implemented[@attivio.com-doing-things-with-sentences] as follows:
-    - If it's a period, it ends a sentence;
+    - If it is a period, it ends a sentence;
     - If the period is preceded by an abbreviation, it does not end a sentence;
     - If the next token is capitalised, it ends a sentence.
 
-[^implementations-14]: Currently, almost no technologies exist for storing large datasets in a browser. The only exception to the rule is the HTML5 File System API, but it's currently not widely supported[@caniuse-filesystem-api]. Still, even when widely supported, letting every website store gigabytes of corpora is not a solution.
+[^implementations-14]: Currently, almost no technologies exist for storing large datasets in a browser. The only exception to the rule is the HTML5 File System API, but it is currently not widely supported[@caniuse-filesystem-api]. Still, even when widely supported, letting every website store gigabytes of corpora is not a solution.
 
 [^implementations-15]: Starting around 2000 AJAX (an acronym for Asynchronous JavaScript and XML) started to transform the web. Beforehand, websites only really changed when a user navigated to a new page. With AJAX however, new content arrived to users without the need for a full page refresh. One of the first examples are the Outlook Web App in 2000[@technet-outlook-web-access] and Gmail in 2004[@gmailblog-gmail-ajax], both examples of how AJAX made the web feel more "app-like".
 
