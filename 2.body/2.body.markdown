@@ -330,10 +330,15 @@ To enforce a consistent code style, in order to create software readable for hum
 
 ##### Commenting
 
-{{JSDoc}}
+Even when code is completely bug free, uses no hard-to-understand shortcuts, and adheres to a strict style, it might still be hard to understand for humans. The act of commenting code---describing what a program does and why it accomplishes this in a certain way---is important. On the other hand, commenting can also be to verbose, for example when the code is duplicated in natural language.
+
+JSDoc[^code-quality-jsdoc] is a markup language for ECMAScript programs, allowing developers to embed documentation in source code. Later various tools can be used to extract the documentation and expose it separately from the original code.
+
+Great care was given to annotate "tricky" source code inside the software with comments, and to apply documentation inside the source code through JSDoc.
 
 [^code-quality-eslint]: [@eslint/eslint-source-code]
 [^code-quality-jscs]: [@mdevils/node-jscs-source-code]
+[^code-quality-jsdoc]: [@google.com-clojure-compiler-jsdoc]
 
 #### Automation
 
