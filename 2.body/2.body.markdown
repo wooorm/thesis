@@ -112,36 +112,36 @@ With the rise of the asynchronous web[^implementations-15], supervised learning 
 
 However, accessing NLP web API's over a network has disadvantages. Most importantly the time involved when sending data over the network (especially on mobile networks), the bandwidth used, and heightened security risks.
 
-[^implementations-1]: Both sentence tokenisation and sentence boundary disambiguation are based on the same thing---detecting where sentences stop. Sentence boundary disambiguation focusses on the position where a sentence breaks (as in, 'One sentence.| Two sentences.|', where the pipe symbol refers to the end of one sentence and the beginning of another), whereas sentence tokenisation lays focus on where a sentence starts and where it ends (as in, '{One sentence.} {Two sentences.}', where everything between curly brackets, both start and end boundaries, are detected and classified as s sentence).
+[^implementations-1]: Both sentence tokenisation and sentence boundary solve a similar issue---detecting where sentences terminate. Sentence boundary disambiguation focusses on the position where a sentence breaks (as in, 'One sentence.| Two sentences.|', where the pipe symbol refers to the end of one sentence and the beginning of another), whereas sentence tokenisation lays focus on where a sentence starts and where it ends (as in, '{One sentence.} {Two sentences.}', where everything between curly brackets, both start and end boundaries, are detected and classified as s sentence).
 
-[^implementations-2]: One could argue the in 1962 introduced obscure interrobang (`‽`) should be in this list.
+[^implementations-2]: One could argue the in 1962 introduced obscure interrobang (`‽`), used to punctuate rhetorical statements where neither the question nor an exclamation alone exactly serve the writer well[@interrobang-mks.com], should be in this list.
 
 [^implementations-3]: Although the definition of initialism is ambiguous, this paper defines its use as an acronym (an abbreviation formed from initial components, such as `sonar` or `FBI`) with full stops depicting elision (such as `e.g.`, or `K.G.B.`).
 
-[^implementations-4]: Embedded content in this paper refers to an external (non-grammatical) value embedded into a grammatical unit, for example a hyperlink or an emoticon. Note that these embedded values oftentimes consist of valid words and punctuation, but most always shouldn't be tokenised as such.
+[^implementations-4]: Embedded content in this paper refers to an external (non-grammatical) value embedded into a grammatical unit, such as a hyperlink or an emoticon. Note that these embedded values often consist of valid words and punctuation marks, but most always shouldn't be classified as such.
 
 [^implementations-5]: For example, Knwl[@knwl-source-code] counts words using this method.
 
-[^implementations-6]: Natural's[@natural-source-code] tokenisers are such an example.
+[^implementations-6]: For example, Natural's[@natural-source-code] tokenisers.
 
-[^implementations-7]: For example, the AFINN database mapping words to polarity[@nielsen-finn-arup-afinn].
+[^implementations-7]: For example, the AFINN[@nielsen-finn-arup-afinn] database mapping words to polarity.
 
 [^implementations-8]: For example, [@thinkroth/sentimental-source-code], [@mileszim/sediment-source-code], and [@thisandagain/sentiment-source-code].
 
-[^implementations-9]: If fact, all of the researched implementations[^implementations-7] deploy lacks tokenisations steps. Controversial, as they each create unreachable code through their naivety: all tested libraries remove dashes from words, while words such as `self-deluded` are in the databases they use.
+[^implementations-9]: If fact, all of the researched implementations[^implementations-7] deploy lacking tokenisations steps. Controversial, as they each create unreachable code through their naivety: all tested libraries remove dashes from words, while words such as `self-deluded` are in the databases they use, but never reachable.
 
 [^implementations-10]: For example, [@jbrooksuk/node-summary-source-code] on the web, [@MojoJolo/textteaser-source-code] in Scala.
 
-[^implementations-11]: The Brown Corpus[@francis-nelson-brown-corpus] contains about a million words, the Google N-Gram Corpus contains 155 billion[@brants-thorsten-google-ngram-corpus].
+[^implementations-11]: The Brown Corpus contains about a million words[@francis-nelson-brown-corpus], the Google N-Gram Corpus contains 155 billion[@brants-thorsten-google-ngram-corpus].
 
 [^implementations-12]: "[From] a set of labeled examples as training data ... [, make] predictions for all unseen points", [@mohri-mehryar-foundations-machine-learning]
 
-[^implementations-13]: A simple rule-based sentence tokeniser could be implemented as follows:
+[^implementations-13]: A simple rule-based sentence tokeniser could be implemented[@attivio.com-doing-things-with-sentences] as follows:
     - If it's a period, it ends a sentence;
     - If the period is preceded by an abbreviation, it does not end a sentence;
     - If the next token is capitalised, it ends a sentence.
 
-[^implementations-14]: Currently, almost no technologies exist for storing large datasets in a browser exist. The only exception to the rule is the HTML5 File System API, but its currently not widely supported[@caniuse-filesystem-api]. Still, even when widely supported, letting every website store gigabytes of corpora is not a solution.
+[^implementations-14]: Currently, almost no technologies exist for storing large datasets in a browser. The only exception to the rule is the HTML5 File System API, but it's currently not widely supported[@caniuse-filesystem-api]. Still, even when widely supported, letting every website store gigabytes of corpora is not a solution.
 
 [^implementations-15]: Starting around 2000 AJAX (an acronym for Asynchronous JavaScript and XML) started to transform the web. Beforehand, websites only really changed when a user navigated to a new page. With AJAX however, new content arrived to users without the need for a full page refresh. One of the first examples are the Outlook Web App in 2000[@technet-outlook-web-access] and Gmail in 2004[@gmailblog-gmail-ajax], both examples of how AJAX made the web feel more "app-like".
 

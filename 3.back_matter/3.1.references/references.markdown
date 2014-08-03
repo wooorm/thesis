@@ -35,3 +35,7 @@
 [@technet-outlook-web-access]: http://blogs.technet.com/b/exchange/archive/2005/06/21/406646.aspx
 
 [@gmailblog-gmail-ajax]: http://gmailblog.blogspot.ie/2013/04/gmail-9-years-and-counting.html
+
+[@interrobang-mks.com]: http://www.interrobang-mks.com
+
+[@attivio.com-doing-things-with-sentences]: http://www.attivio.com/blog/october-2008/doing-things-with-words-part-two-sentence-boun
