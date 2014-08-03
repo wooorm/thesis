@@ -266,6 +266,8 @@ In addition, Retext provides a minimalistic plugin mechanism so developers can c
 
 ### Target Audience
 
+The audience that would benefit the most from such a solution are web developers: programmers who specialise in creating software for the world wide web. Web developers engage in client side development (building the interface between a human and a machine on the web), and sometimes also in server side development (building the interface between the client side and a server). Typical areas of work consist of programming in ECMAScript, marking up documents in HTML, graphic design through CSS, creating a back end in node.js, PHP, &c., contacting a database through MongoDB, MySQL, and more. In addition, many interdisciplinary skills are also of concern to web developers, such as usability, accessibility, copywriting, information architecture, optimisation.
+
 ### Requirements
 
 ### Use cases
