@@ -39,3 +39,7 @@
 [@interrobang-mks.com]: http://www.interrobang-mks.com
 
 [@attivio.com-doing-things-with-sentences]: http://www.attivio.com/blog/october-2008/doing-things-with-words-part-two-sentence-boun
+
+[@ariya/esprima-source-code]: https://github.com/ariya/esprima
+
+[@eslint/eslint-source-code]: https://github.com/eslint/eslint
