@@ -349,10 +349,21 @@ Tools user were Code Climate[^automation-code-climate] to detect complex, duplic
 [^automation-code-climate]: [@codeclimate.com]
 [^automation-travis]: [@travis-ci.org]
 
-#### Ease of use
+#### API Design
 
-##### API
-http://henrikwarne.com/2014/06/30/what-makes-a-good-programmer/
+Interface design was given high priority for the development of the proposed software. A clear interface of the software, as defined by Joshua Bloch[^api-design-1], has the following characteristics:
+
+- Easy to learn;
+- Easy to use;
+- Hard to misuse;
+- Easy to read;
+- Easy to maintain;
+- Easy to extend;
+- Meeting its requirements;
+- Appropriate for the target audience.
+
+[^api-design-1]: [@bloch-joshua-how-design-good-api-why-matters]
+
 https://speakerdeck.com/ariya/javascript-api-design-principles
 https://www.joyent.com/developers/node/design#codingstyle
 

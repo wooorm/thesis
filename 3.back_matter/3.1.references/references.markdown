@@ -49,3 +49,5 @@
 [@travis-ci.org]: https://travis-ci.org
 
 [@codeclimate.com]: https://codeclimate.com
+
+[@bloch-joshua-how-design-good-api-why-matters]: Bloch, Joshua. "How to design a good API and why it matters." Companion to the 21st ACM SIGPLAN symposium on Object-oriented programming systems, languages, and applications. ACM, 2006.
