@@ -344,8 +344,10 @@ Great care was given to annotate "tricky" source code inside the software with c
 
 Great focus was given to develop using several automated continuous integration (CI) environments. When suspicious, ambiguous, or buggy code was introduced in the software, the error was automatically detected and in some cases deployment was prevented.
 
-{{Travis}}
-{{Code Climate}}
+Tools user were Code Climate[^automation-code-climate] to detect complex, duplicate, or bug-prone code, and Travis[^automation-travis] to validate all unit tests passed before deplying the software.
+
+[^automation-code-climate]: [@codeclimate.com]
+[^automation-travis]: [@travis-ci.org]
 
 #### Ease of use
 

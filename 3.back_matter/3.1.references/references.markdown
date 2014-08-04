@@ -45,3 +45,7 @@
 [@eslint/eslint-source-code]: https://github.com/eslint/eslint
 
 [@google.com-clojure-compiler-jsdoc]: https://developers.google.com/closure/compiler/docs/js-for-compiler
+
+[@travis-ci.org]: https://travis-ci.org
+
+[@codeclimate.com]: https://codeclimate.com
