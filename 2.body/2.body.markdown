@@ -382,14 +382,6 @@ Acces both on the client side and on the server side to the software was of impo
 
 [^installation-1]: Popularity here is simply defined as having the most search results on Google.
 
-### Implementation
-
-#### Parser
-
-#### Object Model
-
-#### System
-
 ## Validation
 
 ### Plugins
