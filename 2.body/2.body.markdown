@@ -38,7 +38,7 @@ While researching algorithms to tokenise natural language I found few viable opt
 
 Often referred to as sentence boundary disambiguation[^implementations-1], sentence tokenisation is a very basic, but important part of NLP. It is almost always a stage in an NLP application and not an end goal. Sentence tokenisation helps subsequent stages (e.g., detecting plagiarism or POS tagging) work more accurately.
 
-Oftentimes, one of three symbols is used to denote the end of a sentences: Either a full stop ("."), an interrogative point ("?"), or an exclamation point ("!")[^implementations-2]. Detecting sentence boundaries is however not so easy as simply breaking sentences at these markers. The previously mentioned terminal markers might have other purposes: full stops are often suffixed to abbreviations or titles, in numbers, included in initialisms[^implementations-3], or in embedded content[^implementations-4]. The interrogative- and exclamation points too can occur ambiguously, most often in a quote (e.g., '"Of course!", she screamed'). Disambiguation gets even harder when the previous mentioned exceptions are in fact also a sentence boundary, such as in "...use the feminine form of idem, ead." or in '"Of course!", she screamed, "I'll do it!"', where in both examples the last terminal markers end their respective sentence.
+Oftentimes, one of three symbols is used to denote the end of a sentences: Either a full stop (.), an interrogative point (?), or an exclamation point (!)[^implementations-2]. Detecting sentence boundaries is however not so easy as simply breaking sentences at these markers. The previously mentioned terminal markers might have other purposes: full stops are often suffixed to abbreviations or titles, in numbers, included in initialisms[^implementations-3], or in embedded content[^implementations-4]. The interrogative- and exclamation points too can occur ambiguously, most often in a quote (e.g., '"Of course!", she screamed'). Disambiguation gets even harder when the previous mentioned exceptions are in fact also a sentence boundary, such as in "...use the feminine form of idem, ead." or in '"Of course!", she screamed, "I'll do it!"', where in both examples the last terminal markers end their respective sentence.
 
 ##### Word tokenisation
 
@@ -110,7 +110,7 @@ However, accessing NLP web API's over a network has disadvantages. Most importan
 
 [^implementations-1]: Both sentence tokenisation and sentence boundary solve a similar issue---detecting where sentences terminate. Sentence boundary disambiguation focusses on the position where a sentence breaks (as in, 'One sentence.| Two sentences.|', where the pipe symbol refers to the end of one sentence and the beginning of another), whereas sentence tokenisation lays focus on where a sentence starts and where it ends (as in, '{One sentence.} {Two sentences.}', where everything between curly brackets, both start and end boundaries, are detected and classified as s sentence).
 
-[^implementations-2]: One could argue the in 1962 introduced obscure interrobang ("‽"), used to punctuate rhetorical statements where neither the question nor an exclamation alone exactly serve the writer well[@interrobang-mks.com], should be in this list.
+[^implementations-2]: One could argue the in 1962 introduced obscure interrobang (‽), used to punctuate rhetorical statements where neither the question nor an exclamation alone exactly serve the writer well[@interrobang-mks.com], should be in this list.
 
 [^implementations-3]: Although the definition of initialism is ambiguous, this paper defines its use as an acronym (an abbreviation formed from initial components, such as "sonar" or "FBI") with full stops depicting elision (such as "e.g.", or "K.G.B.").
 
@@ -204,9 +204,9 @@ Basically, parse-latin splits text into white space, word, and punctuation token
 
 Then, it manipulates and merges those tokens into a syntax tree, adding sentences and paragraphs where needed.
 
-- Some punctuation marks are part of the word they occur in, e.g., non-profit, she\'s, G.I., 11:00, N/A;
-- Some full-stops do not mark a sentence end, e.g., 1., e.g., id.;
-- Although full-stops, question marks, and exclamation marks (sometimes) end a sentence, that end might not occur directly after the mark, e.g., .), .";
+- Some punctuation marks are part of the word they occur in, e.g., "non-profit", "she\'s", "G.I.", "11:00", "N/A";
+- Some full-stops do not mark a sentence end, e.g., "1.", "e.g.", "id.";
+- Although full-stops, question marks, and exclamation marks (sometimes) end a sentence, that end might not occur directly after the mark, e.g., ".)", '."';
 
 See the appendices for example output provided by the parse-latin parser.
 
@@ -214,24 +214,24 @@ See the appendices for example output provided by the parse-latin parser.
 
 parse-english has the same interface as parse-latin, but returns results better suited for English natural language. For example:
 
-- Unit abbreviations (tsp., tbsp., oz., ft., &c.);
-- Time references (sec., min., tues., thu., feb., &c.);
-- Business Abbreviations (Inc. and Ltd);
-- Social titles (Mr., Mmes., Sr., &c.);
-- Rank and academic titles (Dr., Rep., Gen., Prof., Pres., &c.);
-- Geographical abbreviations (Ave., Blvd., Ft., Hwy., &c.);
-- American state abbreviations (Ala., Minn., La., Tex., &c.);
-- Canadian province abbreviations (Alta., Qué., Yuk., &c.);
-- English county abbreviations (Beds., Leics., Shrops., &c.);
-- Common elision (omission of letters) ('n', 'o, 'em, 'twas, '80s, &c.).
+- Unit abbreviations ("tsp.", "tbsp.", "oz.", "ft.", &c.);
+- Time references ("sec.", "min.", "tues.", "thu.", "feb.", &c.);
+- Business Abbreviations ("Inc." and "Ltd.");
+- Social titles ("Mr.", "Mmes.", "Sr.", &c.);
+- Rank and academic titles ("Dr.", "Rep.", "Gen.", "Prof.", "Pres.", &c.);
+- Geographical abbreviations ("Ave.", "Blvd.", "Ft.", "Hwy.", &c.);
+- American state abbreviations ("Ala.", "Minn.", "La.", "Tex.", &c.);
+- Canadian province abbreviations ("Alta.", "Qué.", "Yuk.", &c.);
+- English county abbreviations ("Beds.", "Leics.", "Shrops.", &c.);
+- Common elision (omission of letters) ("'n'", "'o", "'em", "'twas", "'80s", &c.).
 
 ##### parse-dutch
 
 parse-dutch has, just like parse-english, the same interface as parse-latin, but returns results better suited for Dutch natural language. For example:
 
-- Unit and time abbreviations (gr., sec., min., ma., vr., vrij., febr, mrt, &c.);
-- Many other common abbreviations: (Mr., Mv., Sr., Em., bijv., zgn., amb., &c.);
-- Common elision (omission of letters) (d', 'n, 'ns, 't, 's, 'er, 'em, 'ie, &c.).
+- Unit and time abbreviations ("gr.", "sec.", "min.", "ma.", "vr.", "vrij.", "febr", "mrt", &c.);
+- Many other common abbreviations: ("Mr.", "Mv.", "Sr.", "Em.", "bijv.", "zgn.", "amb.", &c.);
+- Common elision (omission of letters) ("d'", "'n", "'ns", "'t", "'s", "'er", "'em", "'ie", &c.).
 
 [^architecture-parser-1]: Whether Old-English ("þā gewearþ þǣm hlāforde and þǣm hȳrigmannum wiþ ānum penninge"), Icelandic ("Hvað er að frétta"), French ("Où sont les toilettes?"), or even scripts slightly similar, such as Cyrillic ("Добро пожаловать!"), Georgian ("როგორა ხარ?"), Armenian ("Շատ հաճելի է").
 
@@ -389,7 +389,7 @@ More than fifteen (15) Retext plugins were created to validate how the software 
 The created plugins include tools for:
 
 - Transforming so-called dumb punctuation marks into more typographically correct punctuation marks;
-- Transforming emoji short-codes, such as ":cat:", into real emoji, such as "🐱";
+- Transforming emoji short-codes (:cat:) into real emoji (🐱);
 - Detecting the direction of text (left to right, right to left);
 - Detecting phonetics (how words sound like);
 - Detecting the stem of words (reducing inflected or derived words to a single form);
