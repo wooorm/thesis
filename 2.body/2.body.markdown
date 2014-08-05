@@ -351,7 +351,7 @@ Tools user were Code Climate[^automation-code-climate] to detect complex, duplic
 
 #### API Design
 
-Interface design was given high priority for the development of the proposed software. A clear interface of the software, as defined by Joshua Bloch[^api-design-1], has the following characteristics:
+Interface design was given high priority for the development of the proposed software. A clear interface of the software, according to Joshua Bloch[^api-design-1], has the following characteristics:
 
 - Easy to learn;
 - Easy to use;
@@ -362,10 +362,19 @@ Interface design was given high priority for the development of the proposed sof
 - Meeting its requirements;
 - Appropriate for the target audience.
 
-[^api-design-1]: [@bloch-joshua-how-design-good-api-why-matters]
+In essence equal but worded differently are the characteristics of good API design according to the Qt Project[^api-design-2], are as follows:
 
-https://speakerdeck.com/ariya/javascript-api-design-principles
-https://www.joyent.com/developers/node/design#codingstyle
+- Be minimal;
+- Be complete;
+- Have clear and simple semantics;
+- Be intuitive;
+- Be easy to memorize;
+- Lead to readable code;
+
+With the creation of the software these characteristics, and the in their sources given examples, were taken into account.
+
+[^api-design-1]: [@bloch-joshua-how-design-good-api-why-matters]
+[^api-design-2]: [@qt-project.org-api-design-principles]
 
 ##### Installation
 
