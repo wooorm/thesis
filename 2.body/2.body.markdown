@@ -384,7 +384,7 @@ The developed software was validated through two approaches. The design and usab
 
 ### Plugins
 
-More than fifteen (15) Retext plugins were created to validate how the software integrated together, and how the system worked as a whole.
+More than fifteen (15) Retext plugins were created to validate how the different projects integrated together, and how the system worked as a whole.
 
 The created plugins include tools for:
 
@@ -400,7 +400,17 @@ The created plugins include tools for:
 
 The creation of these plugins brought several problems to light in the developed software. These problems were then dealt with back and forth between the software and the plugins. The software changed severely by these fixed problems, which resulted in a more useable interface.
 
-### Open source
+### Reception
+
+To validate if the target audience actually wanted to use the developed software, several blogs and email newsletters were contacted to feature Retext, either in the form of an article or as a simple link.
+
+This resulted in several mentions on blogs[^audience-article], link roundups[^audience-roundup], HackerNews[^audience-hackernews], reddit[^audience-reddit]. In turn, these publications resulted in positive reactions (such as on Twitter[^audience-twitter]), feedback[@github.com-issue], and fixes[@github.com-pull-request] on these mentions, and many project-followers on GitHub[@github.com-stargazers].
+
+[^audience-article]: [@dailyjs.com-natural-language-parsing-retext]
+[^audience-roundup]: Including [@github.com-awesome-machine-learning] and [@github.com-awesome-nodejs].
+[^audience-hackernews]: Including [@ycombinator.com-mention-1] and [@ycombinator.com-mention-2].
+[^audience-reddit]: Including [@reddit.com-mention-1], [@reddit.com-mention-2], and [@reddit.com-mention-3].
+[^audience-twitter]: Including [@twitter.com-mention-1], [@twitter.com-mention-2], [@twitter.com-mention-3], [@twitter.com-mention-4], and more.
 
 ## Conclusion
 

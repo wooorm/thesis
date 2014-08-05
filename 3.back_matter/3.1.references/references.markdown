@@ -53,3 +53,25 @@
 [@bloch-joshua-how-design-good-api-why-matters]: Bloch, Joshua. "How to design a good API and why it matters." Companion to the 21st ACM SIGPLAN symposium on Object-oriented programming systems, languages, and applications. ACM, 2006.
 
 [@qt-project.org-api-design-principles]: http://qt-project.org/wiki/API-Design-Principles#f1be67d4c99e5db43bac64ea4d37f077
+
+[@dailyjs.com-natural-language-parsing-retext]: http://dailyjs.com/2014/07/31/retext/
+
+[@audience-roundup-1]: https://github.com/josephmisiti/awesome-machine-learning
+[@audience-roundup-2]: https://github.com/sindresorhus/awesome-nodejs
+[@audience-hackernews-1]: https://news.ycombinator.com/item?id=8118875
+[@audience-hackernews-2]: https://news.ycombinator.com/item?id=8097130
+
+[@github.com-awesome-machine-learning]: https://github.com/josephmisiti/awesome-machine-learning
+[@github.com-awesome-nodejs]: https://github.com/sindresorhus/awesome-nodejs
+[@ycombinator.com-mention-1]: https://news.ycombinator.com/item?id=8118875
+[@ycombinator.com-mention-2]: https://news.ycombinator.com/item?id=8097130
+[@reddit.com-mention-1]: http://www.reddit.com/r/node/comments/2by6x5/
+[@reddit.com-mention-2]: http://www.reddit.com/r/node/comments/2cbk2l/
+[@reddit.com-mention-3]: http://www.reddit.com/r/javascript/2cofn3/
+[@twitter.com-mention-1]: https://twitter.com/sarfraznawaz/status/494836711177068545
+[@twitter.com-mention-2]: https://twitter.com/dailyjs/status/494835530803449857
+[@twitter.com-mention-3]: https://twitter.com/therebelrobot/status/495226217805524992
+[@twitter.com-mention-4]: https://twitter.com/remotesynth/status/495271619737423872
+[@github.com-issue]: https://github.com/wooorm/retext/issues/10
+[@github.com-stargazers]: https://github.com/wooorm/retext/stargazers
+[@github.com-pull-request]: https://github.com/wooorm/retext/pull/11
