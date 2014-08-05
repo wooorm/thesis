@@ -386,6 +386,20 @@ The developed software was validated through two approaches. The design and usab
 
 More than fifteen (15) Retext plugins were created to validate how the software integrated together, and how the system worked as a whole.
 
+The created plugins include tools for:
+
+- Transforming so-called dumb punctuation marks into more typographically correct punctuation marks;
+- Transforming emoji short-codes, such as ":cat:", into real emoji, such as "🐱";
+- Detecting the direction of text (left to right, right to left);
+- Detecting phonetics (how words sound like);
+- Detecting the stem of words (reducing inflected or derived words to a single form);
+- Detecting grammatical units (to count words in a sentence);
+- Finding text (even misspelled) in a document;
+- Detecting part-of-speech tags of words;
+- Finding keywords and key phrases in a document;
+
+The creation of these plugins brought several problems to light in the developed software. These problems were then dealt with back and forth between the software and the plugins. The software changed severely by these fixed problems, which resulted in a more useable interface.
+
 ### Open source
 
 ## Conclusion
