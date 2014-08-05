@@ -378,7 +378,9 @@ With the creation of the software these characteristics, and the in their source
 
 ##### Installation
 
-{{NPM}}, {{BOWER}}, {{COMPONENT}}
+Acces both on the client side and on the server side to the software was of importance during the development of the software. For the server side on Node.js, npm---the default package manager for the platform---is the most popular. On the client side, many different package managers exist, the most popular[^installation-1] being Bower and Component. To reach the target audience, in addition of making the whole source available for download through Git and GitHub, npm, Bower, and Component were used.
+
+[^installation-1]: Popularity here is simply defined as having the most search results on Google.
 
 ### Implementation
 
