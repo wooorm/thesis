@@ -10,8 +10,6 @@ Machine translation is just one of many major tasks involved with NLP. Other app
 
 Summarisation, named entity recognition, and sentiment analyses are all part of what is known as "information extraction", a term for the act of finding certain data inside a natural language document. These, and many other applications of NLP, are implemented widely by many programs. The approach taken for such a goal is mostly equivalent. For example, the information extraction method for entity linking in a text document could be as follows for[@stanbol-enhancer-nlp]:
 
-```
-
 - Detect the input language --- **Language Detection**: Based on the language of the given text, the algorithms behind the following steps will change significantly. Often omitted if only a single language is supported.
 - Optionally break sentences --- **Sentence Tokenisation**: Breaking sentences can elevate performance and heighten the accuracy of the following stages (in particular POS tagging);
 - Breaking words --- **Word Tokenisation**: To detect entities, one must of course break those entities (words) free from their surroundings;
@@ -19,8 +17,6 @@ Summarisation, named entity recognition, and sentiment analyses are all part of 
 - Optionally detecting noun phrases --- **Noun Phrase Detection**: Although "apple" and "juice" are both words and could both be linked to separate entities, it would be more apt to link both words to one entity: "apple juice", noun phrase detection makes this possible;
 - Optionally detecting lemmas or stems --- **Lemmatisation or Stemming**: All forms of walk could link to the same entity, be it "walk", "walked", or "walking". Detecting the lemma or stem for a word makes this possible;
 - Linking the entities to their reference --- **Entity Linking**.
-
-```
 
 Although many different fields are covered by NLP, the process of reaching those goals touches on some well defined stages as seen above.
 
@@ -42,13 +38,13 @@ While researching algorithms to tokenise natural language I found few viable opt
 
 Often referred to as sentence boundary disambiguation[^implementations-1], sentence tokenisation is a very basic, but important part of NLP. It is almost always a stage in an NLP application and not an end goal. Sentence tokenisation helps subsequent stages (e.g., detecting plagiarism or POS tagging) work more accurately.
 
-Oftentimes, one of three symbols is used to denote the end of a sentences: Either a full stop (`.`), an interrogative point (`?`), or an exclamation point (`!`)[^implementations-2]. Detecting sentence boundaries is however not so easy as simply breaking sentences at these markers. The previously mentioned terminal markers might have other purposes: full stops are often suffixed to abbreviations or titles, in numbers, included in initialisms[^implementations-3], or in embedded content[^implementations-4]. The interrogative- and exclamation points too can occur ambiguously, most often in a quote (e.g., `"Of course!", she screamed`). Disambiguation gets even harder when the previous mentioned exceptions are in fact also a sentence boundary, such as in `...use the feminine form of idem, ead.` or in `"Of course!", she screamed, "I'll do it!"`, where in both examples the last terminal markers end their respective sentence.
+Oftentimes, one of three symbols is used to denote the end of a sentences: Either a full stop ("."), an interrogative point ("?"), or an exclamation point ("!")[^implementations-2]. Detecting sentence boundaries is however not so easy as simply breaking sentences at these markers. The previously mentioned terminal markers might have other purposes: full stops are often suffixed to abbreviations or titles, in numbers, included in initialisms[^implementations-3], or in embedded content[^implementations-4]. The interrogative- and exclamation points too can occur ambiguously, most often in a quote (e.g., '"Of course!", she screamed'). Disambiguation gets even harder when the previous mentioned exceptions are in fact also a sentence boundary, such as in "...use the feminine form of idem, ead." or in '"Of course!", she screamed, "I'll do it!"', where in both examples the last terminal markers end their respective sentence.
 
 ##### Word tokenisation
 
 Like sentence tokenisation, word tokenisation is another elementary, but important, stage in NLP applications. Whether stemming, finding phonetics, or POS tagging, tokenising words is an important precursory step.
 
-Frequently, words are seen as everything that is not white space (i.e., spaces, tabs, feeds), thereby their boundaries denoted by those white spaces[^implementations-5]. A smarter algorithm would also treat punctuation marks as word boundaries, but such a general rule would wrongly classify inter-word punctuation as not being part of words[^implementations-6]. Many exceptions to this rule exist, e.g., hyphenation points, colons, or elision (whether full stops, `e.g.`; apostrophes, the Dutch `'s`; or slashes, `N/A`).
+Frequently, words are seen as everything that is not white space (i.e., spaces, tabs, feeds), thereby their boundaries denoted by those white spaces[^implementations-5]. A smarter algorithm would also treat punctuation marks as word boundaries, but such a general rule would wrongly classify inter-word punctuation as not being part of words[^implementations-6]. Many exceptions to this rule exist, e.g., hyphenation points, colons, or elision (whether full stops, "e.g."; apostrophes, the Dutch "'s"; or slashes, "N/A").
 
 #### Applications
 
@@ -114,9 +110,9 @@ However, accessing NLP web API's over a network has disadvantages. Most importan
 
 [^implementations-1]: Both sentence tokenisation and sentence boundary solve a similar issue---detecting where sentences terminate. Sentence boundary disambiguation focusses on the position where a sentence breaks (as in, 'One sentence.| Two sentences.|', where the pipe symbol refers to the end of one sentence and the beginning of another), whereas sentence tokenisation lays focus on where a sentence starts and where it ends (as in, '{One sentence.} {Two sentences.}', where everything between curly brackets, both start and end boundaries, are detected and classified as s sentence).
 
-[^implementations-2]: One could argue the in 1962 introduced obscure interrobang (`‽`), used to punctuate rhetorical statements where neither the question nor an exclamation alone exactly serve the writer well[@interrobang-mks.com], should be in this list.
+[^implementations-2]: One could argue the in 1962 introduced obscure interrobang ("‽"), used to punctuate rhetorical statements where neither the question nor an exclamation alone exactly serve the writer well[@interrobang-mks.com], should be in this list.
 
-[^implementations-3]: Although the definition of initialism is ambiguous, this paper defines its use as an acronym (an abbreviation formed from initial components, such as `sonar` or `FBI`) with full stops depicting elision (such as `e.g.`, or `K.G.B.`).
+[^implementations-3]: Although the definition of initialism is ambiguous, this paper defines its use as an acronym (an abbreviation formed from initial components, such as "sonar" or "FBI") with full stops depicting elision (such as "e.g.", or "K.G.B.").
 
 [^implementations-4]: Embedded content in this paper refers to an external (non-grammatical) value embedded into a grammatical unit, such as a hyperlink or an emoticon. Note that these embedded values often consist of valid words and punctuation marks, but most always shouldn't be classified as such.
 
@@ -128,7 +124,7 @@ However, accessing NLP web API's over a network has disadvantages. Most importan
 
 [^implementations-8]: For example, [@thinkroth/sentimental-source-code], [@mileszim/sediment-source-code], and [@thisandagain/sentiment-source-code].
 
-[^implementations-9]: If fact, all of the researched implementations[^implementations-7] deploy lacking tokenisations steps. Controversial, as they each create unreachable code through their naivety: all tested libraries remove dashes from words, while words such as `self-deluded` are in the databases they use, but never reachable.
+[^implementations-9]: If fact, all of the researched implementations[^implementations-7] deploy lacking tokenisations steps. Controversial, as they each create unreachable code through their naivety: all tested libraries remove dashes from words, while words such as "self-deluded" are in the databases they use, but never reachable.
 
 [^implementations-10]: For example, [@jbrooksuk/node-summary-source-code] on the web, [@MojoJolo/textteaser-source-code] in Scala.
 
@@ -278,8 +274,7 @@ The use cases of the target audience, the front-end developer, in the field of N
 - The practitioner may intent to replace so-called "dumb" punctuation with so-called "smart" punctuation, e.g., dumb quotation with (“) or (”); three dots with an ellipsis (…), or two hyphens with an en-dash (–) (manipulation);
 - The practitioner may intent to count the number of certain elements in the grammatical hierarchy in a document, e.g, words, white space, punctuation, sentences, or paragraphs (analysation);
 - The practitioner may intent to recognise which language a given document is written in (analysation);
-- The practitioner may intent to find words based on a search term, with regards for the lemma (or stem) and/or phonetics (so that a search for "smit
-" also returns similar words, such as "Schmidt" or "Smith") (analysation and manipulation);
+- The practitioner may intent to find words based on a search term, with regards for the lemma (or stem) and/or phonetics (so that a search for "smit" also returns similar words, such as "Schmidt" or "Smith") (analysation and manipulation);
 
 Natural Language Processing is a broad field concerned with the interactions between computers and human languages, with bases in computer science, artificial intelligence, and linguistics. NLP poses may challenges, but not every challenge challenge in the field is of interest to the web developer---the developer enabling machines to respond to humans through the world wide web. Most importantly, the more academic areas of NLP do not fit well with the goals of web developers, e.g., speech recognition, optical character recognition, text-to-speech transformation, translation, or machine learning.
 
