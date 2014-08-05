@@ -278,7 +278,8 @@ The use cases of the target audience, the front-end developer, in the field of N
 - The practitioner may intent to replace so-called "dumb" punctuation with so-called "smart" punctuation, e.g., dumb quotation with (“) or (”); three dots with an ellipsis (…), or two hyphens with an en-dash (–) (manipulation);
 - The practitioner may intent to count the number of certain elements in the grammatical hierarchy in a document, e.g, words, white space, punctuation, sentences, or paragraphs (analysation);
 - The practitioner may intent to recognise which language a given document is written in (analysation);
-- The practitioner may intent to find words based on a search term, with regards for the lemma (or stem) and/or phonetics (so that a search for "smit" also returns similar words, such as "Schmidt" or "Smith") (analysation and manipulation);
+- The practitioner may intent to find words based on a search term, with regards for the lemma (or stem) and/or phonetics (so that a search for "smit
+" also returns similar words, such as "Schmidt" or "Smith") (analysation and manipulation);
 
 Natural Language Processing is a broad field concerned with the interactions between computers and human languages, with bases in computer science, artificial intelligence, and linguistics. NLP poses may challenges, but not every challenge challenge in the field is of interest to the web developer---the developer enabling machines to respond to humans through the world wide web. Most importantly, the more academic areas of NLP do not fit well with the goals of web developers, e.g., speech recognition, optical character recognition, text-to-speech transformation, translation, or machine learning.
 
@@ -326,7 +327,7 @@ To detect bugs and suspicious code in the software, Eslint[^code-quality-eslint]
 
 ##### Style
 
-To enforce a consistent code style, in order to create software readable for humans, JSCS was used[^code-quality-jscs]. JSCS provides rules for allowing or disallowing patters such as white space at the end of a line or camel cased variable names, or setting a maximum line length. JSCS was chosen because it, just like the aforementioned ESlint, provides a strong base set of rules. The rules chosen for the development of the proposed software was set very strict to enforce all code was written in the same manner.
+To enforce a consistent code style, in order to create software readable for humans, JSCS was used[^code-quality-jscs]. JSCS provides rules for allowing or disallowing patters such as white space at the end of a line or camel cased variable names, or setting a maximum line length. JSCS was chosen because it, just like the aforementioned Eslint, provides a strong base set of rules. The rules chosen for the development of the proposed software was set very strict to enforce all code was written in the same manner.
 
 ##### Commenting
 
@@ -344,7 +345,7 @@ Great care was given to annotate "tricky" source code inside the software with c
 
 Great focus was given to develop using several automated continuous integration (CI) environments. When suspicious, ambiguous, or buggy code was introduced in the software, the error was automatically detected and in some cases deployment was prevented.
 
-Tools user were Code Climate[^automation-code-climate] to detect complex, duplicate, or bug-prone code, and Travis[^automation-travis] to validate all unit tests passed before deplying the software.
+Tools user were Code Climate[^automation-code-climate] to detect complex, duplicate, or bug-prone code, and Travis[^automation-travis] to validate all unit tests passed before deploying the software.
 
 [^automation-code-climate]: [@codeclimate.com]
 [^automation-travis]: [@travis-ci.org]
@@ -368,7 +369,7 @@ In essence equal but worded differently are the characteristics of good API desi
 - Be complete;
 - Have clear and simple semantics;
 - Be intuitive;
-- Be easy to memorize;
+- Be easy to memorise;
 - Lead to readable code;
 
 With the creation of the software these characteristics, and the in their sources given examples, were taken into account.
@@ -378,13 +379,17 @@ With the creation of the software these characteristics, and the in their source
 
 ##### Installation
 
-Acces both on the client side and on the server side to the software was of importance during the development of the software. For the server side on Node.js, npm---the default package manager for the platform---is the most popular. On the client side, many different package managers exist, the most popular[^installation-1] being Bower and Component. To reach the target audience, in addition of making the whole source available for download through Git and GitHub, npm, Bower, and Component were used.
+Access both on the client side and on the server side to the software was of importance during the development of the software. For the server side on Node.js, npm---the default package manager for the platform---is the most popular. On the client side, many different package managers exist, the most popular[^installation-1] being Bower and Component. To reach the target audience, in addition of making the whole source available for download through Git and GitHub, npm, Bower, and Component were used.
 
 [^installation-1]: Popularity here is simply defined as having the most search results on Google.
 
 ## Validation
 
+The developed software was validated through two approaches. The design and usability of the interface was validated by trying to solve the use cases with the software. If the target audience actually wanted to use the software was validated through enthusiasm showed by the open source community.
+
 ### Plugins
+
+More than fifteen (15) Retext plugins were created to validate how the software integrated together, and how the system worked as a whole.
 
 ### Open source
 
