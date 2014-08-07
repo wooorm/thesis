@@ -220,7 +220,7 @@ parse-dutch has, just like parse-english, the same interface as parse-latin, but
 - Many other common abbreviations: ("Mr.", "Mv.", "Sr.", "Em.", "bijv.", "zgn.", "amb.", &c.);
 - Common elision (omission of letters) ("d'", "'n", "'ns", "'t", "'s", "'er", "'em", "'ie", &c.).
 
-[^architecture-parser-1]: Whether Old-English ("þā gewearþ þǣm hlāforde and þǣm hȳrigmannum wiþ ānum penninge"), Icelandic ("Hvað er að frétta"), French ("Où sont les toilettes?"), or even scripts slightly similar, such as Cyrillic ("Добро пожаловать!"), Georgian ("როგორა ხარ?"), Armenian ("Շատ հաճելի է").
+[^architecture-parser-1]: Whether Old-English, Icelandic, French, or even scripts slightly similar, such as Cyrillic, Georgian, or Armenian.
 
 #### Object Model: TextOM
 
@@ -357,7 +357,7 @@ More than fifteen (15) Retext plugins were created to validate how the different
 The created plugins include tools for:
 
 - Transforming so-called dumb punctuation marks into more typographically correct punctuation marks;
-- Transforming emoji short-codes (:cat:) into real emoji (🐱);
+- Transforming emoji short-codes (:cat:) into real emoji;
 - Detecting the direction of text (left to right, right to left);
 - Detecting phonetics (how words sound like);
 - Detecting the stem of words (reducing inflected or derived words to a single form);

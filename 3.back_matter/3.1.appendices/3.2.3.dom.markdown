@@ -22,9 +22,9 @@ Is represented by the DOM as follows:
       |- Element: head
       |  |- Element: title
       |     |- Text: Aliens?
-      |- Text: ⏎␣
+      |- Text: \n␣
       |- Element: body
-        |- Text: Why yes.⏎
+        |- Text: Why yes.\n
 ```
 
 The DOM interfaces of bygone times were widely considered horrible, but newer features seem to be gaining popularity in the web authoring community as broader implementation across user agents is reached.

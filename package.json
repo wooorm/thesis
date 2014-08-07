@@ -12,8 +12,9 @@
     },
     "scripts": {
         "concat": "cat metadata.markdown 1.front_matter/**/*.markdown 2.body/*.markdown 3.back_matter/**/*.markdown > intermediate.md",
-        "transform": "pandoc -t html5 --smart --standalone --normalize --table-of-contents --toc-depth 4 --filter pandoc-citeproc -o index.html intermediate.md",
-        "clean": "rm intermediate.md",
-        "make": "npm run concat && npm run transform && npm run clean"
+        "transform": "pandoc --smart --no-highlight --normalize --table-of-contents --toc-depth 4 --filter pandoc-citeproc -o intermediate.tex intermediate.md",
+        "build": "pdflatex -interaction=nonstopmode -output-directory=output paper.tex || exit 0",
+        "clean": "rm intermediate.md intermediate.tex",
+        "make": "npm run concat && npm run transform && npm run build && npm run clean"
     }
 }
