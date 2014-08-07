@@ -8,6 +8,8 @@
 
 [@brants-thorsten-google-ngram-corpus]: Brants, Thorsten, and Alex Franz. "{Web 1T 5-gram Version 1}." (2006).
 
+[@hutchins-john-georgetown-ibm-system]: Hutchins, John. "The first public demonstration of machine translation: the Georgetown-IBM system, 7th January 1954." AMTA conference. 2004.
+
 ### Print
 
 [@mohri-mehryar-foundations-machine-learning]: Mohri, Mehryar, Afshin Rostamizadeh, and Ameet Talwalkar. Foundations of Machine Learning. Cambridge, MA: MIT, 2012. Print.
@@ -115,7 +117,3 @@
 [@wordnet-web-api]: Miller, George A., et al. "Introduction to wordnet: An on-line lexical database*." International journal of lexicography 3.4 (1990): 235-244.
 
 [@textrazor-web-api]: "TextRazor - The Natural Language Processing API." TextRazor. N.p., n.d. Web. 07 Aug. 2014.
-
-### Miscellaneous resources
-
-[@hutchins-john-georgetown-ibm-system]: Hutchins, John. "The first public demonstration of machine translation: the Georgetown-IBM system, 7th January 1954." AMTA conference. 2004.
