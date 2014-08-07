@@ -137,7 +137,7 @@ However, accessing NLP web API's over a network has disadvantages. Most importan
     - If the period is preceded by an abbreviation, it does not end a sentence;
     - If the next token is capitalised, it ends a sentence.
 
-[^implementations-14]: Currently, almost no technologies exist for storing large datasets in a browser. The only exception to the rule is the HTML5 File System API, but it is currently not widely supported[@caniuse-filesystem-api]. Still, even when widely supported, letting every website store gigabytes of corpora is not a solution.
+[^implementations-14]: Currently, almost no technologies exist for storing large datasets in a browser. The only exception to the rule is the HTML5 File System API, but it is currently deprecated[@w3.org-filesystem-dead].
 
 [^implementations-15]: Starting around 2000 AJAX (an acronym for Asynchronous JavaScript and XML) started to transform the web. Beforehand, websites only really changed when a user navigated to a new page. With AJAX however, new content arrived to users without the need for a full page refresh. One of the first examples are the Outlook Web App in 2000[@technet-outlook-web-access] and Gmail in 2004[@gmailblog-gmail-ajax], both examples of how AJAX made the web feel more "app-like".
 

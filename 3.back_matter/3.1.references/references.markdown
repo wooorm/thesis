@@ -12,13 +12,13 @@
 
 [@brants-thorsten-google-ngram-corpus]: Brants, Thorsten, and Alex Franz. Web 1T 5-gram Version 1 LDC2006T13. Web Download. Philadelphia: Linguistic Data Consortium, 2006.
 
-[@textteaser-web-api]: http://www.textteaser.com
+[@textteaser-web-api]: Balbin, Jolo. "TextTeaser: An Automatic Summarization Application and API." TextTeaser. N.p., n.d. Web. 07 Aug. 2014.
 
 [@wordnet-web-api]: Miller, George A., et al. "Introduction to wordnet: An on-line lexical database*." International journal of lexicography 3.4 (1990): 235-244.
 
-[@textrazor-web-api]: https://www.textrazor.com
+[@textrazor-web-api]: "TextRazor - The Natural Language Processing API." TextRazor. N.p., n.d. Web. 07 Aug. 2014.
 
-[@caniuse-filesystem-api]: http://caniuse.com/#feat=filesystem
+[@w3.org-filesystem-dead]: U, Eric. "[fileapi-directories-and-system/filewriter]." 2 Apr. 2014. E-mail.
 
 [@loadfive/knwl-source-code]: https://github.com/loadfive/Knwl.js
 [@nhunzaker/speakeasy-source-code]: https://github.com/nhunzaker/speakeasy
