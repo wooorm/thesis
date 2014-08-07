@@ -75,3 +75,21 @@
 [@github.com-issue]: https://github.com/wooorm/retext/issues/10
 [@github.com-stargazers]: https://github.com/wooorm/retext/stargazers
 [@github.com-pull-request]: https://github.com/wooorm/retext/pull/11
+
+[@reworkcss/css-source-code]: https://github.com/reworkcss/css
+
+[@mozilla.org-spidermonkey-parser_api]: https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey/Parser_API
+
+[@reworkcss/rework-source-code]: https://github.com/reworkcss/rework
+
+[@marijnh/acorn-source-code]: https://github.com/marijnh/acorn
+
+[@constellation/escodegen-source-code]: https://github.com/Constellation/escodegen
+
+[@thegreenplace.net-abstract-concrete-syntax-trees]: http://eli.thegreenplace.net/2009/02/16/abstract-vs-concrete-syntax-trees/
+
+[@opensource.org-licenses-mit]: http://opensource.org/licenses/MIT
+
+[@visionmedia/mocha-source-code]: https://github.com/visionmedia/mocha
+
+[@gotwarlost/istanbul-source-code]: https://github.com/gotwarlost/istanbul
