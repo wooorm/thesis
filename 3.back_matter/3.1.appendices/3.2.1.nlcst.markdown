@@ -1,4 +1,6 @@
 
+## Appendix A: NLCST definition
+
 ##### Node
 ```idl
 interface Node {

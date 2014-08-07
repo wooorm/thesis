@@ -1,11 +1,8 @@
+
 ## Introduction
 
-Natural Language Processing (NLP), a field of computer science, artificial intelligence, and linguistics concerned with the interactions between computers and human languages[@wikipedia-natural-language-processing], is becoming increasingly important in society. For example, search engines try to answer before a question is given, the NSA detects terrorist-toned motifs in text messages, and e-mail applications know if a user forgot to attach an attachment.
+Natural Language Processing (NLP), a field of computer science, artificial intelligence, and linguistics concerned with the interactions between computers and human languages [@wikipedia-natural-language-processing], is becoming increasingly important in society. For example, search engines try to answer before a question is given, the NSA detects terrorist-toned motifs in text messages, and e-mail applications know if a user forgot to attach an attachment.
 
-However, to date, web developers trying to solve NLP problems reinvent the wheel over and over again. There are certainly tools (especially for other platforms. such as Python[@nltk-source] and Java[@opennlp-source]) trying to solve this, but they either take a too naive approach[^introduction-1], or try to do everything out of the box[^introduction-2]. What is missing is a standard for multipurpose natural language analysis—a standard representation of the grammatical hierarchy of text.
+However, to date, web developers trying to solve NLP problems reinvent the wheel over and over again. There are certainly tools (especially for other platforms. such as Python [@nltk-source] and Java [@opennlp-source]) trying to solve this, but they either take a too naive approach[^introduction-1], or try to do everything out of the box[^introduction-2]. What is missing is a standard for multipurpose natural language analysis—a standard representation of the grammatical hierarchy of text.
 
 For over a year I too have camped with the previously mentioned problem. I have tried to solve it, to no avail, on numerous occasions. During the creation of this thesis I developed a well thought out and substantiated solution, which solves the previously mentioned problems.
-
-[^introduction-1]: For example, ignoring white space[@loadfive/knwl-source-code], punctuation, or implementing a naive definition of "words"[@nhunzaker/speakeasy-source-code], or by deploying a less than adequate algorithm to detect sentences[@nytimes/emphasis-source-code].
-
-[^introduction-2]: Although a do-all library works well on server-side platforms, it fares less well on the web[@NaturalNode/natural-source-code], where modularity and frugality are in order.

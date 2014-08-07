@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="author" content="Titus E. C. Wormer">
+  <title>Design of an extensible system for analysing and manipulating natural language</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+</head>
+<body>
+<header>
+<h1 class="title">Design of an extensible system for analysing and manipulating natural language</h1>
+<h2 class="author">Titus E. C. Wormer</h2>
+</header>
+<nav id="TOC">
+<ul>
+<li><a href="#acknowledgements">Acknowledgements</a></li>
+<li><a href="#dedication">Dedication</a></li>
+<li><a href="#abstract">Abstract</a></li>
+<li><a href="#glossary">Glossary</a></li>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#context">Context</a><ul>
+<li><a href="#scope">Scope</a></li>
+<li><a href="#implementations">Implementations</a><ul>
+<li><a href="#stages">Stages</a></li>
+<li><a href="#applications">Applications</a></li>
+<li><a href="#using-corpora-for-nlp">Using Corpora for NLP</a></li>
+<li><a href="#using-a-web-api">Using a web API</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#design">Design</a><ul>
+<li><a href="#architecture">Architecture</a><ul>
+<li><a href="#syntax-nlcst">Syntax: NLCST</a></li>
+<li><a href="#parser-parse-latin">Parser: Parse-latin</a></li>
+<li><a href="#object-model-textom">Object Model: TextOM</a></li>
+<li><a href="#natural-language-system-retext">Natural Language System: Retext</a></li>
+</ul></li>
+<li><a href="#production">Production</a></li>
+<li><a href="#target-audience">Target Audience</a></li>
+<li><a href="#use-cases">Use cases</a></li>
+<li><a href="#requirements">Requirements</a><ul>
+<li><a href="#open-source">Open Source</a></li>
+<li><a href="#performance">Performance</a></li>
+<li><a href="#testing">Testing</a></li>
+<li><a href="#code-quality">Code quality</a></li>
+<li><a href="#automation">Automation</a></li>
+<li><a href="#api-design">API Design</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#validation">Validation</a><ul>
+<li><a href="#plugins">Plugins</a></li>
+<li><a href="#reception">Reception</a></li>
+</ul></li>
+<li><a href="#conclusion">Conclusion</a><ul>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#future-work">Future Work</a></li>
+<li><a href="#advice">Advice</a></li>
+</ul></li>
+<li><a href="#appendix-a-nlcst-definition">Appendix A: NLCST definition</a></li>
+<li><a href="#appendix-b-parse-latin-output">Appendix B: Parse-latin output</a></li>
+<li><a href="#appendix-c-dom">Appendix C: DOM</a></li>
+</ul>
+</nav>
+<h2 id="acknowledgements">Acknowledgements</h2>
+<p>Thanks to my supervisor Justus for the trust in me and my work, and for allowing me to produce a product and thesis that perhaps not every CMD professional understands, but most certainly falls within our field.</p>
+<h2 id="dedication">Dedication</h2>
+<h2 id="abstract">Abstract</h2>
+<p>This document captures the use cases and requirements for designing and standardising a solution for textual manipulation and analysis in ECMAScript. In addition, this paper presents an implementation that meets these requirements. Note! The Glossary is here, and not in the back matter, as I argue its more usefull for readers to first read about terms, before continuing on with the body.</p>
+<h2 id="glossary">Glossary</h2>
+<h2 id="introduction">Introduction</h2>
+<p>Natural Language Processing (NLP), a field of computer science, artificial intelligence, and linguistics concerned with the interactions between computers and human languages <span class="citation" data-cites="wikipedia-natural-language-processing">(Wikipedia 2014)</span>, is becoming increasingly important in society. For example, search engines try to answer before a question is given, the NSA detects terrorist-toned motifs in text messages, and e-mail applications know if a user forgot to attach an attachment.</p>
+<p>However, to date, web developers trying to solve NLP problems reinvent the wheel over and over again. There are certainly tools (especially for other platforms. such as Python <span class="citation" data-cites="nltk-source">(Bird 2006)</span> and Java <span class="citation" data-cites="opennlp-source">(Baldridge 2005)</span>) trying to solve this, but they either take a too naive approach<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>, or try to do everything out of the box<a href="#fn2" class="footnoteRef" id="fnref2"><sup>2</sup></a>. What is missing is a standard for multipurpose natural language analysis—a standard representation of the grammatical hierarchy of text.</p>
+<p>For over a year I too have camped with the previously mentioned problem. I have tried to solve it, to no avail, on numerous occasions. During the creation of this thesis I developed a well thought out and substantiated solution, which solves the previously mentioned problems. The in this thesis introduced implementation Retext (and other projects in the Retext family) are a new approach to the syntax of natural text. My goal in this paper is to design an extensible system for multipurpose analysis of language.</p>
+<p>To achieve this goal, I have organized my paper into X main sections</p>
+<p>In the first section … In the second section, …</p>
+<p>I end my paper with a third section that offers …</p>
+<p>…and conclude with a fourth section that …</p>
+<p>I also include an appendix after the References that contains …</p>
+<p>Before I can begin the examination of …, however, I need to provide … {next section}</p>
+<h2 id="context">Context</h2>
+<p>{{Needs a nice quote about the definition of NLP}}</p>
+<p>The focus of this paper is Natural Language Processing—abbreviated as NLP throughout. NLP concerns itself with enabling machines to understand human language, thus it is a field related to human–computer interaction. Human language, a medium which humans understand quite easily, can pose problems for machines.</p>
+<p>That understanding of human language by machines is quite difficult, is depicted by one of the first application of NLP, during the Georgetown–IBM experiment, where a Russian-english machine translation system was showcased in New York in 1945<span class="citation" data-cites="hutchins-john-georgetown-ibm-system">(See Hutchins 2004)</span>. More than sixty sentences were translated by a machine from Russian to English. The experiment was well publicised in the press and resulted in optimism for machine-translation. Machine-translation was thought of as being a solved problem within three to five years. The results in the following ten years were however disappointing and eventually led to reduced funding.</p>
+<p>Machine translation is just one of many major tasks involved with NLP. Other applications include automatic summarisation (generating a summary), named entity recognition (detecting references to people or places), sentiment analysis (extracting opinion).</p>
+<p>Summarisation, named entity recognition, and sentiment analyses are all part of what is known as “information extraction”, a term for the act of finding certain data inside a natural language document. These, and many other applications of NLP, are implemented widely by many programs. The approach taken for such a goal is mostly equivalent. For example, the information extraction method for entity linking in a text document could be as follows<span class="citation" data-cites="stanbol-enhancer-nlp">(“Stanbol”)</span>:</p>
+<ul>
+<li>Detect the input language — <strong>Language Detection</strong>: Based on the language of the given text, the algorithms behind the following steps will change significantly. Often omitted if only a single language is supported.</li>
+<li>Optionally break sentences — <strong>Sentence Tokenisation</strong>: Breaking sentences can elevate performance and heighten the accuracy of the following stages (in particular POS tagging);</li>
+<li>Breaking words — <strong>Word Tokenisation</strong>: To detect entities, one must of course break those entities (words) free from their surroundings;</li>
+<li>Detecting word-categories — <strong>Part-of-Speech (POS) Tagging</strong>: When linking entities in an encyclopaedia, one would typically not want to link every entity to another entry, but most often only nouns or even proper nouns. POS tagging helps make that decision;</li>
+<li>Optionally detecting noun phrases — <strong>Noun Phrase Detection</strong>: Although “apple” and “juice” are both words and could both be linked to separate entities, it would be more apt to link both words to one entity: “apple juice”, noun phrase detection makes this possible;</li>
+<li>Optionally detecting lemmas or stems — <strong>Lemmatisation or Stemming</strong>: All forms of walk could link to the same entity, be it “walk”, “walked”, or “walking”. Detecting the lemma or stem for a word makes this possible;</li>
+<li>Linking the entities to their reference — <strong>Entity Linking</strong>.</li>
+</ul>
+<p>Although many different fields are covered by NLP, the process of reaching those goals touches on some well defined stages as seen above.</p>
+<h3 id="scope">Scope</h3>
+<p>The stages mentioned in the previous section are implemented in many NLP applications. This paper (the captured use cases and requirements, the proposed standard, and the example implementation) however will only cover one stage: tokenisation. Tokenisation here includes sentence boundary detection, word tokenisation, and tokenisation of other grammatical units.</p>
+<p>Another decision made in scoping the NLP problem is that that this paper lays its focus on syntactic, and largely ignores semantic units (i.e., phrases and clauses).</p>
+<p>Lastly, this paper ignores spoken language, and lays its focus on Latin script language: written languages using an alphabet depending on the letters of the classical Latin alphabet.</p>
+<h3 id="implementations">Implementations</h3>
+<p>While researching algorithms to tokenise natural language few viable options were found. Most algorithms look at one or two (or both) kinds of tokenisation: sentence tokenisation and word tokenisation. In this section the current implementations, where they excel, and what they lack.</p>
+<h4 id="stages">Stages</h4>
+<h5 id="sentence-tokenisation">Sentence tokenisation</h5>
+<p>Often referred to as sentence boundary disambiguation<a href="#fn3" class="footnoteRef" id="fnref3"><sup>3</sup></a>, sentence tokenisation is a very basic, but important part of NLP. It is almost always a stage in an NLP application and not an end goal. Sentence tokenisation helps subsequent stages (e.g., detecting plagiarism or POS tagging) work more accurately.</p>
+<p>Oftentimes, one of three symbols is used to denote the end of a sentences: Either a full stop (.), an interrogative point (?), or an exclamation point (!)<a href="#fn4" class="footnoteRef" id="fnref4"><sup>4</sup></a>. Detecting sentence boundaries is however not so easy as simply breaking sentences at these markers. The previously mentioned terminal markers might have other purposes: full stops are often suffixed to abbreviations or titles, in numbers, included in initialisms<a href="#fn5" class="footnoteRef" id="fnref5"><sup>5</sup></a>, or in embedded content<a href="#fn6" class="footnoteRef" id="fnref6"><sup>6</sup></a>. The interrogative- and exclamation points too can occur ambiguously, most often in a quote (e.g., ‘“Of course!”, she screamed’). Disambiguation gets even harder when the previous mentioned exceptions are in fact also a sentence boundary, such as in “…use the feminine form of idem, ead.” or in ‘“Of course!”, she screamed, “I’ll do it!”’, where in both examples the last terminal markers end their respective sentence.</p>
+<h5 id="word-tokenisation">Word tokenisation</h5>
+<p>Like sentence tokenisation, word tokenisation is another elementary, but important, stage in NLP applications. Whether stemming, finding phonetics, or POS tagging, tokenising words is an important precursory step.</p>
+<p>Frequently, words are seen as everything that is not white space (i.e., spaces, tabs, feeds), thereby their boundaries denoted by those white spaces<a href="#fn7" class="footnoteRef" id="fnref7"><sup>7</sup></a>. A smarter algorithm would also treat punctuation marks as word boundaries, but such a general rule would wrongly classify inter-word punctuation as not being part of words<a href="#fn8" class="footnoteRef" id="fnref8"><sup>8</sup></a>. Many exceptions to this rule exist, e.g., hyphenation points, colons, or elision (whether full stops, “e.g.”; apostrophes, the Dutch “’s”; or slashes, “N/A”).</p>
+<h4 id="applications">Applications</h4>
+<p>In the previous section implementations were covered that solve tokenisation stages in NLP applications, such as Natural’s word tokenisers<span class="citation" data-cites="NaturalNode/natural-source-code">(Umbel, Ellis, and Koch)</span>. Concluded was that these implementations are lacking. In this section several implementations are covered that solve these tokenisation stages as part of a larger natural language application.</p>
+<h5 id="sentiment-analysis">Sentiment Analysis</h5>
+<p>Sentiment analysis is an NLP task which is concerned with the polarity (positive, negative) and subjectivity (objective, subjective) of text. Its application could look as follows.</p>
+<ol type="1">
+<li>Detect language — Often omitted if only a single language is supported.</li>
+<li>Optionally tokenise sentences — Different sentences could have different sentiments, tokenising them helps provide better outcomes.</li>
+<li>Tokenise words — Needed to compare with the database (see the last stage).</li>
+<li>Optionally detect lemmas or stems — Might help classification.</li>
+<li>Detect sentiment — Typically, sentiment analysers include a database mapping words, stems, or lemmas to their respective polarity and/or subjectivity<a href="#fn9" class="footnoteRef" id="fnref9"><sup>9</sup></a>.</li>
+</ol>
+<p>Many implementations exist for this task<a href="#fn10" class="footnoteRef" id="fnref10"><sup>10</sup></a> on the web platform, many of which exclude non-alphabetic characters form their definition of words, resulting in less than perfect results<a href="#fn11" class="footnoteRef" id="fnref11"><sup>11</sup></a>.</p>
+<h5 id="automatic-summarisation">Automatic Summarisation</h5>
+<p>Automatic summarisation is an NLP task concerned with reducing a text in order to create a summary of the major points retaining the original document. In contrast with sentiment analysers, implementations of automatic summarisation algorithms on the web are less ubiquitously available<a href="#fn12" class="footnoteRef" id="fnref12"><sup>12</sup></a>.</p>
+<p>An example application for automatic summarisation could be as follows.</p>
+<ol type="1">
+<li>Detect language — Often omitted if only a single language is supported.</li>
+<li>Tokenise sentences — Unless even finer grained control over the document is possible (tokenising phrases), sentences are the smallest unit that should stay intact in the resulting summary.</li>
+<li>Tokenise words — Used to calculate keywords (words which occur more often than expected by chance alone).</li>
+<li>Automatic summarisation — Ranking the tokenised grammatical units (sentences, phrases) and return the highest ranking units.</li>
+</ol>
+<p>Several factors can be used to determine whether or not a phrase or sentence should be included from a summary:</p>
+<ol type="1">
+<li>Number of words (an ideal sentence is neither too long nor too short);</li>
+<li>Number of keywords (words which occur more often than expected by chance alone in the whole text);</li>
+<li>Number of words from the document’s title it contains;</li>
+<li>Position inside a paragraph (initial and final sentences are often more important than sentences buried somewhere in the middle of a paragraph).</li>
+</ol>
+<p>Some implementations only include keyword metrics<span class="citation" data-cites="jbrooksuk/node-summary-source-code">(Brooks)</span>, others include all aforementioned features<span class="citation" data-cites="MojoJolo/textteaser-source-code">(Balbin)</span>, or even more advanced factors<span class="citation" data-cites="summly">(“Summly”)</span>.</p>
+<p>The only implementation working on the web, <span class="citation" data-cites="jbrooksuk/node-summary-source-code">(Brooks)</span>, takes a naive approach to sentence tokenisation. For example, ignoring sentences terminated by an exclamation point. Note that both other implementations, and many more, use a whole different approach to sentence tokenisation (see the next section).</p>
+<h4 id="using-corpora-for-nlp">Using Corpora for NLP</h4>
+<p>A corpus is a large, structured set of texts used for many linguistic and NLP tasks. Oftentimes, each item (most frequently words, but some corpora include sentences, phrases, clauses, or other units) in a corpus is annotated (“tagged”) with information about the item (for example, part-of-speech tags or lemmas).</p>
+<p>These huge (often more than a million words<a href="#fn13" class="footnoteRef" id="fnref13"><sup>13</sup></a>) chunks of information are the basis of many of the newer revolutions in NLP <span class="citation" data-cites="mitkov-ruslan-ea-importance-corpora">(See Mitkov, Orasan, and Evans 1999)</span>. Supervised learned<a href="#fn14" class="footnoteRef" id="fnref14"><sup>14</sup></a> parsing (in NLP, based on annotated corpora), is the direct antagonist of rule-based parsing<a href="#fn15" class="footnoteRef" id="fnref15"><sup>15</sup></a>. Instead of defining rules, exceptions to these rules, exceptions to these exceptions, and so on, supervised learning delegates this task to machines, creating a more performant, scalable, program.</p>
+<p>Generally, corpus linguistics have proven to be better in several ways over rule-based linguistics. However, they do have their disadvantages:</p>
+<ul>
+<li>Some rule-based approaches for pre- and post processing are still required;</li>
+<li>Good training sets are required;</li>
+<li>If the corpus was created from news articles, algorithms based on it won’t fair so well on microblogs (e.g., Twitter posts);</li>
+</ul>
+<p>Most important is the fact that supervised learning will not fare well on the web: Loading corpora over the network each time a user request a web page is unfeasible for most web sites or applications<a href="#fn16" class="footnoteRef" id="fnref16"><sup>16</sup></a>.</p>
+<p>Two viable alternative approaches exist for the web: the aforementioned rule-based tokenisation, or connecting to a server over the network.</p>
+<h4 id="using-a-web-api">Using a web API</h4>
+<p>Where the term API (Application Programming Interface) stands for the interface between two programs, the term is often defined in the context of web development as requests (from a web browser), and responses (from a web server) over HTTP (Hypertext Transfer Protocol). For example, Twitter has such a service to allow developers to list, replace, create, and delete “Tweets” and other objects (users, images, &amp;c.). In the context of this paper, the term Web API is used for the latter, whereas API is used for any programming interface.</p>
+<p>With the rise of the asynchronous web<a href="#fn17" class="footnoteRef" id="fnref17"><sup>17</sup></a>, supervised learning too became widely available through web API’s (e.g., <span class="citation" data-cites="textteaser-web-api">(“TextTeaser: An Automatic Summarization Application and API”)</span>, <span class="citation" data-cites="wordnet-web-api">(Miller et al. 1990)</span>, <span class="citation" data-cites="textrazor-web-api">(“TextRazor - the Natural Language Processing API.”)</span>). The new web API’s made it possible to implement supervised learning techniques on the web, without the need for downloading a corpus to your or your users’ computer.</p>
+<p>However, accessing NLP web API’s over a network has disadvantages. Most importantly the time involved when sending data over the network (especially on mobile networks), the bandwidth used, and heightened security risks.</p>
+<h2 id="design">Design</h2>
+<h3 id="architecture">Architecture</h3>
+<p>The in this paper proposed solution to the problem of NLP on the client side is split up in multiple small proposals. Each proposal solves a subproblem.</p>
+<ul>
+<li>NLCST — Defines a standard for classifying grammatical units understandable for machines;</li>
+<li>Parse-latin — Classifies natural language according to NLCST;</li>
+<li>TextOM — Provides an interface for analysing and manipulating output provided by parse-latin;</li>
+<li>Retext — Provides an interface for transforming natural language into an object model and exposes an interface for plugins.</li>
+</ul>
+<p>The decoupled approach taken by the provided solution enables other developers to provide their own software to replace one of the sub-proposals. For example, other parties can create a parser for the Chinese language and use it instead of parse-latin to classify natural language according to NLCST.</p>
+<h4 id="syntax-nlcst">Syntax: NLCST</h4>
+<p>To develop natural language tools in ECMAScript, an intermediate representation of natural language is useful: instead of each module defining their own representation of text, using a single syntax leads to better results, interoperability, and performance.</p>
+<p>The elements defined by NLCST (Natural Language Concrete Syntax Tree) are based on the the grammatical hierarchy, but by default do not expose all its constituents<a href="#fn18" class="footnoteRef" id="fnref18"><sup>18</sup></a>. Additionally, more elements are provided to cover other semantic units in natural language<a href="#fn19" class="footnoteRef" id="fnref19"><sup>19</sup></a>.</p>
+<p>The definitions of exposed nodes were heavily based on other specifications of syntax trees for manipulation on the web platform, such as CSS (aptly named for the CSS language)<span class="citation" data-cites="reworkcss/css-source-code">(Holowaychuk et al.)</span> and the Mozilla JavaScript AST (for ECMAScript)<span class="citation" data-cites="mozilla.org-spidermonkey-parser_api">(“Parser API”)</span>. Both implementations are widely used. CSS by Rework<span class="citation" data-cites="reworkcss/rework-source-code">(Holowaychuk et al.)</span>, and Mozilla JavaScript AST by Esprima<span class="citation" data-cites="ariya/esprima-source-code">(Hidayat)</span>, Acorn<span class="citation" data-cites="marijnh/acorn-source-code">(Haverbeke)</span>, and Escodegen<span class="citation" data-cites="constellation/escodegen-source-code">(Suzuki)</span>.</p>
+<p>Note that the aforementioned syntax tree specifications are both abstract syntax trees (AST), whereas NLCST is a a concrete syntax tree (CST). A concrete syntax tree is a one-to-one mapping of source to result. All information stored in the original input is also available through the resulting tree<span class="citation" data-cites="thegreenplace.net-abstract-concrete-syntax-trees">(Bendersky 2009)</span>.</p>
+<p>The information stored in CST’s is very verbose and could lead to trees that are hard to work with. On the other hand, the fact that every part of the input is housed in the tree, makes it easy for developers to save the output or pass it on to other libraries for further processing.</p>
+<p>See the appendices for a complete list of specified nodes of NLCST.</p>
+<h4 id="parser-parse-latin">Parser: Parse-latin</h4>
+<p>ECMAScript is used extensively. Because of this, many ECMAScript tools are being developed. This includes tools for Natural Language Processing. These ECMAScript tools however, when run on the client-side, can not implement supervised learning based on corpora, and web API usage too is not ideal. Thus, a rule-based parser is needed to tokenise text.</p>
+<p>For creating such intermediate representations from Latin-script based languages, parse-latin is presented in this paper<a href="#fn20" class="footnoteRef" id="fnref20"><sup>20</sup></a>. As proof-of-concept, two other libraries are also presented, parse-english and parse-dutch, using parse-latin as a base and providing better support for several language specific features, respectively English and Dutch.</p>
+<p>By following NLCST (also proposed in this paper), modules building on parse-latin may receive better results or performance over implementing their own parsing tools.</p>
+<p>By using the CST as described by NLCST and the parser as described by parse-latin, the intermediate representation can be used by developers to create independent modules.</p>
+<p>Basically, parse-latin splits text into white space, word, and punctuation tokens. parse-latin starts out with a pretty simple definition, one that most other tokenisers use:</p>
+<ul>
+<li>A “word” is one or more letter or number characters;</li>
+<li>A “white space” is one or more white space characters;</li>
+<li>A “punctuation” is one or more of anything else;</li>
+</ul>
+<p>Then, it manipulates and merges those tokens into a syntax tree, adding sentences and paragraphs where needed.</p>
+<ul>
+<li>Some punctuation marks are part of the word they occur in, e.g., “non-profit”, “she's”, “G.I.”, “11:00”, “N/A”;</li>
+<li>Some full-stops do not mark a sentence end, e.g., “1.”, “e.g.”, “id.”;</li>
+<li>Although full-stops, question marks, and exclamation marks (sometimes) end a sentence, that end might not occur directly after the mark, e.g., “.)”, ’.“’;</li>
+</ul>
+<p>See the appendices for example output provided by the parse-latin parser.</p>
+<h5 id="parse-english">parse-english</h5>
+<p>parse-english has the same interface as parse-latin, but returns results better suited for English natural language. For example:</p>
+<ul>
+<li>Unit abbreviations (“tsp.”, “tbsp.”, “oz.”, “ft.”, &amp;c.);</li>
+<li>Time references (“sec.”, “min.”, “tues.”, “thu.”, “feb.”, &amp;c.);</li>
+<li>Business Abbreviations (“Inc.” and “Ltd.”);</li>
+<li>Social titles (“Mr.”, “Mmes.”, “Sr.”, &amp;c.);</li>
+<li>Rank and academic titles (“Dr.”, “Rep.”, “Gen.”, “Prof.”, “Pres.”, &amp;c.);</li>
+<li>Geographical abbreviations (“Ave.”, “Blvd.”, “Ft.”, “Hwy.”, &amp;c.);</li>
+<li>American state abbreviations (“Ala.”, “Minn.”, “La.”, “Tex.”, &amp;c.);</li>
+<li>Canadian province abbreviations (“Alta.”, “Qué.”, “Yuk.”, &amp;c.);</li>
+<li>English county abbreviations (“Beds.”, “Leics.”, “Shrops.”, &amp;c.);</li>
+<li>Common elision (omission of letters) (“‘n’”, “’o”, “’em”, “’twas”, “’80s”, &amp;c.).</li>
+</ul>
+<h5 id="parse-dutch">parse-dutch</h5>
+<p>parse-dutch has, just like parse-english, the same interface as parse-latin, but returns results better suited for Dutch natural language. For example:</p>
+<ul>
+<li>Unit and time abbreviations (“gr.”, “sec.”, “min.”, “ma.”, “vr.”, “vrij.”, “febr”, “mrt”, &amp;c.);</li>
+<li>Many other common abbreviations: (“Mr.”, “Mv.”, “Sr.”, “Em.”, “bijv.”, “zgn.”, “amb.”, &amp;c.);</li>
+<li>Common elision (omission of letters) (“d’”, “’n”, “’ns”, “’t”, “’s”, “’er”, “’em”, “’ie”, &amp;c.).</li>
+</ul>
+<h4 id="object-model-textom">Object Model: TextOM</h4>
+<p>To modify NLCST nodes in ECMAScript, this paper proposes TextOM. TextOM implements the nodes defined by NLCST, but provides an object-oriented style<a href="#fn21" class="footnoteRef" id="fnref21"><sup>21</sup></a>. TextOM was designed to be similar to the Document Object Model (DOM)<a href="#fn22" class="footnoteRef" id="fnref22"><sup>22</sup></a>, the mechanism used by browsers to expose HTML through ECMAScript to developers. Because of TextOM’s likeness to the DOM, TextOM is easy to learn and familiar to the target audience.</p>
+<p>TextOM provides events (a mechanism for detecting changes), modification functionality (inserting, removing, and replacing children into/from parents), and traversal (e.g., finding all words in a sentence).</p>
+<p>NLCST allows authors to extend the specification by defining their own nodes, for example creating phrase or clause nodes. TextOM allows for the same extension, and is build to work well with “unknown” node types.</p>
+<h4 id="natural-language-system-retext">Natural Language System: Retext</h4>
+<p>For natural language processing on the client side, this paper proposes Retext. Retext combines a parser, such as parse-latin or parse-dutch, with a manipulatable object model (TextOM).</p>
+<p>In addition, Retext provides a minimalistic plugin mechanism so developers can create and publish plugins for others, and in turn can use others’ plugins inside their projects.</p>
+<h3 id="production">Production</h3>
+<h3 id="target-audience">Target Audience</h3>
+<p>The audience that would benefit the most from such a solution are web developers: programmers who specialise in creating software for the world wide web. Web developers engage in client side development (building the interface between a human and a machine on the web), and sometimes also in server side development (building the interface between the client side and a server). Typical areas of work consist of programming in ECMAScript, marking up documents in HTML, graphic design through CSS, creating a back end in node.js, PHP, &amp;c., contacting a database through MongoDB, MySQL, and more. In addition, many interdisciplinary skills are also of concern to web developers, such as usability, accessibility, copywriting, information architecture, optimisation.</p>
+<h3 id="use-cases">Use cases</h3>
+<p>The use cases of the target audience, the front-end developer, in the field of NLP are many. Research for this paper found several use cases, although it is expected many more could be defined. The tasks below can be categorised into three broad fields: analysation, manipulation, and creation.</p>
+<ul>
+<li>The practitioner may intent summarise natural text (mostly analysation, potentially also manipulation);</li>
+<li>The practitioner may intent to create natural language, e.g., displaying the number of unread messages: “You have 1 unread message,” or “You have 0 unread messages” (creation);</li>
+<li>The practitioner may intent to recognise sentiment in text: is a Tweet positive, negative, or spam? (analysation);</li>
+<li>The practitioner may intent to replace so-called “dumb” punctuation with so-called “smart” punctuation, e.g., dumb quotation with (“) or (”); three dots with an ellipsis (…), or two hyphens with an en-dash (–) (manipulation);</li>
+<li>The practitioner may intent to count the number of certain elements in the grammatical hierarchy in a document, e.g, words, white space, punctuation, sentences, or paragraphs (analysation);</li>
+<li>The practitioner may intent to recognise which language a given document is written in (analysation);</li>
+<li>The practitioner may intent to find words based on a search term, with regards for the lemma (or stem) and/or phonetics (so that a search for “smit” also returns similar words, such as “Schmidt” or “Smith”) (analysation and manipulation).</li>
+</ul>
+<p>Natural Language Processing is a broad field concerned with the interactions between computers and human languages, with bases in computer science, artificial intelligence, and linguistics. NLP poses may challenges, but not every challenge challenge in the field is of interest to the web developer—the developer enabling machines to respond to humans through the world wide web. Most importantly, the more academic areas of NLP do not fit well with the goals of web developers, e.g., speech recognition, optical character recognition, text-to-speech transformation, translation, or machine learning.</p>
+<h3 id="requirements">Requirements</h3>
+<p>The in the previous section covered use cases are required to be reachable through the proposed solution. In addition, this section covers other requirements to better suit the wishes of the target audience.</p>
+<h4 id="open-source">Open Source</h4>
+<p>To reach the target audience and validate its use, the software was developed as open source software—software that is free for all to use and redistribute. All projects were licensed under The MIT License<span class="citation" data-cites="opensource.org-licenses-mit">(“The MIT License (MIT)”)</span>, a license which provides rights for others to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of these projects.</p>
+<p>In addition, the software was developed under the all-seeing-eye of the GitHub community. GitHub is a hosted version control<a href="#fn23" class="footnoteRef" id="fnref23"><sup>23</sup></a> service with social networking features. On GitHub, many web developers follow their peers to track what they are working on, watch their favourite projects to get notified of changes, and raise issues or feature requests.</p>
+<h4 id="performance">Performance</h4>
+<p>The in this paper proposed implementations were produced with high regards for performance. Performance includes the software having a small file size in order to reach the client over the network with the highest possible speed, but most importantly that the execution of code should operate efficiently and at at high speeds.</p>
+<h4 id="testing">Testing</h4>
+<p>With the development of the in this paper introduced software, testing was given high priority. Testing, in software development, refers to validating if software does what it is supposed to do, and can be divided into multiple subgroups:</p>
+<ul>
+<li>Unit testing — Validation of each specific section of code;</li>
+<li>Integration testing — Validation of how programs work together;</li>
+<li>System testing — Validation of if system meets its requirements;</li>
+<li>Acceptance testing — Validation of the end product.</li>
+</ul>
+<p>Great care was given to develop a full test suite with full coverage for every program. Coverage, in software development, is a term used to describe the amount of code tested by the test suite: full coverage means every part of the code is reached by the tests.</p>
+<p>Unit test were run through Mocha<span class="citation" data-cites="visionmedia/mocha-source-code">(Holowaychuk)</span>, coverage was detected with Istanbul<span class="citation" data-cites="gotwarlost/istanbul-source-code">(Anantheswaran)</span>.</p>
+<h4 id="code-quality">Code quality</h4>
+<p>Great attention was given to code quality: how useful and readable for both humans and machines the software is. Special focus was given to consistency and clearness for humans.</p>
+<h5 id="suspicious-code-and-bugs">Suspicious Code and Bugs</h5>
+<p>To detect bugs and suspicious code in the software, Eslint<span class="citation" data-cites="eslint/eslint-source-code">(Zakas)</span> was used. The act of linting, in computer programming, is a term used to describe static code analysis to detect syntactic discrepancies without actually running the code. Eslint was used because it provides a solid basic set of rules and enables developers to create custom rules.</p>
+<h5 id="style">Style</h5>
+<p>To enforce a consistent code style, in order to create software readable for humans, JSCS was used<span class="citation" data-cites="mdevils/node-jscs-source-code">(Dulin)</span>. JSCS provides rules for allowing or disallowing patters such as white space at the end of a line or camel cased variable names, or setting a maximum line length. JSCS was chosen because it, just like the aforementioned Eslint, provides a strong base set of rules. The rules chosen for the development of the proposed software was set very strict to enforce all code was written in the same manner.</p>
+<h5 id="commenting">Commenting</h5>
+<p>Even when code is completely bug free, uses no hard-to-understand shortcuts, and adheres to a strict style, it might still be hard to understand for humans. The act of commenting code—describing what a program does and why it accomplishes this in a certain way—is important. On the other hand, commenting can also be to verbose, for example when the code is duplicated in natural language.</p>
+<p>JSDoc<span class="citation" data-cites="google.com-clojure-compiler-jsdoc">(“Annotating JavaScript for the Closure Compiler”)</span> is a markup language for ECMAScript programs, allowing developers to embed documentation in source code. Later various tools can be used to extract the documentation and expose it separately from the original code.</p>
+<p>Great care was given to annotate “tricky” source code inside the software with comments, and to apply documentation inside the source code through JSDoc.</p>
+<h4 id="automation">Automation</h4>
+<p>Great focus was given to develop using several automated continuous integration (CI) environments. When suspicious, ambiguous, or buggy code was introduced in the software, the error was automatically detected and in some cases deployment was prevented.</p>
+<p>Tools user were Code Climate<span class="citation" data-cites="codeclimate.com">(“CodeClimate”)</span> to detect complex, duplicate, or bug-prone code, and Travis<span class="citation" data-cites="travis-ci.org">(“The Travis CI Blog”)</span> to validate all unit tests passed before deploying the software.</p>
+<h4 id="api-design">API Design</h4>
+<p>Interface design was given high priority for the development of the proposed software. A clear interface of the software, according to Joshua Bloch<span class="citation" data-cites="bloch-joshua-how-design-good-api-why-matters">(Bloch 2006)</span>, has the following characteristics:</p>
+<ul>
+<li>Easy to learn;</li>
+<li>Easy to use;</li>
+<li>Hard to misuse;</li>
+<li>Easy to read;</li>
+<li>Easy to maintain;</li>
+<li>Easy to extend;</li>
+<li>Meeting its requirements;</li>
+<li>Appropriate for the target audience.</li>
+</ul>
+<p>In essence equal but worded differently are the characteristics of good API design according to the Qt Project<span class="citation" data-cites="qt-project.org-api-design-principles">(“API Design Principles”)</span>, are as follows:</p>
+<ul>
+<li>Be minimal;</li>
+<li>Be complete;</li>
+<li>Have clear and simple semantics;</li>
+<li>Be intuitive;</li>
+<li>Be easy to memorise;</li>
+<li>Lead to readable code;</li>
+</ul>
+<p>With the creation of the software these characteristics, and the in their sources given examples, were taken into account.</p>
+<h5 id="installation">Installation</h5>
+<p>Access both on the client side and on the server side to the software was of importance during the development of the software. For the server side on Node.js, npm—the default package manager for the platform—is the most popular. On the client side, many different package managers exist, the most popular<a href="#fn24" class="footnoteRef" id="fnref24"><sup>24</sup></a> being Bower and Component. To reach the target audience, in addition of making the whole source available for download through Git and GitHub, npm, Bower, and Component were used.</p>
+<h2 id="validation">Validation</h2>
+<p>The developed software was validated through two approaches. The design and usability of the interface was validated by trying to solve the use cases with the software. If the target audience actually wanted to use the software was validated through enthusiasm showed by the open source community.</p>
+<h3 id="plugins">Plugins</h3>
+<p>More than fifteen (15) Retext plugins were created to validate how the different projects integrated together, and how the system worked as a whole.</p>
+<p>The created plugins include tools for:</p>
+<ul>
+<li>Transforming so-called dumb punctuation marks into more typographically correct punctuation marks;</li>
+<li>Transforming emoji short-codes (:cat:) into real emoji (🐱);</li>
+<li>Detecting the direction of text (left to right, right to left);</li>
+<li>Detecting phonetics (how words sound like);</li>
+<li>Detecting the stem of words (reducing inflected or derived words to a single form);</li>
+<li>Detecting grammatical units (to count words in a sentence);</li>
+<li>Finding text (even misspelled) in a document;</li>
+<li>Detecting part-of-speech tags of words;</li>
+<li>Finding keywords and key phrases in a document;</li>
+</ul>
+<p>The creation of these plugins brought several problems to light in the developed software. These problems were then dealt with back and forth between the software and the plugins. The software changed severely by these fixed problems, which resulted in a more useable interface.</p>
+<h3 id="reception">Reception</h3>
+<p>To validate if the target audience actually wanted to use the developed software, several blogs and email newsletters were contacted to feature Retext, either in the form of an article or as a simple link.</p>
+<p>This resulted in several mentions on blogs<a href="#fn25" class="footnoteRef" id="fnref25"><sup>25</sup></a>, link roundups<a href="#fn26" class="footnoteRef" id="fnref26"><sup>26</sup></a>, reddit<a href="#fn27" class="footnoteRef" id="fnref27"><sup>27</sup></a>. In turn, these publications resulted in positive reactions (such as on Twitter<a href="#fn28" class="footnoteRef" id="fnref28"><sup>28</sup></a>), feedback<span class="citation" data-cites="github.com-issue">(“Some Demos Not Working in Chrome &gt;36” 2014)</span>, and fixes<span class="citation" data-cites="github.com-pull-request">(Burkhead 2014)</span> on these mentions, and many project-followers on GitHub<span class="citation" data-cites="github.com-stargazers">(“Stargazers · Wooorm/Retext”)</span>.</p>
+<h2 id="conclusion">Conclusion</h2>
+<h3 id="summary">Summary</h3>
+<h3 id="future-work">Future Work</h3>
+<h3 id="advice">Advice</h3>
+<h2 id="appendix-a-nlcst-definition">Appendix A: NLCST definition</h2>
+<h5 id="node">Node</h5>
+<pre class="idl"><code>interface Node {
+    type: string;
+}</code></pre>
+<h5 id="parent">Parent</h5>
+<pre class="idl"><code>interface Parent &lt;: Node {
+    children: [];
+}</code></pre>
+<h5 id="text">Text</h5>
+<pre class="idl"><code>interface Text &lt;: Node {
+    value: string | null;
+    location: Location | null;
+}</code></pre>
+<h5 id="location">Location</h5>
+<pre class="idl"><code>interface Location {
+    start: Position;
+    end: Position;
+}</code></pre>
+<h5 id="position">Position</h5>
+<pre class="idl"><code>interface Position {
+    line: uint32 &gt;= 1;
+    column: uint32 &gt;= 1;
+}</code></pre>
+<h5 id="rootnode">RootNode</h5>
+<p>Root (Parent) represents the document.</p>
+<pre class="idl"><code>interface RootNode &lt; Parent {
+    type: &quot;RootNode&quot;;
+}</code></pre>
+<h5 id="paragraphnode">ParagraphNode</h5>
+<p>Paragraph (Parent) represents a self-contained unit of a discourse in writing dealing with a particular point or idea.</p>
+<pre class="idl"><code>interface ParagraphNode &lt; Parent {
+    type: &quot;ParagraphNode&quot;;
+}</code></pre>
+<h5 id="sentencenode">SentenceNode</h5>
+<p>Sentence (Parent) represents a grouping of grammatically linked words, that in principle tells a complete thought (although it may make little sense taken in isolation out of context).</p>
+<pre class="idl"><code>interface SentenceNode &lt; Parent {
+    type: &quot;SentenceNode&quot;;
+}</code></pre>
+<h5 id="wordnode">WordNode</h5>
+<p>Word (Parent) represents the smallest element that may be uttered in isolation with semantic or pragmatic content.</p>
+<pre class="idl"><code>interface WordNode &lt; Parent {
+    type: &quot;WordNode&quot;;
+}</code></pre>
+<h5 id="punctuationnode">PunctuationNode</h5>
+<p>Punctuation (Parent) represents typographical devices which aid the understanding and correct reading of other grammatical units.</p>
+<pre class="idl"><code>interface PunctuationNode &lt; Parent {
+    type: &quot;PunctuationNode&quot;;
+}</code></pre>
+<h5 id="whitespacenode">WhiteSpaceNode</h5>
+<p>White Space (Punctuation) represents typographical devices devoid of content, separating other grammatical units.</p>
+<pre class="idl"><code>interface WhiteSpaceNode &lt; PunctuationNode {
+    type: &quot;WhiteSpaceNode&quot;;
+}</code></pre>
+<h5 id="sourcenode">SourceNode</h5>
+<p>Source (Text) represents an external (non-grammatical) value embedded into a grammatical unit, for example a hyperlink or an emoticon.</p>
+<pre class="idl"><code>interface SourceNode &lt; Text {
+    type: &quot;SourceNode&quot;;
+}</code></pre>
+<h5 id="textnode">TextNode</h5>
+<p>Text (Text) represents actual content in a NLAST document: One or more characters.</p>
+<pre class="idl"><code>interface TextNode &lt; Text {
+    type: &quot;TextNode&quot;;
+}</code></pre>
+<h2 id="appendix-b-parse-latin-output">Appendix B: Parse-latin output</h2>
+<p>An example of how parse-latin tokenises the paragraph “A simple sentence. Another sentence.”, is represented as follows,</p>
+<pre class="sourceCode json"><code class="sourceCode json"><span class="fu">{</span>
+  <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;RootNode&quot;</span><span class="fu">,</span>
+  <span class="dt">&quot;children&quot;</span><span class="fu">:</span> <span class="ot">[</span>
+    <span class="fu">{</span>
+      <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;ParagraphNode&quot;</span><span class="fu">,</span>
+      <span class="dt">&quot;children&quot;</span><span class="fu">:</span> <span class="ot">[</span>
+        <span class="fu">{</span>
+          <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;SentenceNode&quot;</span><span class="fu">,</span>
+          <span class="dt">&quot;children&quot;</span><span class="fu">:</span> <span class="ot">[</span>
+            <span class="fu">{</span>
+              <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;WordNode&quot;</span><span class="fu">,</span>
+              <span class="dt">&quot;children&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="fu">{</span>
+                <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;TextNode&quot;</span><span class="fu">,</span>
+                <span class="dt">&quot;value&quot;</span><span class="fu">:</span> <span class="st">&quot;A&quot;</span>
+              <span class="fu">}</span><span class="ot">]</span>
+            <span class="fu">}</span><span class="ot">,</span>
+            <span class="fu">{</span>
+              <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;WhiteSpaceNode&quot;</span><span class="fu">,</span>
+              <span class="dt">&quot;children&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="fu">{</span>
+                <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;TextNode&quot;</span><span class="fu">,</span>
+                <span class="dt">&quot;value&quot;</span><span class="fu">:</span> <span class="st">&quot; &quot;</span>
+              <span class="fu">}</span><span class="ot">]</span>
+            <span class="fu">}</span><span class="ot">,</span>
+            <span class="fu">{</span>
+              <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;WordNode&quot;</span><span class="fu">,</span>
+              <span class="dt">&quot;children&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="fu">{</span>
+                <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;TextNode&quot;</span><span class="fu">,</span>
+                <span class="dt">&quot;value&quot;</span><span class="fu">:</span> <span class="st">&quot;simple&quot;</span>
+              <span class="fu">}</span><span class="ot">]</span>
+            <span class="fu">}</span><span class="ot">,</span>
+            <span class="fu">{</span>
+              <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;WhiteSpaceNode&quot;</span><span class="fu">,</span>
+              <span class="dt">&quot;children&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="fu">{</span>
+                <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;TextNode&quot;</span><span class="fu">,</span>
+                <span class="dt">&quot;value&quot;</span><span class="fu">:</span> <span class="st">&quot; &quot;</span>
+              <span class="fu">}</span><span class="ot">]</span>
+            <span class="fu">}</span><span class="ot">,</span>
+            <span class="fu">{</span>
+              <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;WordNode&quot;</span><span class="fu">,</span>
+              <span class="dt">&quot;children&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="fu">{</span>
+                <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;TextNode&quot;</span><span class="fu">,</span>
+                <span class="dt">&quot;value&quot;</span><span class="fu">:</span> <span class="st">&quot;sentence&quot;</span>
+              <span class="fu">}</span><span class="ot">]</span>
+            <span class="fu">}</span><span class="ot">,</span>
+            <span class="fu">{</span>
+              <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;PunctuationNode&quot;</span><span class="fu">,</span>
+              <span class="dt">&quot;children&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="fu">{</span>
+                <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;TextNode&quot;</span><span class="fu">,</span>
+                <span class="dt">&quot;value&quot;</span><span class="fu">:</span> <span class="st">&quot;.&quot;</span>
+              <span class="fu">}</span><span class="ot">]</span>
+            <span class="fu">}</span>
+          <span class="ot">]</span>
+        <span class="fu">}</span><span class="ot">,</span>
+        <span class="fu">{</span>
+          <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;WhiteSpaceNode&quot;</span><span class="fu">,</span>
+          <span class="dt">&quot;children&quot;</span><span class="fu">:</span> <span class="ot">[</span>
+            <span class="fu">{</span>
+              <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;TextNode&quot;</span><span class="fu">,</span>
+              <span class="dt">&quot;value&quot;</span><span class="fu">:</span> <span class="st">&quot; &quot;</span>
+            <span class="fu">}</span>
+          <span class="ot">]</span>
+        <span class="fu">}</span><span class="ot">,</span>
+        <span class="fu">{</span>
+          <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;SentenceNode&quot;</span><span class="fu">,</span>
+          <span class="dt">&quot;children&quot;</span><span class="fu">:</span> <span class="ot">[</span>
+            <span class="fu">{</span>
+              <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;WordNode&quot;</span><span class="fu">,</span>
+              <span class="dt">&quot;children&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="fu">{</span>
+                <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;TextNode&quot;</span><span class="fu">,</span>
+                <span class="dt">&quot;value&quot;</span><span class="fu">:</span> <span class="st">&quot;Another&quot;</span>
+              <span class="fu">}</span><span class="ot">]</span>
+            <span class="fu">}</span><span class="ot">,</span>
+            <span class="fu">{</span>
+              <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;WhiteSpaceNode&quot;</span><span class="fu">,</span>
+              <span class="dt">&quot;children&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="fu">{</span>
+                <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;TextNode&quot;</span><span class="fu">,</span>
+                <span class="dt">&quot;value&quot;</span><span class="fu">:</span> <span class="st">&quot; &quot;</span>
+              <span class="fu">}</span><span class="ot">]</span>
+            <span class="fu">}</span><span class="ot">,</span>
+            <span class="fu">{</span>
+              <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;WordNode&quot;</span><span class="fu">,</span>
+              <span class="dt">&quot;children&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="fu">{</span>
+                <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;TextNode&quot;</span><span class="fu">,</span>
+                <span class="dt">&quot;value&quot;</span><span class="fu">:</span> <span class="st">&quot;sentence&quot;</span>
+              <span class="fu">}</span><span class="ot">]</span>
+            <span class="fu">}</span><span class="ot">,</span>
+            <span class="fu">{</span>
+              <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;PunctuationNode&quot;</span><span class="fu">,</span>
+              <span class="dt">&quot;children&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="fu">{</span>
+                <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;TextNode&quot;</span><span class="fu">,</span>
+                <span class="dt">&quot;value&quot;</span><span class="fu">:</span> <span class="st">&quot;.&quot;</span>
+              <span class="fu">}</span><span class="ot">]</span>
+            <span class="fu">}</span>
+          <span class="ot">]</span>
+        <span class="fu">}</span>
+      <span class="ot">]</span>
+    <span class="fu">}</span>
+  <span class="ot">]</span>
+<span class="fu">}</span></code></pre>
+<h2 id="appendix-c-dom">Appendix C: DOM</h2>
+<p>The DOM specification defines a platform-neutral model for errors, events, and (for this paper, the primary feature) node trees. XML-based documents can be represented by the DOM.</p>
+<p>Consider the following HTML document:</p>
+<pre class="sourceCode html"><code class="sourceCode html"><span class="dt">&lt;!DOCTYPE </span>html<span class="dt">&gt;</span>
+<span class="kw">&lt;html</span><span class="ot"> class=</span><span class="st">e</span><span class="kw">&gt;</span>
+    <span class="kw">&lt;head&gt;&lt;title&gt;</span>Aliens?<span class="kw">&lt;/title&gt;&lt;/head&gt;</span>
+    <span class="kw">&lt;body&gt;</span>Why yes.<span class="kw">&lt;/body&gt;</span>
+<span class="kw">&lt;/html&gt;</span></code></pre>
+<p>Is represented by the DOM as follows:</p>
+<pre><code>|- Document
+   |- Doctype: html
+   |- Element: html class=&quot;e&quot;
+      |- Element: head
+      |  |- Element: title
+      |     |- Text: Aliens?
+      |- Text: ⏎␣
+      |- Element: body
+        |- Text: Why yes.⏎</code></pre>
+<p>The DOM interfaces of bygone times were widely considered horrible, but newer features seem to be gaining popularity in the web authoring community as broader implementation across user agents is reached.</p>
+<div class="references">
+<h1>References</h1>
+<p>Ahmed, Sarfraz. 2014. “New #Dailyjs #Javascript Post : Natural Language Parsing with Retext Http://ift.Tt/1qrUjGo.” Tweet.</p>
+<p>Anantheswaran, Krishnan. “istanbul.” Source code (version 0.3.0).</p>
+<p>“Annotating JavaScript for the Closure Compiler.” Web. <em>Google Developers</em>. Google.</p>
+<p>“API Design Principles.” Web. <em>Qt Project</em>. Digia Plc.</p>
+<p>Balbin, Jolo. “textteaser.” Source code.</p>
+<p>Baldridge, Jason. 2005. “The Opennlp Project.” <em>URL: http://opennlp.Apache.Org/Index.Html, (Accessed 2 February 2012)</em>.</p>
+<p>Bendersky, Eli. 2009. “Abstract Vs. Concrete Syntax Trees.” Blog. <em>Eli Bendersky’s Website</em>.</p>
+<p>Bird, Steven. 2006. “NLTK: the Natural Language Toolkit.” In <em>Proceedings of the COLING/ACL on Interactive Presentation Sessions</em>, 69–72. Association for Computational Linguistics.</p>
+<p>Bloch, Joshua. 2006. “How to Design a Good API and Why It Matters.” In <em>Companion to the 21st ACM SIGPLAN Symposium on Object-Oriented Programming Systems, Languages, and Applications</em>, 506–7. ACM.</p>
+<p>Brants, Thorsten, and Alex Franz. 2006. “<span class="math">{</span>Web 1T 5-Gram Version 1<span class="math">}</span>.” Linguistic Data Consortium, Philadelphia.</p>
+<p>Brooks, James. “node-Summary.” Source code (version 1.0.0).</p>
+<p>Burkhead, Jake. 2014. “Spelling Fix in README.” Web. GitHub.</p>
+<p>“CodeClimate.” Web. Bluebox.</p>
+<p>dailyjs. 2014. “Natural Language Parsing with Retext: http://dailyjs.Com/2014/07/31/Retext.” Tweet.</p>
+<p>Dulin, Marat. “jscs.” Source code (version 1.5.9).</p>
+<p>“Emphasis.” Source code. New York Times.</p>
+<p>Francis, W Nelson, and Henry Kucera. 1979. “Brown Corpus Manual.” <em>Brown University Department of Linguistics</em>.</p>
+<p>Haverbeke, Marijn. “acorn.” Source code (version 0.6.0).</p>
+<p>Hidayat, Ariya. “esprima.” Source code (version 1.2.2).</p>
+<p>Holowaychuk, TJ. “mocha.” Source code (version 1.21.4).</p>
+<p>Holowaychuk, TJ, Stefan Baumgartner, Jonathan Ong, Kevin Mårtensson, Michelle Bu, Maxime Thirouin, Nicolas Gallagher, Alex Sexton, and (dead-horse). “css.” Source code (version 2.1.0).</p>
+<p>———. “rework.” Source code (version 1.0.0).</p>
+<p>Hunzaker, Nathan. “speakeasy.” Source code (version 0.2.2).</p>
+<p>Hutchins, John. 2004. “The First Public Demonstration of Machine Translation: the Georgetown-IBM System, 7th January 1954.” In <em>AMTA Conference</em>.</p>
+<p>Hyder, Zohair. 2013. “Gmail: 9 Years and Counting.” Blog. <em>Official Gmail Blog</em>.</p>
+<p>“Knwl.Js.” Source code (version 0.0.1). Loadfive.</p>
+<p>Miller, George A, Richard Beckwith, Christiane Fellbaum, Derek Gross, and Katherine J Miller. 1990. “Introduction to Wordnet: An on-Line Lexical Database*.” <em>International Journal of Lexicography</em> 3 (4). Oxford Univ Press: 235–44.</p>
+<p>Misiti, Joseph. “Awesome Machine Learning.” Web. GitHub.</p>
+<p>Mitkov, Ruslan, Constantin Orasan, and Richard Evans. 1999. “The Importance of Annotated Corpora for NLP: the Cases of Anaphora Resolution and Clause Splitting.” In <em>Proceedings of Corpora and NLP: Reflecting on Methodology Workshop</em>, 1–10. Citeseer.</p>
+<p>Mohri, Mehryar, Afshin Rostamizadeh, and Ameet Talwalkar. 2012. <em>Foundations of Machine Learning</em>. MIT press.</p>
+<p>Nielsen, Finn <span>Å</span>rup. 2011. “A New ANEW: Evaluation of a Word List for Sentiment Analysis in Microblogs.” <em>arXiv Preprint ArXiv:1103.2903</em>.</p>
+<p>Oswald, Trent. 2014. “This. Just. Made. My. Brain. Explode. Https://github.Com/Wooorm/Retext.” Tweet.</p>
+<p>“Outlook Web Access - a Catalyst for Web Evolution.” 2005. Blog. <em>The Exchange Team Blog</em>.</p>
+<p>O’Neil, John. 2008. “Doing Things with Words, Part Two: Sentence Boundary Detection.” Blog. <em>Attivo</em>.</p>
+<p>“Parser API.” Web. <em>Mozilla Developer Network</em>. Mozilla.</p>
+<p>Penny, Spector. 1996. “Welcome to Interrobang-Mks.” Web. American Translators Association.</p>
+<p>Polencic, Daniele. 2014. “Extensible System for Analysing and Manipulating Natural Language.” Web. Reddit.</p>
+<p>Rinaldi, Brian. 2014. “Retext Is a JavaScript Natural Language Parser Useful for Doing Things Like Removing Profanity, Analyzing Text, Etc. Http://bit.Ly/1zCZ1GP.” Tweet.</p>
+<p>Roth, Kevin. “Sentimental.” Source code (version 1.0.1).</p>
+<p>Sliwinski, Andrew. “sentiment.” Source code (version 1.0.1).</p>
+<p>“Some Demos Not Working in Chrome &gt;36.” 2014. Web. GitHub.</p>
+<p>Sorhus, Sindre. “Awesome Node.Js.” Web. GitHub.</p>
+<p>“Stanbol.” Source code (version 0.12.1). Apache.</p>
+<p>“Stargazers · Wooorm/Retext.” Web. GitHub.</p>
+<p>“Summly.” Web. Summly.</p>
+<p>Suzuki, Yusuke. “escodegen.” Source code (version 1.3.3).</p>
+<p>“TextRazor - the Natural Language Processing API.” Web. TextRazor.</p>
+<p>“TextTeaser: An Automatic Summarization Application and API.” Web. TextTeaser.</p>
+<p>“The MIT License (MIT).” Web. The Open Source Initiative.</p>
+<p>“The Travis CI Blog.” Web. Travis CI GmbH.</p>
+<p>U, Eric. 2014. “[Fileapi-Directories-and-System/Filewriter].” Email.</p>
+<p>Umbel, Chris, Rob Ellis, and Ken Koch. “natural.” Source code (version 0.1.28).</p>
+<p>Wikipedia. 2014. “Natural Language Processing — Wikipedia, the Free Encyclopedia.” <a href="http://en.wikipedia.org/w/index.php?title=Natural_language_processing&amp;oldid=619923916">http://en.wikipedia.org/w/index.php?title=Natural_language_processing&amp;oldid=619923916</a>.</p>
+<p>Wormer, Titus. 2014a. “Natural Language Parsing with Retext.” Web. Reddit.</p>
+<p>———. 2014b. “Natural Language Parsing with Retext.” Web. Reddit.</p>
+<p>Young, Alex. 2014. “Natural Language Parsing with Retext.” Blog. <em>DailyJS</em>.</p>
+<p>Zakas, Nicholas. “eslint.” Source code (version 0.7.4).</p>
+<p>Zimmerman, Miles. “sediment.” Source code (version 0.9.2).</p>
+</div>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>For example, ignoring white space <span class="citation" data-cites="loadfive/knwl-source-code">(See “Knwl.Js”)</span>, punctuation, or implementing a naive definition of “words”<span class="citation" data-cites="nhunzaker/speakeasy-source-code">(Hunzaker)</span>, or by deploying a less than adequate algorithm to detect sentences<span class="citation" data-cites="nytimes/emphasis-source-code">(“Emphasis”)</span>.<a href="#fnref1">↩</a></p></li>
+<li id="fn2"><p>Although a do-all library works well on server-side platforms, it fares less well on the web<span class="citation" data-cites="NaturalNode/natural-source-code">(Umbel, Ellis, and Koch)</span>, where modularity and frugality are in order.<a href="#fnref2">↩</a></p></li>
+<li id="fn3"><p>Both sentence tokenisation and sentence boundary solve a similar issue—detecting where sentences terminate. Sentence boundary disambiguation focusses on the position where a sentence breaks (as in, ‘One sentence.| Two sentences.|’, where the pipe symbol refers to the end of one sentence and the beginning of another), whereas sentence tokenisation lays focus on where a sentence starts and where it ends (as in, ‘{One sentence.} {Two sentences.}’, where everything between curly brackets, both start and end boundaries, are detected and classified as s sentence).<a href="#fnref3">↩</a></p></li>
+<li id="fn4"><p>One could argue the in 1962 introduced obscure interrobang (‽), used to punctuate rhetorical statements where neither the question nor an exclamation alone exactly serve the writer well<span class="citation" data-cites="interrobang-mks.com">(Penny 1996)</span>, should be in this list.<a href="#fnref4">↩</a></p></li>
+<li id="fn5"><p>Although the definition of initialism is ambiguous, this paper defines its use as an acronym (an abbreviation formed from initial components, such as “sonar” or “FBI”) with full stops depicting elision (such as “e.g.”, or “K.G.B.”).<a href="#fnref5">↩</a></p></li>
+<li id="fn6"><p>Embedded content in this paper refers to an external (non-grammatical) value embedded into a grammatical unit, such as a hyperlink or an emoticon. Note that these embedded values often consist of valid words and punctuation marks, but most always shouldn’t be classified as such.<a href="#fnref6">↩</a></p></li>
+<li id="fn7"><p>For example, Knwl<span class="citation" data-cites="loadfive/knwl-source-code">(“Knwl.Js”)</span> counts words using this method.<a href="#fnref7">↩</a></p></li>
+<li id="fn8"><p>For example, Natural’s <span class="citation" data-cites="NaturalNode/natural-source-code">(Umbel, Ellis, and Koch)</span> tokenisers.<a href="#fnref8">↩</a></p></li>
+<li id="fn9"><p>For example, the AFINN<span class="citation" data-cites="nielsen-finn-arup-afinn">(Nielsen 2011)</span> database mapping words to polarity.<a href="#fnref9">↩</a></p></li>
+<li id="fn10"><p>For example, <span class="citation" data-cites="thinkroth/sentimental-source-code">(Roth)</span>, <span class="citation" data-cites="mileszim/sediment-source-code">(Zimmerman)</span>, and <span class="citation" data-cites="thisandagain/sentiment-source-code">(Sliwinski)</span>.<a href="#fnref10">↩</a></p></li>
+<li id="fn11"><p>If fact, all of the researched implementations deploy lacking tokenisations steps. Controversial, as they each create unreachable code through their naivety: all tested libraries remove dashes from words, while words such as “self-deluded” are in the databases they use, but never reachable.<a href="#fnref11">↩</a></p></li>
+<li id="fn12"><p>For example, <span class="citation" data-cites="jbrooksuk/node-summary-source-code">(Brooks)</span> on the web, <span class="citation" data-cites="MojoJolo/textteaser-source-code">(Balbin)</span> in Scala.<a href="#fnref12">↩</a></p></li>
+<li id="fn13"><p>The Brown Corpus contains about a million words<span class="citation" data-cites="francis-nelson-brown-corpus">(Francis and Kucera 1979)</span>, the Google N-Gram Corpus contains 155 billion<span class="citation" data-cites="brants-thorsten-google-ngram-corpus">(Brants and Franz 2006)</span>.<a href="#fnref13">↩</a></p></li>
+<li id="fn14"><p>“[From] a set of labeled examples as training data … [, make] predictions for all unseen points”, <span class="citation" data-cites="mohri-mehryar-foundations-machine-learning">(Mohri, Rostamizadeh, and Talwalkar 2012)</span><a href="#fnref14">↩</a></p></li>
+<li id="fn15"><p>A simple rule-based sentence tokeniser could be implemented<span class="citation" data-cites="attivio.com-doing-things-with-sentences">(O’Neil 2008)</span> as follows: - If it is a period, it ends a sentence; - If the period is preceded by an abbreviation, it does not end a sentence; - If the next token is capitalised, it ends a sentence.<a href="#fnref15">↩</a></p></li>
+<li id="fn16"><p>Currently, almost no technologies exist for storing large datasets in a browser. The only exception to the rule is the HTML5 File System API, but it was recently deprecated<span class="citation" data-cites="w3.org-filesystem-dead">(U 2014)</span>.<a href="#fnref16">↩</a></p></li>
+<li id="fn17"><p>Starting around 2000 AJAX (an acronym for Asynchronous JavaScript and XML) started to transform the web. Beforehand, websites only really changed when a user navigated to a new page. With AJAX however, new content arrived to users without the need for a full page refresh. One of the first examples are the Outlook Web App in 2000<span class="citation" data-cites="technet-outlook-web-access">(“Outlook Web Access - a Catalyst for Web Evolution” 2005)</span> and Gmail in 2004<span class="citation" data-cites="gmailblog-gmail-ajax">(Hyder 2013)</span>, both examples of how AJAX made the web feel more “app-like”.<a href="#fnref17">↩</a></p></li>
+<li id="fn18"><p>The grammatical hierarchy of text is constituted by words, phrases, clauses, and sentences. NLCST only implements the sentence and word constituents by default, although clauses and phrases could be provided by implementations.<a href="#fnref18">↩</a></p></li>
+<li id="fn19"><p>Most notably, punctuation, symbol, and white space elements.<a href="#fnref19">↩</a></p></li>
+<li id="fn20"><p>Whether Old-English (“þā gewearþ þǣm hlāforde and þǣm hȳrigmannum wiþ ānum penninge”), Icelandic (“Hvað er að frétta”), French (“Où sont les toilettes?”), or even scripts slightly similar, such as Cyrillic (“Добро пожаловать!”), Georgian (“როგორა ხარ?”), Armenian (“Շատ հաճելի է”).<a href="#fnref20">↩</a></p></li>
+<li id="fn21"><p>Object-oriented programming is a style of programming, where classes, instances, attributes, and methods are important.<a href="#fnref21">↩</a></p></li>
+<li id="fn22"><p>See the appendices for a more information on the DOM.<a href="#fnref22">↩</a></p></li>
+<li id="fn23"><p>Version control services manage revisions to documents, popularly used for controlling and tracking changes in software.<a href="#fnref23">↩</a></p></li>
+<li id="fn24"><p>Popularity here is simply defined as having the most search results on Google.<a href="#fnref24">↩</a></p></li>
+<li id="fn25"><p><span class="citation" data-cites="dailyjs.com-natural-language-parsing-retext">(Young 2014)</span><a href="#fnref25">↩</a></p></li>
+<li id="fn26"><p>Including <span class="citation" data-cites="github.com-awesome-machine-learning">(Misiti)</span> and <span class="citation" data-cites="github.com-awesome-nodejs">(Sorhus)</span>.<a href="#fnref26">↩</a></p></li>
+<li id="fn27"><p>Including <span class="citation" data-cites="reddit.com-mention-1">(Polencic 2014)</span>, <span class="citation" data-cites="reddit.com-mention-2">(Wormer 2014a)</span>, and <span class="citation" data-cites="reddit.com-mention-3">(Wormer 2014b)</span>.<a href="#fnref27">↩</a></p></li>
+<li id="fn28"><p>Including <span class="citation" data-cites="twitter.com-mention-1">(dailyjs 2014)</span>, <span class="citation" data-cites="twitter.com-mention-2">(Ahmed 2014)</span>, <span class="citation" data-cites="twitter.com-mention-3">(Oswald 2014)</span>, <span class="citation" data-cites="twitter.com-mention-4">(Rinaldi 2014)</span>, and more.<a href="#fnref28">↩</a></p></li>
+</ol>
+</section>
+</body>
+</html>

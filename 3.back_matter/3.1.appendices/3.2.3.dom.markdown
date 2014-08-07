@@ -1,3 +1,6 @@
+
+## Appendix C: DOM
+
 The DOM specification defines a platform-neutral model for errors, events, and (for this paper, the primary feature) node trees. XML-based documents can be represented by the DOM.
 
 Consider the following HTML document: 

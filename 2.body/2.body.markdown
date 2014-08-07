@@ -1,10 +1,11 @@
+
 ## Context
 
 {{Needs a nice quote about the definition of NLP}}
 
 The focus of this paper is Natural Language Processing---abbreviated as NLP throughout. NLP concerns itself with enabling machines to understand human language, thus it is a field related to human--computer interaction. Human language, a medium which humans understand quite easily, can pose problems for machines.
 
-That understanding of human language by machines is quite difficult, is depicted by one of the first application of NLP, during the Georgetown--IBM experiment, where a Russian-english machine translation system was showcased in New York in 1945[@hutchins-john-georgetown-ibm-system]. More than sixty sentences were translated by a machine from Russian to English. The experiment was well publicised in the press and resulted in optimism for machine-translation. Machine-translation was thought of as being a solved problem within three to five years. The results in the following ten years were however disappointing and eventually led to reduced funding.
+That understanding of human language by machines is quite difficult, is depicted by one of the first application of NLP, during the Georgetown--IBM experiment, where a Russian-english machine translation system was showcased in New York in 1945[See @hutchins-john-georgetown-ibm-system]. More than sixty sentences were translated by a machine from Russian to English. The experiment was well publicised in the press and resulted in optimism for machine-translation. Machine-translation was thought of as being a solved problem within three to five years. The results in the following ten years were however disappointing and eventually led to reduced funding.
 
 Machine translation is just one of many major tasks involved with NLP. Other applications include automatic summarisation (generating a summary), named entity recognition (detecting references to people or places), sentiment analysis (extracting opinion).
 
@@ -88,7 +89,7 @@ The only implementation working on the web, [@jbrooksuk/node-summary-source-code
 
 A corpus is a large, structured set of texts used for many linguistic and NLP tasks. Oftentimes, each item (most frequently words, but some corpora include sentences, phrases, clauses, or other units) in a corpus is annotated ("tagged") with information about the item (for example, part-of-speech tags or lemmas).
 
-These huge (often more than a million words[^implementations-11]) chunks of information are the basis of many of the newer revolutions in NLP[@mitkov-ruslan-ea-importance-corpora]. Supervised learned[^implementations-12] parsing (in NLP, based on annotated corpora), is the direct antagonist of rule-based parsing[^implementations-13]. Instead of defining rules, exceptions to these rules, exceptions to these exceptions, and so on, supervised learning delegates this task to machines, creating a more performant, scalable, program.
+These huge (often more than a million words[^implementations-11]) chunks of information are the basis of many of the newer revolutions in NLP [See @mitkov-ruslan-ea-importance-corpora]. Supervised learned[^implementations-12] parsing (in NLP, based on annotated corpora), is the direct antagonist of rule-based parsing[^implementations-13]. Instead of defining rules, exceptions to these rules, exceptions to these exceptions, and so on, supervised learning delegates this task to machines, creating a more performant, scalable, program.
 
 Generally, corpus linguistics have proven to be better in several ways over rule-based linguistics. However, they do have their disadvantages:
 
@@ -116,15 +117,15 @@ However, accessing NLP web API's over a network has disadvantages. Most importan
 
 [^implementations-4]: Embedded content in this paper refers to an external (non-grammatical) value embedded into a grammatical unit, such as a hyperlink or an emoticon. Note that these embedded values often consist of valid words and punctuation marks, but most always shouldn't be classified as such.
 
-[^implementations-5]: For example, Knwl[@knwl-source-code] counts words using this method.
+[^implementations-5]: For example, Knwl[@loadfive/knwl-source-code] counts words using this method.
 
-[^implementations-6]: For example, Natural's[@natural-source-code] tokenisers.
+[^implementations-6]: For example, Natural's [@NaturalNode/natural-source-code] tokenisers.
 
 [^implementations-7]: For example, the AFINN[@nielsen-finn-arup-afinn] database mapping words to polarity.
 
 [^implementations-8]: For example, [@thinkroth/sentimental-source-code], [@mileszim/sediment-source-code], and [@thisandagain/sentiment-source-code].
 
-[^implementations-9]: If fact, all of the researched implementations[^implementations-7] deploy lacking tokenisations steps. Controversial, as they each create unreachable code through their naivety: all tested libraries remove dashes from words, while words such as "self-deluded" are in the databases they use, but never reachable.
+[^implementations-9]: If fact, all of the researched implementations deploy lacking tokenisations steps. Controversial, as they each create unreachable code through their naivety: all tested libraries remove dashes from words, while words such as "self-deluded" are in the databases they use, but never reachable.
 
 [^implementations-10]: For example, [@jbrooksuk/node-summary-source-code] on the web, [@MojoJolo/textteaser-source-code] in Scala.
 

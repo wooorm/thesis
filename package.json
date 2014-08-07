@@ -1,0 +1,19 @@
+{
+    "name": "thesis",
+    "version": "0.0.0",
+    "description": "Design of an extensible system for analysing and manipulating natural language",
+    "keywords": [],
+    "private": true,
+    "author": "Titus Wormer <tituswormer@gmail.com>",
+    "license": "Copyright 2014 Titus Wormer",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/wooorm/thesis.git"
+    },
+    "scripts": {
+        "concat": "cat metadata.markdown 1.front_matter/**/*.markdown 2.body/*.markdown 3.back_matter/**/*.markdown > intermediate.md",
+        "transform": "pandoc -t html5 --smart --standalone --normalize --table-of-contents --toc-depth 4 --filter pandoc-citeproc -o index.html intermediate.md",
+        "clean": "rm intermediate.md",
+        "make": "npm run concat && npm run transform && npm run clean"
+    }
+}

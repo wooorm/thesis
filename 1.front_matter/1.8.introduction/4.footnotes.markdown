@@ -1,0 +1,4 @@
+
+[^introduction-1]: For example, ignoring white space [See @loadfive/knwl-source-code], punctuation, or implementing a naive definition of "words"[@nhunzaker/speakeasy-source-code], or by deploying a less than adequate algorithm to detect sentences[@nytimes/emphasis-source-code].
+
+[^introduction-2]: Although a do-all library works well on server-side platforms, it fares less well on the web[@NaturalNode/natural-source-code], where modularity and frugality are in order.

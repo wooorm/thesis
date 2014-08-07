@@ -1,4 +1,6 @@
 
+## Appendix B: Parse-latin output
+
 An example of how parse-latin tokenises the paragraph "A simple sentence. Another sentence.", is represented as follows,
 
 ```json
