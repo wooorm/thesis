@@ -1,3 +1,5 @@
+The DOM specification defines a platform-neutral model for errors, events, and (for this paper, the primary feature) node trees. XML-based documents can be represented by the DOM.
+
 Consider the following HTML document: 
 
 ```html
@@ -10,7 +12,7 @@ Consider the following HTML document:
 
 Is represented by the DOM as follows:
 
-```html
+```
 |- Document
    |- Doctype: html
    |- Element: html class="e"
@@ -21,3 +23,5 @@ Is represented by the DOM as follows:
       |- Element: body
         |- Text: Why yes.⏎
 ```
+
+The DOM interfaces of bygone times were widely considered horrible, but newer features seem to be gaining popularity in the web authoring community as broader implementation across user agents is reached.
