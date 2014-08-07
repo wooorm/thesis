@@ -30,7 +30,7 @@ Lastly, this paper ignores spoken language, and lays its focus on Latin script l
 
 ### Implementations
 
-While researching algorithms to tokenise natural language I found few viable options. Most algorithms look at one or two (or both) kinds of tokenisation: sentence tokenisation and word tokenisation. In this section the current implementations, where they excel, and what they lack.
+While researching algorithms to tokenise natural language few viable options were found. Most algorithms look at one or two (or both) kinds of tokenisation: sentence tokenisation and word tokenisation. In this section the current implementations, where they excel, and what they lack.
 
 #### Stages
 
