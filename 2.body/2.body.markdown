@@ -1,5 +1,5 @@
 
-## Context
+# Context
 
 {{Needs a nice quote about the definition of NLP}}
 
@@ -9,7 +9,7 @@ That understanding of human language by machines is quite difficult, is depicted
 
 Machine translation is just one of many major tasks involved with \gls{nlp}. Other applications include automatic summarisation (generating a summary), named entity recognition (detecting references to people or places), sentiment analysis (extracting opinion).
 
-Summarisation, named entity recognition, and sentiment analyses are all part of what is known as "information extraction", a term for the act of finding certain data inside a natural language document. These, and many other applications of \gls{nlp}, are implemented widely by many programs. The approach taken for such a goal is mostly equivalent. For example, the information extraction method for entity linking in a text document could be as follows[@stanbol-enhancer-nlp]:
+Summarisation, named entity recognition, and sentiment analyses are all part of what is known as "information extraction", a term for the act of finding certain data inside a natural language document. These, and many other applications of \gls{nlp}, are implemented widely by many programs. The approach taken for such a goal is mostly equivalent. For example, the information extraction method for entity linking in a text document could be as follows [according to @stanbol-enhancer-nlp]:
 
 - Detect the input language --- **Language Detection**: Based on the language of the given text, the algorithms behind the following steps will change significantly. Often omitted if only a single language is supported.
 - Optionally break sentences --- **Sentence Tokenisation**: Breaking sentences can elevate performance and heighten the accuracy of the following stages (in particular \gls{pos} tagging);
@@ -21,7 +21,7 @@ Summarisation, named entity recognition, and sentiment analyses are all part of 
 
 Although many different fields are covered by \gls{nlp}, the process of reaching those goals touches on some well defined stages as seen above.
 
-### Scope
+## Scope
 
 The stages mentioned in the previous section are implemented in many \gls{nlp} applications. This paper (the captured use cases and requirements, the proposed standard, and the example implementation) however will only cover one stage: tokenisation. Tokenisation here includes sentence boundary detection, word tokenisation, and tokenisation of other grammatical units.
 
@@ -29,29 +29,29 @@ Another decision made in scoping the \gls{nlp} problem is that that this paper l
 
 Lastly, this paper ignores spoken language, and lays its focus on Latin script language: written languages using an alphabet depending on the letters of the classical Latin alphabet.
 
-### Implementations
+## Implementations
 
 While researching algorithms to tokenise natural language few viable options were found. Most algorithms look at one or two (or both) kinds of tokenisation: sentence tokenisation and word tokenisation. In this section the current implementations, where they excel, and what they lack.
 
-#### Stages
+### Stages
 
-##### Sentence tokenisation
+#### Sentence tokenisation
 
 Often referred to as sentence boundary disambiguation[^implementations-1], sentence tokenisation is a very basic, but important part of \gls{nlp}. It is almost always a stage in an \gls{nlp} application and not an end goal. Sentence tokenisation helps subsequent stages (e.g., detecting plagiarism or \gls{pos} tagging) work more accurately.
 
 Oftentimes, one of three symbols is used to denote the end of a sentences: Either a full stop (.), an interrogative point (?), or an exclamation point (!)[^implementations-2]. Detecting sentence boundaries is however not so easy as simply breaking sentences at these markers. The previously mentioned terminal markers might have other purposes: full stops are often suffixed to abbreviations or titles, in numbers, included in initialisms[^implementations-3], or in embedded content[^implementations-4]. The interrogative- and exclamation points too can occur ambiguously, most often in a quote (e.g., '"Of course!", she screamed'). Disambiguation gets even harder when the previous mentioned exceptions are in fact also a sentence boundary, such as in "...use the feminine form of idem, ead." or in '"Of course!", she screamed, "I'll do it!"', where in both examples the last terminal markers end their respective sentence.
 
-##### Word tokenisation
+#### Word tokenisation
 
 Like sentence tokenisation, word tokenisation is another elementary, but important, stage in \gls{nlp} applications. Whether stemming, finding phonetics, or \gls{pos} tagging, tokenising words is an important precursory step.
 
 Frequently, words are seen as everything that is not white space (i.e., spaces, tabs, feeds), thereby their boundaries denoted by those white spaces[^implementations-5]. A smarter algorithm would also treat punctuation marks as word boundaries, but such a general rule would wrongly classify inter-word punctuation as not being part of words[^implementations-6]. Many exceptions to this rule exist, e.g., hyphenation points, colons, or elision (whether full stops, "e.g."; apostrophes, the Dutch "'s"; or slashes, "N/A").
 
-#### Applications
+### Applications
 
-In the previous section implementations were covered that solve tokenisation stages in \gls{nlp} applications, such as Natural's word tokenisers[@NaturalNode/natural-source-code]. Concluded was that these implementations are lacking. In this section several implementations are covered that solve these tokenisation stages as part of a larger natural language application.
+In the previous section implementations were covered that solve tokenisation stages in \gls{nlp} applications, such as Natural's word tokenisers [@NaturalNode/natural-source-code]. Concluded was that these implementations are lacking. In this section several implementations are covered that solve these tokenisation stages as part of a larger natural language application.
 
-##### Sentiment Analysis
+#### Sentiment Analysis
 
 Sentiment analysis is an \gls{nlp} task which is concerned with the polarity (positive, negative) and subjectivity (objective, subjective) of text. Its application could look as follows.
 
@@ -63,7 +63,7 @@ Sentiment analysis is an \gls{nlp} task which is concerned with the polarity (po
 
 Many implementations exist for this task[^implementations-8] on the web platform, many of which exclude non-alphabetic characters form their definition of words, resulting in less than perfect results[^implementations-9].
 
-##### Automatic Summarisation
+#### Automatic Summarisation
 
 Automatic summarisation is an \gls{nlp} task concerned with reducing a text in order to create a summary of the major points retaining the original document. In contrast with sentiment analysers, implementations of automatic summarisation algorithms on the web are less ubiquitously available[^implementations-10].
 
@@ -81,11 +81,11 @@ Several factors can be used to determine whether or not a phrase or sentence sho
 3. Number of words from the document's title it contains;
 4. Position inside a paragraph (initial and final sentences are often more important than sentences buried somewhere in the middle of a paragraph).
 
-Some implementations only include keyword metrics[@jbrooksuk/node-summary-source-code], others include all aforementioned features[@MojoJolo/textteaser-source-code], or even more advanced factors[@summly].
+Some implementations only include keyword metrics [@jbrooksuk/node-summary-source-code], others include all aforementioned features [@MojoJolo/textteaser-source-code], or even more advanced factors [@summly].
 
-The only implementation working on the web, [@jbrooksuk/node-summary-source-code], takes a naive approach to sentence tokenisation. For example, ignoring sentences terminated by an exclamation point. Note that both other implementations, and many more, use a whole different approach to sentence tokenisation (see the next section).
+The only implementation working on the web [@jbrooksuk/node-summary-source-code], takes a naive approach to sentence tokenisation. For example, ignoring sentences terminated by an exclamation point. Note that both other implementations, and many more, use a whole different approach to sentence tokenisation (see the next section).
 
-#### Using Corpora for \gls{nlp}
+### Using Corpora for \gls{nlp}
 
 A corpus is a large, structured set of texts used for many linguistic and \gls{nlp} tasks. Oftentimes, each item (most frequently words, but some corpora include sentences, phrases, clauses, or other units) in a corpus is annotated ("tagged") with information about the item (for example, part-of-speech tags or lemmas).
 
@@ -101,52 +101,52 @@ Most important is the fact that supervised learning will not fare well on the we
 
 Two viable alternative approaches exist for the web: the aforementioned rule-based tokenisation, or connecting to a server over the network.
 
-#### Using a web \acrfull{api}
+### Using a web \acrfull{api}
 
 Where the term \gls{api} (Application Programming Interface) stands for the interface between two programs, the term is often defined in the context of web development as requests (from a web browser), and responses (from a web server) over \gls{http}. For example, Twitter has such a service to allow developers to list, replace, create, and delete "Tweets" and other objects (users, images, &c.). In the context of this paper, the term Web \gls{api} is used for the latter, whereas \gls{api} is used for any programming interface.
 
-With the rise of the asynchronous web[^implementations-15], supervised learning too became widely available through web \glspl{api} (e.g., [@textteaser-web-api], [@wordnet-web-api], [@textrazor-web-api]). The new web \glspl{api} made it possible to implement supervised learning techniques on the web, without the need for downloading a corpus to your or your users' computer.
+With the rise of the asynchronous web[^implementations-15], supervised learning too became widely available through web \glspl{api} [e.g., @textteaser-web-api; @wordnet-web-api; @textrazor-web-api]. The new web \glspl{api} made it possible to implement supervised learning techniques on the web, without the need for downloading a corpus to your or your users' computer.
 
 However, accessing \gls{nlp} web \glspl{api} over a network has disadvantages. Most importantly the time involved when sending data over the network (especially on mobile networks), the bandwidth used, and heightened security risks.
 
 [^implementations-1]: Both sentence tokenisation and sentence boundary solve a similar issue---detecting where sentences terminate. Sentence boundary disambiguation focusses on the position where a sentence breaks (as in, 'One sentence.| Two sentences.|', where the pipe symbol refers to the end of one sentence and the beginning of another), whereas sentence tokenisation lays focus on where a sentence starts and where it ends (as in, '{One sentence.} {Two sentences.}', where everything between curly brackets, both start and end boundaries, are detected and classified as s sentence).
 
-[^implementations-2]: One could argue the in 1962 introduced obscure interrobang (‽), used to punctuate rhetorical statements where neither the question nor an exclamation alone exactly serve the writer well[@interrobang-mks.com], should be in this list.
+[^implementations-2]: One could argue the in 1962 introduced obscure interrobang (‽), used to punctuate rhetorical statements where neither the question nor an exclamation alone exactly serve the writer well, should be in this list [@interrobang-mks.com].
 
 [^implementations-3]: Although the definition of initialism is ambiguous, this paper defines its use as an acronym (an abbreviation formed from initial components, such as "sonar" or "FBI") with full stops depicting elision (such as "e.g.", or "K.G.B.").
 
 [^implementations-4]: Embedded content in this paper refers to an external (non-grammatical) value embedded into a grammatical unit, such as a hyperlink or an emoticon. Note that these embedded values often consist of valid words and punctuation marks, but most always shouldn't be classified as such.
 
-[^implementations-5]: For example, Knwl[@loadfive/knwl-source-code] counts words using this method.
+[^implementations-5]: For example, Kwnl counts words using this method [@loadfive/knwl-source-code].
 
-[^implementations-6]: For example, Natural's [@NaturalNode/natural-source-code] tokenisers.
+[^implementations-6]: For example, Natural's tokenisers [@NaturalNode/natural-source-code].
 
-[^implementations-7]: For example, the AFINN[@nielsen-finn-arup-afinn] database mapping words to polarity.
+[^implementations-7]: For example, the AFINN database mapping words to polarity [@nielsen-finn-arup-afinn].
 
-[^implementations-8]: For example, [@thinkroth/sentimental-source-code], [@mileszim/sediment-source-code], and [@thisandagain/sentiment-source-code].
+[^implementations-8]: For example, @thinkroth/sentimental-source-code, @mileszim/sediment-source-code, @thisandagain/sentiment-source-code.
 
 [^implementations-9]: If fact, all of the researched implementations deploy lacking tokenisations steps. Controversial, as they each create unreachable code through their naivety: all tested libraries remove dashes from words, while words such as "self-deluded" are in the databases they use, but never reachable.
 
-[^implementations-10]: For example, [@jbrooksuk/node-summary-source-code] on the web, [@MojoJolo/textteaser-source-code] in Scala.
+[^implementations-10]: For example, @jbrooksuk/node-summary-source-code on the web, @MojoJolo/textteaser-source-code in Scala.
 
-[^implementations-11]: The Brown Corpus contains about a million words[@francis-nelson-brown-corpus], the Google N-Gram Corpus contains 155 billion[@brants-thorsten-google-ngram-corpus].
+[^implementations-11]: The Brown Corpus contains about a million words [@francis-nelson-brown-corpus], the Google N-Gram Corpus contains 155 billion [@brants-thorsten-google-ngram-corpus].
 
-[^implementations-12]: "[From] a set of labeled examples as training data ... [, make] predictions for all unseen points", [@mohri-mehryar-foundations-machine-learning]
+[^implementations-12]: "[From] a set of labeled examples as training data ... [, make] predictions for all unseen points" [@mohri-mehryar-foundations-machine-learning].
 
 [^implementations-13]:
-    A simple rule-based sentence tokeniser could be implemented[@attivio.com-doing-things-with-sentences] as follows:
+    A simple rule-based sentence tokeniser could be implemented as follows [@attivio.com-doing-things-with-sentences]:
 
     - If it is a period, it ends a sentence;
     - If the period is preceded by an abbreviation, it does not end a sentence;
     - If the next token is capitalised, it ends a sentence.
 
-[^implementations-14]: Currently, almost no technologies exist for storing large datasets in a browser. The only exception to the rule is the \gls{html5} File System \gls{api}, but it was recently deprecated[@w3.org-filesystem-dead].
+[^implementations-14]: Currently, almost no technologies exist for storing large datasets in a browser. The only exception to the rule is the \acrshort{html5} File System \acrshort{api}, but development has stopped [@w3.org-filesystem-dead].
 
-[^implementations-15]: Starting around 2000 \gls{ajax} started to transform the web. Beforehand, websites only really changed when a user navigated to a new page. With \gls{AJAX} however, new content arrived to users without the need for a full page refresh. One of the first examples are the Outlook Web App in 2000[@technet-outlook-web-access] and Gmail in 2004[@gmailblog-gmail-ajax], both examples of how \gls{ajax} made the web feel more "app-like".
+[^implementations-15]: Starting around 2000 \gls{ajax} started to transform the web. Beforehand, websites only really changed when a user navigated to a new page. With \gls{ajax} however, new content arrived to users without the need for a full page refresh. One of the first examples are the Outlook Web App in 2000 [@technet-outlook-web-access] and Gmail in 2004 [@gmailblog-gmail-ajax], both examples of how \gls{ajax} made the web feel more "app-like".
 
-## Design
+# Design
 
-### Architecture
+## Architecture
 
 The in this paper proposed solution to the problem of \gls{nlp} on the client side is split up in multiple small proposals. Each proposal solves a subproblem.
 
@@ -157,15 +157,15 @@ The in this paper proposed solution to the problem of \gls{nlp} on the client si
 
 The decoupled approach taken by the provided solution enables other developers to provide their own software to replace one of the sub-proposals. For example, other parties can create a parser for the Chinese language and use it instead of parse-latin to classify natural language according to \gls{nlcst}.
 
-#### Syntax: \gls{nlcst}
+### Syntax: \gls{nlcst}
 
 To develop natural language tools in ECMAScript, an intermediate representation of natural language is useful: instead of each module defining their own representation of text, using a single syntax leads to better results, interoperability, and performance.
 
 The elements defined by \gls{nlcst} (Natural Language Concrete Syntax Tree) are based on the the grammatical hierarchy, but by default do not expose all its constituents[^architecture-syntax-1]. Additionally, more elements are provided to cover other semantic units in natural language[^architecture-syntax-2].
 
-The definitions of exposed nodes were heavily based on other specifications of syntax trees for manipulation on the web platform, such as CSS (aptly named for the \gls{css} language)[@reworkcss/css-source-code] and the Mozilla JavaScript \gls{ast} (for ECMAScript)[@mozilla.org-spidermonkey-parser_api]. Both implementations are widely used. CSS by Rework[@reworkcss/rework-source-code], and Mozilla JavaScript \gls{ast} by Esprima[@ariya/esprima-source-code], Acorn[@marijnh/acorn-source-code], and Escodegen[@constellation/escodegen-source-code].
+The definitions of exposed nodes were heavily based on other specifications of syntax trees for manipulation on the web platform, such as CSS, aptly named for the \acrshort{css} language [@reworkcss/css-source-code] or the Mozilla JavaScript \acrshort{ast}, for ECMAScript [@mozilla.org-spidermonkey-parser_api]. Both implementations are widely used. CSS by Rework [@reworkcss/rework-source-code], and Mozilla JavaScript \gls{ast} by Esprima [@ariya/esprima-source-code], Acorn [@marijnh/acorn-source-code], and Escodegen [@constellation/escodegen-source-code].
 
-Note that the aforementioned syntax tree specifications are both \glspl{ast}, whereas \gls{nlcst} is a a \gls{cst}. A concrete syntax tree is a one-to-one mapping of source to result. All information stored in the original input is also available through the resulting tree[@thegreenplace.net-abstract-concrete-syntax-trees].
+Note that the aforementioned syntax tree specifications are both \glspl{ast}, whereas \gls{nlcst} is a a \gls{cst}. A concrete syntax tree is a one-to-one mapping of source to result. All information stored in the original input is also available through the resulting tree [@thegreenplace.net-abstract-concrete-syntax-trees].
 
 The information stored in \glspl{cst} is very verbose and could lead to trees that are hard to work with. On the other hand, the fact that every part of the input is housed in the tree, makes it easy for developers to save the output or pass it on to other libraries for further processing.
 
@@ -175,7 +175,7 @@ See the appendices for a complete list of specified nodes of \gls{nlcst}.
 
 [^architecture-syntax-2]: Most notably, punctuation, symbol, and white space elements.
 
-#### Parser: Parse-latin
+### Parser: Parse-latin
 
 ECMAScript is used extensively. Because of this, many ECMAScript tools are being developed. This includes tools for Natural Language Processing. These ECMAScript tools however, when run on the client-side, can not implement supervised learning based on corpora, and web \gls{api} usage too is not ideal. Thus, a rule-based parser is needed to tokenise text.
 
@@ -199,7 +199,7 @@ Then, it manipulates and merges those tokens into a syntax tree, adding sentence
 
 See the appendices for example output provided by the parse-latin parser.
 
-##### parse-english
+#### parse-english
 
 parse-english has the same interface as parse-latin, but returns results better suited for English natural language. For example:
 
@@ -214,7 +214,7 @@ parse-english has the same interface as parse-latin, but returns results better 
 - English county abbreviations ("Beds.", "Leics.", "Shrops.", &c.);
 - Common elision (omission of letters) ("'n'", "'o", "'em", "'twas", "'80s", &c.).
 
-##### parse-dutch
+#### parse-dutch
 
 parse-dutch has, just like parse-english, the same interface as parse-latin, but returns results better suited for Dutch natural language. For example:
 
@@ -224,7 +224,7 @@ parse-dutch has, just like parse-english, the same interface as parse-latin, but
 
 [^architecture-parser-1]: Whether Old-English, Icelandic, French, or even scripts slightly similar, such as Cyrillic, Georgian, or Armenian.
 
-#### Object Model: \gls{textom}
+### Object Model: \gls{textom}
 
 To modify \gls{nlcst} nodes in ECMAScript, this paper proposes \gls{textom}. \gls{textom} implements the nodes defined by \gls{nlcst}, but provides an object-oriented style[^architecture-object-model-1]. \gls{textom} was designed to be similar to the \gls{dom}[^architecture-object-model-2], the mechanism used by browsers to expose \gls{html} through ECMAScript to developers. Because of \glspl{textom} likeness to the \gls{dom}, \gls{textom} is easy to learn and familiar to the target audience.
 
@@ -236,19 +236,19 @@ To modify \gls{nlcst} nodes in ECMAScript, this paper proposes \gls{textom}. \gl
 
 [^architecture-object-model-2]: See the appendices for a more information on the \gls{dom}.
 
-#### Natural Language System: Retext
+### Natural Language System: Retext
 
 For natural language processing on the client side, this paper proposes Retext. Retext combines a parser, such as parse-latin or parse-dutch, with a manipulatable object model (\gls{textom}).
 
 In addition, Retext provides a minimalistic plugin mechanism so developers can create and publish plugins for others, and in turn can use others' plugins inside their projects.
 
-### Production
+# Production
 
-### Target Audience
+## Target Audience
 
 The audience that would benefit the most from such a solution are web developers: programmers who specialise in creating software for the world wide web. Web developers engage in client side development (building the interface between a human and a machine on the web), and sometimes also in server side development (building the interface between the client side and a server). Typical areas of work consist of programming in ECMAScript, marking up documents in \gls{html}, graphic design through \gls{css}, creating a back end in node.js, \gls{php}, &c., contacting a database through \gls{mongodb}, \gls{mysql}, and more. In addition, many interdisciplinary skills are also of concern to web developers, such as usability, accessibility, copywriting, information architecture, optimisation.
 
-### Use cases
+## Use cases
 
 The use cases of the target audience, the front-end developer, in the field of \gls{nlp} are many. Research for this paper found several use cases, although it is expected many more could be defined. The tasks below can be categorised into three broad fields: analysation, manipulation, and creation.
 
@@ -262,24 +262,24 @@ The use cases of the target audience, the front-end developer, in the field of \
 
 Natural Language Processing is a broad field concerned with the interactions between computers and human languages, with bases in computer science, artificial intelligence, and linguistics. \gls{nlp} poses may challenges, but not every challenge challenge in the field is of interest to the web developer---the developer enabling machines to respond to humans through the world wide web. Most importantly, the more academic areas of \gls{nlp} do not fit well with the goals of web developers, e.g., speech recognition, optical character recognition, text-to-speech transformation, translation, or machine learning.
 
-### Requirements
+## Requirements
 
 The in the previous section covered use cases are required to be reachable through the proposed solution. In addition, this section covers other requirements to better suit the wishes of the target audience.
 
-#### Open Source
+### Open Source
 
-To reach the target audience and validate its use, the software was developed as open source software---software that is free for all to use and redistribute. All projects were licensed under The \gls{MIT} License[@opensource.org-licenses-mit], a license which provides rights for others to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of these projects.
+To reach the target audience and validate its use, the software was developed as open source software---software that is free for all to use and redistribute. All projects were licensed under The \acrshort{mit} License [@opensource.org-licenses-mit], a license which provides rights for others to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of these projects.
 
 In addition, the software was developed under the all-seeing-eye of the GitHub community. GitHub is a hosted version control[^production-open-source-2] service with social networking features. On GitHub, many web developers follow their peers to track what they are working on, watch their favourite projects to get notified of changes, and raise issues or feature requests.
 
 
 [^production-open-source-2]: Version control services manage revisions to documents, popularly used for controlling and tracking changes in software.
 
-#### Performance
+### Performance
 
 The in this paper proposed implementations were produced with high regards for performance. Performance includes the software having a small file size in order to reach the client over the network with the highest possible speed, but most importantly that the execution of code should operate efficiently and at at high speeds.
 
-#### Testing
+### Testing
 
 With the development of the in this paper introduced software, testing was given high priority. Testing, in software development, refers to validating if software does what it is supposed to do, and can be divided into multiple subgroups:
 
@@ -290,37 +290,37 @@ With the development of the in this paper introduced software, testing was given
 
 Great care was given to develop a full test suite with full coverage for every program. Coverage, in software development, is a term used to describe the amount of code tested by the test suite: full coverage means every part of the code is reached by the tests.
 
-Unit test were run through Mocha[@visionmedia/mocha-source-code], coverage was detected with Istanbul[@gotwarlost/istanbul-source-code].
+Unit test were run through Mocha [@visionmedia/mocha-source-code], coverage was detected with Istanbul [@gotwarlost/istanbul-source-code].
 
-#### Code quality
+### Code quality
 
 Great attention was given to code quality: how useful and readable for both humans and machines the software is. Special focus was given to consistency and clearness for humans.
 
-##### Suspicious Code and Bugs
+#### Suspicious Code and Bugs
 
-To detect bugs and suspicious code in the software, Eslint[@eslint/eslint-source-code] was used. The act of linting, in computer programming, is a term used to describe static code analysis to detect syntactic discrepancies without actually running the code. Eslint was used because it provides a solid basic set of rules and enables developers to create custom rules.
+To detect bugs and suspicious code in the software, Eslint [@eslint/eslint-source-code] was used. The act of linting, in computer programming, is a term used to describe static code analysis to detect syntactic discrepancies without actually running the code. Eslint was used because it provides a solid basic set of rules and enables developers to create custom rules.
 
-##### Style
+#### Style
 
-To enforce a consistent code style, in order to create software readable for humans, \gls{jscs} was used[@mdevils/node-jscs-source-code]. \gls{jscs} provides rules for allowing or disallowing patters such as white space at the end of a line or camel cased variable names, or setting a maximum line length. \gls{jscs} was chosen because it, just like the aforementioned Eslint, provides a strong base set of rules. The rules chosen for the development of the proposed software was set very strict to enforce all code was written in the same manner.
+To enforce a consistent code style, in order to create software readable for humans, \gls{jscs} was used [@mdevils/node-jscs-source-code]. \gls{jscs} provides rules for allowing or disallowing patters such as white space at the end of a line or camel cased variable names, or setting a maximum line length. \gls{jscs} was chosen because it, just like the aforementioned Eslint, provides a strong base set of rules. The rules chosen for the development of the proposed software was set very strict to enforce all code was written in the same manner.
 
-##### Commenting
+#### Commenting
 
 Even when code is completely bug free, uses no hard-to-understand shortcuts, and adheres to a strict style, it might still be hard to understand for humans. The act of commenting code---describing what a program does and why it accomplishes this in a certain way---is important. On the other hand, commenting can also be to verbose, for example when the code is duplicated in natural language.
 
-\Gls{jsdoc}[@google.com-clojure-compiler-jsdoc] is a markup language for ECMAScript programs, allowing developers to embed documentation in source code. Later various tools can be used to extract the documentation and expose it separately from the original code.
+\Gls{jsdoc} [@google.com-clojure-compiler-jsdoc] is a markup language for ECMAScript programs, allowing developers to embed documentation in source code. Later various tools can be used to extract the documentation and expose it separately from the original code.
 
 Great care was given to annotate "tricky" source code inside the software with comments, and to apply documentation inside the source code through \gls{jsdoc}.
 
-#### Automation
+### Automation
 
 Great focus was given to develop using several automated \gls{ci} environments. When suspicious, ambiguous, or buggy code was introduced in the software, the error was automatically detected and in some cases deployment was prevented.
 
-Tools user were Code Climate[@codeclimate.com] to detect complex, duplicate, or bug-prone code, and Travis[@travis-ci.org] to validate all unit tests passed before deploying the software.
+Tools user were Code Climate [@codeclimate.com] to detect complex, duplicate, or bug-prone code, and Travis [@travis-ci.org] to validate all unit tests passed before deploying the software.
 
-#### \Gls{api} Design
+### \Gls{api} Design
 
-Interface design was given high priority for the development of the proposed software. A clear interface of the software, according to Joshua Bloch[@bloch-joshua-how-design-good-api-why-matters], has the following characteristics:
+Interface design was given high priority for the development of the proposed software. A clear interface of the software, according to Joshua Bloch [-@bloch-joshua-how-design-good-api-why-matters], has the following characteristics:
 
 - Easy to learn;
 - Easy to use;
@@ -331,7 +331,7 @@ Interface design was given high priority for the development of the proposed sof
 - Meeting its requirements;
 - Appropriate for the target audience.
 
-In essence equal but worded differently are the characteristics of good \gls{api} design according to the Qt Project[@qt-project.org-api-design-principles], are as follows:
+In essence equal but worded differently are the characteristics of good \gls{api} design according to the Qt Project [@qt-project.org-api-design-principles], are as follows:
 
 - Be minimal;
 - Be complete;
@@ -342,17 +342,17 @@ In essence equal but worded differently are the characteristics of good \gls{api
 
 With the creation of the software these characteristics, and the in their sources given examples, were taken into account.
 
-##### Installation
+#### Installation
 
 Access both on the client side and on the server side to the software was of importance during the development of the software. For the server side on Node.js, npm---the default package manager for the platform---is the most popular. On the client side, many different package managers exist, the most popular[^installation-1] being Bower and Component. To reach the target audience, in addition of making the whole source available for download through Git and GitHub, npm, Bower, and Component were used.
 
 [^installation-1]: Popularity here is simply defined as having the most search results on Google.
 
-## Validation
+# Validation
 
 The developed software was validated through two approaches. The design and usability of the interface was validated by trying to solve the use cases with the software. If the target audience actually wanted to use the software was validated through enthusiasm showed by the open source community.
 
-### Plugins
+## Plugins
 
 More than fifteen (15) Retext plugins were created to validate how the different projects integrated together, and how the system worked as a whole.
 
@@ -370,21 +370,21 @@ The created plugins include tools for:
 
 The creation of these plugins brought several problems to light in the developed software. These problems were then dealt with back and forth between the software and the plugins. The software changed severely by these fixed problems, which resulted in a more useable interface.
 
-### Reception
+## Reception
 
 To validate if the target audience actually wanted to use the developed software, several blogs and email newsletters were contacted to feature Retext, either in the form of an article or as a simple link.
 
-This resulted in several mentions on blogs[^audience-article], link roundups[^audience-roundup], reddit[^audience-reddit]. In turn, these publications resulted in positive reactions (such as on Twitter[^audience-twitter]), feedback[@github.com-issue], and fixes[@github.com-pull-request] on these mentions, and many project-followers on GitHub[@github.com-stargazers].
+This resulted in several mentions on blogs[^audience-article], link roundups[^audience-roundup], reddit[^audience-reddit]. In turn, these publications resulted in positive reactions (such as on Twitter[^audience-twitter]), feedback [@github.com-issue], and fixes [@github.com-pull-request] on these mentions, and many project-followers on GitHub [@github.com-stargazers].
 
 [^audience-article]: [@dailyjs.com-natural-language-parsing-retext]
 [^audience-roundup]: Including [@github.com-awesome-machine-learning] and [@github.com-awesome-nodejs].
 [^audience-reddit]: Including [@reddit.com-mention-1], [@reddit.com-mention-2], and [@reddit.com-mention-3].
 [^audience-twitter]: Including [@twitter.com-mention-1], [@twitter.com-mention-2], [@twitter.com-mention-3], [@twitter.com-mention-4], and more.
 
-## Conclusion
+# Conclusion
 
-### Summary
+## Summary
 
-### Future Work
+## Future Work
 
-### Advice
+## Advice
