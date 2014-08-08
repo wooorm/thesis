@@ -7,14 +7,20 @@
     "author": "Titus Wormer <tituswormer@gmail.com>",
     "license": "Copyright 2014 Titus Wormer",
     "repository": {
-        "type": "git",
-        "url": "https://github.com/wooorm/thesis.git"
+      "type": "git",
+      "url": "https://github.com/wooorm/thesis.git"
     },
     "scripts": {
-        "concat": "cat metadata.markdown 1.front_matter/**/*.markdown 2.body/*.markdown 3.back_matter/**/*.markdown > intermediate.md",
-        "transform": "pandoc --smart --no-highlight --normalize --table-of-contents --toc-depth 4 --filter pandoc-citeproc -o intermediate.tex intermediate.md",
-        "build": "pdflatex -interaction=nonstopmode -output-directory=output paper.tex || exit 0",
-        "clean": "rm intermediate.md intermediate.tex",
-        "make": "npm run concat && npm run transform && npm run build && npm run clean"
+      "make": "npm run build",
+      "prebuild": "npm run makedir && npm run copydir",
+      "postbuild": "npm run move && npm run removedir",
+      "build": "npm run concat && npm run transform && npm run output",
+      "makedir": "mkdir intermediate || exit 0",
+      "copydir": "cp paper/* intermediate",
+      "move": "mv intermediate/paper.pdf paper.pdf",
+      "removedir": "rm -rf intermediate",
+      "concat": "cat metadata.markdown 1.front_matter/**/*.markdown 2.body/*.markdown 3.back_matter/**/*.markdown > intermediate/markdown.md",
+      "transform": "pandoc --smart --no-highlight --normalize --table-of-contents --toc-depth 4 --filter pandoc-citeproc -o intermediate/latex.tex intermediate/markdown.md",
+      "output": "pdflatex -interaction=nonstopmode -output-directory=intermediate paper.tex || exit 0"
     }
 }
