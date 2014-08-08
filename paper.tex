@@ -52,7 +52,13 @@
 %********************************************************************
 % CUSTOM!
 %*******************************************************
-\usepackage[utf8]{inputenx} 
+\usepackage[utf8]{inputenx}
+
+\usepackage[xindy,acronym,nomain]{glossaries}
+\glsdisablehyper % Disable links from items to glossary.
+\makeglossaries
+
+\input{paper/glossary-list}
 
 %********************************************************************
 % Hyphenation
@@ -73,12 +79,15 @@
 %********************************************************************
 % Frontmatter
 %*******************************************************
+\include{cover}
 \include{titlepage}
-% \include{FrontBackmatter/Titlepage}
-% \include{FrontBackmatter/Titleback}
-% \cleardoublepage\include{FrontBackmatter/Dedication}
+\include{titleback}
+\cleardoublepage\include{acknowledgments}
+\cleardoublepage\include{dedication}
+\cleardoublepage\include{abstract}
+\cleardoublepage\include{introduction}
+
 %\cleardoublepage\include{FrontBackmatter/Foreword}
-% \cleardoublepage\include{FrontBackmatter/Abstract}
 % \cleardoublepage\include{FrontBackmatter/Publication}
 % \cleardoublepage\include{FrontBackmatter/Acknowledgments}
 \pagestyle{scrheadings}
@@ -91,7 +100,8 @@
 % use \cleardoublepage here to avoid problems with pdfbookmark
 \cleardoublepage
 \part{Retext}
-\include{latex}
+\glsresetall % Reset glossary use.
+\include{body}
 \cleardoublepage
 % \ctparttext{You can put some informational part preamble text here.
 % Illo principalmente su nos. Non message \emph{occidental} angloromanic
@@ -114,7 +124,8 @@
 %********************************************************************
 % Other Stuff in the Back
 %*******************************************************
-% \cleardoublepage\include{FrontBackmatter/Bibliography}
+\cleardoublepage\include{glossary}
+\cleardoublepage\include{bibliography}
 % \cleardoublepage\include{FrontBackmatter/Colophon}
 % \cleardoublepage\include{FrontBackmatter/Declaration}
 % ********************************************************************
