@@ -77,7 +77,6 @@
 \input{paper/glossary-list}
 
 \usepackage[style=british]{csquotes}
-\makeouterquote{"}
 
 \renewcommand*{\bibname}{Works Cited}
 
@@ -100,8 +99,11 @@
 \addbibresource{../references.bib}
 
 %********************************************************************
-% Hyphenation
+% Hyphenation & Line breaking
 %********************************************************************
+\pretolerance=2000
+\tolerance=2000
+
 \hyphenation{
   with-out
   ECMA-script
@@ -136,6 +138,26 @@
   retext-search
   retext-pos
   retext-key-words
+  heigh-ten-ed
+  to-ken
+  to-ken-i-sa-tion
+  pro-vi-ded
+  pro-vi-des
+  par-ser
+  de-vel-op-er
+  de-vel-op-ers
+  plat-form-neu-tral
+  de-fi-ne
+  de-fi-nes
+  chang-es
+  sen-ten-ce
+  link-ed
+  par-ties
+  chap-ters
+  chap-ter
+  plat-form-neu-tral
+  plat-form
+  neu-tral
 }
 
 % ********************************************************************
@@ -155,7 +177,6 @@
 \include{titlepage}
 \include{titleback}
 \cleardoublepage\include{acknowledgments}
-\cleardoublepage\include{dedication}
 \cleardoublepage\include{abstract}
 \cleardoublepage\include{introduction}
 

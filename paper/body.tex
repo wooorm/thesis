@@ -157,7 +157,7 @@ would wrongly classify inter-word punctuation as not being part of
 words\footnote{For example, Natural's tokenisers
   \autocite{NaturalNode/natural-source-code}.}. Many exceptions to this
 rule exist, e.g., hyphenation points, colons, or elision (whether full
-stops, ``e.g.''; apostrophes, the Dutch ``'s''; or slashes, ``N/A'').
+stops, ``e.g.''; apostrophes, the Dutch ``'s''; or slashes, ``N\slash A'').
 
 \subsection{Applications}\label{applications}
 
@@ -190,14 +190,16 @@ of text. Its application could look as follows.
   Optionally detect lemmas or stems --- Might help classification.
 \item
   Detect sentiment --- Typically, sentiment analysers include a database
-  mapping words, stems, or lemmas to their respective polarity and/or
+  mapping words, stems, or lemmas to their respective polarity and\slash or
   subjectivity\footnote{For example, the AFINN database mapping words to
     polarity \autocite{nielsen-finn-arup-afinn}.}.
 \end{enumerate}
 
-Many implementations exist for this task \autocites[e.g.,][]{thinkroth/sentimental-source-code}{mileszim/sediment-source-code}{thisandagain/sentiment-source-code},
-many of which exclude non-alphabetic characters form their definition of
-words, resulting in less than perfect results\footnote{If fact, all of
+Many implementations exist for this task \autocites[e.g.,][]
+{thinkroth/sentimental-source-code}{mileszim/sediment-source-code}
+{thisandagain/sentiment-source-code}, many of which exclude non-alphabetic
+characters form their definition of words, resulting in less than perfect
+results\footnote{If fact, all of
   the researched implementations deploy lacking tokenisations steps.
   Controversial, as they each create unreachable code through their
   naivety: all tested libraries remove dashes from words, while words
@@ -471,7 +473,7 @@ sentences and paragraphs where needed.
 \itemsep1pt\parskip0pt\parsep0pt
 \item
   Some punctuation marks are part of the word they occur in, e.g.,
-  ``non-profit'', ``she's'', ``G.I.'', ``11:00'', ``N/A'';
+  ``non-profit'', ``she's'', ``G.I.'', ``11:00'', ``N\slash A'';
 \item
   Some full-stops do not mark a sentence end, e.g., ``1.'', ``e.g.'',
   ``id.'';
@@ -553,7 +555,7 @@ and familiar to the target audience.
 
 \Gls{textom} provides events (a mechanism for detecting changes),
 modification functionality (inserting, removing, and replacing children
-into/from parents), and traversal (e.g., finding all words in a
+into\slash from parents), and traversal (e.g., finding all words in a
 sentence).
 
 \Gls{nlcst} allows authors to extend the specification by defining their
@@ -623,8 +625,8 @@ manipulation, and creation.
   document is written in (analysation);
 \item
   The practitioner may intent to find words based on a search term, with
-  regards for the lemma (or stem) and/or phonetics (so that a search for
-  ``smit'' also returns similar words, such as ``Schmidt'' or ``Smith'')
+  regards for the lemma (or stem) and\slash or phonetics (so that a search
+  for ``smit'' also returns similar words, such as ``Schmidt'' or ``Smith'')
   (analysation and manipulation).
 \end{itemize}
 
@@ -652,7 +654,7 @@ developed as open source software---software that is free for all to use
 and redistribute. All projects were licensed under The \acrshort{mit}
 License \autocite{opensource.org-licenses-mit}, a license which provides
 rights for others to use, copy, modify, merge, publish, distribute,
-sublicense, and/or sell copies of these projects.
+sublicense, and\slash or sell copies of these projects.
 
 In addition, the software was developed under the all-seeing-eye of the
 GitHub community. GitHub is a hosted version control\footnote{Version
