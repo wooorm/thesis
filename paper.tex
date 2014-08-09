@@ -69,18 +69,30 @@
   smallcaps
 ]{glossaries}
 
+% Don't print a title.
+\renewcommand{\glossarysection}[2][]{}
+
 \makeglossaries
 
 \input{paper/glossary-list}
 
-\usepackage{csquotes}
+\usepackage[style=british]{csquotes}
+\makeouterquote{"}
 
 \usepackage[
+  hyperref,
+  sortcites,
+  date=short,
+  bibencoding=inputenc,
+  maxcitenames=2,
+  mincitenames=1,
+  maxbibnames=10,
+  minbibnames=10,
   backend=biber,
-  style=mla,
+  firstinits=true,
   sorting=nyt,
-  maxnames=3,
-  firstlonghand=true
+  block=ragged,
+  style=mla,
 ]{biblatex}
 
 \addbibresource{../references.bib}
