@@ -385,7 +385,7 @@ language according to \gls{nlcst}.
 
 \subsection{Syntax: NLCST}\label{syntax}
 
-To develop natural language tools in ECMAScript, an intermediate
+To develop natural language tools in \gls{ecmascript}, an intermediate
 representation of natural language is useful: instead of each module
 defining their own representation of text, using a single syntax leads
 to better results, interoperability, and performance.
@@ -404,7 +404,7 @@ The definitions of exposed nodes were heavily based on other
 specifications of syntax trees for manipulation on the web platform,
 such as CSS, aptly named for the \acrshort{css} language
 \autocite{reworkcss/css-source-code} or the Mozilla JavaScript
-\acrshort{ast}, for ECMAScript
+\acrshort{ast}, for \gls{ecmascript}
 \autocite{mozilla.org-spidermonkey-parser_api}. Both implementations are
 widely used. CSS by Rework \autocite{reworkcss/rework-source-code}, and
 Mozilla JavaScript \gls{ast} by Esprima
@@ -428,9 +428,9 @@ See the appendices for a complete list of specified nodes of
 
 \subsection{Parser: Parse-latin}\label{parser-parse-latin}
 
-ECMAScript is used extensively. Because of this, many ECMAScript tools
+\Gls{ecmascript} is used extensively. Because of this, many \gls{ecmascript} tools
 are being developed. This includes tools for Natural Language
-Processing. These ECMAScript tools however, when run on the client-side,
+Processing. These \gls{ecmascript} tools however, when run on the client-side,
 can not implement supervised learning based on corpora, and web
 \gls{api} usage too is not ideal. Thus, a rule-based parser is needed to
 tokenise text.
@@ -540,14 +540,14 @@ language. For example:
 
 \subsection{Object Model: TextOM}\label{object-model}
 
-To modify \gls{nlcst} nodes in ECMAScript, this paper proposes
+To modify \gls{nlcst} nodes in \gls{ecmascript}, this paper proposes
 \gls{textom}. \gls{textom} implements the nodes defined by \gls{nlcst},
 but provides an object-oriented style\footnote{Object-oriented
   programming is a style of programming, where classes, instances,
   attributes, and methods are important.}. \gls{textom} was designed to
 be similar to the \gls{dom}\footnote{See the appendices for a more
   information on the \gls{dom}.}, the mechanism used by browsers to
-expose \gls{html} through ECMAScript to developers. Because of
+expose \gls{html} through \gls{ecmascript} to developers. Because of
 \glspl{textom} likeness to the \gls{dom}, \gls{textom} is easy to learn
 and familiar to the target audience.
 
@@ -582,7 +582,7 @@ world wide web. Web developers engage in client side development
 (building the interface between a human and a machine on the web), and
 sometimes also in server side development (building the interface
 between the client side and a server). Typical areas of work consist of
-programming in ECMAScript, marking up documents in \gls{html}, graphic
+programming in \gls{ecmascript}, marking up documents in \gls{html}, graphic
 design through \gls{css}, creating a back end in node.js, \gls{php},
 \&c., contacting a database through \gls{mongodb}, \gls{mysql}, and
 more. In addition, many interdisciplinary skills are also of concern to
@@ -735,7 +735,7 @@ important. On the other hand, commenting can also be to verbose, for
 example when the code is duplicated in natural language.
 
 \Gls{jsdoc} \autocite{google.com-clojure-compiler-jsdoc} is a markup
-language for ECMAScript programs, allowing developers to embed
+language for \gls{ecmascript} programs, allowing developers to embed
 documentation in source code. Later various tools can be used to extract
 the documentation and expose it separately from the original code.
 
