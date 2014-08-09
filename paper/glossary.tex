@@ -7,6 +7,10 @@
 \let\cleardoublepage\relax
 \let\cleardoublepage\relax
 
+% work-around to have small caps also here in the headline
+\manualmark
+\markboth{\spacedlowsmallcaps{Glossary}}{\spacedlowsmallcaps{Glossary}}
+
 % to have the bib a bit from the rest in the toc
 \chapter*{Glossary}
 \addtocontents{toc}{\protect\vspace{\beforebibskip}}

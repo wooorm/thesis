@@ -4,8 +4,6 @@
 
 % work-around to have small caps also here in the headline
 \manualmark
-
-% work-around to have small caps also
 \markboth{\spacedlowsmallcaps{\bibname}}{\spacedlowsmallcaps{\bibname}}
 
 %\phantomsection 
@@ -15,5 +13,5 @@
 \addtocontents{toc}{\protect\vspace{\beforebibskip}}
 \addcontentsline{toc}{chapter}{\tocEntry{\bibname}}
 
-% Print the bibliography, with References as its name.
-\printbibliography[title={References}]
+% Print the bibliography.
+\printbibliography[title={\bibname}]
