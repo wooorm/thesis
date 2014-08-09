@@ -1,0 +1,37 @@
+%********************************************************************
+% Appendix C
+%*******************************************************
+
+\chapter{Appendix C: DOM}\label{appendix-c-dom}
+
+The \gls{dom} specification defines a platform-neutral model for errors,
+events, and (for this paper, the primary feature) node trees. XML-based
+documents can be represented by the \gls{dom}.
+
+Consider the following HTML document:
+
+\begin{lstlisting}[language=HTML]
+<!DOCTYPE html>
+<html class=e>
+    <head><title>Aliens?</title></head>
+    <body>Why yes.</body>
+</html>
+\end{lstlisting}
+
+Is represented by the \gls{dom} as follows:
+
+\begin{lstlisting}
+|- Document
+   |- Doctype: html
+   |- Element: html class="e"
+      |- Element: head
+      |  |- Element: title
+      |     |- Text: Aliens?
+      |- Text: \n␣
+      |- Element: body
+        |- Text: Why yes.\n
+\end{lstlisting}
+
+The \gls{dom} interfaces of bygone times were widely considered horrible,
+but newer features seem to be gaining popularity in the web authoring
+community as broader implementation across user agents is reached.

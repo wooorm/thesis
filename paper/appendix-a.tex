@@ -1,0 +1,136 @@
+%********************************************************************
+% Appendix A
+%*******************************************************
+
+\chapter{Appendix A: NLCST definition}\label{apendix-a-nlcst-definition}
+
+\section*{Node}\label{node}
+
+\begin{lstlisting}[language=IDL]
+interface Node {
+    type: string;
+}
+\end{lstlisting}
+
+\section*{Parent}\label{parent}
+
+\begin{lstlisting}[language=IDL]
+interface Parent <: Node {
+    children: [];
+}
+\end{lstlisting}
+
+\section*{Text}\label{text}
+
+\begin{lstlisting}[language=IDL]
+interface Text <: Node {
+    value: string | null;
+    location: Location | null;
+}
+\end{lstlisting}
+
+\section*{Location}\label{location}
+
+\begin{lstlisting}[language=IDL]
+interface Location {
+    start: Position;
+    end: Position;
+}
+\end{lstlisting}
+
+\section*{Position}\label{position}
+
+\begin{lstlisting}[language=IDL]
+interface Position {
+    line: uint32 >= 1;
+    column: uint32 >= 1;
+}
+\end{lstlisting}
+
+\section*{RootNode}\label{rootnode}
+
+Root (Parent) represents the document.
+
+\begin{lstlisting}[language=IDL]
+interface RootNode < Parent {
+    type: "RootNode";
+}
+\end{lstlisting}
+
+\section*{ParagraphNode}\label{paragraphnode}
+
+Paragraph (Parent) represents a self-contained unit of a discourse in
+writing dealing with a particular point or idea.
+
+\begin{lstlisting}[language=IDL]
+interface ParagraphNode < Parent {
+    type: "ParagraphNode";
+}
+\end{lstlisting}
+
+\section*{SentenceNode}\label{sentencenode}
+
+Sentence (Parent) represents a grouping of grammatically linked words,
+that in principle tells a complete thought (although it may make little
+sense taken in isolation out of context).
+
+\begin{lstlisting}[language=IDL]
+interface SentenceNode < Parent {
+    type: "SentenceNode";
+}
+\end{lstlisting}
+
+\section*{WordNode}\label{wordnode}
+
+Word (Parent) represents the smallest element that may be uttered in
+isolation with semantic or pragmatic content.
+
+\begin{lstlisting}[language=IDL]
+interface WordNode < Parent {
+    type: "WordNode";
+}
+\end{lstlisting}
+
+\section*{PunctuationNode}\label{punctuationnode}
+
+Punctuation (Parent) represents typographical devices which aid the
+understanding and correct reading of other grammatical units.
+
+\begin{lstlisting}[language=IDL]
+interface PunctuationNode < Parent {
+    type: "PunctuationNode";
+}
+\end{lstlisting}
+
+\section*{WhiteSpaceNode}\label{whitespacenode}
+
+White Space (Punctuation) represents typographical devices devoid of
+content, separating other grammatical units.
+
+\begin{lstlisting}[language=IDL]
+interface WhiteSpaceNode < PunctuationNode {
+    type: "WhiteSpaceNode";
+}
+\end{lstlisting}
+
+\section*{SourceNode}\label{sourcenode}
+
+Source (Text) represents an external (non-grammatical) value embedded
+into a grammatical unit, for example a hyperlink or an emoticon.
+
+\begin{lstlisting}[language=IDL]
+interface SourceNode < Text {
+    type: "SourceNode";
+}
+\end{lstlisting}
+
+\section*{TextNode}\label{textnode}
+
+Text (Text) represents actual content in a NLAST document: One or more
+characters.
+
+\begin{lstlisting}[language=IDL]
+interface TextNode < Text {
+    type: "TextNode";
+}
+\end{lstlisting}

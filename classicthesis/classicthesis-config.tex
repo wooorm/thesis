@@ -1,31 +1,21 @@
-% ****************************************************************************************************
-% classicthesis-config.tex 
-% formerly known as loadpackages.sty, classicthesis-ldpkg.sty, and classicthesis-preamble.sty 
-% Use it at the beginning of your ClassicThesis.tex, or as a LaTeX Preamble 
-% in your ClassicThesis.{tex,lyx} with \input{classicthesis-config}
-% ****************************************************************************************************  
-% If you like the classicthesis, then I would appreciate a postcard. 
-% My address can be found in the file ClassicThesis.pdf. A collection 
-% of the postcards I received so far is available online at 
-% http://postcards.miede.de
-% ****************************************************************************************************
 
-% ****************************************************************************************************
+% ****************************************************************************
 % 1. Configure classicthesis for your needs here, e.g., remove "drafting" below 
 % in order to deactivate the time-stamp on the pages
-% ****************************************************************************************************
-\PassOptionsToPackage{eulerchapternumbers,listings,drafting,%
-				 pdfspacing,%floatperchapter,%linedheaders,%
-				 subfig,beramono,eulermath,parts}{classicthesis}										
-% ********************************************************************
-% Available options for classicthesis.sty 
-% (see ClassicThesis.pdf for more information):
-% drafting
-% parts nochapters linedheaders
-% eulerchapternumbers beramono eulermath pdfspacing minionprospacing
-% tocaligned dottedtoc manychapters
-% listings floatperchapter subfig
-% ********************************************************************
+% ****************************************************************************
+\PassOptionsToPackage{
+  eulerchapternumbers,
+  dottedtoc,
+  listings,
+  % drafting,
+  pdfspacing,
+  %floatperchapter,
+  linedheaders,
+  subfig,
+  beramono,
+  eulermath,
+  parts
+}{classicthesis}
 
 % ********************************************************************
 % Triggers for this config
@@ -33,25 +23,25 @@
 \usepackage{ifthen}
 \newboolean{enable-backrefs} % enable backrefs in the bibliography
 \setboolean{enable-backrefs}{false} % true false
-% ****************************************************************************************************
+% ****************************************************************************
 
-
-% ****************************************************************************************************
+% ****************************************************************************
 % 2. Personal data and user ad-hoc commands
-% ****************************************************************************************************
-\newcommand{\myTitle}{A Classic Thesis Style\xspace}
-\newcommand{\mySubtitle}{An Homage to The Elements of Typographic Style\xspace}
-\newcommand{\myDegree}{Doktor-Ingenieur (Dr.-Ing.)\xspace}
-\newcommand{\myName}{Andr\'e Miede\xspace}
-\newcommand{\myProf}{Put name here\xspace}
-\newcommand{\myOtherProf}{Put name here\xspace}
-\newcommand{\mySupervisor}{Put name here\xspace}
-\newcommand{\myFaculty}{Put data here\xspace}
-\newcommand{\myDepartment}{Put data here\xspace}
-\newcommand{\myUni}{Put data here\xspace}
-\newcommand{\myLocation}{Darmstadt\xspace}
-\newcommand{\myTime}{August 2012\xspace}
-\newcommand{\myVersion}{version 4.1\xspace}
+% ****************************************************************************
+
+\newcommand{\myTitle}{Retext\xspace}
+\newcommand{\mySubtitle}{Design of an extensible system for analysing and manipulating natural language\xspace}
+\newcommand{\myDegree}{\xspace}
+\newcommand{\myName}{Titus E. C. Wormer\xspace}
+\newcommand{\myProf}{\xspace}
+\newcommand{\myOtherProf}{\xspace}
+\newcommand{\mySupervisor}{Justus Sturkenboom\xspace}
+\newcommand{\myFaculty}{Communication and Multimedia Design\xspace}
+\newcommand{\myDepartment}{School of Design and Communication\xspace}
+\newcommand{\myUni}{Amsterdam University of Applied Sciences\xspace}
+\newcommand{\myLocation}{Delft\xspace}
+\newcommand{\myTime}{August 2014\xspace}
+\newcommand{\myVersion}{version 0.3\xspace}
 
 % ********************************************************************
 % Setup, finetuning, and useful commands
@@ -63,92 +53,115 @@
 \newcommand{\Ie}{I.\,e.}
 \newcommand{\eg}{e.\,g.}
 \newcommand{\Eg}{E.\,g.} 
-% ****************************************************************************************************
+% ****************************************************************************
 
 
-% ****************************************************************************************************
+% ****************************************************************************
 % 3. Loading some handy packages
-% ****************************************************************************************************
+% ****************************************************************************
 % ******************************************************************** 
 % Packages with options that might require adjustments
 % ******************************************************************** 
-\PassOptionsToPackage{latin9}{inputenc}	% latin9 (ISO-8859-9) = latin1+"Euro sign"
- \usepackage{inputenc}				
+\PassOptionsToPackage{utf8}{inputenc}
+\usepackage{inputenc}
 
-%\PassOptionsToPackage{ngerman,american}{babel}   % change this to your language(s)
-% Spanish languages need extra options in order to work with this template
-%\PassOptionsToPackage{spanish,es-lcroman}{babel}
+\PassOptionsToPackage{british}{babel}
 \usepackage[]{babel}
 
-% \PassOptionsToPackage{square,sort,longnamesfirst}{natbib}
-%  \usepackage{natbib}
-
-\PassOptionsToPackage{fleqn}{amsmath}		% math environments and more by the AMS 
- \usepackage{amsmath}
+% math environments and more by the AMS 
+% \PassOptionsToPackage{fleqn}{amsmath}
+% \usepackage{amsmath}
 
 % ******************************************************************** 
 % General useful packages
 % ******************************************************************** 
 \PassOptionsToPackage{T1}{fontenc} % T2A for cyrillics
-	\usepackage{fontenc}     
-\usepackage{textcomp} % fix warning with missing font shapes
-\usepackage{scrhack} % fix warnings when using KOMA with listings package          
-\usepackage{xspace} % to get the spacing after macros right  
-\usepackage{mparhack} % get marginpar right
-\usepackage{fixltx2e} % fixes some LaTeX stuff 
+\usepackage{fontenc}
+
+% fix warning with missing font shapes
+\usepackage{textcomp}
+
+% fix warnings when using KOMA with listings package
+\usepackage{scrhack}
+
+% to get the spacing after macros right
+\usepackage{xspace}
+
+% get marginpar right
+\usepackage{mparhack}
+
+% fixes some LaTeX stuff 
+\usepackage{fixltx2e}
+
 \PassOptionsToPackage{printonlyused,smaller}{acronym}
-	\usepackage{acronym} % nice macros for handling all acronyms in the thesis
-%\renewcommand*{\acsfont}[1]{\textssc{#1}} % for MinionPro
-\renewcommand{\bflabel}[1]{{#1}\hfill} % fix the list of acronyms
-% ****************************************************************************************************
+
+% nice macros for handling all acronyms in the thesis
+\usepackage{acronym}
+
+% for MinionPro
+%\renewcommand*{\acsfont}[1]{\textssc{#1}}
+
+% fix the list of acronyms
+\renewcommand{\bflabel}[1]{{#1}\hfill}
+% ****************************************************************************
 
 
-% ****************************************************************************************************
+% ****************************************************************************
 % 4. Setup floats: tables, (sub)figures, and captions
-% ****************************************************************************************************
+% ****************************************************************************
 \usepackage{tabularx} % better tables
-	\setlength{\extrarowheight}{3pt} % increase table row height
+% increase table row height
+\setlength{\extrarowheight}{3pt}
+
 \newcommand{\tableheadline}[1]{\multicolumn{1}{c}{\spacedlowsmallcaps{#1}}}
-\newcommand{\myfloatalign}{\centering} % to be used with each float for alignment
+
+% to be used with each float for alignment
+\newcommand{\myfloatalign}{\centering}
 \usepackage{caption}
 \captionsetup{format=hang,font=small}
 \usepackage{subfig}  
-% ****************************************************************************************************
+
+% ****************************************************************************
 
 
-% ****************************************************************************************************
+% ****************************************************************************
 % 5. Setup code listings
-% ****************************************************************************************************
+% ****************************************************************************
 \usepackage{listings} 
 %\lstset{emph={trueIndex,root},emphstyle=\color{BlueViolet}}%\underbar} % for special keywords
-\lstset{language=[LaTeX]Tex,%C++,
-    keywordstyle=\color{RoyalBlue},%\bfseries,
-    basicstyle=\small\ttfamily,
-    %identifierstyle=\color{NavyBlue},
-    commentstyle=\color{Green}\ttfamily,
-    stringstyle=\rmfamily,
+
+% \usepackage{color}
+
+\lstset{language=[LaTeX]Tex,IDL%C++,
+    basicstyle=\ttfamily,
+    sensitive=true,
+    breaklines=true,
+    tabsize=2
     numbers=none,%left,%
     numberstyle=\scriptsize,%\tiny
     stepnumber=5,
     numbersep=8pt,
     showstringspaces=false,
-    breaklines=true,
     frameround=ftff,
     frame=single,
     belowcaptionskip=.75\baselineskip
     %frame=L
 } 
-% ****************************************************************************************************    		   
+% ****************************************************************************
 
-
-% ****************************************************************************************************
+% ****************************************************************************
 % 6. PDFLaTeX, hyperreferences and citation backreferences
-% ****************************************************************************************************
+% ****************************************************************************
 % ********************************************************************
 % Using PDFLaTeX
 % ********************************************************************
-\PassOptionsToPackage{pdftex,hyperfootnotes=false,pdfpagelabels}{hyperref}
-	\usepackage{hyperref}  % backref linktocpage pagebackref
+\PassOptionsToPackage{
+  pdftex,
+  hyperfootnotes=false,
+  pdfpagelabels
+}{hyperref}
+\usepackage{hyperref}  % backref linktocpage pagebackref
+
 \pdfcompresslevel=9
 \pdfadjustspacing=1 
 \PassOptionsToPackage{pdftex}{graphicx}
@@ -183,20 +196,41 @@
 % ********************************************************************
 \hypersetup{%
     %draft,	% = no hyperlinking at all (useful in b/w printouts)
-    colorlinks=false, linktocpage=true, pdfstartpage=3, pdfstartview=FitV,%
-    % uncomment the following line if you want to have black links (e.g., for printing)
-    %colorlinks=false, linktocpage=false, pdfborder={0 0 0}, pdfstartpage=3, pdfstartview=FitV,% 
-    breaklinks=true, pdfpagemode=UseNone, pageanchor=true, pdfpagemode=UseOutlines,%
-    plainpages=false, bookmarksnumbered, bookmarksopen=true, bookmarksopenlevel=1,%
-    hypertexnames=true, pdfhighlight=/O,%nesting=true,%frenchlinks,%
-    urlcolor=webbrown, linkcolor=RoyalBlue, citecolor=webgreen, %pagecolor=RoyalBlue,%
-    %urlcolor=Black, linkcolor=Black, citecolor=Black, %pagecolor=Black,%
-    pdftitle={\myTitle},%
-    pdfauthor={\textcopyright\ \myName, \myUni, \myFaculty},%
-    pdfsubject={},%
-    pdfkeywords={},%
-    pdfcreator={pdfLaTeX},%
-    pdfproducer={LaTeX with hyperref and classicthesis}%
+    colorlinks=false,
+    linktocpage=true,
+    pdfstartpage=3,
+    pdfstartview=FitV,
+
+    % linktocpage=false,
+    % pdfborder={0 0 0},
+    % pdfstartpage=3,
+    % pdfstartview=FitV,
+    breaklinks=true,
+    pdfpagemode=UseNone,
+    pageanchor=true,
+    pdfpagemode=UseOutlines,
+    plainpages=false,
+    bookmarksnumbered,
+    bookmarksopen=true,
+    bookmarksopenlevel=1,
+    hypertexnames=true,
+    pdfhighlight=/O,
+    % nesting=true,
+    % frenchlinks,
+    urlcolor=webbrown,
+    linkcolor=RoyalBlue,
+    citecolor=webgreen,
+    % pagecolor=RoyalBlue,%
+    % urlcolor=Black,
+    % linkcolor=Black,
+    % citecolor=Black,
+    %pagecolor=Black,
+    pdftitle={\myTitle},
+    pdfauthor={\textcopyright\ \myName, \myUni, \myFaculty},
+    pdfsubject={\mySubtitle},
+    pdfkeywords={},
+    pdfcreator={pdfLaTeX},
+    pdfproducer={LaTeX with hyperref and classicthesis}
 }   
 
 % ********************************************************************
@@ -237,44 +271,43 @@
 \makeatother
 
 
-% ****************************************************************************************************
+% ****************************************************************************
 % 7. Last calls before the bar closes
-% ****************************************************************************************************
+% ****************************************************************************
 % ********************************************************************
 % Development Stuff
 % ********************************************************************
-\listfiles
-%\PassOptionsToPackage{l2tabu,orthodox,abort}{nag}
-%	\usepackage{nag}
-%\PassOptionsToPackage{warning, all}{onlyamsmath}
-%	\usepackage{onlyamsmath}
+% \listfiles
+% \PassOptionsToPackage{l2tabu,orthodox,abort}{nag}
+% \usepackage{nag}
+% \PassOptionsToPackage{warning, all}{onlyamsmath}
+% \usepackage{onlyamsmath}
 
 % ********************************************************************
 % Last, but not least...
 % ********************************************************************
 \usepackage{classicthesis} 
-% ****************************************************************************************************
+% ****************************************************************************
 
-
-% ****************************************************************************************************
+% ****************************************************************************
 % 8. Further adjustments (experimental)
-% ****************************************************************************************************
+% ****************************************************************************
 % ********************************************************************
 % Changing the text area
 % ********************************************************************
-%\linespread{1.05} % a bit more for Palatino
-%\areaset[current]{312pt}{761pt} % 686 (factor 2.2) + 33 head + 42 head \the\footskip
-%\setlength{\marginparwidth}{7em}%
-%\setlength{\marginparsep}{2em}%
+\linespread{1.05} % a bit more for Palatino
+\areaset[current]{312pt}{761pt} % 686 (factor 2.2) + 33 head + 42 head \the\footskip
+\setlength{\marginparwidth}{7em}
+\setlength{\marginparsep}{2em}
 
 % ********************************************************************
 % Using different fonts
 % ********************************************************************
-%\usepackage[oldstylenums]{kpfonts} % oldstyle notextcomp
-%\usepackage[osf]{libertine}
-%\usepackage{hfoldsty} % Computer Modern with osf
-%\usepackage[light,condensed,math]{iwona}
-%\renewcommand{\sfdefault}{iwona}
-%\usepackage{lmodern} % <-- no osf support :-(
-%\usepackage[urw-garamond]{mathdesign} <-- no osf support :-(
-% ****************************************************************************************************
+\usepackage[oldstylenums]{kpfonts} % oldstyle notextcomp
+\usepackage[osf]{libertine}
+% \usepackage{hfoldsty} % Computer Modern with osf
+% \usepackage[light,condensed,math]{iwona}
+% \renewcommand{\sfdefault}{iwona}
+% \usepackage{lmodern} % <-- no osf support :-(
+% \usepackage[urw-garamond]{mathdesign} % <-- no osf support :-(
+% ****************************************************************************
