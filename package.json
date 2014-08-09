@@ -14,7 +14,7 @@
       "make": "npm run build",
       "prebuild": "npm run makedir && npm run copydir",
       "postbuild": "npm run move && npm run removedir",
-      "build": "npm run concat && npm run transform && npm run output && npm run bibliography && npm run add-glossary && npm run output",
+      "build": "npm run concat && npm run transform && npm run output && npm run bibliography && npm run add-glossary && npm run output && npm run output",
       "makedir": "mkdir intermediate || exit 0",
       "copydir": "cp paper/* intermediate",
       "move": "mv intermediate/paper.pdf paper.pdf",

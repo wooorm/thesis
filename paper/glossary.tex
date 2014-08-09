@@ -1,5 +1,5 @@
 %*******************************************************
-% Abstract
+% Glossary
 %*******************************************************
 
 \pdfbookmark[1]{Glossary}{glossary}
@@ -11,16 +11,13 @@
 
 \chapter*{Glossary}
 
+% to have the bib a bit from the rest in the toc
+\addtocontents{toc}{\protect\vspace{\beforebibskip}}
+\addcontentsline{toc}{chapter}{\tocEntry{Glossary}}
+
 % This complains, but changing to the suggested value complains more.
 \glossarystyle{listgroup}
 
 \printglossaries
 
-% \printglossary[type=\acronymtype] % prints just the list of acronyms
-
-% Some text between the list of acronyms and the glossary.
-
-% \printglossary % if no option is supplied the default glossary is printed.
-
 \endgroup
-

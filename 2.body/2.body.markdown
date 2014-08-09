@@ -11,13 +11,13 @@ Machine translation is just one of many major tasks involved with \gls{nlp}. Oth
 
 Summarisation, named entity recognition, and sentiment analyses are all part of what is known as "information extraction", a term for the act of finding certain data inside a natural language document. These, and many other applications of \gls{nlp}, are implemented widely by many programs. The approach taken for such a goal is mostly equivalent. For example, the information extraction method for entity linking in a text document could be as follows [according to @stanbol-enhancer-nlp]:
 
-- Detect the input language --- **Language Detection**: Based on the language of the given text, the algorithms behind the following steps will change significantly. Often omitted if only a single language is supported.
-- Optionally break sentences --- **Sentence Tokenisation**: Breaking sentences can elevate performance and heighten the accuracy of the following stages (in particular \gls{pos} tagging);
-- Breaking words --- **Word Tokenisation**: To detect entities, one must of course break those entities (words) free from their surroundings;
-- Detecting word-categories --- **\acrfull{pos} Tagging**: When linking entities in an encyclopaedia, one would typically not want to link every entity to another entry, but most often only nouns or even proper nouns. \gls{pos} tagging helps make that decision;
-- Optionally detecting noun phrases --- **Noun Phrase Detection**: Although "apple" and "juice" are both words and could both be linked to separate entities, it would be more apt to link both words to one entity: "apple juice", noun phrase detection makes this possible;
-- Optionally detecting lemmas or stems --- **Lemmatisation or Stemming**: All forms of walk could link to the same entity, be it "walk", "walked", or "walking". Detecting the lemma or stem for a word makes this possible;
-- Linking the entities to their reference --- **Entity Linking**.
+- Detect the input language --- *Language Detection*: Based on the language of the given text, the algorithms behind the following steps will change significantly. Often omitted if only a single language is supported.
+- Optionally break sentences --- *Sentence Tokenisation*: Breaking sentences can elevate performance and heighten the accuracy of the following stages (in particular \gls{pos} tagging);
+- Breaking words --- *Word Tokenisation*: To detect entities, one must of course break those entities (words) free from their surroundings;
+- Detecting word-categories --- *\acrfull{pos} Tagging*: When linking entities in an encyclopaedia, one would typically not want to link every entity to another entry, but most often only nouns or even proper nouns. \gls{pos} tagging helps make that decision;
+- Optionally detecting noun phrases --- *Noun Phrase Detection*: Although "apple" and "juice" are both words and could both be linked to separate entities, it would be more apt to link both words to one entity: "apple juice", noun phrase detection makes this possible;
+- Optionally detecting lemmas or stems --- *Lemmatisation or Stemming*: All forms of walk could link to the same entity, be it "walk", "walked", or "walking". Detecting the lemma or stem for a word makes this possible;
+- Linking the entities to their reference --- *Entity Linking*.
 
 Although many different fields are covered by \gls{nlp}, the process of reaching those goals touches on some well defined stages as seen above.
 
@@ -101,9 +101,9 @@ Most important is the fact that supervised learning will not fare well on the we
 
 Two viable alternative approaches exist for the web: the aforementioned rule-based tokenisation, or connecting to a server over the network.
 
-### Using a web \acrfull{api}
+### Using a web \acrshort{api}
 
-Where the term \gls{api} (Application Programming Interface) stands for the interface between two programs, the term is often defined in the context of web development as requests (from a web browser), and responses (from a web server) over \gls{http}. For example, Twitter has such a service to allow developers to list, replace, create, and delete "Tweets" and other objects (users, images, &c.). In the context of this paper, the term Web \gls{api} is used for the latter, whereas \gls{api} is used for any programming interface.
+Where the term \gls{api} stands for the interface between two programs, the term is often defined in the context of web development as requests (from a web browser), and responses (from a web server) over \gls{http}. For example, Twitter has such a service to allow developers to list, replace, create, and delete "Tweets" and other objects (users, images, &c.). In the context of this paper, the term Web \gls{api} is used for the latter, whereas \gls{api} is used for any programming interface.
 
 With the rise of the asynchronous web[^implementations-15], supervised learning too became widely available through web \glspl{api} [e.g., @textteaser-web-api; @wordnet-web-api; @textrazor-web-api]. The new web \glspl{api} made it possible to implement supervised learning techniques on the web, without the need for downloading a corpus to your or your users' computer.
 
