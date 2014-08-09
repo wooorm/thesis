@@ -270,7 +270,7 @@ A corpus is a large, structured set of texts used for many linguistic
 and \gls{nlp} tasks. Oftentimes, each item (most frequently words, but
 some corpora include sentences, phrases, clauses, or other units) in a
 corpus is annotated (``tagged'') with information about the item (for
-example, part-of-speech tags or lemmas).
+example, \gls{pos} tags or lemmas).
 
 These huge (often more than a million words\footnote{The Brown Corpus
   contains about a million words \autocite{francis-nelson-brown-corpus},
@@ -837,24 +837,32 @@ The created plugins include tools for:
 \itemsep1pt\parskip0pt\parsep0pt
 \item
   Transforming so-called dumb punctuation marks into more
-  typographically correct punctuation marks;
+  typographically correct punctuation marks
+  \autocite*{wooorm/retext-smartypants-source-code};
 \item
-  Transforming emoji short-codes (:cat:) into real emoji;
+  Transforming emoji short-codes (:cat:) into real emoji
+  \autocite*{wooorm/retext-emoji-source-code};
 \item
-  Detecting the direction of text (left to right, right to left);
+  Detecting the direction of text
+  \autocite*{wooorm/retext-directionality-source-code};
 \item
-  Detecting phonetics (how words sound like);
+  Detecting phonetics
+  \autocite*{wooorm/retext-double-metaphone-source-code};
 \item
-  Detecting the stem of words (reducing inflected or derived words to a
-  single form);
+  Detecting the stem of words
+  \autocite*{wooorm/retext-porter-stemmer-source-code};
 \item
-  Detecting grammatical units (to count words in a sentence);
+  Detecting grammatical units
+  \autocite*{wooorm/retext-visit-source-code};
 \item
-  Finding text (even misspelled) in a document;
+  Finding text, even misspelled
+  \autocite*{wooorm/retext-search-source-code};
 \item
-  Detecting part-of-speech tags of words;
+  Detecting \gls{pos} tags
+  \autocite*{wooorm/retext-pos-source-code};
 \item
-  Finding keywords and key phrases in a document;
+  Finding keywords and -phrases
+  \autocite*{wooorm/retext-keywords-source-code};
 \end{itemize}
 
 The creation of these plugins brought several problems to light in the
