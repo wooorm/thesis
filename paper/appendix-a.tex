@@ -6,7 +6,9 @@
 
 \section*{Node}\label{node}
 
-\begin{lstlisting}[language=IDL]
+Node represents any actual unit in the \gls{nlcst} hierarchy.
+
+\begin{lstlisting}
 interface Node {
     type: string;
 }
@@ -14,7 +16,10 @@ interface Node {
 
 \section*{Parent}\label{parent}
 
-\begin{lstlisting}[language=IDL]
+Parent (Node) represents a unit in the \gls{nlcst} hierarchy which can have
+zero or more children.
+
+\begin{lstlisting}
 interface Parent <: Node {
     children: [];
 }
@@ -22,7 +27,10 @@ interface Parent <: Node {
 
 \section*{Text}\label{text}
 
-\begin{lstlisting}[language=IDL]
+Text (Node) represents a unit in the \gls{nlcst} hierarchy which has a
+value.
+
+\begin{lstlisting}
 interface Text <: Node {
     value: string | null;
     location: Location | null;
@@ -31,7 +39,9 @@ interface Text <: Node {
 
 \section*{Location}\label{location}
 
-\begin{lstlisting}[language=IDL]
+Location represents the node's actual location in the source input.
+
+\begin{lstlisting}
 interface Location {
     start: Position;
     end: Position;
@@ -40,7 +50,9 @@ interface Location {
 
 \section*{Position}\label{position}
 
-\begin{lstlisting}[language=IDL]
+Position represents the a position in the source input.
+
+\begin{lstlisting}
 interface Position {
     line: uint32 >= 1;
     column: uint32 >= 1;
@@ -51,7 +63,7 @@ interface Position {
 
 Root (Parent) represents the document.
 
-\begin{lstlisting}[language=IDL]
+\begin{lstlisting}
 interface RootNode < Parent {
     type: "RootNode";
 }
@@ -62,7 +74,7 @@ interface RootNode < Parent {
 Paragraph (Parent) represents a self-contained unit of a discourse in
 writing dealing with a particular point or idea.
 
-\begin{lstlisting}[language=IDL]
+\begin{lstlisting}
 interface ParagraphNode < Parent {
     type: "ParagraphNode";
 }
@@ -74,7 +86,7 @@ Sentence (Parent) represents a grouping of grammatically linked words,
 that in principle tells a complete thought (although it may make little
 sense taken in isolation out of context).
 
-\begin{lstlisting}[language=IDL]
+\begin{lstlisting}
 interface SentenceNode < Parent {
     type: "SentenceNode";
 }
@@ -85,7 +97,7 @@ interface SentenceNode < Parent {
 Word (Parent) represents the smallest element that may be uttered in
 isolation with semantic or pragmatic content.
 
-\begin{lstlisting}[language=IDL]
+\begin{lstlisting}
 interface WordNode < Parent {
     type: "WordNode";
 }
@@ -96,7 +108,7 @@ interface WordNode < Parent {
 Punctuation (Parent) represents typographical devices which aid the
 understanding and correct reading of other grammatical units.
 
-\begin{lstlisting}[language=IDL]
+\begin{lstlisting}
 interface PunctuationNode < Parent {
     type: "PunctuationNode";
 }
@@ -107,7 +119,7 @@ interface PunctuationNode < Parent {
 White Space (Punctuation) represents typographical devices devoid of
 content, separating other grammatical units.
 
-\begin{lstlisting}[language=IDL]
+\begin{lstlisting}
 interface WhiteSpaceNode < PunctuationNode {
     type: "WhiteSpaceNode";
 }
@@ -118,7 +130,7 @@ interface WhiteSpaceNode < PunctuationNode {
 Source (Text) represents an external (non-grammatical) value embedded
 into a grammatical unit, for example a hyperlink or an emoticon.
 
-\begin{lstlisting}[language=IDL]
+\begin{lstlisting}
 interface SourceNode < Text {
     type: "SourceNode";
 }
@@ -129,7 +141,7 @@ interface SourceNode < Text {
 Text (Text) represents actual content in a NLAST document: One or more
 characters.
 
-\begin{lstlisting}[language=IDL]
+\begin{lstlisting}
 interface TextNode < Text {
     type: "TextNode";
 }
