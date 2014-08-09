@@ -143,8 +143,8 @@ their respective sentence.
 
 \paragraph{Word tokenisation}\label{word-tokenisation}
 
-Like sentence tokenisation, word tokenisation is another elementary, but
-important, stage in \gls{nlp} applications. Whether stemming, finding
+Like sentence tokenisation, word tokenisation is another elementary but
+important stage in \gls{nlp} applications. Whether stemming, finding
 phonetics, or \gls{pos} tagging, tokenising words is an important
 precursory step.
 
@@ -196,9 +196,9 @@ of text. Its application could look as follows.
 \end{enumerate}
 
 Many implementations exist for this task\footnote{For example,
-  \textcite{thinkroth/sentimental-source-code},
-  \textcite{mileszim/sediment-source-code},
-  \textcite{thisandagain/sentiment-source-code}.} on the web platform,
+  \autocite{thinkroth/sentimental-source-code},
+  \autocite{mileszim/sediment-source-code},
+  \autocite{thisandagain/sentiment-source-code}.} on the web platform,
 many of which exclude non-alphabetic characters form their definition of
 words, resulting in less than perfect results\footnote{If fact, all of
   the researched implementations deploy lacking tokenisations steps.
@@ -214,8 +214,8 @@ text in order to create a summary of the major points retaining the
 original document. In contrast with sentiment analysers, implementations
 of automatic summarisation algorithms on the web are less ubiquitously
 available\footnote{For example,
-  \textcite{jbrooksuk/node-summary-source-code} on the web,
-  \textcite{MojoJolo/textteaser-source-code} in Scala.}.
+  \autocite{jbrooksuk/node-summary-source-code} on the web,
+  \autocite{MojoJolo/textteaser-source-code} in Scala.}.
 
 An example application for automatic summarisation could be as follows.
 
@@ -268,7 +268,7 @@ exclamation point. Note that both other implementations, and many more,
 use a whole different approach to sentence tokenisation (see the next
 section).
 
-\subsection{Using Corpora for \gls{nlp}}\label{using-corpora-for}
+\subsection{Using Corpora for NLP}\label{using-corpora-for}
 
 A corpus is a large, structured set of texts used for many linguistic
 and \gls{nlp} tasks. Oftentimes, each item (most frequently words, but
@@ -329,7 +329,7 @@ web page is unfeasible for most web sites or applications\footnote{Currently,
 Two viable alternative approaches exist for the web: the aforementioned
 rule-based tokenisation, or connecting to a server over the network.
 
-\subsection{Using a web \acrshort{api}}\label{using-a-web}
+\subsection{Using a web API}\label{using-a-web}
 
 Where the term \gls{api} stands for the interface between two programs,
 the term is often defined in the context of web development as requests
@@ -387,7 +387,7 @@ sub-proposals. For example, other parties can create a parser for the
 Chinese language and use it instead of parse-latin to classify natural
 language according to \gls{nlcst}.
 
-\subsection{Syntax: \acrshort{nlcst}}\label{syntax}
+\subsection{Syntax: NLCST}\label{syntax}
 
 To develop natural language tools in ECMAScript, an intermediate
 representation of natural language is useful: instead of each module
@@ -542,7 +542,7 @@ language. For example:
   ``'s'', ``'er'', ``'em'', ``'ie'', \&c.).
 \end{itemize}
 
-\subsection{Object Model: \acrshort{textom}}\label{object-model}
+\subsection{Object Model: TextOM}\label{object-model}
 
 To modify \gls{nlcst} nodes in ECMAScript, this paper proposes
 \gls{textom}. \gls{textom} implements the nodes defined by \gls{nlcst},
@@ -759,7 +759,7 @@ complex, duplicate, or bug-prone code, and Travis
 \autocite{travis-ci.org} to validate all unit tests passed before
 deploying the software.
 
-\subsection{\acrshort{api} Design}\label{design-1}
+\subsection{API Design}\label{design-1}
 
 Interface design was given high priority for the development of the
 proposed software. A clear interface of the software, according to
@@ -809,16 +809,16 @@ In essence equal but worded differently are the characteristics of good
 With the creation of the software these characteristics, and the in
 their sources given examples, were taken into account.
 
-\paragraph{Installation}\label{installation}
+\subsection{Installation}\label{installation}
 
 Access both on the client side and on the server side to the software
 was of importance during the development of the software. For the server
-side on Node.js, npm---the default package manager for the platform---is
+side on Node.js, \gls{npm}---the default package manager for the platform---is
 the most popular. On the client side, many different package managers
 exist, the most popular\footnote{Popularity here is simply defined as
   having the most search results on Google.} being Bower and Component.
 To reach the target audience, in addition of making the whole source
-available for download through Git and GitHub, npm, Bower, and Component
+available for download through Git and GitHub, \gls{npm}, Bower, and Component
 were used.
 
 \chapter{Validation}\label{validation}

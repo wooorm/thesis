@@ -38,7 +38,7 @@
 %		 * [high] Check this out: http://www.golatex.de/koma-script-warnung-in-verbindung-mit-listings-package-t2058.html
 %    * [medium] mathbb in section-titles/chapter-titles => disappears somehow in headlines!!!
 % **************************************************************************************************************
-\documentclass[ twoside,openright,titlepage,numbers=noenddot,headinclude,%1headlines,% letterpaper a4paper
+\documentclass[ draft,twoside,openright,titlepage,numbers=noenddot,headinclude,%1headlines,% letterpaper a4paper
                 footinclude=true,cleardoublepage=empty,abstractoff, % <--- obsolete, remove (todo)
                 BCOR=5mm,paper=a4,fontsize=11pt,%11pt,a4paper,%
                 UKenglish,%
@@ -62,7 +62,7 @@
 
 \usepackage{csquotes}
 
-\usepackage[backend=biber,style=mla,sorting=nyt,maxnames=3]{biblatex}
+\usepackage[backend=biber,style=mla,sorting=nyt,maxnames=3,firstlonghand=true]{biblatex}
 
 \addbibresource{../references.bib}
 
@@ -83,7 +83,7 @@
 %********************************************************************
 % Hyphenation
 %*******************************************************
-%\hyphenation{put special hyphenation here}
+\hyphenation{with-out ECMA-script whe-ther pro-vide hy-per-text be-tween al-go-rithm sen-ten-ces ma-chi-ne trans-la-tion whe-re george-town russ-ian ma-chi-ne-trans-la-tion key-word sim-ple Java-Script geo-graph-i-cal com-mon eli-sion text-om pro-vides in-te-gra-tion de-tec-ting }
 
 % ********************************************************************
 % GO!GO!GO! MOVE IT!
