@@ -1,4 +1,4 @@
-\section{Context}\label{context}
+\chapter{Context}\label{context}
 
 \{\{Needs a nice quote about the definition of NLP\}\}
 
@@ -71,7 +71,7 @@ to][]{stanbol-enhancer-nlp}:
 Although many different fields are covered by \gls{nlp}, the process of
 reaching those goals touches on some well defined stages as seen above.
 
-\subsection{Scope}\label{scope}
+\section{Scope}\label{scope}
 
 The stages mentioned in the previous section are implemented in many
 \gls{nlp} applications. This paper (the captured use cases and
@@ -88,7 +88,7 @@ Lastly, this paper ignores spoken language, and lays its focus on Latin
 script language: written languages using an alphabet depending on the
 letters of the classical Latin alphabet.
 
-\subsection{Implementations}\label{implementations}
+\section{Implementations}\label{implementations}
 
 While researching algorithms to tokenise natural language few viable
 options were found. Most algorithms look at one or two (or both) kinds
@@ -96,7 +96,7 @@ of tokenisation: sentence tokenisation and word tokenisation. In this
 section the current implementations, where they excel, and what they
 lack.
 
-\subsubsection{Stages}\label{stages}
+\subsection{Stages}\label{stages}
 
 \paragraph{Sentence tokenisation}\label{sentence-tokenisation}
 
@@ -159,7 +159,7 @@ words\footnote{For example, Natural's tokenisers
 rule exist, e.g., hyphenation points, colons, or elision (whether full
 stops, ``e.g.''; apostrophes, the Dutch ``'s''; or slashes, ``N/A'').
 
-\subsubsection{Applications}\label{applications}
+\subsection{Applications}\label{applications}
 
 In the previous section implementations were covered that solve
 tokenisation stages in \gls{nlp} applications, such as Natural's word
@@ -268,7 +268,7 @@ exclamation point. Note that both other implementations, and many more,
 use a whole different approach to sentence tokenisation (see the next
 section).
 
-\subsubsection{Using Corpora for \gls{nlp}}\label{using-corpora-for}
+\subsection{Using Corpora for \gls{nlp}}\label{using-corpora-for}
 
 A corpus is a large, structured set of texts used for many linguistic
 and \gls{nlp} tasks. Oftentimes, each item (most frequently words, but
@@ -329,7 +329,7 @@ web page is unfeasible for most web sites or applications\footnote{Currently,
 Two viable alternative approaches exist for the web: the aforementioned
 rule-based tokenisation, or connecting to a server over the network.
 
-\subsubsection{Using a web \acrshort{api}}\label{using-a-web}
+\subsection{Using a web \acrshort{api}}\label{using-a-web}
 
 Where the term \gls{api} stands for the interface between two programs,
 the term is often defined in the context of web development as requests
@@ -358,9 +358,9 @@ disadvantages. Most importantly the time involved when sending data over
 the network (especially on mobile networks), the bandwidth used, and
 heightened security risks.
 
-\section{Design}\label{design}
+\chapter{Design}\label{design}
 
-\subsection{Architecture}\label{architecture}
+\section{Architecture}\label{architecture}
 
 The in this paper proposed solution to the problem of \gls{nlp} on the
 client side is split up in multiple small proposals. Each proposal
@@ -387,7 +387,7 @@ sub-proposals. For example, other parties can create a parser for the
 Chinese language and use it instead of parse-latin to classify natural
 language according to \gls{nlcst}.
 
-\subsubsection{Syntax: \gls{nlcst}}\label{syntax}
+\subsection{Syntax: \acrshort{nlcst}}\label{syntax}
 
 To develop natural language tools in ECMAScript, an intermediate
 representation of natural language is useful: instead of each module
@@ -430,7 +430,7 @@ save the output or pass it on to other libraries for further processing.
 See the appendices for a complete list of specified nodes of
 \gls{nlcst}.
 
-\subsubsection{Parser: Parse-latin}\label{parser-parse-latin}
+\subsection{Parser: Parse-latin}\label{parser-parse-latin}
 
 ECMAScript is used extensively. Because of this, many ECMAScript tools
 are being developed. This includes tools for Natural Language
@@ -542,7 +542,7 @@ language. For example:
   ``'s'', ``'er'', ``'em'', ``'ie'', \&c.).
 \end{itemize}
 
-\subsubsection{Object Model: \gls{textom}}\label{object-model}
+\subsection{Object Model: \acrshort{textom}}\label{object-model}
 
 To modify \gls{nlcst} nodes in ECMAScript, this paper proposes
 \gls{textom}. \gls{textom} implements the nodes defined by \gls{nlcst},
@@ -565,7 +565,7 @@ own nodes, for example creating phrase or clause nodes. \Gls{textom}
 allows for the same extension, and is build to work well with
 ``unknown'' node types.
 
-\subsubsection{Natural Language System:
+\subsection{Natural Language System:
 Retext}\label{natural-language-system-retext}
 
 For natural language processing on the client side, this paper proposes
@@ -576,9 +576,9 @@ In addition, Retext provides a minimalistic plugin mechanism so
 developers can create and publish plugins for others, and in turn can
 use others' plugins inside their projects.
 
-\section{Production}\label{production}
+\chapter{Production}\label{production}
 
-\subsection{Target Audience}\label{target-audience}
+\section{Target Audience}\label{target-audience}
 
 The audience that would benefit the most from such a solution are web
 developers: programmers who specialise in creating software for the
@@ -593,7 +593,7 @@ more. In addition, many interdisciplinary skills are also of concern to
 web developers, such as usability, accessibility, copywriting,
 information architecture, optimisation.
 
-\subsection{Use cases}\label{use-cases}
+\section{Use cases}\label{use-cases}
 
 The use cases of the target audience, the front-end developer, in the
 field of \gls{nlp} are many. Research for this paper found several use
@@ -642,14 +642,14 @@ academic areas of \gls{nlp} do not fit well with the goals of web
 developers, e.g., speech recognition, optical character recognition,
 text-to-speech transformation, translation, or machine learning.
 
-\subsection{Requirements}\label{requirements}
+\section{Requirements}\label{requirements}
 
 The in the previous section covered use cases are required to be
 reachable through the proposed solution. In addition, this section
 covers other requirements to better suit the wishes of the target
 audience.
 
-\subsubsection{Open Source}\label{open-source}
+\subsection{Open Source}\label{open-source}
 
 To reach the target audience and validate its use, the software was
 developed as open source software---software that is free for all to use
@@ -666,7 +666,7 @@ networking features. On GitHub, many web developers follow their peers
 to track what they are working on, watch their favourite projects to get
 notified of changes, and raise issues or feature requests.
 
-\subsubsection{Performance}\label{performance}
+\subsection{Performance}\label{performance}
 
 The in this paper proposed implementations were produced with high
 regards for performance. Performance includes the software having a
@@ -674,7 +674,7 @@ small file size in order to reach the client over the network with the
 highest possible speed, but most importantly that the execution of code
 should operate efficiently and at at high speeds.
 
-\subsubsection{Testing}\label{testing}
+\subsection{Testing}\label{testing}
 
 With the development of the in this paper introduced software, testing
 was given high priority. Testing, in software development, refers to
@@ -702,7 +702,7 @@ Unit test were run through Mocha
 \autocite{visionmedia/mocha-source-code}, coverage was detected with
 Istanbul \autocite{gotwarlost/istanbul-source-code}.
 
-\subsubsection{Code quality}\label{code-quality}
+\subsection{Code quality}\label{code-quality}
 
 Great attention was given to code quality: how useful and readable for
 both humans and machines the software is. Special focus was given to
@@ -747,7 +747,7 @@ Great care was given to annotate ``tricky'' source code inside the
 software with comments, and to apply documentation inside the source
 code through \gls{jsdoc}.
 
-\subsubsection{Automation}\label{automation}
+\subsection{Automation}\label{automation}
 
 Great focus was given to develop using several automated \gls{ci}
 environments. When suspicious, ambiguous, or buggy code was introduced
@@ -759,7 +759,7 @@ complex, duplicate, or bug-prone code, and Travis
 \autocite{travis-ci.org} to validate all unit tests passed before
 deploying the software.
 
-\subsubsection{\Gls{api} Design}\label{design-1}
+\subsection{\acrshort{api} Design}\label{design-1}
 
 Interface design was given high priority for the development of the
 proposed software. A clear interface of the software, according to
@@ -821,7 +821,7 @@ To reach the target audience, in addition of making the whole source
 available for download through Git and GitHub, npm, Bower, and Component
 were used.
 
-\section{Validation}\label{validation}
+\chapter{Validation}\label{validation}
 
 The developed software was validated through two approaches. The design
 and usability of the interface was validated by trying to solve the use
@@ -829,7 +829,7 @@ cases with the software. If the target audience actually wanted to use
 the software was validated through enthusiasm showed by the open source
 community.
 
-\subsection{Plugins}\label{plugins}
+\section{Plugins}\label{plugins}
 
 More than fifteen (15) Retext plugins were created to validate how the
 different projects integrated together, and how the system worked as a
@@ -866,7 +866,7 @@ developed software. These problems were then dealt with back and forth
 between the software and the plugins. The software changed severely by
 these fixed problems, which resulted in a more useable interface.
 
-\subsection{Reception}\label{reception}
+\section{Reception}\label{reception}
 
 To validate if the target audience actually wanted to use the developed
 software, several blogs and email newsletters were contacted to feature
@@ -885,10 +885,10 @@ resulted in positive reactions (such as on Twitter\footnote{Including
 \autocite{github.com-pull-request} on these mentions, and many
 project-followers on GitHub \autocite{github.com-stargazers}.
 
-\section{Conclusion}\label{conclusion}
+\chapter{Conclusion}\label{conclusion}
 
-\subsection{Summary}\label{summary}
+\section{Summary}\label{summary}
 
-\subsection{Future Work}\label{future-work}
+\section{Future Work}\label{future-work}
 
-\subsection{Advice}\label{advice}
+\section{Advice}\label{advice}
