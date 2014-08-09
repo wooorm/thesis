@@ -19,7 +19,6 @@
       "copydir": "cp paper/* intermediate",
       "move": "mv intermediate/paper.pdf paper.pdf",
       "removedir": "rm -rf intermediate",
-      "//transform-body": "pandoc --smart --parse-raw --no-highlight --normalize --biblatex -o intermediate/body.tex metadata.markdown 2.body/2.body.markdown",
       "bibliography": "cd intermediate && biber paper && cd ../",
       "output": "pdflatex -interaction=nonstopmode -output-directory=intermediate paper.tex || exit 0",
       "add-glossary": "makeglossaries -d intermediate paper"
