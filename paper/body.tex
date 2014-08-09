@@ -195,10 +195,7 @@ of text. Its application could look as follows.
     polarity \autocite{nielsen-finn-arup-afinn}.}.
 \end{enumerate}
 
-Many implementations exist for this task\footnote{For example,
-  \autocite{thinkroth/sentimental-source-code},
-  \autocite{mileszim/sediment-source-code},
-  \autocite{thisandagain/sentiment-source-code}.} on the web platform,
+Many implementations exist for this task \autocites[e.g.,][]{thinkroth/sentimental-source-code}{mileszim/sediment-source-code}{thisandagain/sentiment-source-code},
 many of which exclude non-alphabetic characters form their definition of
 words, resulting in less than perfect results\footnote{If fact, all of
   the researched implementations deploy lacking tokenisations steps.
@@ -213,9 +210,9 @@ Automatic summarisation is an \gls{nlp} task concerned with reducing a
 text in order to create a summary of the major points retaining the
 original document. In contrast with sentiment analysers, implementations
 of automatic summarisation algorithms on the web are less ubiquitously
-available\footnote{For example,
-  \autocite{jbrooksuk/node-summary-source-code} on the web,
-  \autocite{MojoJolo/textteaser-source-code} in Scala.}.
+available\footnote{For example, on the web only node-summary was found
+  \autocite{jbrooksuk/node-summary-source-code}, in Scala textteaser was found
+  \autocite{MojoJolo/textteaser-source-code}.}.
 
 An example application for automatic summarisation could be as follows.
 
@@ -265,8 +262,7 @@ The only implementation working on the web
 \autocite{jbrooksuk/node-summary-source-code}, takes a naive approach to
 sentence tokenisation. For example, ignoring sentences terminated by an
 exclamation point. Note that both other implementations, and many more,
-use a whole different approach to sentence tokenisation (see the next
-section).
+use a whole different approach to sentence tokenisation: Corpora.
 
 \subsection{Using Corpora for NLP}\label{using-corpora-for}
 
@@ -281,7 +277,7 @@ These huge (often more than a million words\footnote{The Brown Corpus
   the Google N-Gram Corpus contains 155 billion
   \autocite{brants-thorsten-google-ngram-corpus}.}) chunks of
 information are the basis of many of the newer revolutions in \gls{nlp}
-\autocite[See][]{mitkov-ruslan-ea-importance-corpora}. Supervised
+\autocite[see][]{mitkov-ruslan-ea-importance-corpora}. Supervised
 learned\footnote{``{[}From{]} a set of labeled examples as training data
   \ldots{} {[}, make{]} predictions for all unseen points''
   \autocite{mohri-mehryar-foundations-machine-learning}.} parsing (in
