@@ -1,5 +1,5 @@
 
-n.n.n / 2014-08-10
+0.0.3 / 2014-08-10
 ==================
 
  * Add extra info on nlcst definitions; remove borders form source code
