@@ -2,33 +2,28 @@
 % Titlepage
 %*******************************************************
 \begin{titlepage}
-	% if you want the titlepage to be centered, uncomment and fine-tune the line below (KOMA classes environment)
-	\begin{addmargin}[-1cm]{-3cm}
+  \begin{addmargin}[-1cm]{-3cm}
     \begin{center}
-        \large  
 
-        \hfill
+    \large
+    \hfill
+    \vfill
 
-        \vfill
+    \spacedallcaps{\myTitle} \\ \bigskip
+    \mySubtitle \\ \bigskip
+    \spacedlowsmallcaps{\myName}
 
-        \begingroup
-            \color{Maroon}\spacedallcaps{\myTitle} \\ \bigskip
-        \endgroup
+    \vfill
+    \vfill
+    \medskip
+    \myDepartment \\
+    \myFaculty \\
+    \myUni \\ \bigskip
 
-        \spacedlowsmallcaps{\myName}
+    \myTime\ -- \myVersion
 
-        \vfill
+    \vfill
 
-        \mySubtitle \\ \medskip   
-        %\myDegree \\
-        %\myDepartment \\                            
-        %\myFaculty \\
-        %\myUni \\ \bigskip
-
-        \myTime\ -- \myVersion
-
-        \vfill                      
-
-    \end{center}  
-  \end{addmargin}       
-\end{titlepage}   
+    \end{center}
+  \end{addmargin}
+\end{titlepage}
