@@ -33,8 +33,7 @@ example, the information extraction method for entity linking in a text
 document could be as follows \autocite[according
 to][]{stanbol-enhancer-nlp}:
 
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
+\begin{enumerate}
 \item
   Detect the input language --- \emph{Language Detection}: Based on the
   language of the given text, the algorithms behind the following steps
@@ -66,7 +65,7 @@ to][]{stanbol-enhancer-nlp}:
   a word makes this possible;
 \item
   Linking the entities to their reference --- \emph{Entity Linking}.
-\end{itemize}
+\end{aenumerate}
 
 Although many different fields are covered by \gls{nlp}, the process of
 reaching those goals touches on some well defined stages as seen above.
@@ -119,7 +118,7 @@ Oftentimes, one of three symbols is used to denote the end of a
 sentences: Either a full stop (.), an interrogative point (?), or an
 exclamation point (!)\footnote{One could argue the in 1962 introduced
   obscure interrobang (‽), used to punctuate rhetorical statements where
-  neither the question nor an exclamation alone exactly serve the writer
+  neither the question nor exclamation alone exactly serve the writer
   well, should be in this list \autocite{interrobang-mks.com}.}.
 Detecting sentence boundaries is however not so easy as simply breaking
 sentences at these markers. The previously mentioned terminal markers
@@ -175,11 +174,8 @@ polarity (positive, negative) and subjectivity (objective, subjective)
 of text. Its application could look as follows.
 
 \begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\itemsep1pt\parskip0pt\parsep0pt
 \item
-  Detect language --- Often omitted if only a single language is
-  supported.
+  Optionally detect language.
 \item
   Optionally tokenise sentences --- Different sentences could have
   different sentiments, tokenising them helps provide better outcomes.
@@ -219,11 +215,8 @@ available\footnote{For example, on the web only node-summary was found
 An example application for automatic summarisation could be as follows.
 
 \begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\itemsep1pt\parskip0pt\parsep0pt
 \item
-  Detect language --- Often omitted if only a single language is
-  supported.
+  Optionally detect language.
 \item
   Tokenise sentences --- Unless even finer grained control over the
   document is possible (tokenising phrases), sentences are the smallest
@@ -239,9 +232,7 @@ An example application for automatic summarisation could be as follows.
 Several factors can be used to determine whether or not a phrase or
 sentence should be included from a summary:
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\itemsep1pt\parskip0pt\parsep0pt
+\begin{aenumerate}
 \item
   Number of words (an ideal sentence is neither too long nor too short);
 \item
@@ -253,7 +244,7 @@ sentence should be included from a summary:
   Position inside a paragraph (initial and final sentences are often
   more important than sentences buried somewhere in the middle of a
   paragraph).
-\end{enumerate}
+\end{aenumerate}
 
 Some implementations only include keyword metrics
 \autocite{jbrooksuk/node-summary-source-code}, others include all
@@ -269,9 +260,9 @@ use a whole different approach to sentence tokenisation: Corpora.
 \subsection{Using Corpora for NLP}\label{using-corpora-for}
 
 A corpus is a large, structured set of texts used for many linguistic
-and \gls{nlp} tasks. Oftentimes, each item (most frequently words, but
-some corpora include sentences, phrases, clauses, or other units) in a
-corpus is annotated (``tagged'') with information about the item (for
+and \gls{nlp} tasks. Each item (most frequently words, but
+some corpora include sentences, phrases, clauses, and\slash or other units)
+in a corpus is annotated (``tagged'') with information about the item (for
 example, \gls{pos} tags or lemmas).
 
 These colossal (often more than a million words\footnote{The Brown Corpus
@@ -288,8 +279,7 @@ rule-based parsing\footnote{A simple rule-based sentence tokeniser could
   be implemented as follows
   \autocite{attivio.com-doing-things-with-sentences}:
 
-  \begin{itemize}
-  \itemsep1pt\parskip0pt\parsep0pt
+  \begin{aenumerate}
   \item
     If it is a period, it ends a sentence;
   \item
@@ -297,15 +287,14 @@ rule-based parsing\footnote{A simple rule-based sentence tokeniser could
     sentence;
   \item
     If the next token is capitalised, it ends a sentence.
-  \end{itemize}}. Instead of defining rules, exceptions to these rules,
+  \end{aenumerate}}. Instead of defining rules, exceptions to these rules,
 exceptions to these exceptions, and so on, supervised learning delegates
 this task to machines, creating a more performant, scalable, program.
 
 Generally, corpus linguistics have proven to be better in several ways
 over rule-based linguistics. However, they do have their disadvantages:
 
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
+\begin{enumerate}
 \item
   Some rule-based approaches for pre- and post processing are still
   required;
@@ -313,8 +302,8 @@ over rule-based linguistics. However, they do have their disadvantages:
   Good training sets are required;
 \item
   If the corpus was created from news articles, algorithms based on it
-  won't fair so well on microblogs (e.g., Twitter posts);
-\end{itemize}
+  won't fair so well on microblogs (e.g., Twitter posts).
+\end{enumerate}
 
 Most important is the fact that supervised learning will not fare well
 on the web: Loading corpora over the network each time a user request a
@@ -364,8 +353,7 @@ The in this paper proposed solution to the problem of \gls{nlp} on the
 client side is split up in multiple small proposals. Each proposal
 solves a subproblem.
 
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
+\begin{aenumerate}
 \item
   \gls{nlcst} --- Defines a standard for classifying grammatical units
   understandable for machines;
@@ -377,7 +365,7 @@ solves a subproblem.
 \item
   Retext --- Provides an interface for transforming natural language
   into an object model and exposes an interface for plugins.
-\end{itemize}
+\end{aenumerate}
 
 The decoupled approach taken by the provided solution enables other
 developers to provide their own software to replace one of the
@@ -425,14 +413,14 @@ trees that are hard to work with. On the other hand, the fact that every
 part of the input is housed in the tree, makes it easy for developers to
 save the output or pass it on to other libraries for further processing.
 
-See appendix~\ref{apendix-a-nlcst-definition} on
+\medskip \noindent See appendix~\ref{apendix-a-nlcst-definition} on
 page~\pageref{apendix-a-nlcst-definition} for a complete list of
 specified nodes of \gls{nlcst}.
 
 \subsection{Parser: Parse-latin}\label{parser-parse-latin}
 
-\Gls{ecmascript} is used extensively. Because of this, many \gls{ecmascript} tools
-are being developed. This includes tools for Natural Language
+\gls{ecmascript} is used extensively. Because of this, many \gls{ecmascript}
+tools are being developed. This includes tools for Natural Language
 Processing. These \gls{ecmascript} tools however, when run on the client-side,
 can not implement supervised learning based on corpora, and web
 \gls{api} usage too is not ideal. Thus, a rule-based parser is needed to
@@ -457,21 +445,19 @@ Basically, parse-latin splits text into white space, word, and
 punctuation tokens. parse-latin starts out with a pretty simple
 definition, one that most other tokenisers use:
 
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
+\begin{enumerate}
 \item
   A ``word'' is one or more letter or number characters;
 \item
   A ``white space'' is one or more white space characters;
 \item
-  A ``punctuation'' is one or more of anything else;
-\end{itemize}
+  A ``punctuation'' is one or more of anything else.
+\end{enumerate}
 
 Then, it manipulates and merges those tokens into a syntax tree, adding
 sentences and paragraphs where needed.
 
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
+\begin{enumerate}
 \item
   Some punctuation marks are part of the word they occur in, e.g.,
   ``non-profit'', ``she's'', ``G.I.'', ``11:00'', ``N\slash A'';
@@ -481,10 +467,10 @@ sentences and paragraphs where needed.
 \item
   Although full-stops, question marks, and exclamation marks (sometimes)
   end a sentence, that end might not occur directly after the mark,
-  e.g., ``.)'', '.``';
-\end{itemize}
+  e.g., ``.)'', '.``'.
+\end{enumerate}
 
-See the appendix~\ref{appendix-b-parse-latin-output} on
+See appendix~\ref{appendix-b-parse-latin-output} on
 page~\pageref{appendix-b-parse-latin-output} for example output provided
 by the parse-latin parser.
 
@@ -493,8 +479,7 @@ by the parse-latin parser.
 parse-english has the same interface as parse-latin, but returns results
 better suited for English natural language. For example:
 
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
+\begin{aenumerate}
 \item
   Unit abbreviations (``tsp.'', ``tbsp.'', ``oz.'', ``ft.'', \&c.);
 \item
@@ -521,7 +506,7 @@ better suited for English natural language. For example:
 \item
   Common elision (omission of letters) (``\,`n'\,'', ``'o'', ``'em'',
   ``'twas'', ``'80s'', \&c.).
-\end{itemize}
+\end{aenumerate}
 
 \subsubsection{parse-dutch}\label{parse-dutch}
 
@@ -529,8 +514,7 @@ parse-dutch has, just like parse-english, the same interface as
 parse-latin, but returns results better suited for Dutch natural
 language. For example:
 
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
+\begin{aenumerate}
 \item
   Unit and time abbreviations (``gr.'', ``sec.'', ``min.'', ``ma.'',
   ``vr.'', ``vrij.'', ``febr'', ``mrt'', \&c.);
@@ -540,7 +524,7 @@ language. For example:
 \item
   Common elision (omission of letters) (``d''', ``'n'', ``'ns'', ``'t'',
   ``'s'', ``'er'', ``'em'', ``'ie'', \&c.).
-\end{itemize}
+\end{aenumerate}
 
 \subsection{Object Model: TextOM}\label{object-model}
 
@@ -602,8 +586,7 @@ cases, although it is expected many more could be defined. The tasks
 below can be categorised into three broad fields: analysation,
 manipulation, and creation.
 
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
+\begin{aenumerate}
 \item
   The practitioner may intent summarise natural text (mostly
   analysation, potentially also manipulation);
@@ -631,7 +614,7 @@ manipulation, and creation.
   regards for the lemma (or stem) and\slash or phonetics (so that a search
   for ``smit'' also returns similar words, such as ``Schmidt'' or ``Smith'')
   (analysation and manipulation).
-\end{itemize}
+\end{aenumerate}
 
 Natural Language Processing is a broad field concerned with the
 interactions between computers and human languages, with bases in
@@ -682,8 +665,7 @@ was given high priority. Testing, in software development, refers to
 validating if software does what it is supposed to do, and can be
 divided into multiple subgroups:
 
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
+\begin{aenumerate}
 \item
   Unit testing --- Validation of each specific section of code;
 \item
@@ -692,7 +674,7 @@ divided into multiple subgroups:
   System testing --- Validation of if system meets its requirements;
 \item
   Acceptance testing --- Validation of the end product.
-\end{itemize}
+\end{aenumerate}
 
 Great care was given to develop a full test suite with full coverage for
 every program. Coverage, in software development, is a term used to
@@ -767,8 +749,7 @@ proposed software. A clear interface of the software, according to
 Joshua Bloch \autocite*{bloch-joshua-how-design-good-api-why-matters},
 has the following characteristics:
 
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
+\begin{enumerate}
 \item
   Easy to learn;
 \item
@@ -785,14 +766,13 @@ has the following characteristics:
   Meeting its requirements;
 \item
   Appropriate for the target audience.
-\end{itemize}
+\end{enumerate}
 
 In essence equal but worded differently are the characteristics of good
 \gls{api} design according to the Qt Project
 \autocite{qt-project.org-api-design-principles}, are as follows:
 
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
+\begin{enumerate}
 \item
   Be minimal;
 \item
@@ -804,8 +784,8 @@ In essence equal but worded differently are the characteristics of good
 \item
   Be easy to memorise;
 \item
-  Lead to readable code;
-\end{itemize}
+  Lead to readable code.
+\end{enumerate}
 
 With the creation of the software these characteristics, and the in
 their sources given examples, were taken into account.
@@ -838,8 +818,7 @@ whole.
 
 The created plugins include tools for:
 
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
+\begin{aenumerate}
 \item
   Transforming so-called dumb punctuation marks into more
   typographically correct punctuation marks
@@ -867,8 +846,8 @@ The created plugins include tools for:
   \autocite*{wooorm/retext-pos-source-code};
 \item
   Finding keywords and -phrases
-  \autocite*{wooorm/retext-keywords-source-code};
-\end{itemize}
+  \autocite*{wooorm/retext-keywords-source-code}.
+\end{aenumerate}
 
 The creation of these plugins brought several problems to light in the
 developed software. These problems were then dealt with back and forth
