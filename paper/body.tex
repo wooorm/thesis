@@ -2,117 +2,124 @@
 
 \{\{Needs a nice quote about the definition of NLP\}\}
 
-The focus of this paper is \gls{nlp}. \Gls{nlp} concerns itself with
-enabling machines to understand human language, thus it is a field
-related to human--computer interaction. Human language, a medium which
-humans understand quite easily, can pose problems for machines.
+The focus of this paper is \gls{nlp}.
+\gls{nlp} is a field related to human--computer interaction, as it
+  concerns itself with enabling machines to understand human language.
+Human language, a medium which is easy for humans to understand, poses
+  problems for machines.
 
-That understanding of human language by machines is quite difficult, is
-depicted by one of the first application of \gls{nlp}, during the
-Georgetown--\acrshort{ibm} experiment, where a Russian-english machine
-translation system was showcased in New York in 1945
-\autocite{hutchins-john-georgetown-ibm-system}. More than sixty
-sentences were translated by a machine from Russian to English. The
-experiment was well publicised in the press and resulted in optimism for
-machine-translation. Machine-translation was thought of as being a
-solved problem within three to five years. The results in the following
-ten years were however disappointing and eventually led to reduced
-funding.
+The Georgetown--\gls{ibm} experiment in 1945, one of the first application
+  of \gls{nlp}, illustrates this difficulty.
+During this study in New York, scientists demonstrated a
+  Russian--English translation system
+  \autocite{hutchins-john-georgetown-ibm-system}.
+The machine translated more than sixty sentences from Russian to English.
+The experiment was well publicised and resulted in optimism.
+The public believed machine-translation would be a ``solved problem'' within
+  three to five years.
+Despite promising initial results, the following ten years proved to be
+  disappointing and led to reduced funding.
 
-Machine translation is just one of many major tasks involved with
-\gls{nlp}. Other applications include automatic summarisation
-(generating a summary), named entity recognition (detecting references
-to people or places), sentiment analysis (extracting opinion).
-
-Summarisation, named entity recognition, and sentiment analyses are all
-part of what is known as ``information extraction'', a term for the act
-of finding certain data inside a natural language document. These, and
-many other applications of \gls{nlp}, are implemented widely by many
-programs. The approach taken for such a goal is mostly equivalent. For
-example, the information extraction method for entity linking in a text
-document could be as follows \autocite[according
-to][]{stanbol-enhancer-nlp}:
+Machine translation is just one of many major tasks involved with \gls{nlp}.
+Other tasks include generating summaries, detecting references to people
+  and places, or extracting opinion.
+Tasks which are all part of \emph{information extraction}: the act of finding
+  certain information in a document.
+Many programs exists to carry out these and many other \gls{nlp} tasks.
+The approach taken to perform these tasks are often similar between
+  implementations.
+Entity linking for example, is often implemented as follows
+  \autocite[according to][]{stanbol-enhancer-nlp}:
 
 \begin{enumerate}
 \item
-  Detect the input language --- \emph{Language Detection}: Based on the
-  language of the given text, the algorithms behind the following steps
-  will change significantly. Often omitted if only a single language is
-  supported.
+  \emph{Language Detection (optional)} --- Based on the language of the
+    given text, the algorithms behind the following steps will change.
+  Omitted if the implementation supports a single language;
 \item
-  Optionally break sentences --- \emph{Sentence Tokenisation}: Breaking
-  sentences can elevate performance and heighten the accuracy of the
-  following stages (in particular \gls{pos} tagging);
+  \emph{Sentence Tokenisation (optional)} --- Sentence breaking elevates
+    performance and heightens accuracy of the following stages, in
+    particular \acrshort{pos} tagging;
 \item
-  Breaking words --- \emph{Word Tokenisation}: To detect entities, one
-  must of course break those entities (words) free from their
-  surroundings;
+  \emph{Word Tokenisation} --- The entities (words) must be free from their
+    surroundings;
 \item
-  Detecting word-categories --- \emph{\acrfull{pos} Tagging}: When
-  linking entities in an encyclopaedia, one would typically not want to
-  link every entity to another entry, but most often only nouns or even
-  proper nouns. \gls{pos} tagging helps make that decision;
+  \emph{\acrfull{pos} Tagging (optional)} --- It is often desired to link
+    several nouns or proper nouns.
+  Detecting word categories makes this achievable;
 \item
-  Optionally detecting noun phrases --- \emph{Noun Phrase Detection}:
-  Although ``apple'' and ``juice'' are both words and could both be
-  linked to separate entities, it would be more apt to link both words
-  to one entity: ``apple juice'', noun phrase detection makes this
-  possible;
+  \emph{Noun Phrase Detection (optional)} --- Although \emph{apple} and
+    \emph{juice} could be two entities, it is more appropriate to link to
+    one entity: \emph{apple juice}.
+  Detecting noun phrases makes this possible;
 \item
-  Optionally detecting lemmas or stems --- \emph{Lemmatisation or
-  Stemming}: All forms of walk could link to the same entity, be it
-  ``walk'', ``walked'', or ``walking''. Detecting the lemma or stem for
-  a word makes this possible;
+  \emph{Lemmatisation or Stemming (optional)} --- Be it \emph{walk},
+    \emph{walked}, or \emph{walking}, all forms of \emph{walk} could link
+    to the same entity.
+  Detecting either makes this possible;
 \item
-  Linking the entities to their reference --- \emph{Entity Linking}.
+  \emph{Entity Linking} --- Linking detected entities to references, such as
+    an encyclopaedia.
 \end{aenumerate}
 
-Although many different fields are covered by \gls{nlp}, the process of
-reaching those goals touches on some well defined stages as seen above.
+Although \gls{nlp} covers many different tasks, the process of
+  accomplishing these goals touches on some well defined stages, as seen
+  above.
 
 \section{Scope}\label{scope}
 
-The stages mentioned in the previous section are implemented in many
-\gls{nlp} applications. This paper (the captured use cases and
-requirements, the proposed standard, and the example implementation)
-however will only cover one stage: tokenisation. Tokenisation here
-includes sentence boundary detection, word tokenisation, and
-tokenisation of other grammatical units.
+Although many \gls{nlp} tasks exist, the standard and the implementation
+  this paper proposes will only cover one: \emph{tokenisation}.
+Tokenisation includes breaking sentences, words, and other grammatical
+units.
 
-Another decision made in scoping the \gls{nlp} problem is that that this
-paper lays its focus on syntactic, and largely ignores semantic units
-(i.e., phrases and clauses).
+Another confinement set to scope the proposal, is that it focusses on
+  syntactic grammatical units. Thus, semantic units (i.e., phrases and
+  clauses) are ignored.
 
-Lastly, this paper ignores spoken language, and lays its focus on Latin
-script language: written languages using an alphabet depending on the
-letters of the classical Latin alphabet.
+In addition, the paper focusses on written language (text), thus ignoring
+  spoken language.
+
+Last, this paper focusses on Latin script languages: written languages
+  using an alphabet based on the the classical Latin alphabet.
 
 \section{Implementations}\label{implementations}
 
+
 While researching algorithms to tokenise natural language few viable
-options were found. Most algorithms look at one or two (or both) kinds
-of tokenisation: sentence tokenisation and word tokenisation. In this
-section the current implementations, where they excel, and what they
-lack.
+  implementations were found.
+Most algorithms look at either sentence- or word tokenisation (rarely both).
+This section describes the current implementations, where they excel, and
+  what they lack.
 
 \subsection{Stages}\label{stages}
+
+This section delves into how current implementations accomplish
+  tokenisation tasks
 
 \subsubsection{Sentence tokenisation}\label{sentence-tokenisation}
 
 Often referred to as sentence boundary disambiguation\footnote{Both
-  sentence tokenisation and sentence boundary solve a similar
-  issue---detecting where sentences terminate. Sentence boundary
-  disambiguation focusses on the position where a sentence breaks (as
-  in, `One sentence.\textbar{} Two sentences.\textbar{}', where the pipe
-  symbol refers to the end of one sentence and the beginning of
-  another), whereas sentence tokenisation lays focus on where a sentence
-  starts and where it ends (as in, `\{One sentence.\} \{Two
-  sentences.\}', where everything between curly brackets, both start and
-  end boundaries, are detected and classified as s sentence).}, sentence
-tokenisation is a very basic, but important part of \gls{nlp}. It is
-almost always a stage in an \gls{nlp} application and not an end goal.
-Sentence tokenisation helps subsequent stages (e.g., detecting
-plagiarism or \gls{pos} tagging) work more accurately.
+    sentence tokenisation and sentence boundary disambiguation detect
+      sentences.
+    Sentence boundary disambiguation focusses on the position where
+      sentences break (as in, ``One sentence?\textbar{} Two
+      sentences.\textbar{}'', where the pipe symbols refer to the end of
+      one sentence and the beginning of another), whereas sentence
+      tokenisation targets both the start and end location (as in,
+      ``\{One sentence?\} \{Two sentences.\}'', where everything between
+      braces is classified as a sentence).}, sentence
+  tokenisation is an elementary but important part of \gls{nlp}.
+It is almost always a stage in \gls{nlp} applications and not an end goal.
+Sentence tokenisation makes other stages (e.g., detecting plagiarism or
+  \gls{pos} tagging) work better.
+
+
+
+
+
+
+
 
 Oftentimes, one of three symbols is used to denote the end of a
 sentences: Either a full stop (.), an interrogative point (?), or an
@@ -158,7 +165,7 @@ words\footnote{For example, Natural's tokenisers
 rule exist, e.g., hyphenation points, colons, or elision (whether full
 stops, ``e.g.''; apostrophes, the Dutch ``'s''; or slashes, ``N\slash A'').
 
-\subsection{Applications}\label{applications}
+\subsection{Tasks}\label{tasks}
 
 In the previous section implementations were covered that solve
 tokenisation stages in \gls{nlp} applications, such as Natural's word
@@ -541,13 +548,13 @@ expose \gls{html} through \gls{ecmascript} to developers. Because of
 \glspl{textom} likeness to the \gls{dom}, \gls{textom} is easy to learn
 and familiar to the target audience.
 
-\Gls{textom} provides events (a mechanism for detecting changes),
+\gls{textom} provides events (a mechanism for detecting changes),
 modification functionality (inserting, removing, and replacing children
 into\slash from parents), and traversal (e.g., finding all words in a
 sentence).
 
 \gls{nlcst} allows authors to extend the specification by defining their
-own nodes, for example creating phrase or clause nodes. \Gls{textom}
+own nodes, for example creating phrase or clause nodes. \gls{textom}
 allows for the same extension, and is build to work well with
 ``unknown'' node types.
 
@@ -722,7 +729,7 @@ program does and why it accomplishes this in a certain way---is
 important. On the other hand, commenting can also be to verbose, for
 example when the code is duplicated in natural language.
 
-\Gls{jsdoc} \autocite{google.com-clojure-compiler-jsdoc} is a markup
+\gls{jsdoc} \autocite{google.com-clojure-compiler-jsdoc} is a markup
 language for \gls{ecmascript} programs, allowing developers to embed
 documentation in source code. Later various tools can be used to extract
 the documentation and expose it separately from the original code.
