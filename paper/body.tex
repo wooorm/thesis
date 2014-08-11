@@ -32,46 +32,38 @@ Entity linking for example, is often implemented as follows
   \autocite[according to][]{stanbol-enhancer-nlp}:
 
 \begin{enumerate}
-\item
-  \emph{Language Detection (optional)} --- Based on the language of the
+\item\emph{Language Detection (optional)} --- Based on the language of the
     given text, the algorithms behind the following steps will change.
   Omitted if the implementation supports a single language;
-\item
-  \emph{Sentence Tokenisation (optional)} --- Sentence breaking elevates
+\item\emph{Sentence Tokenisation (optional)} --- Sentence breaking elevates
     performance and heightens accuracy of the following stages, in
     particular \acrshort{pos} tagging;
-\item
-  \emph{Word Tokenisation} --- The entities (words) must be free from their
-    surroundings;
-\item
-  \emph{\acrfull{pos} Tagging (optional)} --- It is often desired to link
+\item\emph{Word Tokenisation} --- The entities (words) must be free from
+  their surroundings;
+\item\emph{\acrfull{pos} Tagging (optional)} --- It is often desired to link
     several nouns or proper nouns.
   Detecting word categories makes this achievable;
-\item
-  \emph{Noun Phrase Detection (optional)} --- Although \emph{apple} and
+\item\emph{Noun Phrase Detection (optional)} --- Although \emph{apple} and
     \emph{juice} could be two entities, it is more appropriate to link to
     one entity: \emph{apple juice}.
   Detecting noun phrases makes this possible;
-\item
-  \emph{Lemmatisation or Stemming (optional)} --- Be it \emph{walk},
+\item\emph{Lemmatisation or Stemming (optional)} --- Be it \emph{walk},
     \emph{walked}, or \emph{walking}, all forms of \emph{walk} could link
     to the same entity.
   Detecting either makes this possible;
-\item
-  \emph{Entity Linking} --- Linking detected entities to references, such as
-    an encyclopaedia.
-\end{aenumerate}
+\item\emph{Entity Linking} --- Linking detected entities to references, such
+    as an encyclopaedia.
+\end{enumerate}
 
-Although \gls{nlp} covers many different tasks, the process of
-  accomplishing these goals touches on some well defined stages, as seen
-  above.
+\gls{nlp} covers many different tasks, but the process of accomplishing
+  these goals touches, as seen above, on well defined stages.
 
 \section{Scope}\label{scope}
 
 Although many \gls{nlp} tasks exist, the standard and the implementation
   this paper proposes will only cover one: \emph{tokenisation}.
-Tokenisation includes breaking sentences, words, and other grammatical
-units.
+Tokenisation, as defined here, includes breaking sentences, words, and
+other grammatical units.
 
 Another confinement set to scope the proposal, is that it focusses on
   syntactic grammatical units. Thus, semantic units (i.e., phrases and
@@ -85,7 +77,6 @@ Last, this paper focusses on Latin script languages: written languages
 
 \section{Implementations}\label{implementations}
 
-
 While researching algorithms to tokenise natural language few viable
   implementations were found.
 Most algorithms look at either sentence- or word tokenisation (rarely both).
@@ -95,7 +86,7 @@ This section describes the current implementations, where they excel, and
 \subsection{Stages}\label{stages}
 
 This section delves into how current implementations accomplish
-  tokenisation tasks
+  tokenisation tasks.
 
 \subsubsection{Sentence tokenisation}\label{sentence-tokenisation}
 
@@ -112,40 +103,35 @@ Often referred to as sentence boundary disambiguation\footnote{Both
   tokenisation is an elementary but important part of \gls{nlp}.
 It is almost always a stage in \gls{nlp} applications and not an end goal.
 Sentence tokenisation makes other stages (e.g., detecting plagiarism or
-  \gls{pos} tagging) work better.
+  \gls{pos} tagging) perform better.
 
+Oftentimes, sentences end in one of three symbols: either a full stop (.),
+  an interrogative point (?), or an exclamation point (!)\footnote{One
+    could argue the in 1962 introduced
+    obscure interrobang (‽), used to punctuate rhetorical statements where
+    neither the question nor exclamation alone exactly serve the writer
+    well, should be in this list \autocite{interrobang-mks.com}.}.
+But detecting the boundary of a sentence is not as simple as breaking it at
+  these markers: they might serve other purposes.
+Full stops often occur in numbers, suffixed to abbreviations or titles,
+  in initialisms\footnote{Although
+    the definition of initialism is ambiguous, this paper defines its use
+    as an acronym (an abbreviation formed from initial components, such as
+    ``sonar'' or ``FBI'') with full stops depicting elision (such as
+    ``e.g.'', or ``K.G.B.'').},
+  or in embedded content\footnote{Embedded
+    content in this paper refers to an external (non-grammatical) value
+    embedded into a grammatical unit, such as a hyperlink or an emoticon.
+    Note that these embedded values often consist of valid words and
+    punctuation marks, but most always shouldn't be classified as such.}.
+The interrogative- and exclamation points too can occur ambiguously, such as
+  in a quote (e.g., `\,``Of course!'', she screamed').
 
-
-
-
-
-
-
-Oftentimes, one of three symbols is used to denote the end of a
-sentences: Either a full stop (.), an interrogative point (?), or an
-exclamation point (!)\footnote{One could argue the in 1962 introduced
-  obscure interrobang (‽), used to punctuate rhetorical statements where
-  neither the question nor exclamation alone exactly serve the writer
-  well, should be in this list \autocite{interrobang-mks.com}.}.
-Detecting sentence boundaries is however not so easy as simply breaking
-sentences at these markers. The previously mentioned terminal markers
-might have other purposes: full stops are often suffixed to
-abbreviations or titles, in numbers, included in initialisms\footnote{Although
-  the definition of initialism is ambiguous, this paper defines its use
-  as an acronym (an abbreviation formed from initial components, such as
-  ``sonar'' or ``FBI'') with full stops depicting elision (such as
-  ``e.g.'', or ``K.G.B.'').}, or in embedded content\footnote{Embedded
-  content in this paper refers to an external (non-grammatical) value
-  embedded into a grammatical unit, such as a hyperlink or an emoticon.
-  Note that these embedded values often consist of valid words and
-  punctuation marks, but most always shouldn't be classified as such.}.
-The interrogative- and exclamation points too can occur ambiguously,
-most often in a quote (e.g., `\,``Of course!'', she screamed').
-Disambiguation gets even harder when the previous mentioned exceptions
-are in fact also a sentence boundary, such as in ``\ldots{}use the
-feminine form of idem, ead.'' or in `\,``Of course!'', she screamed,
-``I'll do it!''\,', where in both examples the last terminal markers end
-their respective sentence.
+Disambiguation gets even harder when these exceptions \emph{are} in fact a
+  sentence boundary (double negative), such as in
+  ``\ldots{}use the feminine form of idem, ead.'' or in
+  `\,``Of course!'', she screamed, ``I'll do it!''\,', where in both
+  cases the last terminal marker ends the respective sentence.
 
 \subsubsection{Word tokenisation}\label{word-tokenisation}
 
@@ -154,509 +140,275 @@ important stage in \gls{nlp} applications. Whether stemming, finding
 phonetics, or \gls{pos} tagging, tokenising words is an important
 precursory step.
 
-Frequently, words are seen as everything that is not white space (i.e.,
-spaces, tabs, feeds), thereby their boundaries denoted by those white
-spaces\footnote{For example, Knwl counts words using this method
-  \autocite{loadfive/knwl-source-code}.}. A smarter algorithm would also
-treat punctuation marks as word boundaries, but such a general rule
-would wrongly classify inter-word punctuation as not being part of
-words\footnote{For example, Natural's tokenisers
-  \autocite{NaturalNode/natural-source-code}.}. Many exceptions to this
-rule exist, e.g., hyphenation points, colons, or elision (whether full
-stops, ``e.g.''; apostrophes, the Dutch ``'s''; or slashes, ``N\slash A'').
+Often implementations see words as everything that is \emph{not} white
+  space (i.e., spaces, tabs, feeds) and their boundaries as everything that
+  is \autocite{loadfive/knwl-source-code}.
+
+Some implementations take punctuation marks into account as boundaries.
+This practice has flaws, as it results in the faulty classification of
+  inter-word punctation\footnote{Many such inter-word symbols exist, such
+    as hyphenation points, colons (``12:00''), or elision (whether denoted
+    by full stops, ``e.g.''; apostrophes, the Dutch ``'s''; or slashes,
+    ``N/A'').}
+  as part of the surrounding word \autocite{NaturalNode/natural-source-code}.
 
 \subsection{Tasks}\label{tasks}
 
-In the previous section implementations were covered that solve
-tokenisation stages in \gls{nlp} applications, such as Natural's word
-tokenisers \autocite{NaturalNode/natural-source-code}. Concluded was
-that these implementations are lacking. In this section several
-implementations are covered that solve these tokenisation stages as part
-of a larger natural language application.
+The previous section covered implementations that solve tokenisation stages
+  in \gls{nlp} applications, such as Natural's word
+  tokenisers \autocite{NaturalNode/natural-source-code}.
+Concluded was that these implementations are lacking.
+This section covers several implementations that solve these stages
+  as part of a larger task.
 
 \subsubsection{Sentiment Analysis}\label{sentiment-analysis}
 
-Sentiment analysis is an \gls{nlp} task which is concerned with the
-polarity (positive, negative) and subjectivity (objective, subjective)
-of text. Its application could look as follows.
+Sentiment analysis is an \gls{nlp} task concerned with the polarity
+  (positive, negative) and subjectivity (objective, subjective) of text.
+The implementation of sentiment analysis could look as follows:
 
 \begin{enumerate}
-\item
-  Optionally detect language.
-\item
-  Optionally tokenise sentences --- Different sentences could have
-  different sentiments, tokenising them helps provide better outcomes.
-\item
-  Tokenise words --- Needed to compare with the database (see the last
-  stage).
-\item
-  Optionally detect lemmas or stems --- Might help classification.
-\item
-  Detect sentiment --- Typically, sentiment analysers include a database
-  mapping words, stems, or lemmas to their respective polarity and\slash or
-  subjectivity\footnote{For example, the AFINN database mapping words to
-    polarity \autocite{nielsen-finn-arup-afinn}.}.
+\item\emph{Detect Language (optional)};
+\item\emph{Sentence Tokenisation (optional)} --- Different sentences have
+    different sentiments, tokenising them helps provide better results;
+\item\emph{Word Tokenisation} --- Needed to compare with the database;
+\item\emph{Lemmatisation or Stemming (optional)} --- Helps classification;
+\item\emph{Sentiment Analysis}.
 \end{enumerate}
 
-Many implementations exist for this task \autocites[e.g.,][]
-{thinkroth/sentimental-source-code}{mileszim/sediment-source-code}
-{thisandagain/sentiment-source-code}, many of which exclude non-alphabetic
-characters form their definition of words, resulting in less than perfect
-results\footnote{If fact, all of
-  the researched implementations deploy lacking tokenisations steps.
-  Controversial, as they each create unreachable code through their
-  naivety: all tested libraries remove dashes from words, while words
-  such as ``self-deluded'' are in the databases they use, but never
-  reachable.}.
+Sentiment analysers typically include a
+  database mapping either words, stems, or lemmas to their respective
+  polarity and\slash or subjectivity\footnote{For example, the AFINN
+    database mapping words to polarity \autocite{nielsen-finn-arup-afinn}.}
+  and return the average sentiment per sentence, or for the whole document.
+Many implementations exist for this task
+  \autocites{thinkroth/sentimental-source-code}{mileszim/sediment-source-code}
+  {thisandagain/sentiment-source-code}, many of which do not include
+  inter-word punctuation in their \emph{definition} of words, resulting in
+  less than perfect results\footnote{In fact, all found implementations
+      deploy lacking tokenisations steps.
+    Dubious, as they each create unreachable code through their naivety:
+      all implementations remove dashes from words, while words such as
+      ``self-deluded'' are included in the databases they use, but never
+      reachable.}.
 
 \subsubsection{Automatic Summarisation}\label{automatic-summarisation}
 
-Automatic summarisation is an \gls{nlp} task concerned with reducing a
-text in order to create a summary of the major points retaining the
-original document. In contrast with sentiment analysers, implementations
-of automatic summarisation algorithms on the web are less ubiquitously
-available\footnote{For example, on the web only node-summary was found
-  \autocite{jbrooksuk/node-summary-source-code}, in Scala textteaser was found
-  \autocite{MojoJolo/textteaser-source-code}.}.
-
-An example application for automatic summarisation could be as follows.
+Automatic summarisation is an \gls{nlp} task concerned with the reduction
+  of text to the \emph{major} points retaining the original document.
+Few open source implementations of automatic summarisation algorithms on
+  the web, in contrast with implementations for sentimental analysis, were
+  found\footnote{For example, on the web only node-summary was found
+    \autocite{jbrooksuk/node-summary-source-code}, in Scala textteaser was
+    found \autocite{MojoJolo/textteaser-source-code}.}.
+The implementation of automatic summarisation could look as follows:
 
 \begin{enumerate}
-\item
-  Optionally detect language.
-\item
-  Tokenise sentences --- Unless even finer grained control over the
-  document is possible (tokenising phrases), sentences are the smallest
-  unit that should stay intact in the resulting summary.
-\item
-  Tokenise words --- Used to calculate keywords (words which occur more
-  often than expected by chance alone).
-\item
-  Automatic summarisation --- Ranking the tokenised grammatical units
-  (sentences, phrases) and return the highest ranking units.
+\item\emph{Detect Language (optional)};
+\item\emph{Sentence Tokenisation (optional)} --- Unless even finer grained
+  control over the document is possible (tokenising phrases), sentences are
+  the smallest unit that should stay intact in the resulting summary;
+\item\emph{Word Tokenisation} --- Needed to calculate keywords (words
+  which occur more often than expected by chance alone);
+\item\emph{Automatic summarisation}.
 \end{enumerate}
 
-Several factors can be used to determine whether or not a phrase or
-sentence should be included from a summary:
+Automatic summarisers typically return the highest ranking units, be it
+  sentences or phrases, according to several factors:
 
 \begin{aenumerate}
-\item
-  Number of words (an ideal sentence is neither too long nor too short);
-\item
-  Number of keywords (words which occur more often than expected by
-  chance alone in the whole text);
-\item
-  Number of words from the document's title it contains;
-\item
-  Position inside a paragraph (initial and final sentences are often
-  more important than sentences buried somewhere in the middle of a
-  paragraph).
+\item\emph{Number of words} --- An ideal sentence is neither too long nor
+  too short;
+\item\emph{Number of keywords} --- Words which occur more often than
+  expected by chance alone in the whole text;
+\item\emph{Similarity to title} --- Number of words from the document's
+  title the unit contains;
+\item\emph{Position inside parent} --- Initial and final sentences of a
+  paragraph are often more important than sentences buried somewhere in
+  the middle.
 \end{aenumerate}
 
-Some implementations only include keyword metrics
-\autocite{jbrooksuk/node-summary-source-code}, others include all
-aforementioned features \autocite{MojoJolo/textteaser-source-code}, or
-even more advanced factors \autocite{summly}.
+Some implementations include only keyword metrics
+  \autocite{jbrooksuk/node-summary-source-code}, others include all features
+  \autocite{MojoJolo/textteaser-source-code}, or even more advanced factors
+  \autocite{summly}.
 
-The only implementation working on the web
-\autocite{jbrooksuk/node-summary-source-code}, takes a naive approach to
-sentence tokenisation. For example, ignoring sentences terminated by an
-exclamation point. Note that both other implementations, and many more,
-use a whole different approach to sentence tokenisation: Corpora.
+The only implementation working on the web, by James Brook
+  \autocite*{jbrooksuk/node-summary-source-code}, takes a naive sentence
+  tokenisation approach.
+Such as ignoring sentences terminated by exclamation marks.
+Both other implementations, and many more, use a whole different approach to
+  sentence tokenisation: Corpora.
 
 \subsection{Using Corpora for NLP}\label{using-corpora-for}
 
-A corpus is a large, structured set of texts used for many linguistic
-and \gls{nlp} tasks. Each item (most frequently words, but
-some corpora include sentences, phrases, clauses, and\slash or other units)
-in a corpus is annotated (``tagged'') with information about the item (for
-example, \gls{pos} tags or lemmas).
+A corpus is a large, structured set of texts used for many \gls{nlp}
+  and linguistics tasks.
+Corpora contain items (often words, but sometimes other units) annotated
+  with information (such as \gls{pos} tags or lemmas).
 
 These colossal (often more than a million words\footnote{The Brown Corpus
-  contains about a million words \autocite{francis-nelson-brown-corpus},
-  the Google N-Gram Corpus contains 155 billion
-  \autocite{brants-thorsten-google-ngram-corpus}.}) lumps of
-data are the basis of many of the newer revolutions in \gls{nlp}
-\autocite[see][]{mitkov-ruslan-ea-importance-corpora}. Supervised
-learned\footnote{``{[}From{]} a set of labeled examples as training data
-  \ldots{} {[}, make{]} predictions for all unseen points''
-  \autocite{mohri-mehryar-foundations-machine-learning}.} parsing (in
-\gls{nlp}, based on annotated corpora), is the direct antagonist of
-rule-based parsing\footnote{A simple rule-based sentence tokeniser could
-  be implemented as follows
-  \autocite{attivio.com-doing-things-with-sentences}:
+    contains about a million words \autocite{francis-nelson-brown-corpus},
+    the Google N-Gram Corpus contains 155 billion
+    \autocite{brants-thorsten-google-ngram-corpus}.})
+  lumps of data are the basis of many of the newer revolutions in \gls{nlp}
+  \autocite{mitkov-ruslan-ea-importance-corpora}.
+Parsing based on supervised learning (in \gls{nlp}, based on annotated
+  corpora), is the opposite of rule-based parsing\footnote{A simple
+    rule-based sentence tokeniser could be implemented as follows
+    \autocite{attivio.com-doing-things-with-sentences}:
 
-  \begin{aenumerate}
-  \item
-    If it is a period, it ends a sentence;
-  \item
-    If the period is preceded by an abbreviation, it does not end a
-    sentence;
-  \item
-    If the next token is capitalised, it ends a sentence.
-  \end{aenumerate}}. Instead of defining rules, exceptions to these rules,
-exceptions to these exceptions, and so on, supervised learning delegates
-this task to machines, creating a more performant, scalable, program.
+    \begin{aenumerate}
+      \item If it is a period, it ends a sentence;
+      \item If the period is preceded by an abbreviation, it does not end
+        a sentence;
+      \item If the next token is capitalised, it ends a sentence.
+    \end{aenumerate}}.
+Instead of rules (and exceptions to these rules, exceptions to these
+  exceptions, and so on) specified by a developer,
+  supervised learning\footnote{``{[}From{]} a set of labeled examples as
+    training data \ldots{} {[}, make{]} predictions for all unseen points''
+    \autocite{mohri-mehryar-foundations-machine-learning}.}
+  delegates this task to machines.
+This delegation results in a more performant, scalable, program.
 
-Generally, corpus linguistics have proven to be better in several ways
-over rule-based linguistics. However, they do have their disadvantages:
+Parsing based on corpora has proven to be better in several ways over
+  rule-based parsing, but the former has disadvantages:
 
 \begin{enumerate}
-\item
-  Some rule-based approaches for pre- and post processing are still
+\item Good training sets are required;
+\item If the corpus was created from news articles, algorithms based on it
+  will not fair so well on microblogs (e.g., Twitter posts).
+\item Some rule-based approaches for pre- and post processing are still
   required;
-\item
-  Good training sets are required;
-\item
-  If the corpus was created from news articles, algorithms based on it
-  won't fair so well on microblogs (e.g., Twitter posts).
 \end{enumerate}
 
-Most important is the fact that supervised learning will not fare well
-on the web: Loading corpora over the network each time a user request a
-web page is unfeasible for most web sites or applications\footnote{Currently,
-  almost no technologies exist for storing large datasets in a browser.
-  The only exception to the rule is the \acrshort{html5} File System
-  \acrshort{api}, but development has stopped
-  \autocite{w3.org-filesystem-dead}.}.
+In addition, corpora-based parsing will not work well on the web.
+Loading corpora over the network each time a user request a web page is
+  unfeasible for most web sites and applications\footnote{Currently,
+    one technology exists for storing large datasets in a browser: the
+    \acrshort{html5} File System \acrshort{api}. However, ``work on this
+    document has been discontinued'', and the specification ``should not be
+    used as a basis for implementation'' \autocite{urhane-file-api}.}.
 
-Two viable alternative approaches exist for the web: the aforementioned
-rule-based tokenisation, or connecting to a server over the network.
+Two viable alternative approaches exist for the web: rule-based tokenisation,
+  or connecting to a server over the network.
 
 \subsection{Using a web API}\label{using-a-web}
 
-Where the term \gls{api} stands for the interface between two programs,
-the term is often defined in the context of web development as requests
-(from a web browser), and responses (from a web server) over \gls{http}.
+Whereas the term \gls{api} stands for an interface between two programs,
+  it is often used in web development as requests (from a web browser),
+  and responses (from a web server) over \gls{http}.
 For example, Twitter has such a service to allow developers to list,
-replace, create, and delete ``Tweets'' and other objects (users, images,
-\&c.). In the context of this paper, the term Web \gls{api} is used
-for the latter, whereas \gls{api} is used for any programming interface.
+  replace, create, and delete so-called tweets and other objects (users,
+  images, \&c.).
+This paper uses the term Web \gls{api} for the latter, and \gls{api} for
+any programming interface.
 
-With the rise of the asynchronous web\footnote{Starting around 2000
-  \gls{ajax} started to transform the web. Beforehand, websites only
-  really changed when a user navigated to a new page. With \gls{ajax}
-  however, new content arrived to users without the need for a full page
-  refresh. One of the first examples are the Outlook Web App in 2000
-  \autocite{technet-outlook-web-access} and Gmail in 2004
-  \autocite{gmailblog-gmail-ajax}, both examples of how \gls{ajax} made
-  the web feel more ``app-like''.}, supervised learning too became
-widely available through web \glspl{api}
-\autocites[e.g.,][]{textteaser-web-api}{wordnet-web-api}{textrazor-web-api}.
-The new web \glspl{api} made it possible to implement supervised
-learning techniques on the web, without the need for downloading a
-corpus to your or your users' computer.
+With the rise of the asynchronous web\footnote{Starting around 2000,
+    \gls{ajax} started to transform the web.
+  Beforehand, significant changes to websites only occurred when a user
+    navigated to a new page. 
+  With \gls{ajax} however, new content arrived to users without the need
+    for a full page refresh. One of the first examples are the Outlook Web
+    App in 2000 \autocite{technet-outlook-web-access} and Gmail in 2004
+    \autocite{gmailblog-gmail-ajax}, both examples of how \gls{ajax} made
+    the web feel more ``app-like''.},
+  supervised learning became available through web \glspl{api}
+  \autocites{textteaser-web-api}{wordnet-web-api}{textrazor-web-api}.
+This made it possible to use supervised learning techniques on the web,
+  without needing to download corpora to a users computer.
 
 However, accessing \gls{nlp} web \glspl{api} over a network has
-disadvantages. Most importantly the time involved when sending data over
-the network (especially on mobile networks), the bandwidth used, and
-heightened security risks.
-
-\chapter{Design}\label{design}
-
-\section{Architecture}\label{architecture}
-
-The in this paper proposed solution to the problem of \gls{nlp} on the
-client side is split up in multiple small proposals. Each proposal
-solves a subproblem.
-
-\begin{aenumerate}
-\item
-  \gls{nlcst} --- Defines a standard for classifying grammatical units
-  understandable for machines;
-\item
-  Parse-latin --- Classifies natural language according to \gls{nlcst};
-\item
-  \gls{textom} --- Provides an interface for analysing and manipulating
-  output provided by parse-latin;
-\item
-  Retext --- Provides an interface for transforming natural language
-  into an object model and exposes an interface for plugins.
-\end{aenumerate}
-
-The decoupled approach taken by the provided solution enables other
-developers to provide their own software to replace one of the
-sub-proposals. For example, other parties can create a parser for the
-Chinese language and use it instead of parse-latin to classify natural
-language according to \gls{nlcst}.
-
-\subsection{Syntax: NLCST}\label{syntax}
-
-To develop natural language tools in \gls{ecmascript}, an intermediate
-representation of natural language is useful: instead of each module
-defining their own representation of text, using a single syntax leads
-to better results, interoperability, and performance.
-
-The elements defined by \gls{nlcst} (Natural Language Concrete Syntax
-Tree) are based on the the grammatical hierarchy, but by default do not
-expose all its constituents\footnote{The grammatical hierarchy of text
-  is constituted by words, phrases, clauses, and sentences.
-  \glspl{nlcst} only implements the sentence and word constituents by
-  default, although clauses and phrases could be provided by
-  implementations.}. Additionally, more elements are provided to cover
-other semantic units in natural language\footnote{Most notably,
-  punctuation, symbol, and white space elements.}.
-
-The definitions of exposed nodes were heavily based on other
-specifications of syntax trees for manipulation on the web platform,
-such as CSS, aptly named for the \acrshort{css} language
-\autocite{reworkcss/css-source-code} or the Mozilla JavaScript
-\acrshort{ast}, for \gls{ecmascript}
-\autocite{mozilla.org-spidermonkey-parser_api}. Both implementations are
-widely used. CSS by Rework \autocite{reworkcss/rework-source-code}, and
-Mozilla JavaScript \gls{ast} by Esprima
-\autocite{ariya/esprima-source-code}, Acorn
-\autocite{marijnh/acorn-source-code}, and Escodegen
-\autocite{constellation/escodegen-source-code}.
-
-Note that the aforementioned syntax tree specifications are both
-\glspl{ast}, whereas \gls{nlcst} is a a \gls{cst}. A concrete syntax
-tree is a one-to-one mapping of source to result. All information stored
-in the original input is also available through the resulting tree
-\autocite{thegreenplace.net-abstract-concrete-syntax-trees}.
-
-The information stored in \glspl{cst} is very verbose and could lead to
-trees that are hard to work with. On the other hand, the fact that every
-part of the input is housed in the tree, makes it easy for developers to
-save the output or pass it on to other libraries for further processing.
-
-\medskip \noindent See appendix~\ref{apendix-a-nlcst-definition} on
-page~\pageref{apendix-a-nlcst-definition} for a complete list of
-specified nodes of \gls{nlcst}.
-
-\subsection{Parser: Parse-latin}\label{parser-parse-latin}
-
-\gls{ecmascript} is used extensively. Because of this, many \gls{ecmascript}
-tools are being developed. This includes tools for Natural Language
-Processing. These \gls{ecmascript} tools however, when run on the client-side,
-can not implement supervised learning based on corpora, and web
-\gls{api} usage too is not ideal. Thus, a rule-based parser is needed to
-tokenise text.
-
-For creating such intermediate representations from Latin-script based
-languages, parse-latin is presented in this paper\footnote{Whether
-  Old-English, Icelandic, French, or even scripts slightly similar, such
-  as Cyrillic, Georgian, or Armenian.}. As proof-of-concept, two other
-libraries are also presented, parse-english and parse-dutch, using
-parse-latin as a base and providing better support for several language
-specific features, respectively English and Dutch.
-
-By following \glspl{nlcst}, modules building on parse-latin may receive
-better results or performance over implementing their own parsing tools.
-
-By using the \gls{cst} as described by \gls{nlcst} and the parser as
-described by parse-latin, the intermediate representation can be used by
-developers to create independent modules.
-
-Basically, parse-latin splits text into white space, word, and
-punctuation tokens. parse-latin starts out with a pretty simple
-definition, one that most other tokenisers use:
-
-\begin{enumerate}
-\item
-  A ``word'' is one or more letter or number characters;
-\item
-  A ``white space'' is one or more white space characters;
-\item
-  A ``punctuation'' is one or more of anything else.
-\end{enumerate}
-
-Then, it manipulates and merges those tokens into a syntax tree, adding
-sentences and paragraphs where needed.
-
-\begin{enumerate}
-\item
-  Some punctuation marks are part of the word they occur in, e.g.,
-  ``non-profit'', ``she's'', ``G.I.'', ``11:00'', ``N\slash A'';
-\item
-  Some full-stops do not mark a sentence end, e.g., ``1.'', ``e.g.'',
-  ``id.'';
-\item
-  Although full-stops, question marks, and exclamation marks (sometimes)
-  end a sentence, that end might not occur directly after the mark,
-  e.g., ``.)'', ``.'{}''.
-\end{enumerate}
-
-See appendix~\ref{appendix-b-parse-latin-output} on
-page~\pageref{appendix-b-parse-latin-output} for example output provided
-by the parse-latin parser.
-
-\subsubsection{parse-english}\label{parse-english}
-
-parse-english has the same interface as parse-latin, but returns results
-better suited for English natural language. For example:
-
-\begin{aenumerate}
-\item
-  Unit abbreviations (``tsp.'', ``tbsp.'', ``oz.'', ``ft.'', \&c.);
-\item
-  Time references (``sec.'', ``min.'', ``tues.'', ``thu.'', ``feb.'',
-  \&c.);
-\item
-  Business Abbreviations (``Inc.'' and ``Ltd.'');
-\item
-  Social titles (``Mr.'', ``Mmes.'', ``Sr.'', \&c.);
-\item
-  Rank and academic titles (``Dr.'', ``Rep.'', ``Gen.'', ``Prof.'',
-  ``Pres.'', \&c.);
-\item
-  Geographical abbreviations (``Ave.'', ``Blvd.'', ``Ft.'', ``Hwy.'',
-  \&c.);
-\item
-  American state abbreviations (``Ala.'', ``Minn.'', ``La.'', ``Tex.'',
-  \&c.);
-\item
-  Canadian province abbreviations (``Alta.'', ``Qué.'', ``Yuk.'',
-  \&c.);
-\item
-  English county abbreviations (``Beds.'', ``Leics.'', ``Shrops.'',
-  \&c.);
-\item
-  Common elision (omission of letters) (``\,`n'\,'', ``'o'', ``'em'',
-  ``'twas'', ``'80s'', \&c.).
-\end{aenumerate}
-
-\subsubsection{parse-dutch}\label{parse-dutch}
-
-parse-dutch has, just like parse-english, the same interface as
-parse-latin, but returns results better suited for Dutch natural
-language. For example:
-
-\begin{aenumerate}
-\item
-  Unit and time abbreviations (``gr.'', ``sec.'', ``min.'', ``ma.'',
-  ``vr.'', ``vrij.'', ``febr'', ``mrt'', \&c.);
-\item
-  Many other common abbreviations: (``Mr.'', ``Mv.'', ``Sr.'', ``Em.'',
-  ``bijv.'', ``zgn.'', ``amb.'', \&c.);
-\item
-  Common elision (omission of letters) (``d''', ``'n'', ``'ns'', ``'t'',
-  ``'s'', ``'er'', ``'em'', ``'ie'', \&c.).
-\end{aenumerate}
-
-\subsection{Object Model: TextOM}\label{object-model}
-
-To modify \gls{nlcst} nodes in \gls{ecmascript}, this paper proposes
-\gls{textom}. \gls{textom} implements the nodes defined by \gls{nlcst},
-but provides an object-oriented style\footnote{Object-oriented
-  programming is a style of programming, where classes, instances,
-  attributes, and methods are important.}. \gls{textom} was designed to
-  be similar to the \gls{dom}\footnote{See appendix~\ref{appendix-c-dom} on
-  page~\pageref{appendix-c-dom} for a more
-  information on the \gls{dom}.}, the mechanism used by browsers to
-expose \gls{html} through \gls{ecmascript} to developers. Because of
-\glspl{textom} likeness to the \gls{dom}, \gls{textom} is easy to learn
-and familiar to the target audience.
-
-\gls{textom} provides events (a mechanism for detecting changes),
-modification functionality (inserting, removing, and replacing children
-into\slash from parents), and traversal (e.g., finding all words in a
-sentence).
-
-\gls{nlcst} allows authors to extend the specification by defining their
-own nodes, for example creating phrase or clause nodes. \gls{textom}
-allows for the same extension, and is build to work well with
-``unknown'' node types.
-
-\subsection{Natural Language System:
-Retext}\label{natural-language-system-retext}
-
-For natural language processing on the client side, this paper proposes
-Retext. Retext combines a parser, such as parse-latin or parse-dutch,
-with a manipulatable object model (\gls{textom}).
-
-In addition, Retext provides a minimalistic plugin mechanism so
-developers can create and publish plugins for others, and in turn can
-use others' plugins inside their projects.
+  disadvantages.
+Foremost of which the time involved in sending data over a network and
+  bandwidth used (especially on mobile networks), and heightened security
+  risks.
 
 \chapter{Production}\label{production}
 
 \section{Target Audience}\label{target-audience}
 
-The audience that would benefit the most from such a solution are web
-developers: programmers who specialise in creating software for the
-world wide web. Web developers engage in client side development
-(building the interface between a human and a machine on the web), and
-sometimes also in server side development (building the interface
-between the client side and a server). Typical areas of work consist of
-programming in \gls{ecmascript}, marking up documents in \gls{html}, graphic
-design through \gls{css}, creating a back end in node.js, \gls{php},
-\&c., contacting a database through \gls{mongodb}, \gls{mysql}, and
-more. In addition, many interdisciplinary skills are also of concern to
-web developers, such as usability, accessibility, copywriting,
-information architecture, optimisation.
+The audience that benefits the most from the proposal, are web developers.
+Web developers are programmers who specialise in creating software that
+  functions on the world wide web.
+A group which enables machines to respond to humans.
+They engage in client side development (building the interface between
+  a human and a machine on the web), and sometimes also in server side
+  development (building the interface between the client side and a
+  server).
+
+Typical areas of work consist of programming in \gls{ecmascript},
+  marking up documents in \gls{html}, graphic design through \gls{css},
+  creating a back end in Node.js, \gls{php}, or other platforms, contacting a
+  \gls{mongodb}, \gls{mysql}, or other database, and more.
+
+Additionally, many interdisciplinary skills, such as usability,
+  accessibility, copywriting, information architecture, or optimisation,
+  are also of concern to web developers.
 
 \section{Use cases}\label{use-cases}
 
-The use cases of the target audience, the front-end developer, in the
-field of \gls{nlp} are many. Research for this paper found several use
-cases, although it is expected many more could be defined. The tasks
-below can be categorised into three broad fields: analysation,
-manipulation, and creation.
+The use cases of the target audience, the web developer, in the field of
+  \gls{nlp} are many.
+Research for this paper found several use cases, although it is
+  expected many more could be defined.
+The tasks below are each categorised into broad, generic fields: analysation,
+  manipulation, and creation.
 
 \begin{aenumerate}
-\item
-  The practitioner may intent summarise natural text (mostly
-  analysation, potentially also manipulation);
-\item
-  The practitioner may intent to create natural language, e.g.,
-  displaying the number of unread messages: ``You have 1 unread
-  message,'' or ``You have 0 unread messages'' (creation);
-\item
-  The practitioner may intent to recognise sentiment in text: is a Tweet
-  positive, negative, or spam? (analysation);
-\item
-  The practitioner may intent to replace so-called ``dumb'' punctuation
-  with so-called ``smart'' punctuation, e.g., dumb quotation with (``)
-  or (''); three dots with an ellipsis (\ldots{}), or two hyphens with
-  an en-dash (--) (manipulation);
-\item
-  The practitioner may intent to count the number of certain elements in
-  the grammatical hierarchy in a document, e.g, words, white space,
-  punctuation, sentences, or paragraphs (analysation);
-\item
-  The practitioner may intent to recognise which language a given
-  document is written in (analysation);
-\item
-  The practitioner may intent to find words based on a search term, with
-  regards for the lemma (or stem) and\slash or phonetics (so that a search
-  for ``smit'' also returns similar words, such as ``Schmidt'' or ``Smith'')
-  (analysation and manipulation).
+\item The developer may intent to summarise natural text (mostly analysation,
+  potentially also manipulation);
+\item The developer may intent to create natural language, e.g., displaying
+  the number of unread messages: ``You have 1 unread message,'' or ``You
+  have 0 unread messages'' (creation);
+\item The developer may intent to recognise sentiment in text: is a
+  \emph{tweet} positive, negative, or spam? (analysation);
+\item The developer may intent to replace so-called \emph{dumb} punctuation
+  with \emph{smart} punctuation, such as dumb quotations with (``) or (''),
+  three dots with an ellipsis (\ldots{}), or two hyphens with an en-dash
+  (--) (manipulation);
+\item The developer may intent to count the number of certain grammatical
+  units in a document, such as, words, white space, punctuation, sentences,
+  or paragraphs (analysation);
+\item The developer may intent to recognise the language in which a document
+  is written (analysation);
+\item The developer may intent to find words in a document based on a search
+  term, with regards for the lemma (or stem) and\slash or phonetics (so that
+  a search for ``smit'' also returns similar words, such as ``Schmidt'' or
+  ``Smith'') (analysation and manipulation).
 \end{aenumerate}
 
-Natural Language Processing is a broad field concerned with the
-interactions between computers and human languages, with bases in
-computer science, artificial intelligence, and linguistics. \gls{nlp}
-poses may challenges, but not every challenge challenge in the field is
-of interest to the web developer---the developer enabling machines to
-respond to humans through the world wide web. Most importantly, the more
-academic areas of \gls{nlp} do not fit well with the goals of web
-developers, e.g., speech recognition, optical character recognition,
-text-to-speech transformation, translation, or machine learning.
+\gls{nlp} is a large field with many challenges, but not every challenge in
+  the field is of interest to the web developer.
+Foremost, the more academic areas of \gls{nlp}, such as speech recognition,
+  optical character recognition, text-to-speech transformation, translation,
+  and machine learning, do not fit well with the goals of web developers.
 
 \section{Requirements}\label{requirements}
 
-The in the previous section covered use cases are required to be
-reachable through the proposed solution. In addition, this section
-covers other requirements to better suit the wishes of the target
-audience.
+The proposal must enable the target audience to reach the in the previous
+  section defined use cases.
+In addition, the proposal should meet several other requirements to better
+  suit the wishes of the target audience.
 
 \subsection{Open Source}\label{open-source}
 
-To reach the target audience and validate its use, the software was
-developed as open source software---software that is free for all to use
-and redistribute. All projects were licensed under The \acrshort{mit}
-License \autocite{opensource.org-licenses-mit}, a license which provides
-rights for others to use, copy, modify, merge, publish, distribute,
-sublicense, and\slash or sell copies of these projects.
+To reach the target audience and validate its usability, the proposal
+  should be open source.
+All code should be licensed under \acrshort{mit}, a license which
+  provides rights for others to use, copy, modify, merge, publish,
+  distribute, sublicense, and\slash or sell copies of the code it covers.
 
-In addition, the software was developed under the all-seeing-eye of the
-GitHub community. GitHub is a hosted version control\footnote{Version
-  control services manage revisions to documents, popularly used for
-  controlling and tracking changes in software.} service with social
-networking features. On GitHub, many web developers follow their peers
-to track what they are working on, watch their favourite projects to get
-notified of changes, and raise issues or feature requests.
+In addition, the software should be developed under the all-seeing eye of
+  the community: GitHub.
+GitHub is a hosted version control\footnote{Version
+    control services manage revisions to documents, popularly used for
+    controlling and tracking changes in software.} service with social
+  networking features.
+On GitHub, web developers follow their peers to track what they are
+  working on, watch their favourite projects to get notified of changes,
+  and raise issues and feature requests.
 
 \subsection{Performance}\label{performance}
 
@@ -809,6 +561,221 @@ exist, the most popular\footnote{Popularity here is simply defined as
 To reach the target audience, in addition of making the whole source
 available for download through Git and GitHub, \gls{npm}, Bower, and Component
 were used.
+
+\chapter{Design \& Architecture}\label{design}
+
+The in this paper proposed solution to the problem of \gls{nlp} on the
+client side is split up in multiple small proposals. Each proposal
+solves a subproblem.
+
+\begin{aenumerate}
+\item
+  \gls{nlcst} --- Defines a standard for classifying grammatical units
+  understandable for machines;
+\item
+  Parse-latin --- Classifies natural language according to \gls{nlcst};
+\item
+  \gls{textom} --- Provides an interface for analysing and manipulating
+  output provided by parse-latin;
+\item
+  Retext --- Provides an interface for transforming natural language
+  into an object model and exposes an interface for plugins.
+\end{aenumerate}
+
+The decoupled approach taken by the provided solution enables other
+developers to provide their own software to replace one of the
+sub-proposals. For example, other parties can create a parser for the
+Chinese language and use it instead of parse-latin to classify natural
+language according to \gls{nlcst}.
+
+\section{Syntax: NLCST}\label{syntax}
+
+To develop natural language tools in \gls{ecmascript}, an intermediate
+representation of natural language is useful: instead of each module
+defining their own representation of text, using a single syntax leads
+to better results, interoperability, and performance.
+
+The elements defined by \gls{nlcst} (Natural Language Concrete Syntax
+Tree) are based on the the grammatical hierarchy, but by default do not
+expose all its constituents\footnote{The grammatical hierarchy of text
+  is constituted by words, phrases, clauses, and sentences.
+  \glspl{nlcst} only implements the sentence and word constituents by
+  default, although clauses and phrases could be provided by
+  implementations.}. Additionally, more elements are provided to cover
+other semantic units in natural language\footnote{Most notably,
+  punctuation, symbol, and white space elements.}.
+
+The definitions of exposed nodes were heavily based on other
+specifications of syntax trees for manipulation on the web platform,
+such as CSS, aptly named for the \acrshort{css} language
+\autocite{reworkcss/css-source-code} or the Mozilla JavaScript
+\acrshort{ast}, for \gls{ecmascript}
+\autocite{mozilla.org-spidermonkey-parser_api}. Both implementations are
+widely used. CSS by Rework \autocite{reworkcss/rework-source-code}, and
+Mozilla JavaScript \gls{ast} by Esprima
+\autocite{ariya/esprima-source-code}, Acorn
+\autocite{marijnh/acorn-source-code}, and Escodegen
+\autocite{constellation/escodegen-source-code}.
+
+Note that the aforementioned syntax tree specifications are both
+\glspl{ast}, whereas \gls{nlcst} is a a \gls{cst}. A concrete syntax
+tree is a one-to-one mapping of source to result. All information stored
+in the original input is also available through the resulting tree
+\autocite{thegreenplace.net-abstract-concrete-syntax-trees}.
+
+The information stored in \glspl{cst} is very verbose and could lead to
+trees that are hard to work with. On the other hand, the fact that every
+part of the input is housed in the tree, makes it easy for developers to
+save the output or pass it on to other libraries for further processing.
+
+\medskip \noindent See appendix~\ref{apendix-a-nlcst-definition} on
+page~\pageref{apendix-a-nlcst-definition} for a complete list of
+specified nodes of \gls{nlcst}.
+
+\section{Parser: Parse-latin}\label{parser-parse-latin}
+
+\gls{ecmascript} is used extensively. Because of this, many \gls{ecmascript}
+tools are being developed. This includes tools for Natural Language
+Processing. These \gls{ecmascript} tools however, when run on the client-side,
+can not implement supervised learning based on corpora, and web
+\gls{api} usage too is not ideal. Thus, a rule-based parser is needed to
+tokenise text.
+
+For creating such intermediate representations from Latin-script based
+languages, parse-latin is presented in this paper\footnote{Whether
+  Old-English, Icelandic, French, or even scripts slightly similar, such
+  as Cyrillic, Georgian, or Armenian.}. As proof-of-concept, two other
+libraries are also presented, parse-english and parse-dutch, using
+parse-latin as a base and providing better support for several language
+specific features, respectively English and Dutch.
+
+By following \glspl{nlcst}, modules building on parse-latin may receive
+better results or performance over implementing their own parsing tools.
+
+By using the \gls{cst} as described by \gls{nlcst} and the parser as
+described by parse-latin, the intermediate representation can be used by
+developers to create independent modules.
+
+Basically, parse-latin splits text into white space, word, and
+punctuation tokens. parse-latin starts out with a pretty simple
+definition, one that most other tokenisers use:
+
+\begin{enumerate}
+\item
+  A ``word'' is one or more letter or number characters;
+\item
+  A ``white space'' is one or more white space characters;
+\item
+  A ``punctuation'' is one or more of anything else.
+\end{enumerate}
+
+Then, it manipulates and merges those tokens into a syntax tree, adding
+sentences and paragraphs where needed.
+
+\begin{enumerate}
+\item
+  Some punctuation marks are part of the word they occur in, e.g.,
+  ``non-profit'', ``she's'', ``G.I.'', ``11:00'', ``N\slash A'';
+\item
+  Some full-stops do not mark a sentence end, e.g., ``1.'', ``e.g.'',
+  ``id.'';
+\item
+  Although full-stops, question marks, and exclamation marks (sometimes)
+  end a sentence, that end might not occur directly after the mark,
+  e.g., ``.)'', ``.'{}''.
+\end{enumerate}
+
+See appendix~\ref{appendix-b-parse-latin-output} on
+page~\pageref{appendix-b-parse-latin-output} for example output provided
+by the parse-latin parser.
+
+\subsection{parse-english}\label{parse-english}
+
+parse-english has the same interface as parse-latin, but returns results
+better suited for English natural language. For example:
+
+\begin{aenumerate}
+\item
+  Unit abbreviations (``tsp.'', ``tbsp.'', ``oz.'', ``ft.'', \&c.);
+\item
+  Time references (``sec.'', ``min.'', ``tues.'', ``thu.'', ``feb.'',
+  \&c.);
+\item
+  Business Abbreviations (``Inc.'' and ``Ltd.'');
+\item
+  Social titles (``Mr.'', ``Mmes.'', ``Sr.'', \&c.);
+\item
+  Rank and academic titles (``Dr.'', ``Rep.'', ``Gen.'', ``Prof.'',
+  ``Pres.'', \&c.);
+\item
+  Geographical abbreviations (``Ave.'', ``Blvd.'', ``Ft.'', ``Hwy.'',
+  \&c.);
+\item
+  American state abbreviations (``Ala.'', ``Minn.'', ``La.'', ``Tex.'',
+  \&c.);
+\item
+  Canadian province abbreviations (``Alta.'', ``Qué.'', ``Yuk.'',
+  \&c.);
+\item
+  English county abbreviations (``Beds.'', ``Leics.'', ``Shrops.'',
+  \&c.);
+\item
+  Common elision (omission of letters) (``\,`n'\,'', ``'o'', ``'em'',
+  ``'twas'', ``'80s'', \&c.).
+\end{aenumerate}
+
+\subsection{parse-dutch}\label{parse-dutch}
+
+parse-dutch has, just like parse-english, the same interface as
+parse-latin, but returns results better suited for Dutch natural
+language. For example:
+
+\begin{aenumerate}
+\item
+  Unit and time abbreviations (``gr.'', ``sec.'', ``min.'', ``ma.'',
+  ``vr.'', ``vrij.'', ``febr'', ``mrt'', \&c.);
+\item
+  Many other common abbreviations: (``Mr.'', ``Mv.'', ``Sr.'', ``Em.'',
+  ``bijv.'', ``zgn.'', ``amb.'', \&c.);
+\item
+  Common elision (omission of letters) (``d''', ``'n'', ``'ns'', ``'t'',
+  ``'s'', ``'er'', ``'em'', ``'ie'', \&c.).
+\end{aenumerate}
+
+\section{Object Model: TextOM}\label{object-model}
+
+To modify \gls{nlcst} nodes in \gls{ecmascript}, this paper proposes
+\gls{textom}. \gls{textom} implements the nodes defined by \gls{nlcst},
+but provides an object-oriented style\footnote{Object-oriented
+  programming is a style of programming, where classes, instances,
+  attributes, and methods are important.}. \gls{textom} was designed to
+  be similar to the \gls{dom}\footnote{See appendix~\ref{appendix-c-dom} on
+  page~\pageref{appendix-c-dom} for a more
+  information on the \gls{dom}.}, the mechanism used by browsers to
+expose \gls{html} through \gls{ecmascript} to developers. Because of
+\glspl{textom} likeness to the \gls{dom}, \gls{textom} is easy to learn
+and familiar to the target audience.
+
+\gls{textom} provides events (a mechanism for detecting changes),
+modification functionality (inserting, removing, and replacing children
+into\slash from parents), and traversal (e.g., finding all words in a
+sentence).
+
+\gls{nlcst} allows authors to extend the specification by defining their
+own nodes, for example creating phrase or clause nodes. \gls{textom}
+allows for the same extension, and is build to work well with
+``unknown'' node types.
+
+\section{Natural Language System:
+Retext}\label{natural-language-system-retext}
+
+For natural language processing on the client side, this paper proposes
+Retext. Retext combines a parser, such as parse-latin or parse-dutch,
+with a manipulatable object model (\gls{textom}).
+
+In addition, Retext provides a minimalistic plugin mechanism so
+developers can create and publish plugins for others, and in turn can
+use others' plugins inside their projects.
 
 \chapter{Validation}\label{validation}
 
