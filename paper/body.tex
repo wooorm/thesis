@@ -401,7 +401,7 @@ All code should be licensed under \acrshort{mit}, a license which
   distribute, sublicense, and\slash or sell copies of the code it covers.
 
 In addition, the software should be developed under the all-seeing eye of
-  the community: GitHub.
+  the community: on GitHub.
 GitHub is a hosted version control\footnote{Version
     control services manage revisions to documents, popularly used for
     controlling and tracking changes in software.} service with social
@@ -412,155 +412,136 @@ On GitHub, web developers follow their peers to track what they are
 
 \subsection{Performance}\label{performance}
 
-The in this paper proposed implementations were produced with high
-regards for performance. Performance includes the software having a
-small file size in order to reach the client over the network with the
-highest possible speed, but most importantly that the execution of code
-should operate efficiently and at at high speeds.
+The proposal should execute at high \emph{performance}.
+Performance includes the software having a small file size to reach the
+  client over the network with the highest possible speed, but most
+  importantly that the execution of code should operate efficiently and
+  at at high speeds.
 
 \subsection{Testing}\label{testing}
 
-With the development of the in this paper introduced software, testing
-was given high priority. Testing, in software development, refers to
-validating if software does what it is supposed to do, and can be
-divided into multiple subgroups:
+\emph{Testing} should have high priority in the development of the proposal.
+Testing, in software development, refers to validating if software does what
+  it is supposed to do, and can be divided into several subgroups:
 
 \begin{aenumerate}
-\item
-  Unit testing --- Validation of each specific section of code;
-\item
-  Integration testing --- Validation of how programs work together;
-\item
-  System testing --- Validation of if system meets its requirements;
-\item
-  Acceptance testing --- Validation of the end product.
+\item\emph{Unit testing} --- Validation of each specific section of code;
+\item\emph{Integration testing} --- Validation of how programs work together;
+\item\emph{System testing} --- Validation of if the system meets its
+  requirements;
+\item\emph{Acceptance testing} --- Validation of the end product.
 \end{aenumerate}
 
-Great care was given to develop a full test suite with full coverage for
-every program. Coverage, in software development, is a term used to
-describe the amount of code tested by the test suite: full coverage
-means every part of the code is reached by the tests.
+Great care should be given to develop an adequate test suite with full
+  \emph{coverage} for every program.
+Coverage, in software development, is a term used to describe the amount of
+  code tested by the test suite.
+Full coverage means every part of the code is reached by the tests.
 
-Unit test were run through Mocha
-\autocite{visionmedia/mocha-source-code}, coverage was detected with
-Istanbul \autocite{gotwarlost/istanbul-source-code}.
+Unit test run through Mocha \autocite{visionmedia/mocha-source-code},
+  coverage is detected by Istanbul
+  \autocite{gotwarlost/istanbul-source-code}.
 
 \subsection{Code quality}\label{code-quality}
 
-Great attention was given to code quality: how useful and readable for
-both humans and machines the software is. Special focus was given to
-consistency and clearness for humans.
+\emph{Code quality}---how useful and readable for both humans and machines
+  the software is---should be vital. For humans, the code should be
+  consistent and clear. For computers, the code should be free of bugs and
+  other suspicious code.
 
 \subsubsection{Suspicious Code and Bugs}\label{suspicious-code-and-bugs}
 
 To detect bugs and suspicious code in the software, Eslint
-\autocite{eslint/eslint-source-code} was used. The act of linting, in
-computer programming, is a term used to describe static code analysis to
-detect syntactic discrepancies without actually running the code. Eslint
-was used because it provides a solid basic set of rules and enables
-developers to create custom rules.
+  is used \autocite{eslint/eslint-source-code}.
+\emph{Linting}, in computer programming, is a term used to describe static
+  code analysis to detect syntactic discrepancies without running the code.
+Eslint is used because it provides a solid set of basic rules and enables
+  developers to create custom rules.
 
 \subsubsection{Style}\label{style}
 
-To enforce a consistent code style, in order to create software readable
-for humans, \gls{jscs} was used
-\autocite{mdevils/node-jscs-source-code}. \gls{jscs} provides rules for
-allowing or disallowing patters such as white space at the end of a line
-or camel cased variable names, or setting a maximum line length.
-\gls{jscs} was chosen because it, just like the aforementioned Eslint,
-provides a strong base set of rules. The rules chosen for the
-development of the proposed software was set very strict to enforce all
-code was written in the same manner.
+To enforce a consistent code style---to create readable software for
+  humans---\acrshort{jscs} is used \autocite{mdevils/node-jscs-source-code}.
+\acrshort{jscs} provides rules for (dis)allowing certain code patterns,
+  such as white space at the end of a line or camel cased variable names,
+  or enforcing a maximum line length.
+\acrshort{jscs} was chosen because it, just like Eslint, provides a strong
+  basic set of rules.
+The rules chosen for the development of the proposal were set strict to
+  enforce all code to be written in the same manner.
 
 \subsubsection{Commenting}\label{commenting}
 
-Even when code is completely bug free, uses no hard-to-understand
-shortcuts, and adheres to a strict style, it might still be hard to
-understand for humans. The act of commenting code---describing what a
-program does and why it accomplishes this in a certain way---is
-important. On the other hand, commenting can also be to verbose, for
-example when the code is duplicated in natural language.
+Even when code is bug free, uses no confusing shortcuts, and adheres to a
+  strict style, it might still be hard to understand for humans.
+\emph{Commenting} code---describing what a program does and why it
+  accomplishes this in a certain way---is important.
+However, commenting can also be too verbose, for example when the code is
+  duplicated in natural language.
 
-\gls{jsdoc} \autocite{google.com-clojure-compiler-jsdoc} is a markup
-language for \gls{ecmascript} programs, allowing developers to embed
-documentation in source code. Later various tools can be used to extract
-the documentation and expose it separately from the original code.
-
-Great care was given to annotate ``tricky'' source code inside the
-software with comments, and to apply documentation inside the source
-code through \gls{jsdoc}.
+\gls{jsdoc} \autocite{google.com-clojure-compiler-jsdoc} is a markup language
+  for \gls{ecmascript} that allows developers to embed documentation---using
+  comments---in source code.
+Several tools can later extract this information and expose it separate
+  from the original code.
+``Tricky'' code should be annotated inside the software with comments to help
+  readers understand why certain decisions were made.
 
 \subsection{Automation}\label{automation}
 
-Great focus was given to develop using several automated \gls{ci}
-environments. When suspicious, ambiguous, or buggy code was introduced
-in the software, the error was automatically detected and in some cases
-deployment was prevented.
-
-Tools user were Code Climate \autocite{codeclimate.com} to detect
-complex, duplicate, or bug-prone code, and Travis
-\autocite{travis-ci.org} to validate all unit tests passed before
-deploying the software.
+When suspicious, ambiguous, or buggy code is introduced in the software, the
+  error should be automatically detected.
+In some cases deployment should be prevented.
+Automated \gls{ci} environments to enforce error detection should be used.
+To detect complex, duplicate, or bug-prone code, Code Climate is used
+  \autocite{codeclimate.com}.
+To validate all tests passed before deploying the software, Travis is used
+  \autocite{travis-ci.org}.
 
 \subsection{API Design}\label{design-1}
 
-Interface design was given high priority for the development of the
-proposed software. A clear interface of the software, according to
-Joshua Bloch \autocite*{bloch-joshua-how-design-good-api-why-matters},
-has the following characteristics:
+Quality interface design should have high priority for the proposal.
+A good \gls{api}, according to Joshua Bloch
+  \autocite*{bloch-joshua-how-design-good-api-why-matters}, has the following
+  characteristics:
 
 \begin{enumerate}
-\item
-  Easy to learn;
-\item
-  Easy to use;
-\item
-  Hard to misuse;
-\item
-  Easy to read;
-\item
-  Easy to maintain;
-\item
-  Easy to extend;
-\item
-  Meeting its requirements;
-\item
-  Appropriate for the target audience.
+\item Easy to learn;
+\item Easy to use;
+\item Hard to misuse;
+\item Easy to read;
+\item Easy to maintain;
+\item Easy to extend;
+\item Meeting its requirements;
+\item Appropriate for the target audience.
 \end{enumerate}
 
-In essence equal but worded differently are the characteristics of good
-\gls{api} design according to the Qt Project
-\autocite{qt-project.org-api-design-principles}, are as follows:
+In essence equal, but worded differently, are the characteristics of good
+  \gls{api} design according to the Qt Project
+  \autocite*{qt-project.org-api-design-principles}:
 
 \begin{enumerate}
-\item
-  Be minimal;
-\item
-  Be complete;
-\item
-  Have clear and simple semantics;
-\item
-  Be intuitive;
-\item
-  Be easy to memorise;
-\item
-  Lead to readable code.
+\item Be minimal;
+\item Be complete;
+\item Have clear and simple semantics;
+\item Be intuitive;
+\item Be easy to memorise;
+\item Lead to readable code.
 \end{enumerate}
 
-With the creation of the software these characteristics, and the in
-their sources given examples, were taken into account.
+The proposal should take these characteristics, and the in their sources
+  given examples, into account.
 
 \subsection{Installation}\label{installation}
 
-Access both on the client side and on the server side to the software
-was of importance during the development of the software. For the server
-side on Node.js, \gls{npm}---the default package manager for the platform---is
-the most popular. On the client side, many different package managers
-exist, the most popular\footnote{Popularity here is simply defined as
-  having the most search results on Google.} being Bower and Component.
-To reach the target audience, in addition of making the whole source
-available for download through Git and GitHub, \gls{npm}, Bower, and Component
-were used.
+Simple access to the software for the target audience, both on the client
+  side and on the server side, should be given high priority.
+On the client side, many different package managers exist, the most
+  popular being Bower and Component\footnote{Popularity here is simply
+    defined as having the highest number of search results on Google.}.
+For Node.js (on the server side), \gls{npm} is the most popular.
+To reach the target audience, besides making the source available on GitHub,
+  all popular package managers, \gls{npm}, Bower, and Component, are used.
 
 \chapter{Design \& Architecture}\label{design}
 
