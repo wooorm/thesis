@@ -101,8 +101,13 @@
 % 1.215: the heigth of a typical lower letter in Libertine (.215).
 \setstretch{1.0125}
 
+% Remove space between list items.
 \usepackage{enumitem}
 \setlist{noitemsep}
+
+% Don't reset footnote counter per chapter.
+\usepackage{chngcntr}
+\counterwithout{footnote}{chapter}
 
 %********************************************************************
 % Hyphenation & Line breaking
