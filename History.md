@@ -1,4 +1,36 @@
 
+n.n.n / 2014-08-12
+==================
+
+ * Fix chapter on validation
+ * Add more references
+ * Fix chapter on Design
+ * Remove functionality to reset footnote counters every chapter
+ * Fix wording in Production
+ * Fix dedication
+ * Fix many sections
+ * Add hyphenation for princeton, university
+ * Fix bug in acronym, in acronym (AJAX)
+ * Add spec to references
+ * Fix wording for a few initial sections
+ * Reword introduction, for a simpler tone of voice
+ * Fix bug with small caps and majuscule
+ * Fix acronyms
+ * Fix a case of wrong quotation paris
+ * Fix lists; fix DRYness
+ * Fix another incorrect sentence structure
+ * Fix incorrect sentence structure
+ * Add better line height (based on x-height)
+ * Add centering for title on cover
+ * Fix some informal wording
+ * Fix some typos
+ * Added some more acronyms/glossary entries; add actual links to appendices
+ * Add a cool case of aliteration to acknowledgments
+ * Add family name of supervisor
+ * Fix titleback
+ * Fix cover
+ * Fix titlepage
+
 0.0.3 / 2014-08-10
 ==================
 
