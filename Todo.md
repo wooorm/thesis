@@ -6,7 +6,7 @@
   - [x] Email address;
   - [x] Date of submission;
 - [ ] Executive summary;
-  - [ ] Summary;
+  - [x] Summary;
   - [ ] Methods;
   - [ ] Resuls;
 - [x] Introduction;
