@@ -194,15 +194,15 @@
 %********************************************************************
 % Frontmatter
 %********************************************************************
-\include{cover}
-\include{titlepage}
-\include{titleback}
-\cleardoublepage\include{acknowledgments}
-\cleardoublepage\include{abstract}
-\cleardoublepage\include{introduction}
+\input{paper/cover}
+\input{paper/titlepage}
+\input{paper/titleback}
+\cleardoublepage\input{paper/acknowledgments}
+\cleardoublepage\input{paper/abstract}
+\cleardoublepage\input{paper/introduction}
 
 \pagestyle{scrheadings}
-\cleardoublepage\include{contents}
+\cleardoublepage\input{paper/contents}
 
 %********************************************************************
 % Mainmatter
@@ -213,7 +213,7 @@
 % Reset glossary use.
 \glsresetall
 
-\include{body}
+\input{paper/body}
 \cleardoublepage
 
 % ********************************************************************
@@ -222,12 +222,12 @@
 \appendix
 \cleardoublepage\part{Appendix}
 
-\include{appendix-a}
-\include{appendix-b}
-\include{appendix-c}
+\input{paper/appendix-a}
+\input{paper/appendix-b}
+\input{paper/appendix-c}
 
-\cleardoublepage\include{glossary}
-\cleardoublepage\include{bibliography}
+\cleardoublepage\input{paper/glossary}
+\cleardoublepage\input{paper/bibliography}
 
 % ********************************************************************
 % Game Over: Restore, Restart, or Quit?
