@@ -10,7 +10,7 @@ documents can be represented by the \gls{dom}.
 
 Consider the following HTML document:
 
-\begin{lstlisting}[language=HTML]
+\begin{lstlisting}
 <!DOCTYPE html>
 <html class=e>
     <head><title>Aliens?</title></head>
@@ -27,9 +27,9 @@ Is represented by the \gls{dom} as follows:
       |- Element: head
       |  |- Element: title
       |     |- Text: Aliens?
-      |- Text: \n␣
+      |- Text: "\n "
       |- Element: body
-        |- Text: Why yes.\n
+        |- Text: "Why yes.\n"
 \end{lstlisting}
 
 The \gls{dom} interfaces of bygone times were widely considered horrible,
