@@ -1,7 +1,10 @@
 %*******************************************************
 % Abstract
 %*******************************************************
-\pdfbookmark[1]{Introduction}{introduction}
+% to have the introduction a bit from the rest in the toc
+\refstepcounter{dummy}
+\addtocontents{toc}{\protect\vspace{\beforebibskip}}
+\addcontentsline{toc}{chapter}{\tocEntry{Introduction}}
 
 \begingroup
 \let\clearpage\relax

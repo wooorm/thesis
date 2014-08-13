@@ -2,13 +2,18 @@
 % Table of Contents
 %*******************************************************
 %\phantomsection
-\refstepcounter{dummy}
-\pdfbookmark[1]{\contentsname}{tableofcontents}
+% \refstepcounter{dummy}
+% \pdfbookmark[1]{\contentsname}{tableofcontents}
 
-% 2 includes up to subsections in the ToC
+% to have the contents a bit from the rest in the toc
+\refstepcounter{dummy}
+\addtocontents{toc}{\protect\vspace{\beforebibskip}}
+\addcontentsline{toc}{chapter}{\tocEntry{\contentsname}}
+
+% `2` includes up to subsections in the ToC
 \setcounter{tocdepth}{2}
 
-% 3 numbers up to subsubsections
+% `3` numbers up to subsubsections
 \setcounter{secnumdepth}{3}
 \manualmark
 \markboth{\spacedlowsmallcaps{\contentsname}}{\spacedlowsmallcaps{\contentsname}}

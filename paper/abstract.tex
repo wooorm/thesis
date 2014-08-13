@@ -1,7 +1,10 @@
 %*******************************************************
 % Abstract
 %*******************************************************
-\pdfbookmark[1]{Abstract}{abstract}
+% to have the abstract a bit from the rest in the toc
+\refstepcounter{dummy}
+\addtocontents{toc}{\protect\vspace{\beforebibskip}}
+\addcontentsline{toc}{chapter}{\tocEntry{Abstract}}
 
 \begingroup
 \let\clearpage\relax
