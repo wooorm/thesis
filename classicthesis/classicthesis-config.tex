@@ -97,7 +97,7 @@
 %\renewcommand*{\acsfont}[1]{\textssc{#1}}
 
 % fix the list of acronyms
-\renewcommand{\bflabel}[1]{{#1}\hfill}
+% \renewcommand{\bflabel}[1]{{#1}\hfill}
 % ****************************************************************************
 
 
@@ -123,24 +123,20 @@
 % 5. Setup code listings
 % ****************************************************************************
 \usepackage{listings} 
-%\lstset{emph={trueIndex,root},emphstyle=\color{BlueViolet}}%\underbar} % for special keywords
 
-% \usepackage{color}
-
-\lstset{language=[LaTeX]Tex,IDL%C++,
-    basicstyle=\ttfamily,
-    sensitive=true,
+\lstset{
+    basicstyle=\footnotesize\ttfamily,
+    % sensitive=true,
     breaklines=true,
-    tabsize=2
-    numbers=none,%left,%
-    numberstyle=\scriptsize,%\tiny
-    stepnumber=5,
+    tabsize=4,
+    numbers=left,
+    numberstyle=\scriptsize,
     numbersep=8pt,
+    stepnumber=1,
     showstringspaces=false,
-    frameround=ftff,
-    frame=none,
-    belowcaptionskip=.75\baselineskip
-} 
+    frame=none
+}
+
 % ****************************************************************************
 
 % ****************************************************************************
