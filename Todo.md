@@ -2,9 +2,9 @@
 
 - [ ]  All
   - [ ] Max. no. of p.: 30. Incl. intro., TOC, &c. Excl. appendices;
-- [ ] Titleback
+- [x] Titleback
   - [x] Email address;
-  - [ ] Date of submission;
+  - [x] Date of submission;
 - [ ] Executive summary;
   - [ ] Summary;
   - [ ] Methods;
