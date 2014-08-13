@@ -9,8 +9,8 @@
   - [ ] Summary;
   - [ ] Methods;
   - [ ] Resuls;
-- [ ] Introduction;
-  - [ ] Motivation;
+- [x] Introduction;
+  - [x] Motivation;
 - [ ] Context;
   - [ ] Research Framework / Research objective;
   - [ ] Research questions;
