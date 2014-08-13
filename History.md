@@ -1,4 +1,26 @@
 
+n.n.n / 2014-08-13
+==================
+
+ * Add todo list
+ * Rename target, output > latex
+ * Remove copying files in build step
+ * Moved quote on nlp
+ * Remove classic thesis boilerplate
+ * Removed reference to WikiPedia
+ * Remove mention of nsa
+ * Add student number
+ * Add section on Future Work
+ * Fix sentence in Conclusion: Summary
+ * Remove warnings
+ * Update styling of listings
+ * Fix some code issues
+ * Remove duplicate fields in references
+ * Add summary in Conclusion
+ * Add definition of NLP
+ * Add quote macro
+ * Add reference to a definition of NLP
+
 0.0.4 / 2014-08-12
 ==================
 
