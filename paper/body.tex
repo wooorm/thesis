@@ -264,8 +264,8 @@ These colossal (often more than a million words\footnote{The Brown Corpus
   lumps of data are the basis of many of the newer revolutions in \gls{nlp}
   \autocite{mitkov-ruslan-ea-importance-corpora}.
 Parsing based on supervised learning (in \gls{nlp}, based on annotated
-  corpora), is the opposite of rule-based parsing\footnote{A simple
-    rule-based sentence tokeniser could be implemented as follows
+  corpora), is the opposite of rule based parsing\footnote{A simple
+    rule based sentence tokeniser could be implemented as follows
     \autocite{attivio.com-doing-things-with-sentences}:
 
     \begin{aenumerate}
@@ -283,17 +283,17 @@ Instead of rules (and exceptions to these rules, exceptions to these
 This delegation results in a more performant, scalable, program.
 
 Parsing based on corpora has proven to be better in several ways over
-  rule-based parsing, but the former has disadvantages:
+  rule based parsing, but the former has disadvantages:
 
 \begin{enumerate}
 \item Good training sets are required;
 \item If the corpus was created from news articles, algorithms based on it
   will not fair so well on microblogs (e.g., Twitter posts).
-\item Some rule-based approaches for pre- and post processing are still
+\item Some rule based approaches for pre- and post processing are still
   required;
 \end{enumerate}
 
-In addition, corpora-based parsing will not work well on the web.
+In addition, corpora based parsing will not work well on the web.
 Loading corpora over the network each time a user request a web page is
   unfeasible for most web sites and applications\footnote{Currently,
     one technology exists for storing large datasets in a browser: the
@@ -301,7 +301,7 @@ Loading corpora over the network each time a user request a web page is
     document has been discontinued'', and the specification ``should not be
     used as a basis for implementation'' \autocite{urhane-file-api}.}.
 
-Two viable alternative approaches exist for the web: rule-based tokenisation,
+Two viable alternative approaches exist for the web: rule based tokenisation,
   or connecting to a server over the network.
 
 \subsection{Using a web API}\label{using-a-web}
@@ -858,5 +858,30 @@ The proposal was validated both by solving the audiences use cases, and
 \section{Conclusions}\label{conclusions}
 
 \section{Future Work}\label{future-work}
+
+The proposal leaves open many areas of interest for future investigation.
+Some of which, are featured here.
+
+\begin{aenumerate}
+\item\emph{Internationalisation} --- Currently, the proposal is only
+    tested on Latin script languages.
+  The software was developed with other languages and scripts, such as
+    Arabic, Hangul, Hebrew, and Kanji, in mind.
+  Future work could expand support to include these scripts;
+\item\emph{Non-rule based parsing} --- Currently, \gls{nlcst} trees are
+    created with rule based parsers.
+  But, corpora based parsers could also produce these trees.
+  Future work could investigate and implement such supervised-learning
+    approaches.
+\item\emph{Academic goals} --- Currently, the proposals cater to practical use
+    cases.
+  Future work could expand on this purview and implement more academic
+    goals.
+\item\emph{Semantical units} --- Currently, the proposals provide syntactic
+    units.
+  Future work could expand on this by providing information about phrases
+    and clauses to users.
+\end{aenumerate}
+
 
 \section{Advice}\label{advice}
