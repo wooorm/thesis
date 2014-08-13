@@ -1,6 +1,6 @@
 {
     "name": "thesis",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "Design of an extensible system for analysing and manipulating natural language",
     "keywords": [],
     "private": true,
