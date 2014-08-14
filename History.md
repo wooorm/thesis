@@ -1,4 +1,26 @@
 
+n.n.n / 2014-08-14
+==================
+
+ * Add outline for Research Framework
+ * Refactor, clean, todo
+ * Add a more practical wrapper example case for sentiment analysis
+ * Add heightened performance as a future work recommendation
+ * Fix Future Work > Limitations and Future Work
+ * Remove section on Advice in Conclusions
+ * Add section on difference application to Future Work
+ * Add section on other import formations to Future Work
+ * Add Executive Summary
+ * Add mention of similar techniques in Design
+ * Add treebank tokenisation to references; fix two bugs
+ * Add the summary part of Executive summary
+ * Mention use case resolution in abstract
+ * Reset glossary entries in body
+ * Add frontmatter to Contents
+ * Add paragraphs on motivation to Introduction
+ * Add submission date
+ * Add my email address
+
 0.0.5 / 2014-08-13
 ==================
 
