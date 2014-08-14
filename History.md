@@ -1,5 +1,5 @@
 
-n.n.n / 2014-08-14
+0.0.6 / 2014-08-14
 ==================
 
  * Add outline for Research Framework
