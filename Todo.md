@@ -2,9 +2,9 @@
 
 - [ ] Somewhere
   - [ ] Add more info about obstacles I overcame (not just parser);
-- [ ] Context;
-  - [ ] Research Framework / Research objective;
-  - [ ] Research questions.
+- [x] Research Framework;
+  - [x] Research objective;
+  - [x] Research questions.
 - [ ] Validation;
   - [ ] Add some real-world responses.
 - [ ] Conclusions;
