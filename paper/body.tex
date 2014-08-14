@@ -648,7 +648,7 @@ By using the \gls{cst} as described by \gls{nlcst} and the \emph{parse-latin}
 In essence, \emph{parse-latin} tokenises text into white space, word, and
   punctuation tokens.
 \emph{parse-latin} starts out with a pretty simple definition, one that
-  some other tokenisers also implement:
+  some other tokenisers also implement \autocite{treebank-tokenisation}:
 
 \begin{enumerate}
 \item A \emph{word} is one or more, letter or number characters;
@@ -658,6 +658,11 @@ In essence, \emph{parse-latin} tokenises text into white space, word, and
 
 Then, \emph{parse-latin} manipulates and merges those tokens into a
   syntax tree, adding sentences, paragraphs, and other nodes where needed.
+The majority of the intelect of the algorithm deals with sentence
+  tokenisation (§ \ref{sentence-tokenisation}, p.
+  \pageref{sentence-tokenisation}).
+This is done in similar fashion, but more intelligent, to \emph{Emphasis}
+  \autocite{nytimes/emphasis-source-code}.
 
 \begin{aenumerate}
 \item\emph{Inter-word punctuation} --- Some punctuation marks are part of
@@ -673,6 +678,7 @@ Then, \emph{parse-latin} manipulates and merges those tokens into a
   non-standard ways, such as when a section or chapter delimiter is
   created with a line containing three asterisk marks (``* * *'').
 \end{aenumerate}
+
 
 See appendix~\ref{appendix-b-parse-latin-output} on
 page~\pageref{appendix-b-parse-latin-output} for example output provided
