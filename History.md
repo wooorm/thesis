@@ -1,5 +1,5 @@
 
-n.n.n / 2014-08-14
+0.0.7 / 2014-08-14
 ==================
 
  * Refactor ordering in Conclusion; end work on Conclusion
