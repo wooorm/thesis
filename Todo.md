@@ -9,8 +9,8 @@
   - [ ] Add some real-world responses.
 - [x] Conclusions;
   - [x] Answer research objective and research questions;
-  - [ ] Concluding remarks on the proposal;
-  - [ ] Concluding remarks on the research goal.
+  - [x] Concluding remarks on the proposal;
+  - [x] Concluding remarks on the research goal.
 
 # Final check before submission.
 

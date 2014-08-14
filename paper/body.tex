@@ -908,9 +908,10 @@ Additionally, many of the target audience started following the project on
 
 \chapter{Conclusion}\label{conclusion}
 
-This chapter consists of a short summary (§~\ref{summary}), a list of
-  conclusions (§~\ref{conclusions}), and suggestions for future work
-  (§~\ref{limitations-future-work}).
+This chapter consists of a short summary (§~\ref{summary}), a list
+  limitations and suggestions for future work
+  (§~\ref{limitations-future-work}), and a list of conclusions
+  (§~\ref{conclusions}).
 
 \section{Summary}\label{summary}
 
@@ -934,6 +935,49 @@ These solutions come together in a proposal: \emph{Retext}, a complete natural
 
 The proposal was validated both by solving the audiences use cases, and
   by measuring the audiences enthusiasm.
+
+\section{Limitations \& Future Work}\label{limitations-future-work}
+
+The proposal leaves open many areas of interest for future investigation.
+Some of which, are featured here.
+
+\begin{aenumerate}
+\item\emph{Internationalisation} --- Currently, the proposal is only
+    tested on Latin script languages.
+  The software was developed with other languages and scripts, such as
+    Arabic, Hangul, Hebrew, and Kanji, in mind.
+  Future work could expand support to include these scripts;
+\item\emph{Difference application} --- Currently, the proposal does not
+    support difference application.
+  When a word is added at the end of a sentence, all steps to produce the
+    output have to be revisited.
+  Although the proposal is created with this in mind, no support has been
+    added.
+  Future work could include difference application support;
+\item\emph{Non-rule based parsing} --- Currently, \gls{nlcst} trees are
+    created with rule based parsers.
+  But, corpora based parsers could also produce these trees.
+  Future work could investigate and implement such supervised-learning
+    approaches.
+\item\emph{Academic goals} --- Currently, the proposals cater to practical use
+    cases.
+  Future work could expand on this purview and implement more academic
+    goals.
+\item\emph{Semantical units} --- Currently, the proposals provide syntactic
+    units.
+  Future work could expand on this by providing information about phrases
+    and clauses to users.
+\item\emph{Import formants} --- Currently, the parsers each require plain
+    text input.
+  Future work could expand on this by allowing other input formats, such as
+    MarkDown or \LaTeX.
+\item\emph{Heighten Performance} --- The decision made to adopt an
+    object-oriented approach for analysation and manipulation, came at a huge
+    performance cut.
+  When implementing both \gls{textom} and \emph{parse-latin} over just
+    \emph{parse-latin}, performance decreases over 90\%.
+  Future work should investigate and implement better performance.
+\end{aenumerate}
 
 \section{Conclusions}\label{conclusions}
 
@@ -991,46 +1035,3 @@ This was validated by the more than fifteen solved use cases
 In addition to \emph{reaching} this objective, the measured enthusiasm
   showed by the target audience for the proposal confirmed the actual
   interest in such a proposal.
-
-\section{Limitations \& Future Work}\label{limitations-future-work}
-
-The proposal leaves open many areas of interest for future investigation.
-Some of which, are featured here.
-
-\begin{aenumerate}
-\item\emph{Internationalisation} --- Currently, the proposal is only
-    tested on Latin script languages.
-  The software was developed with other languages and scripts, such as
-    Arabic, Hangul, Hebrew, and Kanji, in mind.
-  Future work could expand support to include these scripts;
-\item\emph{Difference application} --- Currently, the proposal does not
-    support difference application.
-  When a word is added at the end of a sentence, all steps to produce the
-    output have to be revisited.
-  Although the proposal is created with this in mind, no support has been
-    added.
-  Future work could include difference application support;
-\item\emph{Non-rule based parsing} --- Currently, \gls{nlcst} trees are
-    created with rule based parsers.
-  But, corpora based parsers could also produce these trees.
-  Future work could investigate and implement such supervised-learning
-    approaches.
-\item\emph{Academic goals} --- Currently, the proposals cater to practical use
-    cases.
-  Future work could expand on this purview and implement more academic
-    goals.
-\item\emph{Semantical units} --- Currently, the proposals provide syntactic
-    units.
-  Future work could expand on this by providing information about phrases
-    and clauses to users.
-\item\emph{Import formants} --- Currently, the parsers each require plain
-    text input.
-  Future work could expand on this by allowing other input formats, such as
-    MarkDown or \LaTeX.
-\item\emph{Heighten Performance} --- The decision made to adopt an
-    object-oriented approach for analysation and manipulation, came at a huge
-    performance cut.
-  When implementing both \gls{textom} and \emph{parse-latin} over just
-    \emph{parse-latin}, performance decreases over 90\%.
-  Future work should investigate and implement better performance.
-\end{aenumerate}
