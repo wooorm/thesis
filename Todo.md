@@ -2,27 +2,26 @@
 
 - [ ]  All
   - [ ] Max. no. of p.: 30. Incl. intro., TOC, &c. Excl. appendices;
-- [x] Titleback
-  - [x] Email address;
-  - [x] Date of submission;
-- [ ] Executive summary;
+- [ ] Somewhere
+  - [ ] Add more info about obstacles I overcame (not just parser);
+- [ ] Implementations
+  - [ ] Add more practical wrapper-process for Sentiment Analysis
+- [x] Executive summary;
   - [x] Summary;
-  - [ ] Methods;
-  - [ ] Resuls;
-- [x] Introduction;
-  - [x] Motivation;
+  - [x] Methods;
+  - [x] Resuls;
 - [ ] Context;
   - [ ] Research Framework / Research objective;
-  - [ ] Research questions;
+  - [ ] Research questions.
 - [ ] Validation;
-  - [ ] Add some real-world responses;
+  - [ ] Add some real-world responses.
 - [ ] Conclusions;
   - [ ] Answer research objective and research questions;
   - [ ] Limitations;
   - [ ] Concluding remarks on the proposal;
-  - [ ] Concluding remarks on the research goal;
-- [ ] Appendices
+  - [ ] Concluding remarks on the research goal.
 
 # Final check before submission.
 
-  - [ ] Remove extraneous definitions.
+- [ ] Remove extraneous definitions;
+- [ ] Add source code distro, with git submodules, somewhere.
