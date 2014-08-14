@@ -2,15 +2,8 @@
 
 - [ ] Somewhere
   - [ ] Add more info about obstacles I overcame (not just parser);
-- [x] Research Framework;
-  - [x] Research objective;
-  - [x] Research questions.
 - [ ] Validation;
   - [ ] Add some real-world responses.
-- [x] Conclusions;
-  - [x] Answer research objective and research questions;
-  - [x] Concluding remarks on the proposal;
-  - [x] Concluding remarks on the research goal.
 
 # Final check before submission.
 
