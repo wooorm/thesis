@@ -17,7 +17,7 @@
   - [ ] Add some real-world responses.
 - [ ] Conclusions;
   - [ ] Answer research objective and research questions;
-  - [ ] Limitations;
+  - [x] Limitations;
   - [ ] Concluding remarks on the proposal;
   - [ ] Concluding remarks on the research goal.
 
