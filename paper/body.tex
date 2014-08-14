@@ -37,7 +37,7 @@ Despite promising initial results, the following ten years proved to be
 Machine translation is just one of many major tasks involved with \gls{nlp}.
 Other tasks include generating summaries, detecting references to people
   and places, or extracting opinion.
-Tasks which are all part of \emph{information extraction}: the act of finding
+These tasks all part of \emph{information extraction}: the act of finding
   certain information in a document.
 Many programs exists to carry out these and many other \gls{nlp} tasks.
 The approach taken to perform these tasks are often similar between
@@ -370,7 +370,9 @@ Using the context described in chapter \ref{context} (p.~\pageref{context}),
   }
 \end{quote}
 
-\noindent This objective leads to a research question:
+\section{Research Question}\label{research-question}
+
+This research objective leads to a research question:
 
 \begin{quote}
   \textit{How can a specification and program, that exposes an \acrshort{api}
@@ -396,9 +398,8 @@ These research questions form a basis and a guide to answer the research
 \item
   What are the target audiences use cases for an implementation?
   \begin{enumerate}
-    \item What would the target audience use an implementation for?
-    \item What would the target audience \emph{not} use the implementation
-      for?
+    \item What would they use an implementation for?
+    \item What would they \emph{not} use the implementation for?
   \end{enumerate}
 \item
   How to ensure a quality implementation for the target audience?
@@ -935,6 +936,61 @@ The proposal was validated both by solving the audiences use cases, and
   by measuring the audiences enthusiasm.
 
 \section{Conclusions}\label{conclusions}
+
+This section evaluates if the research question(s) are answered, and if the
+  research objective is reached.
+
+\subsection{Current possibilities and
+  deficiencies}\label{q-current-possibilities-and-deficientcies}
+
+\gls{nlp} covers many different tasks.
+Within the scope of this thesis, only \emph{tokenisation} was covered
+  (§ \ref{scope}, p. \pageref{scope}).
+Most current implementations use tokenisation as part of a larger task
+  (§ \ref{tasks}, p. \pageref{tasks}).
+Implementations that provide tokenisation capabilities to other tasks,
+  are lacking (§ \ref{stages}, p. \pageref{stages}).
+It is concluded that quality implementations that offer tokenisation within
+  the scope, do not exist.
+
+\subsection{The target audiences use cases}\label{q-use-cases}
+
+The audience that benefits the most from the proposal, are web developers
+  (§ \ref{target-audience}, p. \pageref{target-audience}).
+Research for this paper found that the target audience would use the
+  implementation for several use cases.
+Not every challenge in the field is of interest to the web developer.
+In addition, concluded was that the more academic areas of \gls{nlp}, do not
+  fit well with the goals of web developers (§ \ref{use-cases},
+  p. \pageref{use-cases}).
+
+\subsection{Quality implementation}\label{q-quality-implementation}
+
+The proposal should meet several requirements, other than the use cases,
+  to better suit the wishes of the target audience.
+This includes open source development and easy installation, readable code,
+  tested results, high performance, and a good interface design.
+Concluded was that by following these best practises for code and creating
+  an interface similar to for the target audience familiar projects, a
+  ``good'' implementation was build (§ \ref{requirements},
+  p. \pageref{requirements}).
+
+\subsection{Research Question}\label{q-research-question}
+
+The aforementioned answers to the research questions, answers the complete
+  \emph{research question}, within the scope (§ \ref{research-question},
+  p. \pageref{research-question}).
+
+\subsection{Research Objective}\label{q-research-objective}
+
+Although the \emph{how} was answered by the \emph{research question}, the
+  working proposal reaches the research objective.
+This was validated by the more than fifteen solved use cases
+  (§ \ref{plugins}, p. \pageref{plugins}).
+
+In addition to \emph{reaching} this objective, the measured enthusiasm
+  showed by the target audience for the proposal confirmed the actual
+  interest in such a proposal.
 
 \section{Limitations \& Future Work}\label{limitations-future-work}
 

@@ -7,8 +7,8 @@
   - [x] Research questions.
 - [ ] Validation;
   - [ ] Add some real-world responses.
-- [ ] Conclusions;
-  - [ ] Answer research objective and research questions;
+- [x] Conclusions;
+  - [x] Answer research objective and research questions;
   - [ ] Concluding remarks on the proposal;
   - [ ] Concluding remarks on the research goal.
 
