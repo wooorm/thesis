@@ -4,8 +4,8 @@
   - [ ] Max. no. of p.: 30. Incl. intro., TOC, &c. Excl. appendices;
 - [ ] Somewhere
   - [ ] Add more info about obstacles I overcame (not just parser);
-- [ ] Implementations
-  - [ ] Add more practical wrapper-process for Sentiment Analysis
+- [x] Implementations
+  - [x] Add more practical wrapper-process for Sentiment Analysis
 - [x] Executive summary;
   - [x] Summary;
   - [x] Methods;

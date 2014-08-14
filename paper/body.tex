@@ -179,6 +179,12 @@ This section covers several implementations that solve these stages
 
 Sentiment analysis is an \gls{nlp} task concerned with the polarity
   (positive, negative) and subjectivity (objective, subjective) of text.
+It could be part of an implementation to detect messages with a certain
+  polarity.
+Twitter allows its users to search on polarity.
+For example, when a user searches for ``movie :)'', Twitter searches for
+  positive tweets.
+
 The implementation of sentiment analysis could look as follows:
 
 \begin{enumerate}
@@ -195,6 +201,11 @@ Sentiment analysers typically include a
   polarity and\slash or subjectivity\footnote{For example, the AFINN
     database mapping words to polarity \autocite{nielsen-finn-arup-afinn}.}
   and return the average sentiment per sentence, or for the whole document.
+
+In the case of the previously mentioned Twitter example, the service filters
+  out all neutral and negative results, and return the remaining (positive
+  attitude) results.
+
 Many implementations exist for this task
   \autocites{thinkroth/sentimental-source-code}{mileszim/sediment-source-code}
   {thisandagain/sentiment-source-code}, many of which do not include
