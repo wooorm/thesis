@@ -872,13 +872,15 @@ The developed plugins included implementations for:
   \autocite*{wooorm/retext-double-metaphone-source-code};
 \item Detecting the stem of words
   \autocite*{wooorm/retext-porter-stemmer-source-code};
-\item Detecting grammatical units, solving use case
+\item Finding grammatical units, solving use case
   \ref{list:use-case:5}  \autocite*{wooorm/retext-visit-source-code};
 \item Finding text, even misspelled, solving use case
   \ref{list:use-case:7} \autocite*{wooorm/retext-search-source-code};
 \item Detecting \gls{pos} tags \autocite*{wooorm/retext-pos-source-code};
 \item Finding keywords and -phrases
-  \autocite*{wooorm/retext-keywords-source-code}.
+  \autocite*{wooorm/retext-keywords-source-code};
+\item Detecting the language of text, solving use case \ref{list:use-case:6} 
+  \autocite*{wooorm/retext-language-source-code}.
 \end{aenumerate}
 
 These plugins listed and the other plugins solve several use cases of the
@@ -891,8 +893,6 @@ Summarising natural language (use case \ref{list:use-case:1}) is not yet
 Neither is detecting sentiment (use case \ref{list:use-case:3}), but it can
   be by implementing the stages mentioned in §~\ref{sentiment-analysis}
   (p.~\pageref{sentiment-analysis}).
-Neither is language recognition (use case \ref{list:use-case:6}),
-  although work has started.
 
 During the development of these plugins, several problems were brought to
   light in the developed software.
