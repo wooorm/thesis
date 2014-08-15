@@ -29,7 +29,7 @@ During this study in New York, scientists demonstrated a
   \autocite{hutchins-john-georgetown-ibm-system}.
 The machine translated more than sixty sentences from Russian to English.
 The experiment was well publicised and resulted in optimism.
-The public believed machine-translation would be a ``solved problem'' within
+The public believed machine translation would be a ``solved problem'' within
   three to five years.
 Despite promising initial results, the following ten years proved to be
   disappointing and led to reduced funding.
@@ -132,7 +132,7 @@ Full stops often occur in numbers, suffixed to abbreviations or titles,
     ``sonar'' or ``FBI'') with full stops depicting elision (such as
     ``e.g.'', or ``K.G.B.'').},
   or in embedded content\footnote{Embedded
-    content in this paper refers to an external (non-grammatical) value
+    content in this paper refers to an external (ungrammatical) value
     embedded into a grammatical unit, such as a hyperlink or an emoticon.
     Note that these embedded values often consist of valid words and
     punctuation marks, but most always shouldn't be classified as such.}.
@@ -158,7 +158,7 @@ Often implementations see words as everything that is \emph{not} white
 
 Some implementations take punctuation marks into account as boundaries.
 This practice has flaws, as it results in the faulty classification of
-  inter-word punctation\footnote{Many such inter-word symbols exist, such
+  inner-word punctation\footnote{Many such inner-word symbols exist, such
     as hyphenation points, colons (``12:00''), or elision (whether denoted
     by full stops, ``e.g.''; apostrophes, the Dutch ``'s''; or slashes,
     ``N/A'').}
@@ -207,7 +207,7 @@ In the case of the previously mentioned Twitter example, the service filters
 Many implementations exist for this task
   \autocites{thinkroth/sentimental-source-code}{mileszim/sediment-source-code}
   {thisandagain/sentiment-source-code}, many of which do not include
-  inter-word punctuation in their \emph{definition} of words, resulting in
+  inner-word punctuation in their \emph{definition} of words, resulting in
   less than perfect results\footnote{In fact, all found implementations
       deploy lacking tokenisations steps.
     Dubious, as they each create unreachable code through their naivety:
@@ -221,9 +221,9 @@ Automatic summarisation is an \gls{nlp} task concerned with the reduction
   of text to the \emph{major} points retaining the original document.
 Few open source implementations of automatic summarisation algorithms on
   the web, in contrast with implementations for sentimental analysis, were
-  found\footnote{For example, on the web only node-summary was found
-    \autocite{jbrooksuk/node-summary-source-code}, in Scala textteaser was
-    found \autocite{MojoJolo/textteaser-source-code}.}.
+  found\footnote{For example, on the web only \emph{node-summary} was found
+    \autocite{jbrooksuk/node-summary-source-code}, in Scala \emph{textteaser}
+    was found \autocite{MojoJolo/textteaser-source-code}.}.
 The implementation of automatic summarisation could look as follows:
 
 \begin{enumerate}
@@ -467,7 +467,7 @@ The tasks below are each categorised into broad, generic fields: analysation,
 \noindent \gls{nlp} is a large field with many challenges, but not every
   challenge in the field is of interest to the web developer.
 Foremost, the more academic areas of \gls{nlp}, such as speech recognition,
-  optical character recognition, text-to-speech transformation, translation,
+  optical character recognition, text to speech transformation, translation,
   and machine learning, do not fit well with the goals of web developers.
 
 \section{Requirements}\label{requirements}
@@ -578,7 +578,7 @@ When suspicious, ambiguous, or buggy code is introduced in the software, the
   error should be automatically detected.
 In some cases deployment should be prevented.
 Automated \gls{ci} environments to enforce error detection should be used.
-To detect complex, duplicate, or bug-prone code, Code Climate is used
+To detect complex, duplicate, or bug prone code, Code Climate is used
   \autocite{codeclimate.com}.
 To validate all tests passed before deploying the software, Travis is used
   \autocite{travis-ci.org}.
@@ -648,9 +648,9 @@ solves a subproblem.
 \noindent The decoupled approach taken by the provided solution enables other
   developers to implement their own software to replace sub-proposals.
 For example, other parties could create a parser for the Chinese language and
-  use it instead of parse-latin to classify natural language according to
-  \gls{nlcst}, or other parties can implement an interface like \gls{textom}
-  with functionality for phrases and clauses.
+  use it instead of \emph{parse-latin} to classify natural language according
+  to \gls{nlcst}, or other parties can implement an interface like
+  \gls{textom} with functionality for phrases and clauses.
 
 \section{Syntax: NLCST}\label{syntax}
 
@@ -707,9 +707,9 @@ To create a syntax tree according to \gls{nlcst} from natural language,
     as Old-English, Icelandic, French, or even scripts slightly similar, such
     as Cyrillic, Georgian, or Armenian.}.
 Additionally, to prove the concept, two other libraries are presented,
-  \emph{parse-english} and \emph{parse-dutch}. Both with parse-latin as a
-  basis, but providing better support for several language specific features,
-  respectively for English and Dutch.
+  \emph{parse-english} and \emph{parse-dutch}. Both with \emph{parse-latin}
+  as a basis, but providing better support for several language specific
+  features, respectively for English and Dutch.
 
 By using the \gls{cst} as described by \gls{nlcst} and the \emph{parse-latin}
   parser, the intermediate representation can be used by developers to
@@ -739,14 +739,14 @@ This is done in similar fashion, but more intelligent, to \emph{Emphasis}
 \item\emph{Inter-word punctuation} --- Some punctuation marks are part of
   the word they occur in, such as the punctuation marks in ``non-profit'',
   ``she's'', ``G.I.'', ``11:00'', or ``N\slash A'';
-\item\emph{Non-terminal full-stops} --- Some full-stops do not mark a
+\item\emph{Non-terminal full stops} --- Some full stops do not mark a
   sentence end, such as the full stops in ``1.'', ``e.g.'', or ``id.'';
-\item\emph{Terminal punctuation} --- Although full-stops, question marks,
+\item\emph{Terminal punctuation} --- Although full stops, question marks,
   and exclamation marks (sometimes) end a sentence, that end might not occur
   directly after the mark, such as the punctuation marks following the
   full stop in ``.)'' or ``.'{}'';
 \item\emph{Embedded content} --- Punctuation marks are sometimes used in
-  non-standard ways, such as when a section or chapter delimiter is
+  nonstandard ways, such as when a section or chapter delimiter is
   created with a line containing three asterisk marks (``* * *'').
 \end{aenumerate}
 
@@ -861,7 +861,7 @@ The developed plugins included implementations for:
 \item Transforming so-called dumb punctuation marks into more
   typographically correct punctuation marks, solving use case
   \ref{list:use-case:4} \autocite*{wooorm/retext-smartypants-source-code};
-\item Transforming emoji short-codes (:cat:) into real emoji
+\item Transforming emoji shortcodes (:cat:) into real emoji
   \autocite*{wooorm/retext-emoji-source-code};
 \item Detecting the direction of text
   \autocite*{wooorm/retext-directionality-source-code};
@@ -905,7 +905,7 @@ To confirm interest by the target audience in the proposal, enthusiasm
 To initially spark interest, several blogs and email newsletters were
   contacted to feature \emph{Retext}, either in the form of an article or as
   a simple link.
-This resulted in coverage on high-profile blogs
+This resulted in coverage on high profile blogs
   \autocite{dailyjs.com-natural-language-parsing-retext} and newsletters
   \autocites{nodeweekly.com-47}{javascriptweekly.com-193}
   {newspaper.io/javascript-2014-08-11}.
@@ -975,7 +975,7 @@ Some of which, are featured here.
 \item\emph{Non-rule based parsing} --- Currently, \gls{nlcst} trees are
     created with rule based parsers.
   But, corpora based parsers could also produce these trees.
-  Future work could investigate and implement such supervised-learning
+  Future work could investigate and implement such supervised learning
     approaches.
 \item\emph{Academic goals} --- Currently, the proposals cater to practical use
     cases.
