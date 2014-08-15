@@ -1,4 +1,13 @@
 
+n.n.n / 2014-08-15
+==================
+
+ * Add mentions of which use cases are solved by plugins
+ * Fix intro on Research Framework
+ * Remove extraneous comma
+ * Better wording Open Source, `... and request features`
+ * Fix reference in Using Corpora for NLP
+
 0.0.7 / 2014-08-14
 ==================
 
