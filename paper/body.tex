@@ -444,26 +444,26 @@ The tasks below are each categorised into broad, generic fields: analysation,
   manipulation, and creation.
 
 \begin{aenumerate}
-\item The developer may intent to summarise natural text (mostly analysation,
-  potentially also manipulation);
-\item The developer may intent to create natural language, e.g., displaying
-  the number of unread messages: ``You have 1 unread message,'' or ``You
-  have 0 unread messages'' (creation);
-\item The developer may intent to recognise sentiment in text: is a
-  \emph{tweet} positive, negative, or spam? (analysation);
-\item The developer may intent to replace so-called \emph{dumb} punctuation
-  with \emph{smart} punctuation, such as dumb quotations with (``) or (''),
-  three dots with an ellipsis (\ldots{}), or two hyphens with an en-dash
-  (--) (manipulation);
-\item The developer may intent to count the number of certain grammatical
-  units in a document, such as, words, white space, punctuation, sentences,
-  or paragraphs (analysation);
-\item The developer may intent to recognise the language in which a document
-  is written (analysation);
-\item The developer may intent to find words in a document based on a search
-  term, with regards for the lemma (or stem) and\slash or phonetics (so that
-  a search for ``smit'' also returns similar words, such as ``Schmidt'' or
-  ``Smith'') (analysation and manipulation).
+\item\label{list:use-case:1} The developer may intent to summarise natural
+  text (mostly analysation, potentially also manipulation);
+\item\label{list:use-case:2} The developer may intent to create natural
+  language, e.g., displaying the number of unread messages: ``You have 1
+  unread message,'' or ``You have 0 unread messages'' (creation);
+\item\label{list:use-case:3} The developer may intent to recognise sentiment
+  in text: is a \emph{tweet} positive, negative, or spam? (analysation);
+\item\label{list:use-case:4} The developer may intent to replace so-called
+  \emph{dumb} punctuation with \emph{smart} punctuation, such as dumb
+  quotations with (``) or (''), three dots with an ellipsis (\ldots{}), or
+  two hyphens with an en-dash (--) (manipulation);
+\item\label{list:use-case:5} The developer may intent to count the number of
+  certain grammatical units in a document, such as, words, white space,
+  punctuation, sentences, or paragraphs (analysation);
+\item\label{list:use-case:6} The developer may intent to recognise the
+  language in which a document is written (analysation);
+\item\label{list:use-case:7} The developer may intent to find words in a
+  document based on a search term, with regards for the lemma (or stem)
+  and\slash or phonetics (so that a search for ``smit'' also returns similar
+  words, such as ``Schmidt'' or ``Smith'') (analysation and manipulation).
 \end{aenumerate}
 
 \gls{nlp} is a large field with many challenges, but not every challenge in
@@ -854,12 +854,16 @@ Interest in the proposal by the target audience was validated by
 
 More than fifteen plugins for \emph{Retext} were created to confirm if,
   and validate how, the proposals integrated together, and how the system
-  worked as a whole. Including tools for:
+  worked as a whole.
+
+The proposal solves the creation of natural language by default (use case
+  \ref{list:use-case:2}), but these plugins solve several others.
+The developed plugins included implementations for:
 
 \begin{aenumerate}
 \item Transforming so-called dumb punctuation marks into more
-  typographically correct punctuation marks
-  \autocite*{wooorm/retext-smartypants-source-code};
+  typographically correct punctuation marks, solving use case
+  \ref{list:use-case:4} \autocite*{wooorm/retext-smartypants-source-code};
 \item Transforming emoji short-codes (:cat:) into real emoji
   \autocite*{wooorm/retext-emoji-source-code};
 \item Detecting the direction of text
@@ -868,13 +872,27 @@ More than fifteen plugins for \emph{Retext} were created to confirm if,
   \autocite*{wooorm/retext-double-metaphone-source-code};
 \item Detecting the stem of words
   \autocite*{wooorm/retext-porter-stemmer-source-code};
-\item Detecting grammatical units \autocite*{wooorm/retext-visit-source-code};
-\item Finding text, even misspelled
-  \autocite*{wooorm/retext-search-source-code};
+\item Detecting grammatical units, solving use case
+  \ref{list:use-case:5}  \autocite*{wooorm/retext-visit-source-code};
+\item Finding text, even misspelled, solving use case
+  \ref{list:use-case:7} \autocite*{wooorm/retext-search-source-code};
 \item Detecting \gls{pos} tags \autocite*{wooorm/retext-pos-source-code};
 \item Finding keywords and -phrases
   \autocite*{wooorm/retext-keywords-source-code}.
 \end{aenumerate}
+
+These plugins listed and the other plugins solve several use cases of the
+  target audience (§~\ref{use-cases}).
+The unsolved use cases can be solved using the plugin mechanism provided by
+  \emph{Retext}.
+Summarising natural language (use case \ref{list:use-case:1}) is not yet
+  solved, but can be by implementing the stages mentioned in
+  §~\ref{automatic-summarisation} (p.~\pageref{automatic-summarisation}).
+Neither is detecting sentiment (use case \ref{list:use-case:3}), but it can
+  be by implementing the stages mentioned in §~\ref{sentiment-analysis}
+  (p.~\pageref{sentiment-analysis}).
+Neither is language recognition (use case \ref{list:use-case:6}),
+  although work has started.
 
 During the development of these plugins, several problems were brought to
   light in the developed software.
