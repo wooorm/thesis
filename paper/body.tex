@@ -37,8 +37,6 @@ Despite promising initial results, the following ten years proved to be
 Machine translation is just one of many major tasks involved with \gls{nlp}.
 Other tasks include generating summaries, detecting references to people
   and places, or extracting opinion.
-These tasks all part of \emph{information extraction}: the act of finding
-  certain information in a document.
 Many programs exists to carry out these and many other \gls{nlp} tasks.
 The approach taken to perform these tasks are often similar between
   implementations.
@@ -69,8 +67,8 @@ Entity linking for example, is often implemented as follows
     as an encyclopaedia.
 \end{enumerate}
 
-\gls{nlp} covers many different tasks, but the process of accomplishing
-  these goals touches, as seen above, on well defined stages.
+\noindent \gls{nlp} covers many different tasks, but the process of
+  accomplishing these goals touches, as seen above, on well defined stages.
 
 \section{Scope}\label{scope}
 
@@ -196,7 +194,7 @@ The implementation of sentiment analysis could look as follows:
 \item\emph{Sentiment Analysis}.
 \end{enumerate}
 
-Sentiment analysers typically include a
+\noindent Sentiment analysers typically include a
   database mapping either words, stems, or lemmas to their respective
   polarity and\slash or subjectivity\footnote{For example, the AFINN
     database mapping words to polarity \autocite{nielsen-finn-arup-afinn}.}
@@ -238,8 +236,8 @@ The implementation of automatic summarisation could look as follows:
 \item\emph{Automatic summarisation}.
 \end{enumerate}
 
-Automatic summarisers typically return the highest ranking units, be it
-  sentences or phrases, according to several factors:
+\noindent Automatic summarisers typically return the highest ranking units,
+  be it sentences or phrases, according to several factors:
 
 \begin{aenumerate}
 \item\emph{Number of words} --- An ideal sentence is neither too long nor
@@ -253,7 +251,7 @@ Automatic summarisers typically return the highest ranking units, be it
   the middle.
 \end{aenumerate}
 
-Some implementations include only keyword metrics
+\noindent Some implementations include only keyword metrics
   \autocite{jbrooksuk/node-summary-source-code}, others include all features
   \autocite{MojoJolo/textteaser-source-code}, or even more advanced factors
   \autocite{summly}.
@@ -308,7 +306,7 @@ Parsing based on corpora has proven to be better in several ways over
   required.
 \end{enumerate}
 
-In addition, corpora based parsing will not work well on the web.
+\noindent In addition, corpora based parsing will not work well on the web.
 Loading corpora over the network each time a user request a web page is
   unfeasible for most web sites and applications\footnote{Currently,
     one technology exists for storing large datasets in a browser: the
@@ -466,8 +464,8 @@ The tasks below are each categorised into broad, generic fields: analysation,
   words, such as ``Schmidt'' or ``Smith'') (analysation and manipulation).
 \end{aenumerate}
 
-\gls{nlp} is a large field with many challenges, but not every challenge in
-  the field is of interest to the web developer.
+\noindent \gls{nlp} is a large field with many challenges, but not every
+  challenge in the field is of interest to the web developer.
 Foremost, the more academic areas of \gls{nlp}, such as speech recognition,
   optical character recognition, text-to-speech transformation, translation,
   and machine learning, do not fit well with the goals of web developers.
@@ -519,8 +517,8 @@ Testing, in software development, refers to validating if software does what
 \item\emph{Acceptance testing} --- Validation of the end product.
 \end{aenumerate}
 
-Great care should be given to develop an adequate test suite with full
-  \emph{coverage} for every program.
+\noindent Great care should be given to develop an adequate test suite with
+  full \emph{coverage} for every program.
 Coverage, in software development, is a term used to describe the amount of
   code tested by the test suite.
 Full coverage means every part of the code is reached by the tests.
@@ -603,8 +601,8 @@ A good \gls{api}, according to Joshua Bloch
 \item Appropriate for the target audience.
 \end{enumerate}
 
-In essence equal, but worded differently, are the characteristics of good
-  \gls{api} design according to the Qt Project
+\noindent In essence equal, but worded differently, are the characteristics
+  of good \gls{api} design according to the Qt Project
   \autocite*{qt-project.org-api-design-principles}:
 
 \begin{enumerate}
@@ -616,8 +614,8 @@ In essence equal, but worded differently, are the characteristics of good
 \item Lead to readable code.
 \end{enumerate}
 
-The proposal should take these characteristics, and the in their sources
-  given examples, into account.
+\noindent The proposal should take these characteristics, and the in their
+  sources given examples, into account.
 
 \subsection{Installation}\label{installation}
 
@@ -647,7 +645,7 @@ solves a subproblem.
   language into an object model and exposes an interface for plugins.
 \end{aenumerate}
 
-The decoupled approach taken by the provided solution enables other
+\noindent The decoupled approach taken by the provided solution enables other
   developers to implement their own software to replace sub-proposals.
 For example, other parties could create a parser for the Chinese language and
   use it instead of parse-latin to classify natural language according to
@@ -729,7 +727,7 @@ In essence, \emph{parse-latin} tokenises text into white space, word, and
 \item A \emph{punctuation} is one or more of anything else.
 \end{enumerate}
 
-Then, \emph{parse-latin} manipulates and merges those tokens into a
+\noindent Then, \emph{parse-latin} manipulates and merges those tokens into a
   syntax tree, adding sentences, paragraphs, and other nodes where needed.
 The majority of the intelect of the algorithm deals with sentence
   tokenisation (§ \ref{sentence-tokenisation}, p.
@@ -752,8 +750,7 @@ This is done in similar fashion, but more intelligent, to \emph{Emphasis}
   created with a line containing three asterisk marks (``* * *'').
 \end{aenumerate}
 
-
-See appendix~\ref{appendix-b-parse-latin-output} on
+\noindent See appendix~\ref{appendix-b-parse-latin-output} on
 page~\pageref{appendix-b-parse-latin-output} for example output provided
 by \emph{parse-latin}.
 
@@ -883,8 +880,8 @@ The developed plugins included implementations for:
   \autocite*{wooorm/retext-language-source-code}.
 \end{aenumerate}
 
-These plugins listed and the other plugins solve several use cases of the
-  target audience (§~\ref{use-cases}).
+\noindent These plugins listed and the other plugins solve several use cases
+  of the target audience (§~\ref{use-cases}).
 The unsolved use cases can be solved using the plugin mechanism provided by
   \emph{Retext}.
 Summarising natural language (use case \ref{list:use-case:1}) is not yet
