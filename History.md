@@ -1,5 +1,5 @@
 
-n.n.n / 2014-08-15
+0.0.8 / 2014-08-15
 ==================
 
  * Add mentions of which use cases are solved by plugins
