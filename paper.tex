@@ -113,6 +113,9 @@
 %     https://github.com/wspr/thesis/blob/master/thesis-preamble.sty#L87
 \newcommand\notedesc[1]{\begin{quote}\textit{#1}\end{quote}}
 
+% Enable the insertion of PDFs.
+\usepackage{pdfpages}
+
 %********************************************************************
 % Hyphenation & Line breaking
 %********************************************************************
@@ -194,7 +197,7 @@
 %********************************************************************
 % Frontmatter
 %********************************************************************
-\input{paper/cover}
+\includepdf[pages={1}]{cover.pdf}
 \input{paper/titlepage}
 \input{paper/titleback}
 \cleardoublepage\input{paper/acknowledgments}
