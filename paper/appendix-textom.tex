@@ -1,0 +1,120 @@
+%********************************************************************
+% Appendix TextOM
+%*******************************************************
+
+\chapter{TextOM Definition}\label{appendix-textom}
+
+The following Web \acrshort{idl} document gives a short view of the defined
+  interfaces by \gls{textom}.
+
+\begin{lstlisting}
+module textom
+{
+  [Constructor]
+  interface Node {
+    const string ROOT_NODE = "RootNode"
+    const string PARAGRAPH_NODE = "ParagraphNode"
+    const string SENTENCE_NODE = "SentenceNode"
+    const string WORD_NODE = "WordNode"
+    const string PUNCTUATION_NODE = "PunctuationNode"
+    const string WHITE_SPACE_NODE = "WhiteSpaceNode"
+    const string SOURCE_NODE = "SourceNode"
+    const string TEXT_NODE = "TextNode"
+
+    void on(String type, Function callback);
+    void off(optional String type = null, optional Function callback = null);
+  };
+
+  [Constructor,
+   ArrayClass]
+  interface Parent {
+    getter Child? item(unsigned long index);
+    readonly attribute unsigned long length;
+
+    readonly attribute Child? head;
+    readonly attribute Child? tail;
+
+    Child prepend(Child child);
+    Child append(Child child);
+
+    [NewObject] Parent split(unsigned long position);
+
+    string toString();
+  };
+  Parent implements Node;
+
+  [Constructor]
+  interface Child {
+    readonly attribute Parent? parent;
+    readonly attribute Child? prev;
+    readonly attribute Child? next;
+
+    Child before(Child child);
+    Child after(Child child);
+    Child replace(Child child);
+    Child remove(Child child);
+  };
+  Child implements Node;
+
+  [Constructor]
+  interface Element {
+  };
+  Element implements Child;
+  Element implements Parent;
+
+  [Constructor(optional String value = "")]
+  interface Text {
+    string toString();
+    string fromString(String value);
+    [NewObject] Text split(unsigned long position);
+  };
+  Text implements Child;
+
+  [Constructor]
+  interface RootNode {
+    readonly attribute string type = "RootNode";
+  };
+  RootNode implements Parent;
+
+  [Constructor]
+  interface ParagraphNode {
+    readonly attribute string type = "ParagraphNode";
+  };
+  ParagraphNode implements Element;
+
+  [Constructor]
+  interface SentenceNode {
+    readonly attribute string type = "SentenceNode";
+  };
+  SentenceNode implements Element;
+
+  [Constructor]
+  interface WordNode {
+    readonly attribute string type = "WordNode";
+  };
+  WordNode implements Parent;
+
+  [Constructor]
+  interface PunctuationNode {
+    readonly attribute string type = "PunctuationNode";
+  };
+  PunctuationNode implements Parent;
+
+  [Constructor]
+  interface WhiteSpaceNode {
+    readonly attribute string type = "WhiteSpaceNode";
+  };
+  WhiteSpaceNode implements PunctuationNode;
+
+  [Constructor(optional String value = "")]
+  interface TextNode {
+    readonly attribute string type = "TextNode";
+  };
+
+  [Constructor(optional String value = "")]
+  interface SourceNode {
+    readonly attribute string type = "SourceNode";
+  };
+  SourceNode implements Text;
+}
+\end{lstlisting}
