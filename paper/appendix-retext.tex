@@ -1,0 +1,131 @@
+%********************************************************************
+% Appendix Retext
+%********************************************************************
+
+\chapter{Retext Interface}\label{appendix-retext}
+
+\section*{\textsc{api} Definition}
+
+\subsection*{Retext(parser?)}
+
+Return a new \emph{Retext} instance with the given parser.
+Uses \emph{parse-latin} by default.
+
+\begin{lstlisting}
+var Retext = require('retext'),
+    ParseEnglish = require('parse-english');
+
+var retext = new Retext(new ParseEnglish());
+
+retext.parse(
+    /* ...some english... */
+);
+\end{lstlisting}
+
+\subsection*{Retext.prototype.use(plugin)}
+
+Takes a plugin---a humble function.
+When \lstinline{Retext.protoype.parse()} is called, the plug-in will be
+  invoked with the parsed tree, and the \emph{Retext} instance as arguments.
+Returns self.
+
+\begin{lstlisting}
+var Retext = require("retext"),
+    smartypants = require("retext-smartypants")();
+
+var retext = new Retext()
+    .use(smartypants);
+
+retext.parse(
+    /* ...some text with dumb punctuation... */
+);
+\end{lstlisting}
+
+\subsection*{Retext.prototype.parse(source)}
+
+Parses the given source and returns the (by used plug-ins, modified) tree.
+
+\begin{lstlisting}
+var Retext = require("retext"),
+    retext = new Retext();
+
+retext.parse("Some text");
+\end{lstlisting}
+
+\section*{Usage}
+
+To detect the language of a document and find its keywords,
+  \emph{retect-language} and \emph{retect-keywords} can be used.
+
+This could be implemented as follows:
+
+\begin{lstlisting}
+var Retext = require("retext"),
+    language = require("retext-language"),
+    keywords = require("retext-keywords"),
+    source, retext, tree;
+
+retext = new Retext()
+    .use(language)
+    .use(keywords);
+
+var source =
+    /* First four paragraphs on Term Extraction
+     * from Wikipedia:
+     * http://en.wikipedia.org/wiki/Terminology_extraction
+     */
+    "Terminology mining, term extraction, term " +
+    "recognition, or glossary extraction, is a " +
+    "subtask of information extraction. The goal of " +
+    "terminology extraction is to automatically " +
+    "extract relevant terms from a given corpus." +
+    "\n\n" +
+    "In the semantic web era, a growing number of " +
+    "communities and networked enterprises started " +
+    "to access and interoperate through the internet. " +
+    "Modeling these communities and their information " +
+    "needs is important for several web applications, " +
+    "like topic-driven web crawlers, web services, " +
+    "recommender systems, etc. The development of " +
+    "terminology extraction is essential to the " +
+    "language industry." +
+    "\n\n" +
+    "One of the first steps to model the knowledge " +
+    "domain of a virtual community is to collect " +
+    "a vocabulary of domain-relevant terms, " +
+    "constituting the linguistic surface " +
+    "manifestation of domain concepts. Several " +
+    "methods to automatically extract technical " +
+    "terms from domain-specific document warehouses " +
+    "have been described in the literature." +
+    "\n\n" +
+    "Typically, approaches to automatic term " +
+    "extraction make use of linguistic processors " +
+    "(part of speech tagging, phrase chunking) to " +
+    "extract terminological candidates, i.e. " +
+    "syntactically plausible terminological noun " +
+    "phrases, NPs (e.g. compounds `credit card', " +
+    "adjective-NPs `local tourist information " +
+    "office', and prepositional-NPs `board of " +
+    "directors' - in English, the first two " +
+    "constructs are the most frequent). " +
+    "Terminological entries are then filtered " +
+    "from the candidate list using statistical " +
+    "and machine learning methods. Once filtered, " +
+    "because of their low ambiguity and high " +
+    "specificity, these terms are particularly " +
+    "useful for conceptualizing a knowledge " +
+    "domain or for supporting the creation of a " +
+    "domain ontology. Furthermore, terminology " +
+    "extraction is a very useful starting point " +
+    "for semantic similarity, knowledge management, " +
+    "human translation and machine translation, etc.";
+
+tree = retext.parse(source);
+
+console.log(tree.data.language); // "en"
+console.log(tree.keywords().map(function (keyword) {
+    return keyword.nodes[0].toString();
+}));
+// "Terminology", "term", "extraction", "web", "domain"
+\end{lstlisting}
