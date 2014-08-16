@@ -37,7 +37,7 @@ Despite promising initial results, the following ten years proved to be
 Machine translation is just one of many major tasks involved with \gls{nlp}.
 Other tasks include generating summaries, detecting references to people
   and places, or extracting opinion.
-Many programs exists to carry out these and many other \gls{nlp} tasks.
+Many programs exist to carry out these and many other \gls{nlp} tasks.
 The approach taken to perform these tasks are often similar between
   implementations.
 Entity linking for example, is often implemented as follows
@@ -67,8 +67,8 @@ Entity linking for example, is often implemented as follows
     as an encyclopaedia.
 \end{enumerate}
 
-\noindent \gls{nlp} covers many different tasks, but the process of
-  accomplishing these goals touches, as seen above, on well defined stages.
+\noindent \gls{nlp} covers many tasks, but the process of accomplishing these
+  goals touches, as seen above, on well defined stages.
 
 \section{Scope}\label{scope}
 
@@ -85,7 +85,7 @@ In addition, the paper focusses on written language (text), thus ignoring
   spoken language.
 
 Last, this paper focusses on Latin script languages: written languages
-  using an alphabet based on the the classical Latin alphabet.
+  using an alphabet based on the classical Latin alphabet.
 
 \section{Implementations}\label{implementations}
 
@@ -117,7 +117,7 @@ It is almost always a stage in \gls{nlp} applications and not an end goal.
 Sentence tokenisation makes other stages (e.g., detecting plagiarism or
   \gls{pos} tagging) perform better.
 
-Oftentimes, sentences end in one of three symbols: either a full stop (.),
+Often, sentences end in one of three symbols: either a full stop (.),
   an interrogative point (?), or an exclamation point (!)\footnote{One
     could argue the in 1962 introduced
     obscure interrobang (‽), used to punctuate rhetorical statements where
@@ -133,16 +133,16 @@ Full stops often occur in numbers, suffixed to abbreviations or titles,
     ``e.g.'', or ``K.G.B.'').},
   or in embedded content\footnote{Embedded
     content in this paper refers to an external (ungrammatical) value
-    embedded into a grammatical unit, such as a hyperlink or an emoticon.
+    embedded into a grammatical unit, such as a \textsc{url} or an emoticon.
     Note that these embedded values often consist of valid words and
     punctuation marks, but most always shouldn't be classified as such.}.
 The interrogative- and exclamation points too can occur ambiguously, such as
-  in a quote (e.g., ```Of course!'', she screamed').
+  in a quote (e.g., `\,``Of course!'', she screamed').
 
 Disambiguation gets even harder when these exceptions \emph{are} in fact a
   sentence boundary (double negative), such as in
   ``\ldots{}use the feminine form of idem, ead.'' or in
-  ```Of course!'', she screamed, ``I'll do it!''', where in both
+  `\,``Of course!'', she screamed, ``I'll do it!''\,', where in both
   cases the last terminal marker ends the respective sentence.
 
 \subsubsection{Word tokenisation}\label{word-tokenisation}
@@ -289,11 +289,11 @@ Parsing based on supervised learning (in \gls{nlp}, based on annotated
     \end{aenumerate}}.
 Instead of rules (and exceptions to these rules, exceptions to these
   exceptions, and so on) specified by a developer,
-  supervised learning\footnote{``{[}From{]} a set of labeled examples as
-    training data \ldots{} {[}, make{]} predictions for all unseen points''
+  supervised learning\footnote{``{[}From{]} a set of labelled examples as
+    training data {[}, make{]} predictions for all unseen points''
     \autocite{mohri-mehryar-foundations-machine-learning}.}
   delegates this task to machines.
-This delegation results in a more performant, scalable, program.
+This delegation results in a more efficient, scalable, program.
 
 Parsing based on corpora has proven to be better in several ways over
   rule based parsing, but it has disadvantages:
@@ -301,14 +301,14 @@ Parsing based on corpora has proven to be better in several ways over
 \begin{enumerate}
 \item Good training sets are required;
 \item If the corpus was created from news articles, algorithms based on it
-  will not fair so well on microblogs (e.g., Twitter posts).
+  will not fare so well on microblogs (e.g., Twitter posts).
 \item Some rule based approaches for pre- and post processing are still
   required.
 \end{enumerate}
 
 \noindent In addition, corpora based parsing will not work well on the web.
 Loading corpora over the network each time a user request a web page is
-  unfeasible for most web sites and applications\footnote{Currently,
+  infeasible for most web sites and applications\footnote{Currently,
     one technology exists for storing large datasets in a browser: the
     \acrshort{html5} File System \acrshort{api}. However, ``work on this
     document has been discontinued'', and the specification ``should not be
@@ -333,14 +333,14 @@ With the rise of the asynchronous web\footnote{Starting around 2000,
   Beforehand, significant changes to websites only occurred when a user
     navigated to a new page. 
   With \gls{ajax} however, new content arrived to users without the need
-    for a full page refresh. One of the first examples are the Outlook Web
-    App in 2000 \autocite{technet-outlook-web-access} and Gmail in 2004
+    for a full page refresh. One of the first examples are Outlook Web
+    Access in 2000 \autocite{technet-outlook-web-access} and Gmail in 2004
     \autocite{gmailblog-gmail-ajax}, both examples of how \gls{ajax} made
-    the web feel more ``app-like''.},
+    the web feel more like native applications.},
   supervised learning became available through web \glspl{api}
   \autocites{textteaser-web-api}{wordnet-web-api}{textrazor-web-api}.
 This made it possible to use supervised learning techniques on the web,
-  without needing to download corpora to a users computer.
+  without needing to download corpora to a users' computer.
 
 However, accessing \gls{nlp} web \glspl{api} over a network has
   disadvantages.
@@ -397,7 +397,7 @@ These research questions form a basis and a guide to answer the research
     \item What does not yet exist?
   \end{enumerate}
 \item
-  What are the target audiences use cases for an implementation?
+  What are the target audience's use cases for an implementation?
   \begin{enumerate}
     \item What would they use an implementation for?
     \item What would they \emph{not} use the implementation for?
@@ -501,7 +501,7 @@ The proposal should execute at high \emph{performance}.
 Performance includes the software having a small file size to reach the
   client over the network with the highest possible speed, but most
   importantly that the execution of code should operate efficiently and
-  at at high speeds.
+  at high speeds.
 
 \subsection{Testing}\label{testing}
 
@@ -536,12 +536,12 @@ Unit test run through Mocha \autocite{visionmedia/mocha-source-code},
 
 \subsubsection{Suspicious Code and Bugs}\label{suspicious-code-and-bugs}
 
-To detect bugs and suspicious code in the software, Eslint
+To detect bugs and suspicious code in the software, \emph{Eslint}
   is used \autocite{eslint/eslint-source-code}.
 \emph{Linting}, in computer programming, is a term used to describe static
   code analysis to detect syntactic discrepancies without running the code.
-Eslint is used because it provides a solid set of basic rules and enables
-  developers to create custom rules.
+\emph{Eslint} is used because it provides a solid set of basic rules and
+  enables developers to create custom rules.
 
 \subsubsection{Style}\label{style}
 
@@ -550,24 +550,24 @@ To enforce a consistent code style---to create readable software for
 \acrshort{jscs} provides rules for (dis)allowing certain code patterns,
   such as white space at the end of a line or camel cased variable names,
   or enforcing a maximum line length.
-\acrshort{jscs} was chosen because it, just like Eslint, provides a strong
+\acrshort{jscs} was chosen because it, like \emph{Eslint}, provides a strong
   basic set of rules.
 The rules chosen for the development of the proposal were set strict to
   enforce all code to be written in the same manner.
 
 \subsubsection{Commenting}\label{commenting}
 
-Even when code is bug free, uses no confusing shortcuts, and adheres to a
+Even when code is bug free, uses no confusing short-cuts, and adheres to a
   strict style, it might still be hard to understand for humans.
 \emph{Commenting} code---describing what a program does and why it
-  accomplishes this in a certain way---is important.
+  accomplishes it this way---is important.
 However, commenting can also be too verbose, for example when the code is
   duplicated in natural language.
 
 \gls{jsdoc} \autocite{google.com-clojure-compiler-jsdoc} is a markup language
   for \gls{ecmascript} that allows developers to embed documentation---using
   comments---in source code.
-Several tools can later extract this information and expose it separate
+Several tools can later extract this information and expose it independent
   from the original code.
 ``Tricky'' code should be annotated inside the software with comments to help
   readers understand why certain decisions were made.
@@ -576,7 +576,7 @@ Several tools can later extract this information and expose it separate
 
 When suspicious, ambiguous, or buggy code is introduced in the software, the
   error should be automatically detected.
-In some cases deployment should be prevented.
+Sometimes, deployment should be prevented.
 Automated \gls{ci} environments to enforce error detection should be used.
 To detect complex, duplicate, or bug prone code, Code Climate is used
   \autocite{codeclimate.com}.
@@ -621,7 +621,7 @@ A good \gls{api}, according to Joshua Bloch
 
 Simple access to the software for the target audience, both on the client
   side and on the server side, should be given high priority.
-On the client side, many different package managers exist, the most
+On the client side, many package managers exist, the most
   popular being Bower and Component\footnote{Popularity here is simply
     defined as having the highest number of search results on Google.}.
 For Node.js (on the server side), \gls{npm} is the most popular.
@@ -632,7 +632,7 @@ To reach the target audience, besides making the source available on GitHub,
 
 The in this paper presented solution to the problem of \gls{nlp} on the
 client side is split up in multiple small proposals. Each sub-proposal
-solves a subproblem.
+solves a sub-problem.
 
 \begin{aenumerate}
 \item\emph{\acrshort{nlcst}} --- Defines a standard for classifying
@@ -642,7 +642,7 @@ solves a subproblem.
 \item\emph{\gls{textom}} --- Provides an interface for analysing and
   manipulating output provided by parse-latin;
 \item\emph{Retext} --- Provides an interface for transforming natural
-  language into an object model and exposes an interface for plugins.
+  language into an object model and exposes an interface for plug-ins.
 \end{aenumerate}
 
 \noindent The decoupled approach taken by the provided solution enables other
@@ -661,7 +661,7 @@ Instead of each module (for example, every stage in section
   defining its own representation of text, using a single syntax leads to
   better interoperability, performance, and results.
 
-The elements defined by \acrfull{nlcst} are based on the the grammatical
+The elements defined by \acrfull{nlcst} are based on the grammatical
   hierarchy, but by default do not expose all its constituents\footnote{The
       grammatical hierarchy of text is constituted by words, phrases,
       clauses, and sentences.
@@ -685,7 +685,7 @@ Both widely used implementations, \emph{\textsc{css}} by Rework
   \autocite{constellation/escodegen-source-code}.
 
 \gls{nlcst} is different from both these specifications, as it implements a
-  \gls{cst}, wheres the others use an \gls{ast}.
+  \gls{cst}, whereas the others use an \gls{ast}.
 A \gls{cst} is a one-to-one mapping of source (such as natural language)
   to result (a tree).
 All information stored in the source is also available through the tree
@@ -729,7 +729,7 @@ In essence, \emph{parse-latin} tokenises text into white space, word, and
 
 \noindent Then, \emph{parse-latin} manipulates and merges those tokens into a
   syntax tree, adding sentences, paragraphs, and other nodes where needed.
-The majority of the intelect of the algorithm deals with sentence
+The majority of the intellect of the algorithm deals with sentence
   tokenisation (§ \ref{sentence-tokenisation}, p.
   \pageref{sentence-tokenisation}).
 This is done in similar fashion, but more intelligent, to \emph{Emphasis}
@@ -746,7 +746,7 @@ This is done in similar fashion, but more intelligent, to \emph{Emphasis}
   directly after the mark, such as the punctuation marks following the
   full stop in ``.)'' or ``.'{}'';
 \item\emph{Embedded content} --- Punctuation marks are sometimes used in
-  nonstandard ways, such as when a section or chapter delimiter is
+  non-standard ways, such as when a section or chapter delimiter is
   created with a line containing three asterisk marks (``* * *'').
 \end{aenumerate}
 
@@ -768,7 +768,7 @@ Exceptions in the English language include:
 \item\emph{Business Abbreviations} --- ``Inc.'' and ``Ltd.''
 \item\emph{Social titles} --- ``Mr.'', ``Mmes.'', ``Sr.'', \&c.;
 \item\emph{Rank and academic titles} --- ``Dr.'', ``Gen.'', ``Prof.'',
-  ``Pres.'', \&c.);
+  ``Pres.'', \&c.;
 \item\emph{Geographical abbreviations} --- ``Ave.'', ``Blvd.'', ``Ft.'',
   ``Hwy.'', \&c.;
 \item\emph{American state abbreviations} --- ``Ala.'', ``Minn.'', ``La.'',
@@ -783,7 +783,7 @@ Exceptions in the English language include:
 
 \subsection{parse-dutch}\label{parse-dutch}
 
-\emph{parse-dutch} has, just like \emph{parse-english}, the same interface as
+\emph{parse-dutch} has, like \emph{parse-english}, the same interface as
 \emph{parse-latin}, but returns results better suited for Dutch text.
 Exceptions in the Dutch language include:
 
@@ -792,8 +792,8 @@ Exceptions in the Dutch language include:
   ``vr.'', ``vrij.'', ``febr'', ``mrt'', \&c.;
 \item\emph{Many other common abbreviations} --- ``Mr.'', ``Mv.'', ``Sr.'',
   ``Em.'', ``bijv.'', ``zgn.'', ``amb.'', \&c.;
-\item\emph{Elision (omission of letters)} --- ``d''', ``'n'', ``'ns'',
-  ``'t'', ``'s'', ``'er'', ``'em'', ``'ie'', \&c..
+\item\emph{Elision (omission of letters)} --- ``d'\,'', ``'n'', ``'ns'',
+  ``'t'', ``'s'', ``'er'', ``'em'', ``'ie'', \&c.
 \end{aenumerate}
 
 \section{Object Model: TextOM}\label{object-model}
@@ -830,13 +830,13 @@ For natural language processing on the client side, this paper presents
   \emph{Retext}.
 \emph{Retext} combines a parser, such as \emph{parse-latin} or
   \emph{parse-english}, with an object model: \gls{textom}.
-Additionally, \emph{Retext} provides a minimalistic plugin mechanism which
-  enables developers to create and publish plugins for others to use, and in
-  turn enables them to use others' plugins inside their projects.
+Additionally, \emph{Retext} provides a minimalistic plug-in mechanism which
+  enables developers to create and publish plug-ins for others to use, and in
+  turn enables them to use others' plug-ins inside their projects.
 
-\emph{Retext} provides a strong basis to use plugins in order to add simple
+\emph{Retext} provides a strong basis to use plug-ins in order to add simple
   natural language features to a website, but additionally provides
-  functionality to extend this basis---create plugins, parsers, or other
+  functionality to extend this basis---create plug-ins, parsers, or other
   features---to create vast natural language systems.
 
 \chapter{Validation}\label{validation}
@@ -849,19 +849,19 @@ Interest in the proposal by the target audience was validated by
 
 \section{Plugins}\label{plugins}
 
-More than fifteen plugins for \emph{Retext} were created to confirm if,
+More than fifteen plug-ins for \emph{Retext} were created to confirm if,
   and validate how, the proposals integrated together, and how the system
   worked as a whole.
 
 The proposal solves the creation of natural language by default (use case
-  \ref{list:use-case:2}), but these plugins solve several others.
-The developed plugins included implementations for:
+  \ref{list:use-case:2}), but these plug-ins solve several others.
+The developed plug-ins included implementations for:
 
 \begin{aenumerate}
 \item Transforming so-called dumb punctuation marks into more
   typographically correct punctuation marks, solving use case
   \ref{list:use-case:4} \autocite*{wooorm/retext-smartypants-source-code};
-\item Transforming emoji shortcodes (:cat:) into real emoji
+\item Transforming emoji short-codes (:cat:) into real emoji
   \autocite*{wooorm/retext-emoji-source-code};
 \item Detecting the direction of text
   \autocite*{wooorm/retext-directionality-source-code};
@@ -880,9 +880,9 @@ The developed plugins included implementations for:
   \autocite*{wooorm/retext-language-source-code}.
 \end{aenumerate}
 
-\noindent These plugins listed and the other plugins solve several use cases
+\noindent These plug-ins listed and the other plug-ins solve several use cases
   of the target audience (§~\ref{use-cases}).
-The unsolved use cases can be solved using the plugin mechanism provided by
+The unsolved use cases can be solved using the plug-in mechanism provided by
   \emph{Retext}.
 Summarising natural language (use case \ref{list:use-case:1}) is not yet
   solved, but can be by implementing the stages mentioned in
@@ -891,10 +891,10 @@ Neither is detecting sentiment (use case \ref{list:use-case:3}), but it can
   be by implementing the stages mentioned in §~\ref{sentiment-analysis}
   (p.~\pageref{sentiment-analysis}).
 
-During the development of these plugins, several problems were brought to
+During the development of these plug-ins, several problems were brought to
   light in the developed software.
 These problems were recursively dealt with, back and forth, between the
-  software and the plugins.
+  software and the plug-ins.
 The software changed severely by these changes, which resulted in a
   better interface and usability.
 
@@ -902,16 +902,16 @@ The software changed severely by these changes, which resulted in a
 
 To confirm interest by the target audience in the proposal, enthusiasm
   showed by the open source community was measured.
-To initially spark interest, several blogs and email newsletters were
+To initially spark interest, several web sites and email newsletters were
   contacted to feature \emph{Retext}, either in the form of an article or as
   a simple link.
-This resulted in coverage on high profile blogs
+This resulted in coverage on high profile web sites
   \autocite{dailyjs.com-natural-language-parsing-retext} and newsletters
   \autocites{nodeweekly.com-47}{javascriptweekly.com-193}
   {newspaper.io/javascript-2014-08-11}.
-Later, organical growth resulted in features on link roundups
+Later, organic growth resulted in features on link roundups
   \autocites{github.com-awesome-machine-learning}{github.com-awesome-nodejs},
-  reddit \autocites{reddit.com-mention-1}{reddit.com-mention-2}
+  Reddit \autocites{reddit.com-mention-1}{reddit.com-mention-2}
   {reddit.com-mention-3}.
 
 In turn, these publications resulted in positive reactions, such as on
@@ -933,9 +933,9 @@ This chapter consists of a short summary (§~\ref{summary}), a list
 
 \section{Summary}\label{summary}
 
-\gls{nlp} covers many different tasks, but the process of accomplishing
+\gls{nlp} covers many tasks, but the process of accomplishing
   these goals touches on well defined stages.
-Such as \emph{tokenisation}, the main focus of this paper.
+Such as \emph{tokenisation}, the focus of this paper.
 Current implementations on the web platform are lacking.
 In part, because techniques such as \emph{supervised learning} do not work
   on the web.
@@ -949,10 +949,10 @@ The presented proposal is split up in several solutions: a specification, a
 These solutions come together in a proposal: \emph{Retext}, a complete natural
   language system.
 \emph{Retext} takes care of parsing natural language and enables users to
-  create and use plugins.
+  create and use plug-ins.
 
-The proposal was validated both by solving the audiences use cases, and
-  by measuring the audiences enthusiasm.
+The proposal was validated both by solving the audience's use cases, and
+  by measuring the audience's enthusiasm.
 
 \section{Limitations \& Future Work}\label{limitations-future-work}
 
@@ -981,7 +981,7 @@ Some of which, are featured here.
     cases.
   Future work could expand on this purview and implement more academic
     goals.
-\item\emph{Semantical units} --- Currently, the proposals provide syntactic
+\item\emph{Semantic units} --- Currently, the proposals provide syntactic
     units.
   Future work could expand on this by providing information about phrases
     and clauses to users.
@@ -1005,7 +1005,7 @@ This section evaluates if the research question(s) are answered, and if the
 \subsection{Current possibilities and
   deficiencies}\label{q-current-possibilities-and-deficientcies}
 
-\gls{nlp} covers many different tasks.
+\gls{nlp} covers many tasks.
 Within the scope of this thesis, only \emph{tokenisation} was covered
   (§ \ref{scope}, p. \pageref{scope}).
 Most current implementations use tokenisation as part of a larger task
@@ -1015,7 +1015,7 @@ Implementations that provide tokenisation capabilities to other tasks,
 It is concluded that quality implementations that offer tokenisation within
   the scope, do not exist.
 
-\subsection{The target audiences use cases}\label{q-use-cases}
+\subsection{The target audience's use cases}\label{q-use-cases}
 
 The audience that benefits the most from the proposal, are web developers
   (§ \ref{target-audience}, p. \pageref{target-audience}).
@@ -1045,7 +1045,7 @@ The aforementioned answers to the research questions, answers the complete
 
 \subsection{Research Objective}\label{q-research-objective}
 
-Although the \emph{how} was answered by the \emph{research question}, the
+Although \emph{how} was answered by the \emph{research question}, the
   working proposal reaches the research objective.
 This was validated by the more than fifteen solved use cases
   (§ \ref{plugins}, p. \pageref{plugins}).
