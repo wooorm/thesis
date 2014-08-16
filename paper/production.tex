@@ -1,0 +1,217 @@
+\chapter{Production}\label{production}
+
+\section{Target Audience}\label{target-audience}
+
+The audience that benefits the most from the proposal, are web developers.
+Web developers are programmers who specialise in creating software that
+  functions on the world wide web.
+A group which enables machines to respond to humans.
+They engage in client side development (building the interface between
+  a human and a machine on the web), and sometimes also in server side
+  development (building the interface between the client side and a
+  server).
+
+Typical areas of work consist of programming in \gls{ecmascript},
+  marking up documents in \gls{html}, graphic design through \gls{css},
+  creating a back end in Node.js, \gls{php}, or other platforms, contacting a
+  \gls{mongodb}, \gls{mysql}, or other database, and more.
+
+Additionally, many interdisciplinary skills, such as usability,
+  accessibility, copywriting, information architecture, or optimisation,
+  are also of concern to web developers.
+
+\section{Use cases}\label{use-cases}
+
+The use cases of the target audience, the web developer, in the field of
+  \gls{nlp} are many.
+Research for this paper found several use cases, although it is
+  expected many more could be defined.
+The tasks below are each categorised into broad, generic fields: analysation,
+  manipulation, and creation.
+
+\begin{aenumerate}
+\item\label{list:use-case:1} The developer may intent to summarise natural
+  text (mostly analysation, potentially also manipulation);
+\item\label{list:use-case:2} The developer may intent to create natural
+  language, e.g., displaying the number of unread messages: ``You have 1
+  unread message,'' or ``You have 0 unread messages'' (creation);
+\item\label{list:use-case:3} The developer may intent to recognise sentiment
+  in text: is a \emph{tweet} positive, negative, or spam? (analysation);
+\item\label{list:use-case:4} The developer may intent to replace so-called
+  \emph{dumb} punctuation with \emph{smart} punctuation, such as dumb
+  quotations with (``) or (''), three dots with an ellipsis (\ldots{}), or
+  two hyphens with an en-dash (--) (manipulation);
+\item\label{list:use-case:5} The developer may intent to count the number of
+  certain grammatical units in a document, such as, words, white space,
+  punctuation, sentences, or paragraphs (analysation);
+\item\label{list:use-case:6} The developer may intent to recognise the
+  language in which a document is written (analysation);
+\item\label{list:use-case:7} The developer may intent to find words in a
+  document based on a search term, with regards for the lemma (or stem)
+  and\slash or phonetics (so that a search for ``smit'' also returns similar
+  words, such as ``Schmidt'' or ``Smith'') (analysation and manipulation).
+\end{aenumerate}
+
+\noindent \gls{nlp} is a large field with many challenges, but not every
+  challenge in the field is of interest to the web developer.
+Foremost, the more academic areas of \gls{nlp}, such as speech recognition,
+  optical character recognition, text to speech transformation, translation,
+  and machine learning, do not fit well with the goals of web developers.
+
+\section{Requirements}\label{requirements}
+
+The proposal must enable the target audience to reach the in the previous
+  section defined use cases.
+In addition, the proposal should meet several other requirements to better
+  suit the wishes of the target audience.
+
+\subsection{Open Source}\label{open-source}
+
+To reach the target audience and validate its usability, the proposal
+  should be open source.
+All code should be licensed under \acrshort{mit}, a license which
+  provides rights for others to use, copy, modify, merge, publish,
+  distribute, sublicense, and\slash or sell copies of the code it covers.
+
+In addition, the software should be developed under the all-seeing eye of
+  the community: on GitHub.
+GitHub is a hosted version control\footnote{Version
+    control services manage revisions to documents, popularly used for
+    controlling and tracking changes in software.} service with social
+  networking features.
+On GitHub, web developers follow their peers to track what they are
+  working on, watch their favourite projects to get notified of changes,
+  and raise issues and request features.
+
+\subsection{Performance}\label{performance}
+
+The proposal should execute at high \emph{performance}.
+Performance includes the software having a small file size to reach the
+  client over the network with the highest possible speed, but most
+  importantly that the execution of code should run efficiently and at high
+  speeds.
+
+\subsection{Testing}\label{testing}
+
+\emph{Testing} should have high priority in the proposal.
+Testing, in software development, refers to validating if software does what
+  it is supposed to do, and can be divided into several subgroups:
+
+\begin{aenumerate}
+\item\emph{Unit testing} --- Validation of each specific section of code;
+\item\emph{Integration testing} --- Validation of how programs work together;
+\item\emph{System testing} --- Validation of if the system meets its
+  requirements;
+\item\emph{Acceptance testing} --- Validation of the end product.
+\end{aenumerate}
+
+\noindent Great care should be given to develop an adequate test suite with
+  full \emph{coverage} for every program.
+Coverage, in software development, is a term used to describe the amount of
+  code tested by the test suite.
+Full coverage means every part of the code is reached by the tests.
+
+Unit test run through Mocha \autocite{visionmedia/mocha-source-code},
+  coverage is detected by Istanbul
+  \autocite{gotwarlost/istanbul-source-code}.
+
+\subsection{Code quality}\label{code-quality}
+
+\emph{Code quality}---how useful and readable for both humans and machines
+  the software is---should be vital. For humans, the code should be
+  consistent and clear. For computers, the code should be free of bugs and
+  other suspicious code.
+
+\subsubsection{Suspicious Code and Bugs}\label{suspicious-code-and-bugs}
+
+To detect bugs and suspicious code in the software, \emph{Eslint}
+  is used \autocite{eslint/eslint-source-code}.
+\emph{Linting}, in computer programming, is a term used to describe static
+  code analysis to detect syntactic discrepancies without running the code.
+\emph{Eslint} is used because it provides a solid set of basic rules and
+  enables developers to create custom rules.
+
+\subsubsection{Style}\label{style}
+
+To enforce a consistent code style---to create readable software for
+  humans---\acrshort{jscs} is used \autocite{mdevils/node-jscs-source-code}.
+\acrshort{jscs} provides rules for (dis)allowing certain code patterns,
+  such as white space at the end of a line or camel cased variable names,
+  or enforcing a maximum line length.
+\acrshort{jscs} was chosen because it, like \emph{Eslint}, provides a strong
+  basic set of rules.
+The rules chosen for the proposal were set strict to enforce all code to be
+  written in the same way.
+
+\subsubsection{Commenting}\label{commenting}
+
+Even when code is bug free, uses no confusing short-cuts, and adheres to a
+  strict style, it might still be hard to understand for humans.
+\emph{Commenting} code---describing what a program does and why it
+  accomplishes it this way---is important.
+However, commenting can also be too verbose, such as when the code is
+  duplicated in natural language.
+
+\gls{jsdoc} \autocite{google.com-clojure-compiler-jsdoc} is a markup language
+  for \gls{ecmascript} that allows developers to embed documentation---using
+  comments---in source code.
+Several tools can later extract this information and expose it independent
+  from the original code.
+``Tricky'' code should be annotated inside the software with comments to help
+  readers understand why certain decisions were made.
+
+\subsection{Automation}\label{automation}
+
+When suspicious, ambiguous, or buggy code is introduced in the software, the
+  error should be automatically detected.
+Sometimes, deployment should be prevented.
+Automated \gls{ci} environments to enforce error detection should be used.
+To detect complex, duplicate, or bug prone code, Code Climate is used
+  \autocite{codeclimate.com}.
+To validate all tests passed before deploying the software, Travis is used
+  \autocite{travis-ci.org}.
+
+\subsection{\textsc{api} Design}\label{design-1}
+
+Quality interface design should have high priority for the proposal.
+A good \gls{api}, according to Joshua Bloch
+  \autocite*{bloch-joshua-how-design-good-api-why-matters}, has the following
+  characteristics:
+
+\begin{enumerate}
+\item Easy to learn;
+\item Easy to use;
+\item Hard to misuse;
+\item Easy to read;
+\item Easy to maintain;
+\item Easy to extend;
+\item Meeting its requirements;
+\item Appropriate for the target audience.
+\end{enumerate}
+
+\noindent In essence equal, but worded differently, are the characteristics
+  of good \gls{api} design according to the Qt Project
+  \autocite*{qt-project.org-api-design-principles}:
+
+\begin{enumerate}
+\item Be minimal;
+\item Be complete;
+\item Have clear and simple semantics;
+\item Be intuitive;
+\item Be easy to memorise;
+\item Lead to readable code.
+\end{enumerate}
+
+\noindent The proposal should take these characteristics, and the in their
+  sources given examples, into account.
+
+\subsection{Installation}\label{installation}
+
+Simple access to the software for the target audience, both on the client
+  side and on the server side, should be given high priority.
+On the client side, many package managers exist, the most
+  popular being Bower and Component\footnote{Popularity here is simply
+    defined as having the highest number of search results on Google.}.
+For Node.js (on the server side), \gls{npm} is the most popular.
+To reach the target audience, besides making the source available on GitHub,
+  all popular package managers, \gls{npm}, Bower, and Component, are used.

@@ -1,0 +1,129 @@
+\chapter{Conclusion}\label{conclusion}
+
+This chapter consists of a short summary (§~\ref{summary}), a list
+  limitations and suggestions for future work
+  (§~\ref{limitations-future-work}), and a list of conclusions
+  (§~\ref{conclusions}).
+
+\section{Summary}\label{summary}
+
+\gls{nlp} covers many tasks, but the process of accomplishing
+  these goals touches on well-defined stages.
+Such as \emph{tokenisation}, the focus of this paper.
+Current implementations on the web platform are lacking.
+In part, because techniques such as \emph{supervised learning} do not work
+  on the web.
+
+The audience that benefits the most from better parsing on the web platform,
+  are web developers, a group which is more interested in practical use, and
+  less so in theoretical applications.
+
+The presented proposal is split up in several solutions: a specification, a
+  parser, and an object model.
+These solutions come together in a proposal: \emph{Retext}, a complete natural
+  language system.
+\emph{Retext} takes care of parsing natural language and enables users to
+  create and use plug-ins.
+
+The proposal was validated both by solving the audience's use cases, and
+  by measuring the audience's enthusiasm.
+
+\section{Limitations \& Future Work}\label{limitations-future-work}
+
+The proposal leaves open many areas of interest for future investigation.
+Some of which, are featured here.
+
+\begin{aenumerate}
+\item\emph{Internationalisation} --- Currently, the proposal is only
+    tested on Latin script languages.
+  The software was developed with other languages and scripts, such as
+    Arabic, Hangul, Hebrew, and Kanji, in mind.
+  Future work could expand support to include these scripts;
+\item\emph{Difference application} --- Currently, the proposal does not
+    support difference application.
+  When a word is added at the end of a sentence, all steps to produce the
+    output have to be revisited.
+  Although the proposal is created with this in mind, no support has been
+    added.
+  Future work could include difference application support;
+\item\emph{Non-rule based parsing} --- Currently, \gls{nlcst} trees are
+    created with rule based parsers.
+  But, corpora based parsers could also produce these trees.
+  Future work could investigate and implement such supervised learning
+    approaches.
+\item\emph{Academic goals} --- Currently, the proposals cater to practical use
+    cases.
+  Future work could expand on this purview and implement more academic
+    goals.
+\item\emph{Semantic units} --- Currently, the proposals provide syntactic
+    units.
+  Future work could expand on this by providing information about phrases
+    and clauses to users.
+\item\emph{Import formants} --- Currently, the parsers each require plain
+    text input.
+  Future work could expand on this by allowing other input formats, such as
+    MarkDown or \LaTeX.
+\item\emph{Heighten Performance} --- The decision made to adopt an
+    object-oriented approach for analysation and manipulation, came at a huge
+    performance cut.
+  When implementing both \gls{textom} and \emph{parse-latin} over just
+    \emph{parse-latin}, performance decreases over 90\%.
+  Future work should investigate and implement better performance.
+\end{aenumerate}
+
+\section{Conclusions}\label{conclusions}
+
+This section evaluates if the research question(s) are answered, and if the
+  research objective is reached.
+
+\subsection{Current possibilities and
+  deficiencies}\label{q-current-possibilities-and-deficientcies}
+
+\gls{nlp} covers many tasks.
+Within the scope of this thesis, only \emph{tokenisation} was covered
+  (§ \ref{scope}, p. \pageref{scope}).
+Most current implementations use tokenisation as part of a larger task
+  (§ \ref{tasks}, p. \pageref{tasks}).
+Implementations that provide tokenisation capabilities to other tasks,
+  are lacking (§ \ref{stages}, p. \pageref{stages}).
+It is concluded that quality implementations that offer tokenisation within
+  the scope, do not exist.
+
+\subsection{The target audience's use cases}\label{q-use-cases}
+
+The audience that benefits the most from the proposal, are web developers
+  (§ \ref{target-audience}, p. \pageref{target-audience}).
+Research for this paper found that the target audience would use the
+  implementation for several use cases.
+Not every challenge in the field is of interest to the web developer.
+In addition, concluded was that the more academic areas of \gls{nlp}, do not
+  fit well with the goals of web developers (§ \ref{use-cases},
+  p. \pageref{use-cases}).
+
+\subsection{Quality implementation}\label{q-quality-implementation}
+
+The proposal should meet several requirements, other than the use cases,
+  to better suit the wishes of the target audience.
+This includes open source development and easy installation, readable code,
+  tested results, high performance, and a good interface design.
+Concluded was that by following these best practises for code and creating
+  an interface similar to for the target audience familiar projects, a
+  ``good'' implementation was built (§ \ref{requirements},
+  p. \pageref{requirements}).
+
+\subsection{Research Question}\label{q-research-question}
+
+The answers to the research questions, answers the complete
+  \emph{research question}, within the scope (§ \ref{research-question},
+  p. \pageref{research-question}).
+
+\subsection{Research Objective}\label{q-research-objective}
+
+Although \emph{how} was answered by the \emph{research question}, the
+  working proposal reaches the research objective.
+This was validated by the more than fifteen solved use cases
+  (§ \ref{plugins}, p. \pageref{plugins}).
+
+In addition to \emph{reaching} this objective, the measured enthusiasm
+  showed by the target audience for the proposal confirmed the interest in
+  such a proposal.

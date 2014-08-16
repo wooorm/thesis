@@ -1,0 +1,84 @@
+\chapter{Validation}\label{validation}
+
+The presented proposal was validated through two approaches.
+The design and the usability of the interface was validated through
+  solving several use cases of the target audience with the proposal.
+Interest in the proposal by the target audience was validated by
+  measuring the enthusiasm showed by the open source community.
+
+\section{Plugins}\label{plugins}
+
+More than fifteen plug-ins for \emph{Retext} were created to confirm if,
+  and validate how, the proposals integrated together, and how the system
+  worked.
+
+The proposal solves the creation of natural language by default (use case
+  \ref{list:use-case:2}), but these plug-ins solve several others.
+The developed plug-ins included implementations for:
+
+\begin{aenumerate}
+\item Transforming so-called dumb punctuation marks into more
+  typographically correct punctuation marks, solving use case
+  \ref{list:use-case:4} \autocite*{wooorm/retext-smartypants-source-code};
+\item Transforming emoji short-codes (:cat:) into real emoji
+  \autocite*{wooorm/retext-emoji-source-code};
+\item Detecting the direction of text
+  \autocite*{wooorm/retext-directionality-source-code};
+\item Detecting phonetics
+  \autocite*{wooorm/retext-double-metaphone-source-code};
+\item Detecting the stem of words
+  \autocite*{wooorm/retext-porter-stemmer-source-code};
+\item Finding grammatical units, solving use case
+  \ref{list:use-case:5}  \autocite*{wooorm/retext-visit-source-code};
+\item Finding text, even misspelled, solving use case
+  \ref{list:use-case:7} \autocite*{wooorm/retext-search-source-code};
+\item Detecting \gls{pos} tags \autocite*{wooorm/retext-pos-source-code};
+\item Finding keywords and -phrases
+  \autocite*{wooorm/retext-keywords-source-code};
+\item Detecting the language of text, solving use case \ref{list:use-case:6} 
+  \autocite*{wooorm/retext-language-source-code}.
+\end{aenumerate}
+
+\noindent These plug-ins listed and the other plug-ins solve several use cases
+  of the target audience (§~\ref{use-cases}).
+The unsolved use cases can be solved using the plug-in mechanism provided by
+  \emph{Retext}.
+Summarising natural language (use case \ref{list:use-case:1}) is not yet
+  solved, but can be by implementing the stages mentioned in
+  §~\ref{automatic-summarisation} (p.~\pageref{automatic-summarisation}).
+Neither is detecting sentiment (use case \ref{list:use-case:3}), but can be
+  by implementing the stages mentioned in §~\ref{sentiment-analysis}
+  (p.~\pageref{sentiment-analysis}).
+
+During the development of these plug-ins, several problems were brought to
+  light in the developed software.
+These problems were recursively dealt with, back and forth, between the
+  software and the plug-ins.
+The software changed severely by these changes, which resulted in a
+  better interface and usability.
+
+\section{Reception}\label{reception}
+
+To confirm interest by the target audience in the proposal, enthusiasm
+  showed by the open source community was measured.
+To initially spark interest, several websites and email newsletters were
+  contacted to feature \emph{Retext}, either in the form of an article or as
+  a simple link.
+This resulted in coverage on high-profile websites
+  \autocite{dailyjs.com-natural-language-parsing-retext} and newsletters
+  \autocites{nodeweekly.com-47}{javascriptweekly.com-193}
+  {newspaper.io/javascript-2014-08-11}.
+Later, organic growth resulted in features on link roundups
+  \autocites{github.com-awesome-machine-learning}{github.com-awesome-nodejs},
+  Reddit \autocites{reddit.com-mention-1}{reddit.com-mention-2}
+  {reddit.com-mention-3}.
+
+In turn, these publications resulted in positive reactions, such as on
+  Twitter \autocites{twitter.com-mention-1}{twitter.com-mention-2}
+  {twitter.com-mention-3}{twitter.com-mention-4}{twitter.com-mention-5}
+  {twitter.com-mention-6}, other websites, and both feedback and fixes
+  on GitHub \autocites{github.com-issue-1}{github.com-issue-2}
+  {github.com-issue-3}{github.com-pull-request}.
+
+Additionally, many of the target audience started \emph{following} the
+  project on GitHub \autocite{github.com-stargazers}.
