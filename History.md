@@ -1,4 +1,28 @@
 
+n.n.n / 2014-08-16
+==================
+
+ * Move appendix-dom after appendix-retext
+ * Remove indent after listing
+ * Rename appendix-a > appendix-nlcst
+ * Rename appendix-b > appendix-parse-latin
+ * Rename appendix-c > appendix-dom
+ * Add appendix on Retexts interface and usage
+ * Fix more grammar mistakes
+ * Add appendix on the definition of TextOM
+ * Fix use of naive > naïve
+ * Fix use of perfiod > full stop
+ * Fix grammer in body
+ * Fix grammer in Introduction
+ * Fix grammer in Executive Summary
+ * Add simple case of `will`; remove contractions
+ * Fix some incorrect dash-usage
+ * Remove mention of information extraction; Remove indent after list
+ * Refactor outline of paper in Introduction
+ * Fix two ungrammatical cases in Introduction
+ * Refactor mention of solving use case F (language detection), as its now solved
+ * Add retext-language to references
+
 0.0.8 / 2014-08-15
 ==================
 
