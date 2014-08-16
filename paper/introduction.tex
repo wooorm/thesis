@@ -21,23 +21,23 @@ For example, search engines provide answers before being questioned,
   e-mail applications know if you forgot to include an attachment.
 
 Despite increased interest, web developers trying to solve \gls{nlp} problems
-reinvent the wheel over and over again. There are tools,
-especially for other platforms---such as in Python
-\autocite{nltk-source} and Java \autocite{opennlp-source}---but they either
-take a too na\"ive approach\footnote{Such as ignoring white space
-  \autocite{loadfive/knwl-source-code}, implementing a na\"ive
-  definition of ``words'' \autocite{nhunzaker/speakeasy-source-code},
-  or by using an inadequate algorithm to detect sentences
-  \autocite[][]{nytimes/emphasis-source-code}.}, or try to do everything out
-of the box\footnote{Although a do-all library works well on server-side
+  reinvent the wheel over and over.
+There are tools, especially for other platforms---such as in Python
+  \autocite{nltk-source} and Java \autocite{opennlp-source}---but they either
+  take a too na\"ive approach\footnote{Such as ignoring white space
+    \autocite{loadfive/knwl-source-code}, implementing a na\"ive
+    definition of ``words'' \autocite{nhunzaker/speakeasy-source-code},
+    or by using an inadequate algorithm to detect sentences
+    \autocite[][]{nytimes/emphasis-source-code}.}, or try to do everything
+  out of the box\footnote{Although a do-all library works well on server-side
   platforms, it fares less well on the web \autocite[such
   as][]{NaturalNode/natural-source-code}, where modularity and moderation
-  are in order.}. What is missing is a standard representation of the
-grammatical hierarchy of text and a standard for multipurpose analysis of
-natural language.
+  are in order.}.
+What is missing is a standard representation of the grammatical hierarchy
+  of text and a standard for multipurpose analysis of natural language.
 
-My initial motivation for natural language was sparked by typography, when I
-  felt the need to create a typographically beautiful web site, somewhere in
+My initial interest in natural language was sparked by typography, when I
+  felt the need to create a typographically beautiful website, somewhere in
   the summer of 2013.
 I felt a craving to apply the tried-and-true practices of typography found on
   paper, to the web.
@@ -49,15 +49,16 @@ I was inspired by how these practices were available on other platforms,
 
 My interest for fixing typography on the web was piqued.
 Thus, I began work on \emph{MicroType.js}, an unpublished library, to
-  facilitate several graphic and typographic practices on the web.
+  enable several graphic and typographic practices on the web.
 Examples include automatic initials, ligatures, optical margin alignment,
   acronym recognition, smart punctuation, automatic hyphenation, character
   transpositions, and more.
 The possibilities were vast, but I noticed how the underlying parser and data
-  representation, the definition of words, white space, punctuation, and
-  sentences, was not good enough.
-The web site never came into existence, but during this thesis, I had the
-  chance to finally fix this problem.
+  representation.
+How words, white space, punctuation, and sentences were defined, was not
+  good enough.
+The website never came into existence, but during this thesis, I could
+  finally fix this problem.
 While working on this thesis, the specification, the product, I developed a
   well thought out and substantiated solution.
 
@@ -66,13 +67,13 @@ Retext---the implementation introduced in this thesis---and other projects
 Together they form an extensible system for multipurpose analysis of natural
   language in \gls{ecmascript}.
 
-To achieve this goal, I have organised my paper into six main chapters.
+To reach this goal, I have organised my paper into six main chapters.
 In the first chapter I define the scope of this paper and review current
   implementations, what they lack and where they excel.
 In the second chapter I state a research objective and draft research
   questions.
-The third chapter defines conditions for the production of such a proposal,
-  where I touch upon the target audience, use cases, and requirements.
+The third chapter defines conditions for such a proposal, where I touch
+  upon the target audience, use cases, and requirements.
 In the fourth chapter, I propose a better implementation and show its
   architectural design.
 
@@ -80,8 +81,5 @@ I end the paper with a fifth chapter which describes the steps taken to
   validate the proposal.
 I conclude with a sixth chapter that offers information on expanding the
   proposal.
-
-Before I can begin the examination of a proposal, I need to provide a
-  context for \gls{nlp}.
 
 \endgroup

@@ -31,8 +31,8 @@ The machine translated more than sixty sentences from Russian to English.
 The experiment was well publicised and resulted in optimism.
 The public believed machine translation would be a ``solved problem'' within
   three to five years.
-Despite promising initial results, the following ten years proved to be
-  disappointing and led to reduced funding.
+Despite promising first results, the following ten years were disappointing
+  and led to reduced funding.
 
 Machine translation is just one of many major tasks involved with \gls{nlp}.
 Other tasks include generating summaries, detecting references to people
@@ -40,7 +40,7 @@ Other tasks include generating summaries, detecting references to people
 Many programs exist to carry out these and many other \gls{nlp} tasks.
 The approach taken to perform these tasks are often similar between
   implementations.
-Entity linking for example, is often implemented as follows
+For example, Entity linking is often implemented as follows
   \autocite[according to][]{stanbol-enhancer-nlp}:
 
 \begin{enumerate}
@@ -68,7 +68,7 @@ Entity linking for example, is often implemented as follows
 \end{enumerate}
 
 \noindent \gls{nlp} covers many tasks, but the process of accomplishing these
-  goals touches, as seen above, on well defined stages.
+  goals touches, as seen above, on well-defined stages.
 
 \section{Scope}\label{scope}
 
@@ -108,8 +108,8 @@ Often referred to as sentence boundary disambiguation\footnote{Both
     Sentence boundary disambiguation focusses on the position where
       sentences break (as in, ``One sentence?\textbar{} Two
       sentences.\textbar{}'', where the pipe symbols refer to the end of
-      one sentence and the beginning of another), whereas sentence
-      tokenisation targets both the start and end location (as in,
+      one sentence and the beginning of another). Sentence
+      tokenisation targets both the start and end positions (as in,
       ``\{One sentence?\} \{Two sentences.\}'', where everything between
       braces is classified as a sentence).}, sentence
   tokenisation is an elementary but important part of \gls{nlp}.
@@ -129,13 +129,13 @@ Full stops often occur in numbers, suffixed to abbreviations or titles,
   in initialisms\footnote{Although
     the definition of initialism is ambiguous, this paper defines its use
     as an acronym (an abbreviation formed from initial components, such as
-    ``sonar'' or ``FBI'') with full stops depicting elision (such as
+    ``sonar'' or ``\textsc{fbi}'') with full stops depicting elision (such as
     ``e.g.'', or ``K.G.B.'').},
   or in embedded content\footnote{Embedded
     content in this paper refers to an external (ungrammatical) value
     embedded into a grammatical unit, such as a \textsc{url} or an emoticon.
     Note that these embedded values often consist of valid words and
-    punctuation marks, but most always shouldn't be classified as such.}.
+    punctuation marks, but almost always should not be classified as such.}.
 The interrogative- and exclamation points too can occur ambiguously, such as
   in a quote (e.g., `\,``Of course!'', she screamed').
 
@@ -143,7 +143,7 @@ Disambiguation gets even harder when these exceptions \emph{are} in fact a
   sentence boundary (double negative), such as in
   ``\ldots{}use the feminine form of idem, ead.'' or in
   `\,``Of course!'', she screamed, ``I'll do it!''\,', where in both
-  cases the last terminal marker ends the respective sentence.
+  cases the last terminal marker ends the sentence.
 
 \subsubsection{Word tokenisation}\label{word-tokenisation}
 
@@ -158,7 +158,7 @@ Often implementations see words as everything that is \emph{not} white
 
 Some implementations take punctuation marks into account as boundaries.
 This practice has flaws, as it results in the faulty classification of
-  inner-word punctation\footnote{Many such inner-word symbols exist, such
+  inner-word punctuation\footnote{Many such inner-word symbols exist, such
     as hyphenation points, colons (``12:00''), or elision (whether denoted
     by full stops, ``e.g.''; apostrophes, the Dutch ``'s''; or slashes,
     ``N/A'').}
@@ -183,7 +183,7 @@ Twitter allows its users to search on polarity.
 For example, when a user searches for ``movie :)'', Twitter searches for
   positive tweets.
 
-The implementation of sentiment analysis could look as follows:
+Sentiment analysis could be implemented as follows:
 
 \begin{enumerate}
 \item\emph{Detect Language (optional)};
@@ -196,9 +196,9 @@ The implementation of sentiment analysis could look as follows:
 
 \noindent Sentiment analysers typically include a
   database mapping either words, stems, or lemmas to their respective
-  polarity and\slash or subjectivity\footnote{For example, the AFINN
+  polarity and\slash or subjectivity\footnote{For example, the \textsc{afinn}
     database mapping words to polarity \autocite{nielsen-finn-arup-afinn}.}
-  and return the average sentiment per sentence, or for the whole document.
+  and return the average sentiment per sentence, or for the document.
 
 In the case of the previously mentioned Twitter example, the service filters
   out all neutral and negative results, and return the remaining (positive
@@ -224,7 +224,8 @@ Few open source implementations of automatic summarisation algorithms on
   found\footnote{For example, on the web only \emph{node-summary} was found
     \autocite{jbrooksuk/node-summary-source-code}, in Scala \emph{textteaser}
     was found \autocite{MojoJolo/textteaser-source-code}.}.
-The implementation of automatic summarisation could look as follows:
+
+Automatic summarisation could be implemented as follows:
 
 \begin{enumerate}
 \item\emph{Detect Language (optional)};
@@ -243,7 +244,7 @@ The implementation of automatic summarisation could look as follows:
 \item\emph{Number of words} --- An ideal sentence is neither too long nor
   too short;
 \item\emph{Number of keywords} --- Words which occur more often than
-  expected by chance alone in the whole text;
+  expected by chance alone in the text;
 \item\emph{Similarity to title} --- Number of words from the document's
   title the unit contains;
 \item\emph{Position inside parent} --- Initial and final sentences of a
@@ -260,10 +261,10 @@ The only implementation working on the web, by James Brook
   \autocite*{jbrooksuk/node-summary-source-code}, takes a na\"ive sentence
   tokenisation approach.
 Such as ignoring sentences terminated by exclamation marks.
-Both other implementations, and many more, use a whole different approach to
+Both other implementations, and many more, use a different approach to
   sentence tokenisation: Corpora.
 
-\subsection{Using Corpora for NLP}\label{using-corpora-for}
+\subsection{Using Corpora for \textsc{nlp}}\label{using-corpora-for}
 
 A corpus is a large, structured set of texts used for many \gls{nlp}
   and linguistics tasks.
@@ -295,20 +296,20 @@ Instead of rules (and exceptions to these rules, exceptions to these
   delegates this task to machines.
 This delegation results in a more efficient, scalable, program.
 
-Parsing based on corpora has proven to be better in several ways over
-  rule based parsing, but it has disadvantages:
+Parsing based on corpora has proven better in several ways over rule based
+  parsing, but has disadvantages:
 
 \begin{enumerate}
 \item Good training sets are required;
 \item If the corpus was created from news articles, algorithms based on it
-  will not fare so well on microblogs (e.g., Twitter posts).
+  will not fare so well on microblogs (such as Twitter posts).
 \item Some rule based approaches for pre- and post processing are still
   required.
 \end{enumerate}
 
 \noindent In addition, corpora based parsing will not work well on the web.
-Loading corpora over the network each time a user request a web page is
-  infeasible for most web sites and applications\footnote{Currently,
+Loading corpora over the network each time a user requests a web page is
+  infeasible for most websites and applications\footnote{Currently,
     one technology exists for storing large datasets in a browser: the
     \acrshort{html5} File System \acrshort{api}. However, ``work on this
     document has been discontinued'', and the specification ``should not be
@@ -317,9 +318,9 @@ Loading corpora over the network each time a user request a web page is
 Two viable alternative approaches exist for the web: rule based tokenisation,
   or connecting to a server over the network.
 
-\subsection{Using a web API}\label{using-a-web}
+\subsection{Using a web \textsc{api}}\label{using-a-web}
 
-Whereas the term \gls{api} stands for an interface between two programs,
+Where the term \gls{api} stands for an interface between two programs,
   it is often used in web development as requests (from a web browser),
   and responses (from a web server) over \gls{http}.
 For example, Twitter has such a service to allow developers to list,
@@ -354,13 +355,13 @@ The objective of this paper is stated (§~\ref{research-objective}).
 From the objective a research question is drafted
   (§~\ref{research-question}).
 Additionally, from the research question, several research questions are
-  drafted, acting as a guideline for the development of the proposal
+  drafted, acting as a guideline for the proposal
   (§~\ref{research-questions}).
 
 \section{Research Objective}\label{research-objective}
 
 Using the context described in chapter \ref{context} (p.~\pageref{context}),
-  the objective of this research project can be constructed:
+  the objective of this research project is constructed:
 
 \begin{quote}
   \textit{A generic documentation (the ``specification'') and example
@@ -384,10 +385,10 @@ This research objective leads to a research question:
 
 \section{Research Questions}\label{research-questions}
 
-The previously defined research question can be split into several smaller
+The previously defined research question is split into several smaller
   questions.
 These research questions form a basis and a guide to answer the research
-  question, in order to reach the research objective.
+  question, to reach the research objective.
 
 \begin{enumerate}
 \item
@@ -500,12 +501,12 @@ On GitHub, web developers follow their peers to track what they are
 The proposal should execute at high \emph{performance}.
 Performance includes the software having a small file size to reach the
   client over the network with the highest possible speed, but most
-  importantly that the execution of code should operate efficiently and
-  at high speeds.
+  importantly that the execution of code should run efficiently and at high
+  speeds.
 
 \subsection{Testing}\label{testing}
 
-\emph{Testing} should have high priority in the development of the proposal.
+\emph{Testing} should have high priority in the proposal.
 Testing, in software development, refers to validating if software does what
   it is supposed to do, and can be divided into several subgroups:
 
@@ -552,8 +553,8 @@ To enforce a consistent code style---to create readable software for
   or enforcing a maximum line length.
 \acrshort{jscs} was chosen because it, like \emph{Eslint}, provides a strong
   basic set of rules.
-The rules chosen for the development of the proposal were set strict to
-  enforce all code to be written in the same manner.
+The rules chosen for the proposal were set strict to enforce all code to be
+  written in the same way.
 
 \subsubsection{Commenting}\label{commenting}
 
@@ -561,7 +562,7 @@ Even when code is bug free, uses no confusing short-cuts, and adheres to a
   strict style, it might still be hard to understand for humans.
 \emph{Commenting} code---describing what a program does and why it
   accomplishes it this way---is important.
-However, commenting can also be too verbose, for example when the code is
+However, commenting can also be too verbose, such as when the code is
   duplicated in natural language.
 
 \gls{jsdoc} \autocite{google.com-clojure-compiler-jsdoc} is a markup language
@@ -583,7 +584,7 @@ To detect complex, duplicate, or bug prone code, Code Climate is used
 To validate all tests passed before deploying the software, Travis is used
   \autocite{travis-ci.org}.
 
-\subsection{API Design}\label{design-1}
+\subsection{\textsc{api} Design}\label{design-1}
 
 Quality interface design should have high priority for the proposal.
 A good \gls{api}, according to Joshua Bloch
@@ -652,11 +653,11 @@ For example, other parties could create a parser for the Chinese language and
   to \gls{nlcst}, or other parties can implement an interface like
   \gls{textom} with functionality for phrases and clauses.
 
-\section{Syntax: NLCST}\label{syntax}
+\section{Syntax: \textsc{nlcst}}\label{syntax}
 
 To develop natural language tools in \gls{ecmascript}, an intermediate
   representation of natural language is useful.
-Instead of each module (for example, every stage in section
+Instead of each module (such as, every stage in section
   \ref{sentiment-analysis} on page~\pageref{apendix-a-nlcst-definition})
   defining its own representation of text, using a single syntax leads to
   better interoperability, performance, and results.
@@ -685,7 +686,7 @@ Both widely used implementations, \emph{\textsc{css}} by Rework
   \autocite{constellation/escodegen-source-code}.
 
 \gls{nlcst} is different from both these specifications, as it implements a
-  \gls{cst}, whereas the others use an \gls{ast}.
+  \gls{cst}, where the others use an \gls{ast}.
 A \gls{cst} is a one-to-one mapping of source (such as natural language)
   to result (a tree).
 All information stored in the source is also available through the tree
@@ -729,9 +730,8 @@ In essence, \emph{parse-latin} tokenises text into white space, word, and
 
 \noindent Then, \emph{parse-latin} manipulates and merges those tokens into a
   syntax tree, adding sentences, paragraphs, and other nodes where needed.
-The majority of the intellect of the algorithm deals with sentence
-  tokenisation (§ \ref{sentence-tokenisation}, p.
-  \pageref{sentence-tokenisation}).
+Most of the intellect of the algorithm deals with sentence tokenisation
+  (§ \ref{sentence-tokenisation}, p. \pageref{sentence-tokenisation}).
 This is done in similar fashion, but more intelligent, to \emph{Emphasis}
   \autocite{nytimes/emphasis-source-code}.
 
@@ -743,8 +743,8 @@ This is done in similar fashion, but more intelligent, to \emph{Emphasis}
   sentence end, such as the full stops in ``1.'', ``e.g.'', or ``id.'';
 \item\emph{Terminal punctuation} --- Although full stops, question marks,
   and exclamation marks (sometimes) end a sentence, that end might not occur
-  directly after the mark, such as the punctuation marks following the
-  full stop in ``.)'' or ``.'{}'';
+  directly after the mark, such as the punctuation marks after the full
+  stop in ``.)'' or ``.'{}'';
 \item\emph{Embedded content} --- Punctuation marks are sometimes used in
   non-standard ways, such as when a section or chapter delimiter is
   created with a line containing three asterisk marks (``* * *'').
@@ -805,7 +805,7 @@ To modify an \gls{nlcst} tree in \gls{ecmascript}, whether created by
   but provides an object-oriented style\footnote{Object-oriented
     programming is a style of programming, where classes, instances,
     attributes, and methods are important.} to manipulate these nodes.
-\gls{textom} was designed to be similar to the \gls{dom}\footnote{See
+\gls{textom} was designed in similarity to the \gls{dom}\footnote{See
     appendix~\ref{appendix-c-dom} on page~\pageref{appendix-c-dom} for more
     information on the \gls{dom}.},
   the mechanism used by browsers to expose \gls{html} through
@@ -819,8 +819,8 @@ Because of \glspl{textom} likeness to the \gls{dom}, \gls{textom} is
   sentence).
 
 \gls{nlcst} allows authors to extend the specification by defining their
-  own units, for example creating phrase or clause nodes.
-\gls{textom} allows for the same extension, and is build to work well
+  own units, such as creating phrase or clause nodes.
+\gls{textom} allows for the same extension, and is built to work well
   with these ``unknown'' nodes.
 
 \medskip \noindent See appendix~\ref{appendix-textom} on
@@ -838,10 +838,10 @@ Additionally, \emph{Retext} provides a minimalistic plug-in mechanism which
   enables developers to create and publish plug-ins for others to use, and in
   turn enables them to use others' plug-ins inside their projects.
 
-\emph{Retext} provides a strong basis to use plug-ins in order to add simple
-  natural language features to a website, but additionally provides
-  functionality to extend this basis---create plug-ins, parsers, or other
-  features---to create vast natural language systems.
+\emph{Retext} provides a strong basis to use plug-ins to add simple natural
+  language features to a website, but additionally provides functionality to
+  extend this basis---create plug-ins, parsers, or other features---to
+  create vast natural language systems.
 
 \chapter{Validation}\label{validation}
 
@@ -855,7 +855,7 @@ Interest in the proposal by the target audience was validated by
 
 More than fifteen plug-ins for \emph{Retext} were created to confirm if,
   and validate how, the proposals integrated together, and how the system
-  worked as a whole.
+  worked.
 
 The proposal solves the creation of natural language by default (use case
   \ref{list:use-case:2}), but these plug-ins solve several others.
@@ -891,8 +891,8 @@ The unsolved use cases can be solved using the plug-in mechanism provided by
 Summarising natural language (use case \ref{list:use-case:1}) is not yet
   solved, but can be by implementing the stages mentioned in
   §~\ref{automatic-summarisation} (p.~\pageref{automatic-summarisation}).
-Neither is detecting sentiment (use case \ref{list:use-case:3}), but it can
-  be by implementing the stages mentioned in §~\ref{sentiment-analysis}
+Neither is detecting sentiment (use case \ref{list:use-case:3}), but can be
+  by implementing the stages mentioned in §~\ref{sentiment-analysis}
   (p.~\pageref{sentiment-analysis}).
 
 During the development of these plug-ins, several problems were brought to
@@ -906,10 +906,10 @@ The software changed severely by these changes, which resulted in a
 
 To confirm interest by the target audience in the proposal, enthusiasm
   showed by the open source community was measured.
-To initially spark interest, several web sites and email newsletters were
+To initially spark interest, several websites and email newsletters were
   contacted to feature \emph{Retext}, either in the form of an article or as
   a simple link.
-This resulted in coverage on high profile web sites
+This resulted in coverage on high-profile websites
   \autocite{dailyjs.com-natural-language-parsing-retext} and newsletters
   \autocites{nodeweekly.com-47}{javascriptweekly.com-193}
   {newspaper.io/javascript-2014-08-11}.
@@ -925,8 +925,8 @@ In turn, these publications resulted in positive reactions, such as on
   on GitHub \autocites{github.com-issue-1}{github.com-issue-2}
   {github.com-issue-3}{github.com-pull-request}.
 
-Additionally, many of the target audience started following the project on
-  GitHub \autocite{github.com-stargazers}.
+Additionally, many of the target audience started \emph{following} the
+  project on GitHub \autocite{github.com-stargazers}.
 
 \chapter{Conclusion}\label{conclusion}
 
@@ -938,7 +938,7 @@ This chapter consists of a short summary (§~\ref{summary}), a list
 \section{Summary}\label{summary}
 
 \gls{nlp} covers many tasks, but the process of accomplishing
-  these goals touches on well defined stages.
+  these goals touches on well-defined stages.
 Such as \emph{tokenisation}, the focus of this paper.
 Current implementations on the web platform are lacking.
 In part, because techniques such as \emph{supervised learning} do not work
@@ -1038,12 +1038,12 @@ This includes open source development and easy installation, readable code,
   tested results, high performance, and a good interface design.
 Concluded was that by following these best practises for code and creating
   an interface similar to for the target audience familiar projects, a
-  ``good'' implementation was build (§ \ref{requirements},
+  ``good'' implementation was built (§ \ref{requirements},
   p. \pageref{requirements}).
 
 \subsection{Research Question}\label{q-research-question}
 
-The aforementioned answers to the research questions, answers the complete
+The answers to the research questions, answers the complete
   \emph{research question}, within the scope (§ \ref{research-question},
   p. \pageref{research-question}).
 
@@ -1055,5 +1055,5 @@ This was validated by the more than fifteen solved use cases
   (§ \ref{plugins}, p. \pageref{plugins}).
 
 In addition to \emph{reaching} this objective, the measured enthusiasm
-  showed by the target audience for the proposal confirmed the actual
-  interest in such a proposal.
+  showed by the target audience for the proposal confirmed the interest in
+  such a proposal.
