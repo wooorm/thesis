@@ -1,5 +1,5 @@
 
-n.n.n / 2014-08-16
+0.0.9 / 2014-08-16
 ==================
 
  * Move appendix-dom after appendix-retext
