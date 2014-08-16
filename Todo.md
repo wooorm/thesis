@@ -2,4 +2,4 @@
 
 - [ ] Add more definitions;
 - [ ] Remove extraneous definitions;
-- [ ] Add source code distro, with git submodules, somewhere.
+- [x] Add source code distro, with git submodules, somewhere.

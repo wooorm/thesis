@@ -1,0 +1,63 @@
+[submodule "source-code/textom"]
+	path = source-code/textom
+	url = git://github.com/wooorm/textom.git
+[submodule "source-code/parse-latin"]
+	path = source-code/parse-latin
+	url = git://github.com/wooorm/parse-latin.git
+[submodule "source-code/parse-english"]
+	path = source-code/parse-english
+	url = git://github.com/wooorm/parse-english.git
+[submodule "source-code/parse-dutch"]
+	path = source-code/parse-dutch
+	url = git://github.com/wooorm/parse-dutch.git
+[submodule "source-code/retext"]
+	path = source-code/retext
+	url = git://github.com/wooorm/retext.git
+[submodule "source-code/retext-keywords"]
+	path = source-code/retext-keywords
+	url = git://github.com/wooorm/retext-keywords.git
+[submodule "source-code/retext-emoji"]
+	path = source-code/retext-emoji
+	url = git://github.com/wooorm/retext-emoji.git
+[submodule "source-code/retext-smartypants"]
+	path = source-code/retext-smartypants
+	url = git://github.com/wooorm/retext-smartypants.git
+[submodule "source-code/retext-pos"]
+	path = source-code/retext-pos
+	url = git://github.com/wooorm/retext-pos.git
+[submodule "source-code/retext-search"]
+	path = source-code/retext-search
+	url = git://github.com/wooorm/retext-search.git
+[submodule "source-code/retext-dom"]
+	path = source-code/retext-dom
+	url = git://github.com/wooorm/retext-dom.git
+[submodule "source-code/retext-metaphone"]
+	path = source-code/retext-metaphone
+	url = git://github.com/wooorm/retext-metaphone.git
+[submodule "source-code/retext-double-metaphone"]
+	path = source-code/retext-double-metaphone
+	url = git://github.com/wooorm/retext-double-metaphone.git
+[submodule "source-code/retext-visit"]
+	path = source-code/retext-visit
+	url = git://github.com/wooorm/retext-visit.git
+[submodule "source-code/retext-ast"]
+	path = source-code/retext-ast
+	url = git://github.com/wooorm/retext-ast.git
+[submodule "source-code/retext-link"]
+	path = source-code/retext-link
+	url = git://github.com/wooorm/retext-link.git
+[submodule "source-code/retext-range"]
+	path = source-code/retext-range
+	url = git://github.com/wooorm/retext-range.git
+[submodule "source-code/retext-directionality"]
+	path = source-code/retext-directionality
+	url = git://github.com/wooorm/retext-directionality.git
+[submodule "source-code/retext-language"]
+	path = source-code/retext-language
+	url = git://github.com/wooorm/retext-language.git
+[submodule "source-code/retext-porter-stemmer"]
+	path = source-code/retext-porter-stemmer
+	url = git://github.com/wooorm/retext-porter-stemmer.git
+[submodule "source-code/retext-content"]
+	path = source-code/retext-content
+	url = git://github.com/wooorm/retext-content.git
