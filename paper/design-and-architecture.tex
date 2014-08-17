@@ -38,9 +38,9 @@ The elements defined by \acrfull{nlcst} are based on the grammatical
     \glspl{nlcst} only implements the sentence and word constituents
     by default, although clauses and phrases could be provided by
     implementations.}.
-Additionally, \gls{nlcst} provides more elements to cover other semantic
-  units in natural language\footnote{Most
-    notably, punctuation, symbol, and white space elements.}.
+Additionally, \gls{nlcst} provides elements to cover other semantic units in
+  natural language\footnote{Most
+    notably punctuation, embedded content, and white space elements.}.
 
 The definitions were influenced by other syntax trees specifications for
   manipulation on the web platform, such as \emph{\textsc{css}}, eponymous
@@ -54,7 +54,7 @@ Both widely used implementations, \emph{\textsc{css}} by Rework
   \autocite{marijnh/acorn-source-code}, and Escodegen
   \autocite{constellation/escodegen-source-code}.
 
-\gls{nlcst} is different from both these specifications, as it implements a
+\gls{nlcst} differs from both specifications in that it implements a
   \gls{cst}, where the others use an \gls{ast}.
 A \gls{cst} is a one-to-one mapping of source (such as natural language)
   to result (a tree).
@@ -66,8 +66,7 @@ However, the information stored in \glspl{cst} is verbose, which might be
   difficult to work with.
 
 \medskip \noindent See appendix~\ref{appendix-nlcst} on
-page~\pageref{appendix-nlcst} for a complete list of
-specified nodes of \gls{nlcst}.
+  page~\pageref{appendix-nlcst} for a list of specified nodes of \gls{nlcst}.
 
 \section{Parser: parse-latin}\label{parser-parse-latin}
 
