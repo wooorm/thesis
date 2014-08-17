@@ -1,4 +1,28 @@
 
+n.n.n / 2014-08-17
+==================
+
+ * Add more non-breaking spaces
+ * Add more non-breaking spaces, and use smaller nbsps
+ * Fix acronyms in appendix DOM
+ * Fix mistakes in appendix NLCST
+ * Fixes: many
+ * Add missing emphasis or small caps on proposals
+ * Remove e.g. and i.e. abbreviations
+ * Better enumeration in Design and Architecture
+ * Better small caps in acronyms and glossary entries
+ * Fix confusing wording in Use Cases
+ * Simpler grammar in footnote in Web API
+ * Remove duplicate case of "started" in Web API
+ * Fixes, email > e-mail, position of a citation, glossary resets
+ * Fix order of research questions; Fix Conclusion
+ * Remove superfuous comma in Production
+ * Fix ungrammatical sentence in Context
+ * Fix unfinished sentence
+ * Add graphic cover
+ * Split chapters into seperate files
+ * Add proposal source code
+
 0.0.9 / 2014-08-16
 ==================
 
