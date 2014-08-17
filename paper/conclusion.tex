@@ -1,8 +1,8 @@
 \chapter{Conclusion}\label{conclusion}
 
-This chapter\,consists of a short summary (§\,\ref{summary}), a list of
+This chapter\,consists of a\,short summary (§\,\ref{summary}), a\,list of
   limitations and suggestions for future work
-  (§\,\ref{limitations-future-work}), and a list of conclusions
+  (§\,\ref{limitations-future-work}), and a\,list of conclusions
   (§\,\ref{conclusions}).
 
 \section{Summary}\label{summary}
@@ -15,13 +15,13 @@ In part, because techniques such as \emph{supervised learning} do not work
   on the web.
 
 The audience that benefits the most from better parsing on the web platform,
-  are web developers, a group which is more interested in practical use, and
+  are web developers, a\,group which is more interested in practical use, and
   less so in theoretical applications.
 
-The presented proposal is split up in several solutions: a specification, a
-  parser, and an object model.
-These solutions come together in a proposal: \emph{Retext}, a complete natural
-  language system.
+The presented proposal is split up in several solutions: a\,specification,
+  a\,parser, and an\,object model.
+These solutions come together in a\,proposal: \emph{Retext}, a\,complete
+  natural language system.
 \emph{Retext} takes care of parsing natural language and enables users to
   create and use plug-ins.
 
@@ -41,7 +41,7 @@ Some of which are featured here.
   Future work could expand support to include these scripts;
 \item\emph{Difference application}\,---\,Currently, the proposal does not
     support difference application.
-  When a word is added at the end of a sentence, all steps to produce the
+  When a\,word is added at the end of a\,sentence, all steps to produce the
     output have to be revisited.
   Although the proposal is created with this in mind, no support has been
     added.
@@ -63,9 +63,9 @@ Some of which are featured here.
     text input.
   Future work could expand on this by allowing other input formats, such as
     MarkDown or \TeX.
-\item\emph{Heighten Performance}\,---\,The decision made to adopt an
-    object-oriented approach for analysation and manipulation, came at a huge
-    performance cut.
+\item\emph{Heighten Performance}\,---\,The decision made to adopt
+    an\,object-oriented approach for analysation and manipulation, came at
+    a\,huge performance cut.
   When implementing both \gls{textom} and \emph{parse-latin} over just
     \emph{parse-latin}, performance decreases over 90\%.
   Future work should investigate and implement better performance.
@@ -73,34 +73,62 @@ Some of which are featured here.
 
 \section{Conclusions}\label{conclusions}
 
-This section evaluates if the research question(s) are answered, and if the
-  research objective is reached.
+This section evaluates if the research question and sub-questions are
+  answered, and if the research objective is reached.
 
 \subsection{Current possibilities and
   deficiencies}\label{q-current-possibilities}
 
-\gls{nlp} covers many challenges.
+In this subsection, research sub-question \ref{list:research-question-context}
+  is evaluated (§\,\ref{research-sub-questions},
+  p.\,\pageref{list:research-question-implementation}).
+
+\begin{quote}
+  \textit{What current implementations exist? What does not yet exist?}
+\end{quote}
+
+\noindent\gls{nlp} covers many challenges.
 Within the scope of this thesis, only \emph{tokenisation} was covered
   (§\,\ref{scope}, p.\,\pageref{scope}).
-Most current implementations use (lacking) tokenisation as part of a larger
+Most current implementations use (lacking) tokenisation as part of a\,larger
   challenge (§\,\ref{challenges}, p.\,\pageref{challenges}).
 Implementations that provide tokenisation capabilities to other tasks,
   are lacking (§\,\ref{stages}, p.\,\pageref{stages}).
-It is concluded that quality implementations that offer tokenisation within
-  the scope, do not exist.
+It is concluded that a\,quality implementations that offers tokenisation
+  within the scope, dooes not yet exist.
 
 \subsection{Quality implementation}\label{q-quality-implementation}
+
+In this subsection, research sub-question
+  \ref{list:research-question-implementation} is evaluated
+  (§\,\ref{research-sub-questions},
+  p.\,\pageref{list:research-question-implementation}).
+
+\noindent\begin{quote}
+  \textit{What makes a\,good \gls{api} design? What makes a\,good
+    implementation?}
+\end{quote}
 
 The proposal should meet several requirements, other than the use cases,
   to better suit the wishes of the target audience.
 This includes open source development and easy installation, readable code,
-  tested results, high performance, and a good interface design.
+  tested results, high performance, and a\,good interface design.
 Concluded was that by following these best practises for code and creating
-  an interface similar to for the target audience familiar projects, a
-  ``good'' implementation can be created (§\,\ref{requirements},
+  an\,interface similar to for the target audience familiar projects,
+  a\,\emph{good} implementation can be created (§\,\ref{requirements},
   p.\,\pageref{requirements}).
 
 \subsection{The target audience's use cases}\label{q-use-cases}
+
+In this subsection, research sub-question
+  \ref{list:research-question-audience} is evaluated
+  (§\,\ref{research-sub-questions},
+  p.\,\pageref{list:research-question-audience}).
+
+\noindent\begin{quote}
+  \textit{What would they use an\,implementation for? What would they
+    \emph{not} use the implementation for?}
+\end{quote}
 
 The audience that benefits the most from the proposal, are web developers
   (§\,\ref{target-audience}, p.\,\pageref{target-audience}).
@@ -115,8 +143,8 @@ Research for this paper found that the target audience would use the
 In this section, the defined research question is evaluated
   (§\,\ref{research-question}, p.\,\pageref{research-question}).
 
-\begin{quote}
-  \textit{How can a specification and program, that exposes an \acrshort{api}
+\noindent\begin{quote}
+  \textit{How can a\,specification and program, that exposes an\,\acrshort{api}
     for text manipulation, based on use cases of developers on the web,
     be developed?
   }
@@ -126,7 +154,7 @@ In this section, the defined research question is evaluated
   (§\,\ref{q-current-possibilities}, p.\,\pageref{q-current-possibilities})
   concludes that quality implementations do not exist.
 \emph{Quality implementation} (§\,\ref{q-quality-implementation},
-  p.\,\pageref{q-quality-implementation}) concludes that a quality
+  p.\,\pageref{q-quality-implementation}) concludes that a\,quality
   implementations can be created by followed several guidelines.
 \emph{The target audience's use cases} (§\,\ref{q-use-cases},
   p.\,\pageref{q-use-cases}) concludes that the target audience would use the
@@ -137,7 +165,7 @@ These answers answer the complete research question, within the scope
 
 \subsection{Research Objective}\label{q-research-objective}
 
-\emph{How} to create a specification and program was answered by the research
+\emph{How} to create a\,specification and program was answered by the research
   question.
 The working proposal reaches the research objective.
 This was validated by the more than fifteen\,plug-ins solving the target
