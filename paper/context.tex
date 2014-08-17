@@ -11,7 +11,7 @@
   }
 
   \medskip
-  --- Elizabeth D. Liddy \autocite*{natural-language-processing-liddy-2001}
+  ---\,Elizabeth\,D.\,Liddy \autocite*{natural-language-processing-liddy-2001}
 \end{quote}
 
 \noindent The focus of this paper is \gls{nlp}.
@@ -19,19 +19,19 @@
   concerns itself with enabling machines to understand human language.
 Human language, a medium which is easy for humans to understand, poses
   problems for machines.
-The Georgetown--\gls{ibm} experiment in 1945, one of the first application
+The Georgetown--\gls{ibm} experiment in 1945, one\,of the first\,applications
   of \gls{nlp}, illustrates this difficulty.
-During this study in New York, scientists demonstrated a
+During this study in New\,York, scientists demonstrated a
   Russian--English translation system
   \autocite{hutchins-john-georgetown-ibm-system}.
-The machine translated more than sixty sentences from Russian to English.
+The machine translated more than sixty\,sentences from Russian to English.
 The experiment was well publicised and resulted in optimism.
 The public believed machine translation would be a ``solved problem'' within
-  three to five years.
-Despite promising first results, the following ten years were disappointing
+  three\,to\,five\,years.
+Despite promising first\,results, the following ten years were disappointing
   and led to reduced funding.
 
-Machine translation is just one of many major tasks involved with \gls{nlp}.
+Machine translation is just one\,of many major tasks involved with \gls{nlp}.
 Other tasks include generating summaries, detecting references to people
   and places, or extracting opinion.
 Many programs exist to carry out these and many other \gls{nlp} tasks.
@@ -41,26 +41,26 @@ For example, Entity linking is often implemented as follows
   \autocite[according to][]{stanbol-enhancer-nlp}:
 
 \begin{enumerate}
-\item\emph{Language Detection (optional)} --- Based on the language of the
+\item\emph{Language Detection (optional)}\,---\,Based on the language of the
     given text, the algorithms behind the following steps will change.
   Omitted if the implementation supports a single language;
-\item\emph{Sentence Tokenisation (optional)} --- Sentence breaking elevates
+\item\emph{Sentence Tokenisation (optional)}\,---\,Sentence breaking elevates
     performance and heightens accuracy of the following stages, in
     particular \acrshort{pos} tagging;
-\item\emph{Word Tokenisation} --- The entities (words) must be free from
+\item\emph{Word Tokenisation}\,---\,The entities (words) must be free from
   their surroundings;
-\item\emph{\acrfull{pos} Tagging (optional)} --- It is often desired to link
+\item\emph{\acrfull{pos} Tagging (optional)}\,---\,It is often desired to link
     several nouns or proper nouns.
   Detecting word categories makes this achievable;
-\item\emph{Noun Phrase Detection (optional)} --- Although \emph{apple} and
-    \emph{juice} could be two entities, it is more appropriate to link to
-    one entity: \emph{apple juice}.
+\item\emph{Noun Phrase Detection (optional)}\,---\,Although \emph{apple} and
+    \emph{juice} could be two\,entities, it is more appropriate to link to
+    one\,entity: \emph{apple juice}.
   Detecting noun phrases makes this possible;
-\item\emph{Lemmatisation or Stemming (optional)} --- Be it \emph{walk},
+\item\emph{Lemmatisation or Stemming (optional)}\,---\,Be it \emph{walk},
     \emph{walked}, or \emph{walking}, all forms of \emph{walk} could link
     to the same entity.
   Detecting either makes this possible;
-\item\emph{Entity Linking} --- Linking detected entities to references, such
+\item\emph{Entity Linking}\,---\,Linking detected entities to references, such
     as an encyclopaedia.
 \end{enumerate}
 
@@ -105,7 +105,7 @@ Often referred to as sentence boundary disambiguation\footnote{Both
     Sentence boundary disambiguation focusses on the position where
       sentences break (as in, ``One sentence?\textbar{} Two
       sentences.\textbar{}'', where the pipe symbols refer to the end of
-      one sentence and the beginning of another). Sentence
+      one\,sentence and the beginning of another). Sentence
       tokenisation targets both the start and end positions (as in,
       ``\{One sentence?\} \{Two sentences.\}'', where everything between
       braces is classified as a sentence).}, sentence
@@ -114,7 +114,7 @@ It is almost always a stage in \gls{nlp} applications and not an end goal.
 Sentence tokenisation makes other stages (such as detecting plagiarism or
   \gls{pos} tagging) perform better.
 
-Often, sentences end in one of three symbols: either a full stop (.),
+Often, sentences end in one\,of three\,symbols: either a full stop (.),
   an interrogative point (?), or an exclamation point (!)\footnote{One
     could argue the in 1962 introduced
     obscure interrobang (‽), used to punctuate rhetorical statements where
@@ -184,10 +184,10 @@ Sentiment analysis could be implemented as follows:
 
 \begin{enumerate}
 \item\emph{Detect Language (optional)};
-\item\emph{Sentence Tokenisation (optional)} --- Different sentences have
+\item\emph{Sentence Tokenisation (optional)}\,---\,Different sentences have
     different sentiments, tokenising them helps provide better results;
-\item\emph{Word Tokenisation} --- Needed to compare with the database;
-\item\emph{Lemmatisation or Stemming (optional)} --- Helps classification;
+\item\emph{Word Tokenisation}\,---\,Needed to compare with the database;
+\item\emph{Lemmatisation or Stemming (optional)}\,---\,Helps classification;
 \item\emph{Sentiment Analysis}.
 \end{enumerate}
 
@@ -226,10 +226,10 @@ Automatic summarisation could be implemented as follows:
 
 \begin{enumerate}
 \item\emph{Detect Language (optional)};
-\item\emph{Sentence Tokenisation (optional)} --- Unless even finer grained
+\item\emph{Sentence Tokenisation (optional)}\,---\,Unless even finer grained
   control over the document is possible (tokenising phrases), sentences are
   the smallest unit that should stay intact in the resulting summary;
-\item\emph{Word Tokenisation} --- Needed to calculate keywords (words
+\item\emph{Word Tokenisation}\,---\,Needed to calculate keywords (words
   which occur more often than expected by chance alone);
 \item\emph{Automatic summarisation}.
 \end{enumerate}
@@ -238,13 +238,13 @@ Automatic summarisation could be implemented as follows:
   be it sentences or phrases, according to several factors:
 
 \begin{aenumerate}
-\item\emph{Number of words} --- An ideal sentence is neither too long nor
+\item\emph{Number of words}\,---\,An ideal sentence is neither too long nor
   too short;
-\item\emph{Number of keywords} --- Words which occur more often than
+\item\emph{Number of keywords}\,---\,Words which occur more often than
   expected by chance alone in the text;
-\item\emph{Similarity to title} --- Number of words from the document's
+\item\emph{Similarity to title}\,---\,Number of words from the document's
   title the unit contains;
-\item\emph{Position inside parent} --- Initial and final sentences of a
+\item\emph{Position inside parent}\,---\,Initial and final sentences of a
   paragraph are often more important than sentences buried somewhere in
   the middle.
 \end{aenumerate}
@@ -254,7 +254,7 @@ Automatic summarisation could be implemented as follows:
   \autocite{MojoJolo/textteaser-source-code}, or even more advanced factors
   \autocite{summly}.
 
-The only implementation working on the web, by James Brook
+The only implementation working on the web, by James\,Brook
   \autocite*{jbrooksuk/node-summary-source-code}, takes a na\"ive sentence
   tokenisation approach.
 Such as ignoring sentences terminated by exclamation marks.
@@ -268,9 +268,9 @@ A corpus is a large, structured set of texts used for many \gls{nlp}
 Corpora contain items (often words, but sometimes other units) annotated
   with information (such as \gls{pos} tags or lemmas).
 
-These colossal (often more than a million words\footnote{The Brown Corpus
+These colossal (often more than a million words\footnote{The Brown\,Corpus
     contains about a million words \autocite{francis-nelson-brown-corpus},
-    the Google N-Gram Corpus contains 155 billion
+    the Google N-Gram\,Corpus contains 155\,billion
     \autocite{brants-thorsten-google-ngram-corpus}.})
   lumps of data are the basis of many of the newer revolutions in \gls{nlp}
   \autocite{mitkov-ruslan-ea-importance-corpora}.
@@ -307,7 +307,7 @@ Parsing based on corpora has proven better in several ways over rule based
 \noindent In addition, corpora based parsing will not work well on the web.
 Loading corpora over the network each time a user requests a web page is
   infeasible for most websites and applications\footnote{Currently,
-    one technology exists for storing large datasets in a browser: the
+    one\,technology exists for storing large datasets in a browser: the
     \acrshort{html5} File System \acrshort{api}. However, ``work on this
     document has been discontinued'', and the specification ``should not be
     used as a basis for implementation'' \autocite{urhane-file-api}.}.
@@ -317,7 +317,7 @@ Two viable alternative approaches exist for the web: rule based tokenisation,
 
 \subsection{Using a web \textsc{api}}\label{using-a-web}
 
-Where the term \gls{api} stands for an interface between two programs,
+Where the term \gls{api} stands for an interface between two\,programs,
   it is often used in web development as requests (from a web browser),
   and responses (from a web server) over \gls{http}.
 For example, Twitter has such a service to allow developers to list,
@@ -331,7 +331,7 @@ With the rise of the asynchronous web\footnote{Around 2000,
   Before, significant changes to websites only occurred when a user
     navigated to a new page. 
   With \gls{ajax} however, new content arrived to users without the need
-    for a full page refresh. The first examples of how \gls{ajax} made
+    for a full page refresh. The first\,examples of how \gls{ajax} made
     the web feel more like native applications, are Outlook Web
     Access in 2000 \autocite{technet-outlook-web-access} and Gmail in 2004
     \autocite{gmailblog-gmail-ajax}.},

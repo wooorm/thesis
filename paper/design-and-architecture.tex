@@ -56,7 +56,7 @@ Both widely used implementations, \emph{\textsc{css}} by Rework
 
 \gls{nlcst} differs from both specifications in that it implements a
   \gls{cst}, where the others use an \gls{ast}.
-A \gls{cst} is a one-to-one mapping of source (such as natural language)
+A \gls{cst} is a one-to-one\,mapping of source (such as natural language)
   to result (a tree).
 All information stored in the source is also available through the tree
   \autocite{thegreenplace.net-abstract-concrete-syntax-trees}.
@@ -75,7 +75,7 @@ To create a syntax tree according to \gls{nlcst} from natural language,
   languages\footnote{Such
     as Old-English, Icelandic, French, or even scripts slightly similar, such
     as Cyrillic, Georgian, or Armenian.}.
-Additionally, to prove the concept, two other libraries are presented,
+Additionally, to prove the concept, two\,other libraries are presented,
   \emph{parse-english} and \emph{parse-dutch}. Both with \emph{parse-latin}
   as a basis, but providing better support for several language specific
   features, respectively for English and Dutch.
@@ -91,9 +91,9 @@ In essence, \emph{parse-latin} tokenises text into white space, word, and
   some other tokenisers also implement \autocite{treebank-tokenisation}:
 
 \begin{enumerate}
-\item A \emph{word} is one or more letter or number characters;
-\item A \emph{white space} is one or more white space characters;
-\item A \emph{punctuation} is one or more of anything else.
+\item A \emph{word} is one\,or more\,letter or number characters;
+\item A \emph{white space} is one\,or more\,white space characters;
+\item A \emph{punctuation} is one\,or more\,of anything else.
 \end{enumerate}
 
 \noindent Then, \emph{parse-latin} manipulates and merges those tokens into a
@@ -104,18 +104,18 @@ This is done in similar fashion, but more intelligent, to \emph{Emphasis}
   \autocite{nytimes/emphasis-source-code}.
 
 \begin{aenumerate}
-\item\emph{Inter-word punctuation} --- Some punctuation marks are part of
+\item\emph{Inter-word punctuation}\,---\,Some punctuation marks are part of
   the word they occur in, such as the punctuation marks in ``non-profit'',
   ``she's'', ``G.I.'', ``11:00'', or ``N\slash A'';
-\item\emph{Non-terminal full stops} --- Some full stops do not mark a
+\item\emph{Non-terminal full stops}\,---\,Some full stops do not mark a
   sentence end, such as the full stops in ``1.'', ``e.g.'', or ``id.'';
-\item\emph{Terminal punctuation} --- Although full stops, question marks,
+\item\emph{Terminal punctuation}\,---\,Although full stops, question marks,
   and exclamation marks (sometimes) end a sentence, that end might not occur
   directly after the mark, such as the punctuation marks after the full
   stop in ``.)'' or ``.'{}'';
-\item\emph{Embedded content} --- Punctuation marks are sometimes used in
+\item\emph{Embedded content}\,---\,Punctuation marks are sometimes used in
   non-standard ways, such as when a section or chapter delimiter is
-  created with a line containing three asterisk marks (``* * *'').
+  created with a line containing three\,asterisk marks (``* * *'').
 \end{aenumerate}
 
 \noindent See appendix\,\ref{appendix-parse-latin} on
@@ -129,23 +129,23 @@ returns results better suited for English text.
 Exceptions in the English language include:
 
 \begin{aenumerate}
-\item \emph{Unit abbreviations} --- ``tsp.'', ``tbsp.'', ``oz.'', ``ft.'',
+\item \emph{Unit abbreviations}\,---\,``tsp.'', ``tbsp.'', ``oz.'', ``ft.'',
   \&c.;
-\item\emph{Time references} --- ``sec.'', ``min.'', ``tues.'', ``thu.'',
+\item\emph{Time references}\,---\,``sec.'', ``min.'', ``tues.'', ``thu.'',
   ``feb.'', \&c.;
-\item\emph{Business Abbreviations} --- ``Inc.'' and ``Ltd.''
-\item\emph{Social titles} --- ``Mr.'', ``Mmes.'', ``Sr.'', \&c.;
-\item\emph{Rank and academic titles} --- ``Dr.'', ``Gen.'', ``Prof.'',
+\item\emph{Business Abbreviations}\,---\,``Inc.'' and ``Ltd.''
+\item\emph{Social titles}\,---\,``Mr.'', ``Mmes.'', ``Sr.'', \&c.;
+\item\emph{Rank and academic titles}\,---\,``Dr.'', ``Gen.'', ``Prof.'',
   ``Pres.'', \&c.;
-\item\emph{Geographical abbreviations} --- ``Ave.'', ``Blvd.'', ``Ft.'',
+\item\emph{Geographical abbreviations}\,---\,``Ave.'', ``Blvd.'', ``Ft.'',
   ``Hwy.'', \&c.;
-\item\emph{American state abbreviations} --- ``Ala.'', ``Minn.'', ``La.'',
+\item\emph{American state abbreviations}\,---\,``Ala.'', ``Minn.'', ``La.'',
   ``Tex.'', \&c.;
-\item\emph{Canadian province abbreviations} --- ``Alta.'', ``Qué.'',
+\item\emph{Canadian province abbreviations}\,---\,``Alta.'', ``Qué.'',
   ``Yuk.'', \&c.;
-\item\emph{English county abbreviations} --- ``Beds.'', ``Leics.'',
+\item\emph{English county abbreviations}\,---\,``Beds.'', ``Leics.'',
   ``Shrops.'', \&c.;
-\item\emph{Elision (omission of letters)} --- ``'n'\,'', ``'o'', ``'em'',
+\item\emph{Elision (omission of letters)}\,---\,``'n'\,'', ``'o'', ``'em'',
   ``'twas'', ``'80s'', \&c.
 \end{aenumerate}
 
@@ -156,11 +156,11 @@ Exceptions in the English language include:
 Exceptions in the Dutch language include:
 
 \begin{aenumerate}
-\item\emph{Unit and time abbreviations} --- ``gr.'', ``sec.'', ``min.'', ``ma.'',
+\item\emph{Unit and time abbreviations}\,---\,``gr.'', ``sec.'', ``min.'', ``ma.'',
   ``vr.'', ``vrij.'', ``febr'', ``mrt'', \&c.;
-\item\emph{Many other common abbreviations} --- ``Mr.'', ``Mv.'', ``Sr.'',
+\item\emph{Many other common abbreviations}\,---\,``Mr.'', ``Mv.'', ``Sr.'',
   ``Em.'', ``bijv.'', ``zgn.'', ``amb.'', \&c.;
-\item\emph{Elision (omission of letters)} --- ``d'\,'', ``'n'', ``'ns'',
+\item\emph{Elision (omission of letters)}\,---\,``d'\,'', ``'n'', ``'ns'',
   ``'t'', ``'s'', ``'er'', ``'em'', ``'ie'', \&c.
 \end{aenumerate}
 
