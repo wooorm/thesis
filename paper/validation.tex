@@ -6,7 +6,7 @@ The design and the usability of the interface was validated through
 Interest in the proposal by the target audience was validated by
   measuring the enthusiasm showed by the open source community.
 
-\section{Plugins}\label{plugins}
+\section{Plug-ins}\label{plugins}
 
 More than fifteen\,plug-ins for \emph{Retext} were created to confirm if,
   and validate how, the proposals integrated together, and how the system
@@ -35,20 +35,19 @@ The developed plug-ins included implementations for:
 \item Detecting \gls{pos} tags \autocite*{wooorm/retext-pos-source-code};
 \item Finding keywords and -phrases
   \autocite*{wooorm/retext-keywords-source-code};
-\item Detecting the language of text, solving use case \ref{list:use-case:6} 
+\item Detecting the language of text, solving use case \ref{list:use-case:6}
   \autocite*{wooorm/retext-language-source-code}.
+\item Detecting the sentiment of text, solving use case \ref{list:use-case:3}
+  \autocite*{wooorm/retext-sentiment-source-code}.
 \end{aenumerate}
 
-\noindent These plug-ins listed and the other plug-ins solve several use cases
-  of the target audience (§\,\ref{use-cases}).
-The unsolved use cases can be solved using the plug-in mechanism provided by
+\noindent These plug-ins listed and the other plug-ins solve all but one
+  use cases of the target audience (§\,\ref{use-cases}).
+The unsolved use case can be solved using the plug-in mechanism provided by
   \emph{Retext}.
 Summarising natural language (use case \ref{list:use-case:1}) is not yet
   solved, but can be by implementing the stages mentioned in
   §\,\ref{automatic-summarisation} (p.\,\pageref{automatic-summarisation}).
-Neither is detecting sentiment (use case \ref{list:use-case:3}), but can be
-  by implementing the stages mentioned in §\,\ref{sentiment-analysis}
-  (p.\,\pageref{sentiment-analysis}).
 
 During the development of these plug-ins, several problems were brought to
   light in the developed software.
