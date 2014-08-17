@@ -1,4 +1,10 @@
 
+n.n.n / 2014-08-17
+==================
+
+ * Fix research subquestions, more accessible and understandable
+ * Add fixes by second-to-last reader
+
 0.1.0-rc.1 / 2014-08-17
 ==================
 
