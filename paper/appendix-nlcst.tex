@@ -6,7 +6,7 @@
 
 \section*{Node}\label{node}
 
-Node represents any actual unit in the \gls{nlcst} hierarchy.
+Node represents any unit in the \gls{nlcst} hierarchy.
 
 \begin{lstlisting}
 interface Node {
@@ -39,7 +39,7 @@ interface Text <: Node {
 
 \section*{Location}\label{location}
 
-Location represents the node's actual location in the source input.
+Location represents the node's location in the source input.
 
 \begin{lstlisting}
 interface Location {
@@ -50,7 +50,7 @@ interface Location {
 
 \section*{Position}\label{position}
 
-Position represents the a position in the source input.
+Position represents a position in the source input.
 
 \begin{lstlisting}
 interface Position {
@@ -105,7 +105,7 @@ interface WordNode < Parent {
 
 \section*{PunctuationNode}\label{punctuationnode}
 
-Punctuation (Parent) represents typographical devices which aid the
+Punctuation (Parent) represents typographical devices which aids the
 understanding and correct reading of other grammatical units.
 
 \begin{lstlisting}
@@ -127,7 +127,7 @@ interface WhiteSpaceNode < PunctuationNode {
 
 \section*{SourceNode}\label{sourcenode}
 
-Source (Text) represents an external (non-grammatical) value embedded
+Source (Text) represents an external (ungrammatical) value embedded
 into a grammatical unit, for example a hyperlink or an emoticon.
 
 \begin{lstlisting}
@@ -138,7 +138,7 @@ interface SourceNode < Text {
 
 \section*{TextNode}\label{textnode}
 
-Text (Text) represents actual content in a NLAST document: One or more
+Text (Text) represents actual content in an \gls{nlcst} document: one or more
 characters.
 
 \begin{lstlisting}
