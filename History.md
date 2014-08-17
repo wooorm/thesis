@@ -1,5 +1,5 @@
 
-n.n.n / 2014-08-17
+0.1.0-rc.1 / 2014-08-17
 ==================
 
  * Add more non-breaking spaces
