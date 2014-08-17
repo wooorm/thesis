@@ -15,27 +15,28 @@
 \end{quote}
 
 \noindent The focus of this paper is \gls{nlp}.
-\gls{nlp} is a field related to human--computer interaction, as it
-  concerns itself with enabling machines to understand human language.
+\gls{nlp} concerns itself with enabling machines to understand human
+  language.
+This makes \gls{nlp} a field related to human--computer interaction.
 Human language, a medium which is easy for humans to understand, poses
   problems for machines.
 The Georgetown--\gls{ibm} experiment in 1945, one\,of the first\,applications
   of \gls{nlp}, illustrates this difficulty.
 During this study in New\,York, scientists demonstrated a
-  Russian--English translation system
-  \autocite{hutchins-john-georgetown-ibm-system}.
+  Russian--English translation system.
 The machine translated more than sixty\,sentences from Russian to English.
 The experiment was well publicised and resulted in optimism.
 The public believed machine translation would be a ``solved problem'' within
   three\,to\,five\,years.
 Despite promising first\,results, the following ten years were disappointing
-  and led to reduced funding.
+  and led to reduced funding \autocite{hutchins-john-georgetown-ibm-system}.
 
-Machine translation is just one\,of many major tasks involved with \gls{nlp}.
-Other tasks include generating summaries, detecting references to people
+Machine translation is just one\,of many major challenges involved with
+  \gls{nlp}.
+Other challenges include generating summaries, detecting references to people
   and places, or extracting opinion.
-Many programs exist to carry out these and many other \gls{nlp} tasks.
-The approach taken to perform these tasks are often similar between
+Many programs exist to carry out these and many other \gls{nlp} challenges.
+The approach taken to perform these challenges are often similar between
   implementations.
 For example, Entity linking is often implemented as follows
   \autocite[according to][]{stanbol-enhancer-nlp}:
@@ -64,12 +65,12 @@ For example, Entity linking is often implemented as follows
     as an encyclopaedia.
 \end{enumerate}
 
-\noindent \gls{nlp} covers many tasks, but the process of accomplishing these
-  goals touches, as seen above, on well-defined stages.
+\noindent \gls{nlp} covers many challenges, but the process of accomplishing
+  these challenges touches, as seen above, on well-defined stages.
 
 \section{Scope}\label{scope}
 
-Although many \gls{nlp} tasks exist, the standard and the implementation
+Although many \gls{nlp} challenges exist, the standard and the implementation
   this paper proposes will only cover one: \emph{tokenisation}.
 Tokenisation, as defined here, includes breaking sentences, words, and
 other grammatical units.
@@ -94,8 +95,7 @@ This section describes the current implementations, where they excel, and
 
 \subsection{Stages}\label{stages}
 
-This section delves into how current implementations accomplish
-  tokenisation tasks.
+This section delves into how current implementations accomplish tokenisation.
 
 \subsubsection{Sentence tokenisation}\label{sentence-tokenisation}
 
@@ -161,18 +161,18 @@ This practice has flaws, as it results in the faulty classification of
     ``N/A'').}
   as part of the surrounding word \autocite{NaturalNode/natural-source-code}.
 
-\subsection{Tasks}\label{tasks}
+\subsection{Challenges}\label{challenges}
 
 The previous section covered implementations that solve tokenisation stages
   in \gls{nlp} applications, such as Natural's word
   tokenisers \autocite{NaturalNode/natural-source-code}.
 Concluded was that these implementations are lacking.
 This section covers several implementations that solve these stages
-  as part of a larger task.
+  as part of a larger challenge.
 
 \subsubsection{Sentiment Analysis}\label{sentiment-analysis}
 
-Sentiment analysis is an \gls{nlp} task concerned with the polarity
+Sentiment analysis is an \gls{nlp} challenge concerned with the polarity
   (positive, negative) and subjectivity (objective, subjective) of text.
 It could be part of an implementation to detect messages with a certain
   polarity.
@@ -201,7 +201,7 @@ In the case of the previously mentioned Twitter example, the service filters
   out all neutral and negative results, and return the remaining (positive
   attitude) results.
 
-Many implementations exist for this task
+Many implementations exist for this challenge
   \autocites{thinkroth/sentimental-source-code}{mileszim/sediment-source-code}
   {thisandagain/sentiment-source-code}, many of which do not include
   inner-word punctuation in their \emph{definition} of words, resulting in
@@ -214,7 +214,7 @@ Many implementations exist for this task
 
 \subsubsection{Automatic Summarisation}\label{automatic-summarisation}
 
-Automatic summarisation is an \gls{nlp} task concerned with the reduction
+Automatic summarisation is an \gls{nlp} challenge concerned with the reduction
   of text to the \emph{major} points retaining the original document.
 Few open source implementations of automatic summarisation algorithms on
   the web, in contrast with implementations for sentimental analysis, were
@@ -264,7 +264,7 @@ Both other implementations, and many more, use a different approach to
 \subsection{Using Corpora for \textsc{nlp}}\label{using-corpora-for}
 
 A corpus is a large, structured set of texts used for many \gls{nlp}
-  and linguistics tasks.
+  and linguistics challenges.
 Corpora contain items (often words, but sometimes other units) annotated
   with information (such as \gls{pos} tags or lemmas).
 
@@ -321,8 +321,8 @@ Where the term \gls{api} stands for an interface between two\,programs,
   it is often used in web development as requests (from a web browser),
   and responses (from a web server) over \gls{http}.
 For example, Twitter has such a service to allow developers to list,
-  replace, create, and delete so-called tweets and other objects (users,
-  images, \&c.).
+  replace, create, and delete so-called tweets and other objects (such as
+  users or images).
 This paper uses the term Web \gls{api} for the latter, and \gls{api} for
 any programming interface.
 
