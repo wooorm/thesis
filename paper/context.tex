@@ -75,8 +75,8 @@ Tokenisation, as defined here, includes breaking sentences, words, and
 other grammatical units.
 
 Another limitation of the scope of the proposal, is that it focusses on
-  syntactic grammatical units. Thus, semantic units (i.e., phrases and
-  clauses) are ignored.
+  syntactic grammatical units. Thus, semantic units (phrases and clauses)
+  are ignored.
 
 In addition, the paper focusses on written language (text), thus ignoring
   spoken language.
@@ -111,7 +111,7 @@ Often referred to as sentence boundary disambiguation\footnote{Both
       braces is classified as a sentence).}, sentence
   tokenisation is an elementary but important part of \gls{nlp}.
 It is almost always a stage in \gls{nlp} applications and not an end goal.
-Sentence tokenisation makes other stages (e.g., detecting plagiarism or
+Sentence tokenisation makes other stages (such as detecting plagiarism or
   \gls{pos} tagging) perform better.
 
 Often, sentences end in one of three symbols: either a full stop (.),
@@ -134,7 +134,7 @@ Full stops often occur in numbers, suffixed to abbreviations or titles,
     Note that these embedded values often consist of valid words and
     punctuation marks, but almost always should not be classified as such.}.
 The interrogative- and exclamation points too can occur ambiguously, such as
-  in a quote (e.g., `\,``Of course!'', she screamed').
+  in a quote (as in `\,``Of course!'', she screamed').
 
 Disambiguation gets even harder when these exceptions \emph{are} in fact a
   sentence boundary (double negative), such as in
@@ -150,7 +150,7 @@ phonetics, or \gls{pos} tagging, tokenising words is an important
 precursory step.
 
 Often implementations see words as everything that is \emph{not} white
-  space (i.e., spaces, tabs, feeds) and their boundaries as everything that
+  space (spaces, tabs, feeds) and their boundaries as everything that
   is \autocite{loadfive/knwl-source-code}.
 
 Some implementations take punctuation marks into account as boundaries.
