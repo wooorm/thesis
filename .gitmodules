@@ -61,3 +61,6 @@
 [submodule "source-code/retext-content"]
 	path = source-code/retext-content
 	url = git://github.com/wooorm/retext-content.git
+[submodule "source-code/retext-sentiment"]
+	path = source-code/retext-sentiment
+	url = git@github.com:wooorm/retext-sentiment.git
