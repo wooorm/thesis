@@ -62,8 +62,8 @@ For example, entity linking is often implemented as follows
     \emph{walked}, or \emph{walking}, all forms of \emph{walk} could link
     to the same entity.
   Detecting either makes this possible;
-\item\emph{Entity Linking}\,---\,Linking detected entities to references, such
-    as an encyclopaedia.
+\item\emph{Entity Linking}\,---\,Linking detected entities to references,
+  such\,as an encyclopaedia.
 \end{enumerate}
 
 \noindent \gls{nlp} covers many challenges, but the process of accomplishing
@@ -112,7 +112,7 @@ Often referred to as sentence boundary disambiguation\footnote{Both
       braces is classified as a sentence).}, sentence
   tokenisation is an elementary but important part of \gls{nlp}.
 It is almost always a stage in \gls{nlp} applications and not an end goal.
-Sentence tokenisation makes other stages (such as detecting plagiarism or
+Sentence tokenisation makes other stages (such\,as detecting plagiarism or
   \gls{pos} tagging) perform better.
 
 Often, sentences end in one\,of three\,symbols: either a full stop (.),
@@ -126,19 +126,19 @@ But detecting the boundary of a sentence is not as simple as breaking it at
 Full stops often occur in numbers, suffixed to abbreviations or titles,
   in initialisms\footnote{Although
     the definition of initialism is ambiguous, this paper defines its use
-    as an acronym (an abbreviation formed from initial components, such as
-    ``sonar'' or ``\textsc{fbi}'') with full stops depicting elision (such as
+    as an acronym (an abbreviation formed from initial components, such\,as
+    ``sonar'' or ``\textsc{fbi}'') with full stops depicting elision (such\,as
     ``e.g.'', or ``K.G.B.'').},
   or in embedded content\footnote{Embedded
       content in this paper refers to an external (ungrammatical) value
-      embedded into a grammatical unit, such as a \textsc{url} or an emoticon.
+      embedded into a grammatical unit, such\,as a \textsc{url} or an emoticon.
     Note that these embedded values often consist of valid words and
       punctuation marks, but almost always should not be classified as such.}.
 Interrogative points as well as exclamation points can occur ambiguously,
-  such as in a quote (as in `\,``Of course!'', she screamed').
+  such\,as in a quote (as in `\,``Of course!'', she screamed').
 
 Disambiguation gets even harder when these exceptions \emph{are} in fact a
-  sentence boundary (double negative), such as in
+  sentence boundary (double negative), such\,as in
   ``\ldots{}use the feminine form of idem, ead.'' or in
   `\,``Of course!'', she screamed, ``I'll do it!''\,', where in both
   cases the last terminal marker ends the sentence.
@@ -156,16 +156,16 @@ Often implementations see words as everything that is \emph{not} white
 
 Some implementations take punctuation marks into account as boundaries.
 This practice has flaws, as it results in the faulty classification of
-  inner-word punctuation\footnote{Many such inner-word symbols exist, such
-    as hyphenation points, colons (``12:00''), or elision (whether denoted
-    by full stops, ``e.g.''; apostrophes, the Dutch ``'s''; or slashes,
-    ``N/A'').}
+  inner-word punctuation\footnote{Many such inner-word symbols exist,
+    such\,as hyphenation points, colons (``12:00''), or elision (whether
+    denoted by full stops, ``e.g.''; apostrophes, the Dutch ``'s''; or
+    slashes, ``N/A'').}
   as part of the surrounding word \autocite{NaturalNode/natural-source-code}.
 
 \subsection{Challenges}\label{challenges}
 
 The previous section covered implementations that solve tokenisation stages
-  in \gls{nlp} applications, such as Natural's word
+  in \gls{nlp} applications, such\,as Natural's word
   tokenisers \autocite{NaturalNode/natural-source-code}.
 Concluded was that these implementations are lacking.
 This section covers several implementations that solve these stages
@@ -209,7 +209,7 @@ Many implementations exist for this challenge
   less than perfect results\footnote{In fact, all found implementations
       deploy lacking tokenisations steps.
     Dubious, as they each create unreachable code through their na\"ivety:
-      all implementations remove dashes from words, while words such as
+      all implementations remove dashes from words, while words such\,as
       ``self-deluded'' are included in the databases they use, but never
       reachable.}.
 
@@ -257,7 +257,7 @@ Automatic summarisation could be implemented as follows:
 
 The only implementation working on the web, by James\,Brook
   \autocite*{jbrooksuk/node-summary-source-code}, takes a na\"ive sentence
-  tokenisation approach, such as ignoring sentences terminated by
+  tokenisation approach, such\,as ignoring sentences terminated by
   exclamation marks.
 Both other implementations, and many more, use a different approach to
   sentence tokenisation: corpora.
@@ -267,7 +267,7 @@ Both other implementations, and many more, use a different approach to
 A corpus (plural: corpora) is a large, structured set of texts used for many
   \gls{nlp} and linguistics challenges.
 Corpora contain items (often words, but sometimes other units) annotated
-  with information (such as \gls{pos} tags or lemmas).
+  with information (such\,as \gls{pos} tags or lemmas).
 
 These colossal (often more than a million words\footnote{The Brown\,Corpus
     contains about a million words \autocite{francis-nelson-brown-corpus},
@@ -300,7 +300,7 @@ Parsing based on corpora has proven better over rule based
 \begin{enumerate}
 \item Good training sets are required;
 \item If the corpus was created from news articles, algorithms based on it
-  will not fare so well on microblogs (such as Twitter posts).
+  will not fare so well on microblogs (such\,as Twitter posts).
 \item Some rule based approaches for pre- and post processing are still
   required.
 \end{enumerate}
@@ -323,7 +323,7 @@ Where the term \gls{api} stands for an interface between two\,programs,
   it is often used in web development as requests (from a web browser),
   and responses (from a web server) over \gls{http}.
 For example, Twitter has such a service to allow developers to list,
-  replace, create, and delete so-called tweets and other objects (such as
+  replace, create, and delete so-called tweets and other objects (such\,as
   users or images).
 This paper uses the term Web \gls{api} for the latter, and \gls{api} for
 any programming interface.

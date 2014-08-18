@@ -26,7 +26,7 @@ For example, other parties could create a parser for the Chinese language and
 
 To develop natural language tools in \gls{ecmascript}, an intermediate
   representation of natural language is useful.
-Instead of each module (such as every stage in section
+Instead of each module (such\,as every stage in section
   \ref{sentiment-analysis} on page\,\pageref{sentiment-analysis})
   defining its own representation of text, using a single syntax leads to
   better interoperability, performance, and results.
@@ -43,7 +43,7 @@ Additionally, \gls{nlcst} provides elements to cover other semantic units in
     notably punctuation, embedded content, and white space elements.}.
 
 The definitions were influenced by other syntax trees specifications for
-  manipulation on the web platform, such as \emph{\textsc{css}}, eponymous
+  manipulation on the web platform, such\,as \emph{\textsc{css}}, eponymous
   for the \acrshort{css} language \autocite{reworkcss/css-source-code} or the
   \emph{Mozilla JavaScript \textsc{ast}}, for \gls{ecmascript}
   \autocite{mozilla.org-spidermonkey-parser_api}.
@@ -56,7 +56,7 @@ Both widely used implementations, \emph{\textsc{css}} by \emph{Rework}
 
 \gls{nlcst} differs from both specifications by implementing a \gls{cst},
   where the others use an \gls{ast}.
-A \gls{cst} is a one-to-one\,mapping of source (such as natural language)
+A \gls{cst} is a one-to-one\,mapping of source (such\,as natural language)
   to result (a tree).
 All information stored in the source is also available through the tree
   \autocite{thegreenplace.net-abstract-concrete-syntax-trees}.
@@ -72,9 +72,8 @@ However, the information stored in \glspl{cst} is verbose, which might be
 
 To create a syntax tree according to \gls{nlcst} from natural language,
   this paper presents \emph{parse-latin} for Latin script based
-  languages\footnote{Such
-    as Old-English, Icelandic, French, or even scripts slightly similar, such
-    as Cyrillic, Georgian, or Armenian.}.
+  languages\footnote{Such\,as Old-English, Icelandic, French, or even scripts
+    slightly similar, such\,as Cyrillic, Georgian, or Armenian.}.
 Additionally, to prove the concept, two\,other libraries are presented,
   \emph{parse-english} and \emph{parse-dutch}.
 Both with \emph{parse-latin} as a basis, but providing better support for
@@ -105,16 +104,16 @@ This is done in similar fashion, but more intelligent, to \emph{Emphasis}
 
 \begin{aenumerate}
 \item\emph{Inter-word Punctuation}\,---\,Some punctuation marks are part of
-  the word they occur in, such as the punctuation marks in ``non-profit'',
+  the word they occur in, such\,as the punctuation marks in ``non-profit'',
   ``she's'', ``G.I.'', ``11:00'', or ``N\slash A'';
 \item\emph{Non-terminal Full Stops}\,---\,Some full stops do not mark a
-  sentence end, such as the full stops in ``1.'', ``e.g.'', or ``id.'';
+  sentence end, such\,as the full stops in ``1.'', ``e.g.'', or ``id.'';
 \item\emph{Terminal Punctuation}\,---\,Although full stops, question marks,
   and exclamation marks (sometimes) end a sentence, that end might not occur
-  directly after the mark, such as the punctuation marks after the full
+  directly after the mark, such\,as the punctuation marks after the full
   stop in ``.)'' or ``.'{}'';
 \item\emph{Embedded Content}\,---\,Punctuation marks are sometimes used in
-  non-standard ways, such as when a section or chapter delimiter is
+  non-standard ways, such\,as when a section or chapter delimiter is
   created with a line containing three\,asterisk marks (``* * *'').
 \end{aenumerate}
 
@@ -183,11 +182,11 @@ Because of \glspl{textom} likeness to the \gls{dom}, \gls{textom} is
 
 \gls{textom} provides functionality for events (a mechanism for detecting
   changes), modification (inserting, removing, and replacing children
-  into\slash from parents), and traversal (such as finding all words in a
+  into\slash from parents), and traversal (such\,as finding all words in a
   sentence).
 
 \gls{nlcst} allows authors to extend the specification by defining their
-  own units, such as creating phrase or clause nodes.
+  own units, such\,as creating phrase or clause nodes.
 \gls{textom} allows for the same extension, and is built to work well
   with these ``unknown'' nodes.
 
@@ -200,7 +199,7 @@ Because of \glspl{textom} likeness to the \gls{dom}, \gls{textom} is
 
 For natural language processing on the client side, this paper presents
   \emph{Retext}.
-\emph{Retext} combines a parser, such as \emph{parse-latin} or
+\emph{Retext} combines a parser, such\,as \emph{parse-latin} or
   \emph{parse-english}, with an object model: \gls{textom}.
 Additionally, \emph{Retext} provides a minimalistic plug-in mechanism which
   enables developers to create and publish plug-ins for others to use, and in
