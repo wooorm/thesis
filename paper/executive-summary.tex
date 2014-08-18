@@ -16,8 +16,8 @@
 \gls{nlp} covers many challenges, but the process of accomplishing
   these challenges touches on well-defined stages
   (§\,\ref{natural-language-processing},
-  p.\,\pageref{natural-language-processing}).
-Such as \emph{tokenisation}, the focus of the proposal.
+  p.\,\pageref{natural-language-processing}), such as \emph{tokenisation},
+  the focus of the proposal.
 Current implementations on the web platform are lacking
   (§\,\ref{implementations}, p.\,\pageref{implementations}).
 In part, because advanced machine learning techniques (such as
@@ -29,10 +29,10 @@ The audience that benefits the most from better parsing on the web platform,
   less so in theoretical applications
   (§\,\ref{target-audience}, p.\,\pageref{target-audience}).
 
-The target audience's use cases for \gls{nlp} on the web are vast. Examples
-  include automatic summarisation, sentiment recognition, spam detection,
-  typographic enhancements, counting words, language recognition, and more
-  (§\,\ref{use-cases}, p.\,\pageref{use-cases}).
+The target audience's use cases for \gls{nlp} on the web are vast.
+Examples include automatic summarisation, sentiment recognition, spam
+  detection, typographic enhancements, counting words, language recognition,
+  and more (§\,\ref{use-cases}, p.\,\pageref{use-cases}).
 
 The presented proposal is split into several smaller solutions.
 These solutions come together in a proposal: \emph{Retext}, a complete
@@ -42,19 +42,20 @@ These solutions come together in a proposal: \emph{Retext}, a complete
   p.\,\pageref{natural-language-system-retext}).
 
 Parsing is delegated to \emph{parse-latin} and others, which first\,tokenise
-  text into a list of words, punctuation, and white space. Later, these
-  tokens are parsed into a syntax tree, containing paragraphs, sentences,
-  embedded content, and more. Their intellect extends several well known
-  techniques (§\,\ref{parser-parse-latin}, p.\,\pageref{parser-parse-latin}).
+  text into a list of words, punctuation, and white space.
+Later, these tokens are parsed into a syntax tree, containing paragraphs,
+  sentences, embedded content, and more. Their intellect extends several well
+  known techniques (§\,\ref{parser-parse-latin},
+  p.\,\pageref{parser-parse-latin}).
 
 The objects returned by \emph{parse-latin} and others are defined by
   \acrshort{nlcst}. \acrshort{nlcst} defines the syntax for these objects.
   \acrshort{nlcst} is designed in similarity to other popular syntax tree
   specifications (§\,\ref{syntax}, p.\,\pageref{syntax}).
 
-The interface to analyse and manipulate these object is implemented by
+The interface to analyse and manipulate these objects is implemented by
   \gls{textom}. \gls{textom} is created in similarity to other, for the target
-  audience well known, techniques
+  audience well-known, techniques
   (§\,\ref{object-model}, p.\,\pageref{object-model}).
 
 The proposal was validated both by solving the audience's use cases with

@@ -25,7 +25,8 @@ The Georgetown--\gls{ibm} experiment in 1945, one\,of the first\,applications
 During this study in New\,York, scientists demonstrated a
   Russian--English translation system.
 The machine translated more than sixty\,sentences from Russian to English.
-The experiment was well publicised and resulted in optimism.
+The experiment was well publicised in the press and resulted in optimism
+  among the public.
 The public believed machine translation would be a ``solved problem'' within
   three\,to\,five\,years.
 Despite promising first\,results, the following ten years were disappointing
@@ -38,7 +39,7 @@ Other challenges include generating summaries, detecting references to people
 Many programs exist to carry out these and many other \gls{nlp} challenges.
 The approach taken to perform these challenges are often similar between
   implementations.
-For example, Entity linking is often implemented as follows
+For example, entity linking is often implemented as follows
   \autocite[according to][]{stanbol-enhancer-nlp}:
 
 \begin{enumerate}
@@ -50,7 +51,7 @@ For example, Entity linking is often implemented as follows
     particular \acrshort{pos} tagging;
 \item\emph{Word Tokenisation}\,---\,The entities (words) must be free from
   their surroundings;
-\item\emph{\acrfull{pos} Tagging (optional)}\,---\,It is often desired to link
+\item\emph{\gls{pos} Tagging (optional)}\,---\,It is often desired to link
     several nouns or proper nouns.
   Detecting word categories makes this achievable;
 \item\emph{Noun Phrase Detection (optional)}\,---\,Although \emph{apple} and
@@ -76,8 +77,8 @@ Tokenisation, as defined here, includes breaking sentences, words, and
 other grammatical units.
 
 Another limitation of the scope of the proposal, is that it focusses on
-  syntactic grammatical units. Thus, semantic units (phrases and clauses)
-  are ignored.
+  syntactic grammatical units.
+Thus, semantic units (phrases and clauses) are ignored.
 
 In addition, the paper focusses on written language (text), thus ignoring
   spoken language.
@@ -87,7 +88,7 @@ Last, this paper focusses on Latin script languages: written languages
 
 \section{Implementations}\label{implementations}
 
-While researching algorithms to tokenise natural language few viable
+While researching algorithms to tokenise natural language, few viable
   implementations were found.
 Most algorithms look at either sentence- or word tokenisation (rarely both).
 This section describes the current implementations, where they excel, and
@@ -105,8 +106,8 @@ Often referred to as sentence boundary disambiguation\footnote{Both
     Sentence boundary disambiguation focusses on the position where
       sentences break (as in, ``One sentence?\textbar{} Two
       sentences.\textbar{}'', where the pipe symbols refer to the end of
-      one\,sentence and the beginning of another). Sentence
-      tokenisation targets both the start and end positions (as in,
+      one\,sentence and the beginning of another).
+    Sentence tokenisation targets both the start and end positions (as in,
       ``\{One sentence?\} \{Two sentences.\}'', where everything between
       braces is classified as a sentence).}, sentence
   tokenisation is an elementary but important part of \gls{nlp}.
@@ -129,12 +130,12 @@ Full stops often occur in numbers, suffixed to abbreviations or titles,
     ``sonar'' or ``\textsc{fbi}'') with full stops depicting elision (such as
     ``e.g.'', or ``K.G.B.'').},
   or in embedded content\footnote{Embedded
-    content in this paper refers to an external (ungrammatical) value
-    embedded into a grammatical unit, such as a \textsc{url} or an emoticon.
+      content in this paper refers to an external (ungrammatical) value
+      embedded into a grammatical unit, such as a \textsc{url} or an emoticon.
     Note that these embedded values often consist of valid words and
-    punctuation marks, but almost always should not be classified as such.}.
-The interrogative- and exclamation points too can occur ambiguously, such as
-  in a quote (as in `\,``Of course!'', she screamed').
+      punctuation marks, but almost always should not be classified as such.}.
+Interrogative points as well as exclamation points can occur ambiguously,
+  such as in a quote (as in `\,``Of course!'', she screamed').
 
 Disambiguation gets even harder when these exceptions \emph{are} in fact a
   sentence boundary (double negative), such as in
@@ -151,7 +152,7 @@ precursory step.
 
 Often implementations see words as everything that is \emph{not} white
   space (spaces, tabs, feeds) and their boundaries as everything that
-  is \autocite{loadfive/knwl-source-code}.
+  \emph{is} white space \autocite{loadfive/knwl-source-code}.
 
 Some implementations take punctuation marks into account as boundaries.
 This practice has flaws, as it results in the faulty classification of
@@ -231,7 +232,7 @@ Automatic summarisation could be implemented as follows:
   the smallest unit that should stay intact in the resulting summary;
 \item\emph{Word Tokenisation}\,---\,Needed to calculate keywords (words
   which occur more often than expected by chance alone);
-\item\emph{Automatic summarisation}.
+\item\emph{Automatic Summarisation}.
 \end{enumerate}
 
 \noindent Automatic summarisers typically return the highest ranking units,
@@ -243,7 +244,7 @@ Automatic summarisation could be implemented as follows:
 \item\emph{Number of keywords}\,---\,Words which occur more often than
   expected by chance alone in the text;
 \item\emph{Similarity to title}\,---\,Number of words from the document's
-  title the unit contains;
+  title the sentence or phrase contains;
 \item\emph{Position inside parent}\,---\,Initial and final sentences of a
   paragraph are often more important than sentences buried somewhere in
   the middle.
@@ -256,15 +257,15 @@ Automatic summarisation could be implemented as follows:
 
 The only implementation working on the web, by James\,Brook
   \autocite*{jbrooksuk/node-summary-source-code}, takes a na\"ive sentence
-  tokenisation approach.
-Such as ignoring sentences terminated by exclamation marks.
+  tokenisation approach, such as ignoring sentences terminated by
+  exclamation marks.
 Both other implementations, and many more, use a different approach to
-  sentence tokenisation: Corpora.
+  sentence tokenisation: corpora.
 
 \subsection{Using Corpora for \textsc{nlp}}\label{using-corpora-for}
 
-A corpus is a large, structured set of texts used for many \gls{nlp}
-  and linguistics challenges.
+A corpus (plural: corpora) is a large, structured set of texts used for many
+  \gls{nlp} and linguistics challenges.
 Corpora contain items (often words, but sometimes other units) annotated
   with information (such as \gls{pos} tags or lemmas).
 
@@ -293,8 +294,8 @@ Instead of rules (and exceptions to these rules, exceptions to these
   delegates this task to machines.
 This delegation results in a more efficient, scalable, program.
 
-Parsing based on corpora has proven better in several ways over rule based
-  parsing, but has disadvantages:
+Parsing based on corpora has proven better over rule based
+  parsing in several ways, but has disadvantages:
 
 \begin{enumerate}
 \item Good training sets are required;
@@ -307,10 +308,11 @@ Parsing based on corpora has proven better in several ways over rule based
 \noindent In addition, corpora based parsing will not work well on the web.
 Loading corpora over the network each time a user requests a web page is
   infeasible for most websites and applications\footnote{Currently,
-    one\,technology exists for storing large datasets in a browser: the
-    \acrshort{html5} File System \acrshort{api}. However, ``work on this
-    document has been discontinued'', and the specification ``should not be
-    used as a basis for implementation'' \autocite{urhane-file-api}.}.
+      one\,technology exists for storing large datasets in a browser: the
+      \acrshort{html5} File System \acrshort{api}.
+    However, ``work on this document has been discontinued'', and the
+      specification ``should not be used as a basis for implementation''
+      \autocite{urhane-file-api}.}.
 
 Two viable alternative approaches exist for the web: rule based tokenisation,
   or connecting to a server over the network.
@@ -331,9 +333,10 @@ With the rise of the asynchronous web\footnote{Around 2000,
   Before, significant changes to websites only occurred when a user
     navigated to a new page. 
   With \gls{ajax} however, new content arrived to users without the need
-    for a full page refresh. The first\,examples of how \gls{ajax} made
-    the web feel more like native applications, are Outlook Web
-    Access in 2000 \autocite{technet-outlook-web-access} and Gmail in 2004
+    for a full page refresh.
+  The first\,examples of how \gls{ajax} made the web feel more like native
+    applications, are Outlook Web Access in 2000
+    \autocite{technet-outlook-web-access} and Gmail in 2004
     \autocite{gmailblog-gmail-ajax}.},
   supervised learning became available through web \glspl{api}
   \autocites{textteaser-web-api}{wordnet-web-api}{textrazor-web-api}.
