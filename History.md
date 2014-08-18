@@ -1,4 +1,19 @@
 
+n.n.n / 2014-08-18
+==================
+
+ * Remove version from thesis
+ * Remove todo list
+ * Fix plugin > plug-in
+ * Fix split up > split-up
+ * Remove line breaking in "for example"
+ * Remove line breaking in "such as"
+ * Fix casing in definition-like lists
+ * Fix incorrect cased headings
+ * Add last reviewer notes
+ * Add description of retext-sentiment to plugins
+ * Add retext-sentiment as a submodule
+
 1.0-rc.2 / 2014-08-17
 ==================
 
