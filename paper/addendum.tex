@@ -33,44 +33,43 @@ What the target audience would \emph{not} use an implementation for, was
 
 In the pre-thesis process, the implementation was design-focussed.
 Initially, as described in the introduction (p.\,\pageref{introduction}), I
-  was intrinsically motivated to create a ``better'' solution.
+  was intrinsically motivated to create a ``better'' solution for typography
+  on the web.
 Current solutions did not provide enough functionality and neither did my own
   initial solution.
+Thus, during the development of the thesis, focus shifted from design to
+  natural language in general.
 
-During the development of the thesis, focus shifted from design to natural
-  language in general.
-Then, I searched for solutions that covered general \gls{nlp}.
-
+I searched for solutions that covered general \gls{nlp}.
 For open source projects, I searched GitHub.
-For general projects, I got the best results by searching for the most
-  popular ``natural language'' projects\footnote{
-    \url{https://github.com/search?o=desc&q=natural+language&s=stars}
+For projects in any language, I got the best results by searching for the
+  most popular ``natural language'' projects\footnote{
+    \href{https://github.com/search?o=desc&q=natural+language&s=stars}{\nolinkurl{github.com/search?o=desc&q=natural+language&s=stars}}
   }.
 For web projects, I added a programming language filter for
   \gls{ecmascript}\footnote{
-    \url{https://github.com/search?l=JavaScript&o=desc&q=natural+language&s=stars}
+    \href{https://github.com/search?l=JavaScript&o=desc&q=natural+language&s=stars}{\nolinkurl{github.com/search?l=JavaScript&o=desc&q=natural+language&s=stars}}
   }.
 
-In addition, I read \emph{Natural Language Processing Python}\footnote{
-    \url{http://www.nltk.org/book/}
+To find out more about how non-\gls{ecmascript} implementations solved
+  \gls{nlp} challenges I also read \emph{Natural Language Processing
+  Python}\footnote{
+    \href{http://www.nltk.org/book/}{\nolinkurl{www.nltk.org/book/}}
   }, a book which describes how to approach several natural language
   challenges with \textsc{nltk}, a Python project for \gls{nlp}.
-Additionally, \emph{WikiPedia}'s list of \gls{nlp} tool-kits\footnote{
-    \url{http://en.wikipedia.org/wiki/List_of_natural_language_processing_toolkits}
+Additionally, WikiPedia's list of \gls{nlp} tool-kits\footnote{
+    \href{http://en.wikipedia.org/wiki/List_of_natural_language_processing_toolkits}{\nolinkurl{en.wikipedia.org/wiki/List_of_natural_language_processing_toolkits}}
   } was of great help in discovering other projects, such as Open\textsc{nlp}
-  by \emph{Apache}, Core\textsc{nlp} by \emph{Stanford}, and \textsc{gate}.
+  by Apache, Core\textsc{nlp} by Stanford, and \textsc{gate}.
 
-These tools each provide the functionality to accomplish certain \gls{nlp}
-  challenges.
+The found implementations each provide functionality to accomplish certain
+  \gls{nlp} challenges.
 Whether parsing dates, creating summaries, detecting sentiment, or everything
   together, they solve the target audience's use cases.
 
-The proposal in the thesis did not need to cover all these use-cases, but
-  they should be solvable with the proposal.
-
 The following table shows \gls{nlp} tasks according to
-  \emph{WikiPedia}\footnote{
-    \url{http://en.wikipedia.org/wiki/Natural_language_processing}
+  WikiPedia\footnote{
+    \href{http://en.wikipedia.org/wiki/Natural_language_processing}{\nolinkurl{en.wikipedia.org/wiki/Natural_language_processing}}
   }, and indicates whether or not the task is implemented in
   \gls{ecmascript} for client side use.
 
@@ -79,10 +78,10 @@ The following table shows \gls{nlp} tasks according to
 {\footnotesize
 \begin{tabular}{ l p{5.25cm} }
   Challenge &
-  Implemented for client side?
+  Implementation
   \\ \hline
   Automatic summarisation &{\raggedright
-  yes, \url{http://gihub.com/jbrooksuk/node-summary}
+  \href{https://github.com/jbrooksuk/node-summary}{\nolinkurl{github.com/jbrooksuk/node-summary}}
   }\\
   Coreference resolution &
   \\
@@ -95,29 +94,29 @@ The following table shows \gls{nlp} tasks according to
   Named entity recognition &
   \\
   Natural language generation &{\raggedright
-  yes, numerous
+  numerous
   }\\
   Natural language understanding &{\raggedright
-  yes, \url{http://gihub.com/wanasit/chrono}
+  \href{https://github.com/wanasit/chrono}{\nolinkurl{github.com/wanasit/chrono}}
   }\\
   Optical character recognition &{\raggedright
-  yes, \url{http://gihub.com/antimatter15/ocrad.js}
+  \href{https://github.com/antimatter15/ocrad.js}{\nolinkurl{github.com/antimatter15/ocrad.js}}
   }\\
   \gls{pos} tagging &{\raggedright
-  yes, \url{http://gihub.com/dariusk/pos-js}
+  \href{https://github.com/dariusk/pos-js}{\nolinkurl{github.com/dariusk/pos-js}}
   }\\
   Parsing &{\raggedright
-  yes, \url{http://gihub.com/srmor/text-parse}
+  \href{https://github.com/srmor/text-parse}{\nolinkurl{github.com/srmor/text-parse}}
   }\\
   Question answering &
   \\
   Relationship extraction &
   \\
   Sentence breaking &{\raggedright
-  yes, numerous
+  numerous
   }\\
   Sentiment analysis &{\raggedright
-  yes, numerous
+  numerous
   }\\
   Speech recognition &
   \\
@@ -128,47 +127,68 @@ The following table shows \gls{nlp} tasks according to
   Topic recognition &
   \\
   Word segmentation &{\raggedright
-  yes, numerous
+  numerous
   }\\
   Word sense disambiguation &
   \\
   Stemming &{\raggedright
-  yes, numerous
+  numerous
   }\\
   Text simplification &
   \\
   Text-to-speech &
   \\
   Text-proofing &{\raggedright
-  yes, \url{http://gihub.com/btford/write-good}
+  \href{https://github.com/btford/write-good}{\nolinkurl{github.com/btford/write-good}}
   }\\
   Natural language search &{\raggedright
-  yes, \url{http://gihub.com/visionmedia/reds}
+  \href{https://github.com/visionmedia/reds}{\nolinkurl{github.com/visionmedia/reds}}
   }\\
   Query expansion &{\raggedright
-  yes, \url{http://gihub.com/visionmedia/reds}
+  \href{https://github.com/visionmedia/reds}{\nolinkurl{github.com/visionmedia/reds}}
   }\\
   Automated essay scoring &{\raggedright
-  yes, \url{http://gihub.com/NaturalNode/natural}
+  \href{https://github.com/NaturalNode/natural}{\nolinkurl{github.com/NaturalNode/natural}}
   }\\
   Truecasing &{\raggedright
-  yes, \url{http://gihub.com/nbubna/Case}
+  \href{https://github.com/nbubna/Case}{\nolinkurl{github.com/nbubna/Case}}
   }\\
 \end{tabular}
 }
 
-\medskip\noindent This list includes the use cases \ref{list:use-case:1},
+\medskip\noindent This list includes use cases \ref{list:use-case:1},
   \ref{list:use-case:2}, \ref{list:use-case:3}, \ref{list:use-case:7}
   (respectively automatic summarisation, generation, sentiment analysis, and
   search).
 In my opinion, use case \ref{list:use-case:6}, language recognition,
-  implemented by \url{http://github.com/richtr/guessLanguage.js}, should also be listed.
+  implemented by
+  \href{https://github.com/richtr/guessLanguage.js}{\nolinkurl{github.com/richtr/guessLanguage.js}},
+  should also be listed.
 These challenges, use cases, are all implemented for the client side.
 
-The other use cases (\ref{list:use-case:4}, typographic enhancements;
-  \ref{list:use-case:5}, counting units), are not on this list.
+The other use cases, \ref{list:use-case:4} (typographic enhancements) and
+  \ref{list:use-case:5} (counting units), are not on this list.
 They serve little academic purpose, but are implemented widely on the
-  web.
+  web, such as counting words by
+  \href{https://github.com/bostrt/wordcount.js}{\nolinkurl{github.com/bostrt/wordcount.js}},
+  and typographic enhancements by
+  \href{https://github.com/nofont/Typesetter.js}{\nolinkurl{github.com/nofont/Typesetter.js}}.
+
+The \gls{nlp} challenges from WikiPedia not listed in Use Cases
+  (§\,\ref{use-cases}, p.\,\pageref{use-cases}), are truecasing,
+  stemming, understanding, text-proofing, query expansion, essay scoring,
+  optical character recognition, \gls{pos} tagging, parsing,
+  sentence breaking, and word segmentation.
+The last three were not listed in the target audience's use cases as they
+  are solved by the proposal by default.
+All other tasks were either deemed too simple (truecasing, stemming) as
+  numerous good implementations exist for the target audience, or deemed not
+  practical enough (all others, such as optical character recognition and
+  essay scoring) for most of the target audience.
+
+As noted in Use Cases (§\,\ref{use-cases}, p.\,\pageref{use-cases}), it is
+  expected many more use cases could be defined.
+The listed use cases are just the most popularly solved.
 
 \section*{Validation}\label{addendum-validation}
 
