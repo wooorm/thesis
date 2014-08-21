@@ -24,30 +24,37 @@ This addendum delves deeper into the first two: use cases and validation.
 
 The drafting of the target audience's use cases is based on several research
   methods.
+
+In essence, the target audience's use cases were defined by looking at what
+  challenges current \gls{ecmascript} implementations cover.
+What the target audience would \emph{not} use an implementation for, was
+  defined by looking at the unique challenges covered by non-\gls{ecmascript}
+  implementations.
+
+In the pre-thesis process, the implementation was design-focussed.
 Initially, as described in the introduction (p.\,\pageref{introduction}), I
-  was intrinsically motivated to create a better solution.
-Current solutions did not provide enough functionality,
-  neither did my own initial solution.
+  was intrinsically motivated to create a ``better'' solution.
+Current solutions did not provide enough functionality and neither did my own
+  initial solution.
 
-In this pre-thesis process, the implementation was design-focussed.
-During the development of the thesis, its focus shifted from design to
-  natural language in general.
-
+During the development of the thesis, focus shifted from design to natural
+  language in general.
 Then, I searched for solutions that covered general \gls{nlp}.
-For open source projects, I search GitHub.
+
+For open source projects, I searched GitHub.
 For general projects, I got the best results by searching for the most
   popular ``natural language'' projects\footnote{
     \url{https://github.com/search?o=desc&q=natural+language&s=stars}
   }.
-For web projects, I added a language filter for \gls{ecmascript}\footnote{
+For web projects, I added a programming language filter for
+  \gls{ecmascript}\footnote{
     \url{https://github.com/search?l=JavaScript&o=desc&q=natural+language&s=stars}
   }.
 
 In addition, I read \emph{Natural Language Processing Python}\footnote{
     \url{http://www.nltk.org/book/}
-  }, a book describing how to approach several natural language challenges
-  with \textsc{nltk}, a Python project for \gls{nlp}.
-
+  }, a book which describes how to approach several natural language
+  challenges with \textsc{nltk}, a Python project for \gls{nlp}.
 Additionally, \emph{WikiPedia}'s list of \gls{nlp} tool-kits\footnote{
     \url{http://en.wikipedia.org/wiki/List_of_natural_language_processing_toolkits}
   } was of great help in discovering other projects, such as Open\textsc{nlp}
@@ -56,13 +63,112 @@ Additionally, \emph{WikiPedia}'s list of \gls{nlp} tool-kits\footnote{
 These tools each provide the functionality to accomplish certain \gls{nlp}
   challenges.
 Whether parsing dates, creating summaries, detecting sentiment, or everything
-  together.
+  together, they solve the target audience's use cases.
 
-In essence, the target audience's use cases were defined by looking at what
-  challenges current \gls{ecmascript} implementations cover.
-What the target audience would \emph{not} use an implementation for, was
-  defined by looking at the unique challenges covered by non-\gls{ecmascript}
-  implementations.
+The proposal in the thesis did not need to cover all these use-cases, but
+  they should be solvable with the proposal.
+
+The following table shows \gls{nlp} tasks according to
+  \emph{WikiPedia}\footnote{
+    \url{http://en.wikipedia.org/wiki/Natural_language_processing}
+  }, and indicates whether or not the task is implemented in
+  \gls{ecmascript} for client side use.
+
+\medskip
+
+{\footnotesize
+\begin{tabular}{ l p{5.25cm} }
+  Challenge &
+  Implemented for client side?
+  \\ \hline
+  Automatic summarisation &{\raggedright
+  yes, \url{http://gihub.com/jbrooksuk/node-summary}
+  }\\
+  Coreference resolution &
+  \\
+  Discourse analysis &
+  \\
+  Machine translation &
+  \\
+  Morphological segmentation &
+  \\
+  Named entity recognition &
+  \\
+  Natural language generation &{\raggedright
+  yes, numerous
+  }\\
+  Natural language understanding &{\raggedright
+  yes, \url{http://gihub.com/wanasit/chrono}
+  }\\
+  Optical character recognition &{\raggedright
+  yes, \url{http://gihub.com/antimatter15/ocrad.js}
+  }\\
+  \gls{pos} tagging &{\raggedright
+  yes, \url{http://gihub.com/dariusk/pos-js}
+  }\\
+  Parsing &{\raggedright
+  yes, \url{http://gihub.com/srmor/text-parse}
+  }\\
+  Question answering &
+  \\
+  Relationship extraction &
+  \\
+  Sentence breaking &{\raggedright
+  yes, numerous
+  }\\
+  Sentiment analysis &{\raggedright
+  yes, numerous
+  }\\
+  Speech recognition &
+  \\
+  Speech segmentation &
+  \\
+  Topic segmentation &
+  \\
+  Topic recognition &
+  \\
+  Word segmentation &{\raggedright
+  yes, numerous
+  }\\
+  Word sense disambiguation &
+  \\
+  Stemming &{\raggedright
+  yes, numerous
+  }\\
+  Text simplification &
+  \\
+  Text-to-speech &
+  \\
+  Text-proofing &{\raggedright
+  yes, \url{http://gihub.com/btford/write-good}
+  }\\
+  Natural language search &{\raggedright
+  yes, \url{http://gihub.com/visionmedia/reds}
+  }\\
+  Query expansion &{\raggedright
+  yes, \url{http://gihub.com/visionmedia/reds}
+  }\\
+  Automated essay scoring &{\raggedright
+  yes, \url{http://gihub.com/NaturalNode/natural}
+  }\\
+  Truecasing &{\raggedright
+  yes, \url{http://gihub.com/nbubna/Case}
+  }\\
+\end{tabular}
+}
+
+\medskip\noindent This list includes the use cases \ref{list:use-case:1},
+  \ref{list:use-case:2}, \ref{list:use-case:3}, \ref{list:use-case:7}
+  (respectively automatic summarisation, generation, sentiment analysis, and
+  search).
+In my opinion, use case \ref{list:use-case:6}, language recognition,
+  implemented by \url{http://github.com/richtr/guessLanguage.js}, should also be listed.
+These challenges, use cases, are all implemented for the client side.
+
+The other use cases (\ref{list:use-case:4}, typographic enhancements;
+  \ref{list:use-case:5}, counting units), are not on this list.
+They serve little academic purpose, but are implemented widely on the
+  web.
 
 \section*{Validation}\label{addendum-validation}
 
