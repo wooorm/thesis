@@ -1,0 +1,69 @@
+%*******************************************************
+% Addendum Use Cases
+%*******************************************************
+
+\begingroup
+\let\clearpage\relax
+\let\cleardoublepage\relax
+\let\cleardoublepage\relax
+
+% work-around to have small caps also here in the headline
+\manualmark
+\markboth{\spacedlowsmallcaps{Addendum}}{\spacedlowsmallcaps{Addendum}}
+
+\chapter*{Addendum}\label{addendum}
+
+Due to strict requirements for the format of this document, including page
+  count, several topics of the process were not put on paper.
+This includes the omission of detailed information about the process behind
+  drafting the target audience's use cases, the validation of the
+  target audience's reception, and in-depth coverage of the written code.
+This addendum delves deeper into the first two: use cases and validation.
+
+\section*{Use Cases}\label{addendum-use-cases}
+
+The drafting of the target audience's use cases is based on several research
+  methods.
+Initially, as described in the introduction (p.\,\pageref{introduction}), I
+  was intrinsically motivated to create a better solution.
+Current solutions did not provide enough functionality,
+  neither did my own initial solution.
+
+In this pre-thesis process, the implementation was design-focussed.
+During the development of the thesis, its focus shifted from design to
+  natural language in general.
+
+Then, I searched for solutions that covered general \gls{nlp}.
+For open source projects, I search GitHub.
+For general projects, I got the best results by searching for the most
+  popular ``natural language'' projects\footnote{
+    \url{https://github.com/search?o=desc&q=natural+language&s=stars}
+  }.
+For web projects, I added a language filter for \gls{ecmascript}\footnote{
+    \url{https://github.com/search?l=JavaScript&o=desc&q=natural+language&s=stars}
+  }.
+
+In addition, I read \emph{Natural Language Processing Python}\footnote{
+    \url{http://www.nltk.org/book/}
+  }, a book describing how to approach several natural language challenges
+  with \textsc{nltk}, a Python project for \gls{nlp}.
+
+Additionally, \emph{WikiPedia}'s list of \gls{nlp} tool-kits\footnote{
+    \url{http://en.wikipedia.org/wiki/List_of_natural_language_processing_toolkits}
+  } was of great help in discovering other projects, such as Open\textsc{nlp}
+  by \emph{Apache}, Core\textsc{nlp} by \emph{Stanford}, and \textsc{gate}.
+
+These tools each provide the functionality to accomplish certain \gls{nlp}
+  challenges.
+Whether parsing dates, creating summaries, detecting sentiment, or everything
+  together.
+
+In essence, the target audience's use cases were defined by looking at what
+  challenges current \gls{ecmascript} implementations cover.
+What the target audience would \emph{not} use an implementation for, was
+  defined by looking at the unique challenges covered by non-\gls{ecmascript}
+  implementations.
+
+\section*{Validation}\label{addendum-validation}
+
+\endgroup
