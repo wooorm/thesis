@@ -9,18 +9,18 @@
 
 % work-around to have small caps also here in the headline
 \manualmark
-\markboth{\spacedlowsmallcaps{Addendum}}{\spacedlowsmallcaps{Addendum}}
+\markboth{\spacedlowsmallcaps{Use Cases}}{\spacedlowsmallcaps{Use Cases}}
 
-\chapter*{Addendum}\label{addendum}
-
-Due to strict requirements for the format of this document, including page
-  count, several topics of the process were not put on paper.
+\noindent Due to strict requirements for the format of this document,
+  including page count, several topics of the process were not put on paper.
 This includes the omission of detailed information about the process behind
   drafting the target audience's use cases, the validation of the
   target audience's reception, and in-depth coverage of the written code.
 This addendum delves deeper into the first two: use cases and validation.
 
-\section*{Use Cases}\label{addendum-use-cases}
+\chapter*{Use Cases}\label{addendum-use-cases}
+\addtocontents{toc}{\protect\vspace{\beforebibskip}}
+\addcontentsline{toc}{chapter}{\tocEntry{Use Cases}}
 
 The drafting of the target audience's use cases is based on several research
   methods.
@@ -189,13 +189,5 @@ All other tasks were either deemed too simple (truecasing, stemming) as
 As noted in Use Cases (§\,\ref{use-cases}, p.\,\pageref{use-cases}), it is
   expected many more use cases could be defined.
 The listed use cases are just the most popularly solved.
-
-\section*{Validation}\label{addendum-validation}
-
-Most (virtual) products work ``well'', if the target audience can use the
-  product without needing to resort to a manual.
-Code is, however, different.
-It \emph{is} normal for a user of an \gls{api} to resort to the manual,
-  the documentation.
 
 \endgroup
