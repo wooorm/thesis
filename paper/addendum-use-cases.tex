@@ -22,9 +22,6 @@ This addendum delves deeper into the first two: use cases and validation.
 \addtocontents{toc}{\protect\vspace{\beforebibskip}}
 \addcontentsline{toc}{chapter}{\tocEntry{Use Cases}}
 
-The drafting of the target audience's use cases is based on several research
-  methods.
-
 In essence, the target audience's use cases were defined by looking at what
   challenges current \gls{ecmascript} implementations cover.
 What the target audience would \emph{not} use an implementation for, was
@@ -37,13 +34,14 @@ Initially, as described in the introduction (p.\,\pageref{introduction}), I
   on the web.
 Current solutions did not provide enough functionality and neither did my own
   initial solution.
-Thus, during the development of the thesis, focus shifted from design to
+The parser and data representation of the initial solution were incomplete.
+Thus, during the development of the thesis, my focus shifted from design to
   natural language in general.
 
 I searched for solutions that covered general \gls{nlp}.
 For open source projects, I searched GitHub.
-For projects in any language, I got the best results by searching for the
-  most popular ``natural language'' projects\footnote{
+In any language, I got the best results by searching for the most popular
+  ``natural language'' projects\footnote{
     \href{https://github.com/search?o=desc&q=natural+language&s=stars}{\nolinkurl{github.com/search?o=desc&q=natural+language&s=stars}}
   }.
 For web projects, I added a programming language filter for
@@ -70,8 +68,8 @@ Whether parsing dates, creating summaries, detecting sentiment, or everything
 The following table shows \gls{nlp} tasks according to
   WikiPedia\footnote{
     \href{http://en.wikipedia.org/wiki/Natural_language_processing}{\nolinkurl{en.wikipedia.org/wiki/Natural_language_processing}}
-  }, and indicates whether or not the task is implemented in
-  \gls{ecmascript} for client side use.
+  }, and indicates if the task is implemented in \gls{ecmascript}
+  for client side use.
 
 \medskip
 
@@ -158,36 +156,29 @@ The following table shows \gls{nlp} tasks according to
 
 \medskip\noindent This list includes use cases \ref{list:use-case:1},
   \ref{list:use-case:2}, \ref{list:use-case:3}, \ref{list:use-case:7}
-  (respectively automatic summarisation, generation, sentiment analysis, and
+  (resp. automatic summarisation, generation, sentiment analysis, and
   search).
 In my opinion, use case \ref{list:use-case:6}, language recognition,
   implemented by
   \href{https://github.com/richtr/guessLanguage.js}{\nolinkurl{github.com/richtr/guessLanguage.js}},
   should also be listed.
-These challenges, use cases, are all implemented for the client side.
+These challenges all have implementation for the client side.
 
-The other use cases, \ref{list:use-case:4} (typographic enhancements) and
-  \ref{list:use-case:5} (counting units), are not on this list.
-They serve little academic purpose, but are implemented widely on the
-  web, such as counting words by
-  \href{https://github.com/bostrt/wordcount.js}{\nolinkurl{github.com/bostrt/wordcount.js}},
-  and typographic enhancements by
-  \href{https://github.com/nofont/Typesetter.js}{\nolinkurl{github.com/nofont/Typesetter.js}}.
+The other use cases, \ref{list:use-case:4} and \ref{list:use-case:5} (resp.
+  typographic enhancements and counting units), are not on WikiPedia's list as
+  they serve little academic use, but are implemented numerous times on the
+  web.
 
 The \gls{nlp} challenges from WikiPedia not listed in Use Cases
   (§\,\ref{use-cases}, p.\,\pageref{use-cases}), are truecasing,
   stemming, understanding, text-proofing, query expansion, essay scoring,
   optical character recognition, \gls{pos} tagging, parsing,
   sentence breaking, and word segmentation.
-The last three were not listed in the target audience's use cases as they
-  are solved by the proposal by default.
-All other tasks were either deemed too simple (truecasing, stemming) as
-  numerous good implementations exist for the target audience, or deemed not
-  practical enough (all others, such as optical character recognition and
-  essay scoring) for most of the target audience.
-
-As noted in Use Cases (§\,\ref{use-cases}, p.\,\pageref{use-cases}), it is
-  expected many more use cases could be defined.
-The listed use cases are just the most popularly solved.
+The last three were not listed in the use cases as they are solved by the
+  proposal by default.
+The first two were deemed too simple as numerous good implementations exist
+  for the target audience.
+All other tasks were deemed not practical enough for most of the target
+  audience.
 
 \endgroup

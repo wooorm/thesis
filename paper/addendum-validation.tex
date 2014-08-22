@@ -15,29 +15,28 @@
 \addtocontents{toc}{\protect\vspace{\beforebibskip}}
 \addcontentsline{toc}{chapter}{\tocEntry{Validation}}
 
-Most physical and virtual products work ``well'', if the target audience can
+Most physical and virtual products work ``well'' if the target audience can
   use the product without needing to resort to a manual.
-Code is, however, different.
-It is both expected and normal for a user of an \gls{api} to resort
-  to the manual, the documentation.
+Code is, however, different: it is both expected and normal for a user of
+  an \gls{api} to resort to the manual, the documentation.
 
-Useable documentation is certainly of high importance, but this thesis does
+Useable documentation is certainly of importance, but this thesis does
   not propose documentation.
-Therefore, user testing the proposal in this thesis, an \gls{api}, would
-  validate the documentation, rather than the interface.
+User testing the proposal in this thesis, an \gls{api}, would validate the
+  documentation instead of the interface.
 
-Instead I opted for validating the target audience's reception.
+Therefore, I chose to validating the target audience's reception.
 As mentioned in Reception (§\,\ref{reception}, p.\,\pageref{reception}),
   I first contacted some high-profile web sites, including Daily\textsc{js}.
-Additionally, I posted on Echo \textsc{js} and Reddit.
-This later resulted in mentions on newsletters and link roundups.
-In turn this resulted in many peers mentioning \emph{Retext} and other
-  projects in the \emph{Retext}-family on social networks such as Twitter
-  and Google+.
+Additionally, I posted on Echo\textsc{js} and Reddit.
+This resulted in mentions on newsletters and link roundups.
+In turn, this resulted in many of the target audience mentioning \emph{Retext}
+  and other projects in the \emph{Retext}-family on social networks such as
+  Twitter and Google+.
 
-A few of these mentions are listen below, either because they were shared
+A few of these mentions are listen below, either because they were re-shared
   numerous times, or contain unique understanding of, or use cases for, the
-  projects.
+  proposals.
 
 \begin{quote}
   \textit{This. Just. Made. My. Brain. Explode.
@@ -47,6 +46,8 @@ A few of these mentions are listen below, either because they were shared
   \medskip ---\,Trent\,Oswald\,(therebelrobot). 1 Aug 2014, 08:15 a.m.
   \href{https://twitter.com/therebelrobot/status/495226217805524992}{Tweet}.
 \end{quote}
+
+\hrule
 
 \begin{quote}
   \textit{Retext is a JavaScript natural language parser useful for doing
@@ -58,6 +59,8 @@ A few of these mentions are listen below, either because they were shared
   \href{https://twitter.com/remotesynth/status/495271619737423872}{Tweet}.
 \end{quote}
 
+\hrule
+
 \begin{quote}
   \textit{Convert text-strings to TextOM for easy manipulations
     \href{https://github.com/wooorm/retext}{\nolinkurl{github.com/wooorm/retext}}
@@ -67,6 +70,8 @@ A few of these mentions are listen below, either because they were shared
   \medskip ---\,Thomas\,Strobl\,(tom2strobl). 15 Aug 2014, 06:00 a.m.
   \href{https://twitter.com/tom2strobl/status/500265708866256896}{Tweet}.
 \end{quote}
+
+\hrule
 
 \begin{quote}
   \textit{I'm finding retext a useful Natural Language Processing
@@ -78,6 +83,8 @@ A few of these mentions are listen below, either because they were shared
   \href{https://twitter.com/stephenkeep/status/499129742407532545}{Tweet}.
 \end{quote}
 
+\hrule
+
 \begin{quote}
   \textit{Retext: Extensible System for Analysing and Manipulating Natural
     Language
@@ -87,6 +94,8 @@ A few of these mentions are listen below, either because they were shared
   \medskip ---\,JavaScript Daily\,(JavaScriptDaily). 10 Aug 2014, 01:41 p.m.
   \href{https://twitter.com/JavaScriptDaily/status/498569727854522368}{Tweet}.
 \end{quote}
+
+\hrule
 
 \begin{quote}
   \textit{English (latin) language parser in JavaScript:
@@ -101,18 +110,58 @@ A few of these mentions are listen below, either because they were shared
   \href{https://plus.google.com/+IlyaGrigorik/posts/RR75ZLceDHU}{Google+}.
 \end{quote}
 
-\noindent Many more can be found by searching twitter for tweets containing either
-  my GitHub handle (wooorm,
+\noindent Many more can be found by searching Twitter for tweets containing
+  either my GitHub handle (wooorm,
   \href{https://twitter.com/search?f=realtime&q=wooorm}{\nolinkurl{twitter.com/search?q=wooorm}})
   or the GitHub project name (\emph{Retext},
   \href{https://twitter.com/search?f=realtime&q=retext}{\nolinkurl{twitter.com/search?q=retext}}).
 
-In addition to mentioning the project on social networks many of the target
-  audience started \emph{following} the project.
-At time of writing this addendum, 22 august, 2014, 451 of the target
-  audience follow \emph{Retext}.
-This includes developers working at Google, \gls{ibm}, Facebook, Adobe,
-  Mozilla, Vimeo, Yandex, Spotify, Telegraaf Media Groep, Turner Broadcasting,
-  and many more.
+In addition to mentioning the proposal on social networks many of the target
+  audience started \emph{following} the proposal.
+At time of writing this addendum, 22 August, 2014, 451 of the target
+  audience followed \emph{Retext}, including members of the target audience
+  working at companies such as Google, \gls{ibm}, Facebook, Adobe, Mozilla,
+  Vimeo, Yandex, Spotify, Telegraaf Media Groep, and Turner Broadcasting.
+
+The fact that \emph{Retext} was classified as ``trending'' by GitHub (a list
+  of projects receiving the most stars) several times for projects in
+  \gls{ecmascript}, gives context to this number.
+Such as receiving third\,place on both August 1 and 2, 2014.
+
+These followers, name ``stargazers'' on GitHub, do not necessarily convert to
+  actual users, they merely convey interest.
+Actual usage is harder to detect.
+
+One way to detect actual use is by looking at download rates, such as
+  those displayed by \gls{npm}, the main package manager used to download
+  and use the source.
+According to \gls{npm}, between 22 July 2014 and 22 August 2014, \emph{Retext}
+  was downloaded 496 times\footnote{
+    \href{https://nodei.co/npm/retext.png?downloads=true}{\nolinkurl{nodei.co/npm/retext.png?downloads=true}}.
+  }, \emph{parse-latin} 529 times\footnote{
+    \href{https://nodei.co/npm/parse-latin.png?downloads=true}{\nolinkurl{nodei.co/npm/parse-latin.png?downloads=true}}.
+  }, \emph{parse-english} 381 times\footnote{
+    \href{https://nodei.co/npm/parse-english.png?downloads=true}{\nolinkurl{nodei.co/npm/parse-english.png?downloads=true}}.
+  },
+  and \gls{textom} 460 times\footnote{
+    \href{https://nodei.co/npm/textom.png?downloads=true}{\nolinkurl{nodei.co/npm/textom.png?downloads=true}}.
+  }.
+
+Another way to detect actual use is by looking at issues raised and proposed
+  fixes by the target audience, mentioned in Reception (§\,\ref{reception},
+  p.\,\pageref{reception}).
+
+Note that the number of proposed fixes and raised issues, as well as the
+  download rates, are still not very high.
+My current working theory for this, is that the target audience is not
+  regularly concerned with the topic, \gls{nlp} and the focus,
+  \emph{tokenisation}, of the project.
+The project is too new to currently expect the target audience to use it
+  regularly.
+
+The future holds whether or not this working theory is correct.
+However, the mentions on social networks, newsletters and web sites,
+  the feature requests and bug reports, and the numerous bookmarks on
+  GitHub and downloads on \gls{npm}, do certainly convey interest.
 
 \endgroup
