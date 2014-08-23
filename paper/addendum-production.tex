@@ -20,17 +20,16 @@ As described in Validation: Plug-ins (§\,\ref{plugins},
 Additionally, other challenges of the target audience can also be
   implemented.
 
-Before I began work on a proposal, I wrote code to solve several use cases
-  which depended on the (non-existent) proposal.
+Before I began work on a proposal, I wrote pseudocode to solve several use
+  cases which depended on the (non-existent) proposal.
 This defined what functionality the proposal should expose to solve the use
   cases.
 I created the unit tests for and started development of \gls{textom},
   the object model which exposes functionality to analyse and manipulate
   natural language (§\,\ref{object-model}, p.\,\pageref{object-model}).
 
-During the development of both \gls{textom} and the use cases solving
-  pseudo-code, missing functionality was added and useless functionality was
-  removed.
+During the development of both \gls{textom} and the pseudocode, missing
+  functionality was added and useless functionality was removed.
 An example of the former was the addition of \emph{events}, a mechanism to
   detect changes.
 An example of useless functionality was `Range', a mechanism to store a
@@ -49,20 +48,30 @@ When the functionality to solve the use cases was implemented in \gls{textom},
   I began work on the parser (§\,\ref{parser-parse-latin},
   p.\,\pageref{parser-parse-latin}), to create the object model from
   English input.
-At the time this parser was named \emph{parse-english}, which later grew into
-  \emph{parse-latin}.
+At the time this parser was named \emph{parse-latin}.
 This parser tokenised words, punctuation, white space, sentences, and
   paragraphs, and transformed these tokens into \gls{textom} objects.
-
-Problems in parse-*
-
 The addition of a parser to create a \gls{textom} tree from arbitrary
-  English, made it possible to start testing the use cases solving
-  pseudo-code, and \gls{textom} itself.
+  English, made it possible to start testing \gls{textom} itself and the use
+  case code (formerly pseudocode).
+The main problem brought to light during the development of the parser in
+  combination with the use case code, was the incorrect
+  handling of inner-word punctuation symbols.
+This conundrum is described in the last paragraph of Plug-ins
+  (§\,\ref{plugins}, p.\,\pageref{plugins}).
+
+As described in Design \& Architecture: Parser (§\,\ref{parser-parse-latin},
+  p.\,\pageref{parser-parse-latin}), \gls{parse-latin} tokenises sentences
+  similar to \emph{Emphasis}, and inner-sentence content similar
+  to \emph{Treebank}.
+However, there are many differences between these implementations and
+  \emph{parse-latin}.
+\emph{Emphasis} does not handle sentences ending in exclamation
+  points and interrogative points, or affix punctuation.
+\emph{Treebank} works only for English text, and discards everything non-word.
 
 
-
-Retext
+% Retext
 
 % Mention how many lines were written.
 
