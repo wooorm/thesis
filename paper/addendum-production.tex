@@ -22,11 +22,12 @@ Additionally, other challenges of the target audience can also be
 
 Before I began work on a proposal, I wrote pseudocode to solve several use
   cases which depended on the (non-existent) proposal.
-This defined what functionality the proposal should expose to solve the use
+This defined what functionality the proposal needed to expose to solve the use
   cases.
-I created the unit tests for and started development of \gls{textom},
-  the object model which exposes functionality to analyse and manipulate
-  natural language (§\,\ref{object-model}, p.\,\pageref{object-model}).
+I created the unit tests for, and started development of, \gls{textom}.
+\gls{textom} is the object model which exposes functionality to analyse and
+  manipulate natural language (§\,\ref{object-model},
+  p.\,\pageref{object-model}).
 
 During the development of both \gls{textom} and the pseudocode, missing
   functionality was added and useless functionality was removed.
@@ -34,7 +35,7 @@ An example of the former was the addition of \emph{events}, a mechanism to
   detect changes.
 An example of useless functionality was `Range', a mechanism to store a
   sequence of content within a TextOM tree, which was not needed for
-  most plugins.
+  most pseudocode examples.
 
 As described in Design \& Architecture: Object Model (§\,\ref{object-model},
   p.\,\pageref{object-model}), \gls{textom} was designed in similarity to the
@@ -48,9 +49,9 @@ When the functionality to solve the use cases was implemented in \gls{textom},
   I began work on the parser (§\,\ref{parser-parse-latin},
   p.\,\pageref{parser-parse-latin}), to create the object model from
   English input.
-At the time this parser was named \emph{parse-latin}.
-This parser tokenised words, punctuation, white space, sentences, and
-  paragraphs, and transformed these tokens into \gls{textom} objects.
+This parser, \emph{parse-latin}, tokenised words, punctuation, white space,
+  sentences, and paragraphs, and transformed these tokens into \gls{textom}
+  objects.
 The addition of a parser to create a \gls{textom} tree from arbitrary
   English, made it possible to start testing \gls{textom} itself and the use
   case code (formerly pseudocode).
@@ -61,14 +62,36 @@ This conundrum is described in the last paragraph of Plug-ins
   (§\,\ref{plugins}, p.\,\pageref{plugins}).
 
 As described in Design \& Architecture: Parser (§\,\ref{parser-parse-latin},
-  p.\,\pageref{parser-parse-latin}), \gls{parse-latin} tokenises sentences
+  p.\,\pageref{parser-parse-latin}), \emph{parse-latin} tokenises sentences
   similar to \emph{Emphasis}, and inner-sentence content similar
   to \emph{Treebank}.
 However, there are many differences between these implementations and
   \emph{parse-latin}.
 \emph{Emphasis} does not handle sentences ending in exclamation
-  points and interrogative points, or affix punctuation.
-\emph{Treebank} works only for English text, and discards everything non-word.
+  points and interrogative points, or affix punctuation, and \emph{Treebank}
+  works only for English text and discards everything non-word.
+\emph{parse-latin} handles these problems as expected.
+
+The last major part of the proposal, the system that binds everything
+  together (as described in §\,\ref{natural-language-system-retext},
+  p.\,\pageref{natural-language-system-retext})), is \emph{Retext}.
+\emph{Retext} makes it easy for developers to work with both \gls{textom}
+  and \emph{parse-latin}.
+Additionally, \emph{Retext} provides a plug-in system so users can create
+  plug-ins for others to use, and in turn enables them to use others'
+  plug-ins inside their projects.
+
+I tested how if system integrated together, and if the plug-in interface
+  worked, by rewriting the use case code into \emph{Retext} plug-ins.
+The major problem brought to light was the fact that other parser might be
+  required, instead of \emph{parse-latin}.
+This proved problematic because \emph{Retext} itself did not know about
+  \gls{textom}: \emph{parse-latin} directly used \gls{textom}.
+To enable the use of other parsers (the later created \emph{parse-english}
+  and \emph{parse-dutch}, or parsers for other scripts),
+  \emph{Retext} and \emph{parse-latin} changed severely.
+
+
 
 
 % Retext
