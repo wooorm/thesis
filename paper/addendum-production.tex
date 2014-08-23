@@ -16,19 +16,16 @@
 \addcontentsline{toc}{chapter}{\tocEntry{Production}}
 
 Retext is capable of solving all of the target audience's use cases through
-  plug-ins, as described in Validation: Plug-ins (§\,\ref{plugins},
+  plug-ins, as described in Plug-ins (§\,\ref{plugins},
   p.\,\pageref{plugins}).
 
-Before I started the process of making a proposal, I wrote pseudocode to
+Before I started the development of the proposal, I wrote pseudocode to
   solve several use cases which depended on the (non-existent) proposal.
 The pseudocode defined what functionality the proposal should expose.
 
 Then, I wrote the unit tests for the required functionality, and started
-  the development of \gls{textom}.
-\gls{textom} exposes the functionality to analyse and manipulate natural
-  language through an the object model (§\,\ref{object-model},
+  the development of \gls{textom} (§\,\ref{object-model},
   p.\,\pageref{object-model}).
-
 During the development of both \gls{textom} and the pseudocode, missing
   functionality was added and useless functionality was removed.
 An example of the former is the addition of events, a mechanism to detect
@@ -36,9 +33,9 @@ An example of the former is the addition of events, a mechanism to detect
 An example of the latter is the removal of `Range', a mechanism to store a
   sequence of content within a \gls{textom} tree.
 
-As described in Design \& Architecture: Object Model (§\,\ref{object-model},
-  p.\,\pageref{object-model}),
-\gls{textom} was designed in similarity to the \gls{dom}.
+As described in Object Model (§\,\ref{object-model},
+  p.\,\pageref{object-model}), \gls{textom} was designed in similarity to the
+  \gls{dom}.
 Multiple concepts were inspired by the \gls{dom}, such as events, errors,
   children and parents, and types.
 Additionally, some concepts were inspired by the initial implementation,
@@ -57,46 +54,46 @@ Among other things, this initial testing phase revealed the incorrect
 The last paragraph of Plug-ins (§\,\ref{plugins}, p.\,\pageref{plugins})
   describes this conundrum.
 
-As described in Design \& Architecture: Parser (§\,\ref{parser-parse-latin},
+As described in Parser (§\,\ref{parser-parse-latin},
   p.\,\pageref{parser-parse-latin}), \emph{parse-latin} tokenises sentences
   similar to \emph{Emphasis}, and inner-sentence content similar to
   \emph{Treebank}.
-However, \emph{parse-latin} contains added functionality to tokenise smarter
-  in several areas.
+However, \emph{parse-latin} contains added functionality to tokenise smarter.
 For example, \emph{Emphasis} ignores sentences ending in exclamation- or
   interrogative points, and ignores affix punctuation, and \emph{Treebank}
-  works only for English text and discards everything non-word, while
-  \emph{parse-latin} handles these problems as expected.
+  discards everything non-word, while \emph{parse-latin} handles these
+  problems as expected.
 
-After \gls{textom} and \emph{parse-latin}, work started on the last major
+After \gls{textom} and \emph{parse-latin}, work started on the final
   part of the proposal, \emph{Retext}: the system that binds everything
   together (as described in §\,\ref{natural-language-system-retext},
   p.\,\pageref{natural-language-system-retext}).
 In addition to providing \gls{textom} and \emph{parse-latin}, \emph{Retext}
-  provides a plug-in system enabling users can develop plug-ins for others
+  provided a plug-in system enabling users to develop plug-ins for others
   to implement, and in turn enables users to implement others' plug-ins
-  inside their projects.
+  in projects.
 
-By rewriting the use case code into \emph{Retext} plug-ins, I validated if
+By rewriting the use case code as \emph{Retext} plug-ins, I validated if
   the system integrated together and if the plug-in interface functioned
   properly.
 This validation phase revealed a major problem: to function, \emph{Retext}
   required \emph{parse-latin}.
-However, other parsers are needed for other scripts and other languages.
+However, other parsers were needed for other scripts and other languages.
 To enable the use of other parsers, both \emph{Retext}'s and
   \emph{parse-latin}'s code changed significantly.
-To validate if and how this change functioned, I developed the parsers
+To validate if and how this change functioned, I developed the
   \emph{parse-english} and \emph{parse-dutch}.
 
-Looking at several metrics provided by both Git and GitHub, best explains
-  the amount of effort that went into the development of the proposal.
-The provided metrics of importance are added or removed lines, and
+\medskip\noindent Looking at several metrics provided by both Git and
+  GitHub best explains the amount of effort that went into the development
+  of the proposal.
+The provided metrics of importance are both added and removed lines, and
   significant changes (called \emph{commits} in Git), such as version
-  updates, grammar fixes, or large rewrites.
-Note that the former includes counting a changed line (such as the
-  addition of a single missing letter) as both a removed, and an added line.
-In addition, note that the following metrics cover the complete code base,
-  including documentation, benchmarks, licenses, unit tests, and more.
+  updates, grammar fixes, and complete rewrites.
+Note that the former includes small changes, such as the addition of a single
+  missing letter, as both an added and a removed line.
+Additionally, note that the metrics cover the complete code base, including
+  documentation, benchmarks, licenses, unit tests, and more.
 
 The development of \emph{Retext}, \emph{parse-latin}, \emph{parse-english},
   \emph{parse-dutch}, and \gls{textom} together consisted of 759 commits,
