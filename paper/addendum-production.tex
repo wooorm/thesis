@@ -15,4 +15,72 @@
 \addtocontents{toc}{\protect\vspace{\beforebibskip}}
 \addcontentsline{toc}{chapter}{\tocEntry{Production}}
 
+As described in Validation: Plug-ins (§\,\ref{plugins},
+  p.\,\pageref{plugins}), all use cases can be implemented with \emph{Retext}.
+Additionally, other challenges of the target audience can also be
+  implemented.
+
+Before I began work on a proposal, I wrote code to solve several use cases
+  which depended on the (non-existent) proposal.
+This defined what functionality the proposal should expose to solve the use
+  cases.
+I created the unit tests for and started development of \gls{textom},
+  the object model which exposes functionality to analyse and manipulate
+  natural language (§\,\ref{object-model}, p.\,\pageref{object-model}).
+
+During the development of both \gls{textom} and the use cases solving
+  pseudo-code, missing functionality was added and useless functionality was
+  removed.
+An example of the former was the addition of \emph{events}, a mechanism to
+  detect changes.
+An example of useless functionality was `Range', a mechanism to store a
+  sequence of content within a TextOM tree, which was not needed for
+  most plugins.
+
+As described in Design \& Architecture: Object Model (§\,\ref{object-model},
+  p.\,\pageref{object-model}), \gls{textom} was designed in similarity to the
+  \gls{dom}.
+Multiple concepts were taken from the \gls{dom} and used in \gls{textom},
+  such as events, errors, children and parents, and types.
+Additionally, some concepts were taken from the initial implementation,
+  \emph{MicroType.js}, such as functionality to split a node.
+
+When the functionality to solve the use cases was implemented in \gls{textom},
+  I began work on the parser (§\,\ref{parser-parse-latin},
+  p.\,\pageref{parser-parse-latin}), to create the object model from
+  English input.
+At the time this parser was named \emph{parse-english}, which later grew into
+  \emph{parse-latin}.
+This parser tokenised words, punctuation, white space, sentences, and
+  paragraphs, and transformed these tokens into \gls{textom} objects.
+
+Problems in parse-*
+
+The addition of a parser to create a \gls{textom} tree from arbitrary
+  English, made it possible to start testing the use cases solving
+  pseudo-code, and \gls{textom} itself.
+
+
+
+Retext
+
+% Mention how many lines were written.
+
+% To enable the target audience to solve their use cases, a generic system was
+%   needed.
+% 
+% Accomplishing all of \glspl{nlp} challenges, according to WikiPedia as
+%   listed in the previous chapter, needs sentence and\slash or word
+%   tokenisation.
+% The thesis outlines how to implement three challenges, entity linking in
+%   Context (Chapter\,\ref{context}, p.\,\pageref{context}), sentiment
+%   analysis in §\,\ref{sentiment-analysis} (p.\,\pageref{sentiment-analysis}),
+%   and automatic summarisation in §\,\ref{automatic-summarisation}
+%   (p.\,\pageref{automatic-summarisation}).
+% Each of these challenges includes word tokenisation and optionally sentence
+%   tokenisation.
+% How I developed a proposal that enables the target audience to solve their
+  % use cases
+% What is the proposal, Retext;
+
 \endgroup
