@@ -1,0 +1,18 @@
+%*******************************************************
+% Addendum Production
+%*******************************************************
+
+\begingroup
+\let\clearpage\relax
+\let\cleardoublepage\relax
+\let\cleardoublepage\relax
+
+% work-around to have small caps also here in the headline
+\manualmark
+\markboth{\spacedlowsmallcaps{Production}}{\spacedlowsmallcaps{Production}}
+
+\chapter*{Production}\label{addendum-production}
+\addtocontents{toc}{\protect\vspace{\beforebibskip}}
+\addcontentsline{toc}{chapter}{\tocEntry{Production}}
+
+\endgroup
