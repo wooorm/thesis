@@ -15,96 +15,94 @@
 \addtocontents{toc}{\protect\vspace{\beforebibskip}}
 \addcontentsline{toc}{chapter}{\tocEntry{Production}}
 
-As described in Validation: Plug-ins (§\,\ref{plugins},
-  p.\,\pageref{plugins}), all use cases can be implemented with \emph{Retext}.
-Additionally, other challenges of the target audience can also be
-  implemented.
+Retext is capable of solving all of the target audience's use cases through
+  plug-ins, as described in Validation: Plug-ins (§\,\ref{plugins},
+  p.\,\pageref{plugins}).
 
-Before I began work on a proposal, I wrote pseudocode to solve several use
-  cases which depended on the (non-existent) proposal.
-This defined what functionality the proposal needed to expose to solve the use
-  cases.
-I created the unit tests for, and started development of, \gls{textom}.
-\gls{textom} is the object model which exposes functionality to analyse and
-  manipulate natural language (§\,\ref{object-model},
+Before I started the process of making a proposal, I wrote pseudocode to
+  solve several use cases which depended on the (non-existent) proposal.
+The pseudocode defined what functionality the proposal should expose.
+
+Then, I wrote the unit tests for the required functionality, and started
+  the development of \gls{textom}.
+\gls{textom} exposes the functionality to analyse and manipulate natural
+  language through an the object model (§\,\ref{object-model},
   p.\,\pageref{object-model}).
 
 During the development of both \gls{textom} and the pseudocode, missing
   functionality was added and useless functionality was removed.
-An example of the former was the addition of \emph{events}, a mechanism to
-  detect changes.
-An example of useless functionality was `Range', a mechanism to store a
-  sequence of content within a TextOM tree, which was not needed for
-  most pseudocode examples.
+An example of the former is the addition of events, a mechanism to detect
+  changes.
+An example of the latter is the removal of `Range', a mechanism to store a
+  sequence of content within a \gls{textom} tree.
 
 As described in Design \& Architecture: Object Model (§\,\ref{object-model},
-  p.\,\pageref{object-model}), \gls{textom} was designed in similarity to the
-  \gls{dom}.
-Multiple concepts were taken from the \gls{dom} and used in \gls{textom},
-  such as events, errors, children and parents, and types.
-Additionally, some concepts were taken from the initial implementation,
+  p.\,\pageref{object-model}),
+\gls{textom} was designed in similarity to the \gls{dom}.
+Multiple concepts were inspired by the \gls{dom}, such as events, errors,
+  children and parents, and types.
+Additionally, some concepts were inspired by the initial implementation,
   \emph{MicroType.js}, such as functionality to split a node.
 
-When the functionality to solve the use cases was implemented in \gls{textom},
-  I began work on the parser (§\,\ref{parser-parse-latin},
-  p.\,\pageref{parser-parse-latin}), to create the object model from
-  English input.
-This parser, \emph{parse-latin}, tokenised words, punctuation, white space,
-  sentences, and paragraphs, and transformed these tokens into \gls{textom}
-  objects.
-The addition of a parser to create a \gls{textom} tree from arbitrary
-  English, made it possible to start testing \gls{textom} itself and the use
-  case code (formerly pseudocode).
-The main problem brought to light during the development of the parser in
-  combination with the use case code, was the incorrect
+When the functionality to solve the use cases was exposed by \gls{textom},
+  work started on the parser (§\,\ref{parser-parse-latin},
+  p.\,\pageref{parser-parse-latin}).
+The parser, \emph{parse-latin}, tokenised arbitrary Latin script text into
+  words, punctuation, white space, sentences, and paragraphs, and transformed
+  these tokens into a \gls{textom} tree.
+The parser enabled the validation of \gls{textom} itself, which in turn
+  resulted in the transformation of the pseudocode into code.
+Among other things, this initial testing phase revealed the incorrect
   handling of inner-word punctuation symbols.
-This conundrum is described in the last paragraph of Plug-ins
-  (§\,\ref{plugins}, p.\,\pageref{plugins}).
+The last paragraph of Plug-ins (§\,\ref{plugins}, p.\,\pageref{plugins})
+  describes this conundrum.
 
 As described in Design \& Architecture: Parser (§\,\ref{parser-parse-latin},
   p.\,\pageref{parser-parse-latin}), \emph{parse-latin} tokenises sentences
-  similar to \emph{Emphasis}, and inner-sentence content similar
-  to \emph{Treebank}.
-However, there are many differences between these implementations and
-  \emph{parse-latin}.
-\emph{Emphasis} does not handle sentences ending in exclamation
-  points and interrogative points, or affix punctuation, and \emph{Treebank}
-  works only for English text and discards everything non-word.
-\emph{parse-latin} handles these problems as expected.
+  similar to \emph{Emphasis}, and inner-sentence content similar to
+  \emph{Treebank}.
+However, \emph{parse-latin} contains added functionality to tokenise smarter
+  in several areas.
+For example, \emph{Emphasis} ignores sentences ending in exclamation- or
+  interrogative points, and ignores affix punctuation, and \emph{Treebank}
+  works only for English text and discards everything non-word, while
+  \emph{parse-latin} handles these problems as expected.
 
-The last major part of the proposal, the system that binds everything
+After \gls{textom} and \emph{parse-latin}, work started on the last major
+  part of the proposal, \emph{Retext}: the system that binds everything
   together (as described in §\,\ref{natural-language-system-retext},
-  p.\,\pageref{natural-language-system-retext})), is \emph{Retext}.
-\emph{Retext} makes it easy for developers to work with both \gls{textom}
-  and \emph{parse-latin}.
-Additionally, \emph{Retext} provides a plug-in system so users can create
-  plug-ins for others to use, and in turn enables them to use others'
-  plug-ins inside their projects.
+  p.\,\pageref{natural-language-system-retext}).
+In addition to providing \gls{textom} and \emph{parse-latin}, \emph{Retext}
+  provides a plug-in system enabling users can develop plug-ins for others
+  to implement, and in turn enables users to implement others' plug-ins
+  inside their projects.
 
-I tested how if system integrated together, and if the plug-in interface
-  worked, by rewriting the use case code into \emph{Retext} plug-ins.
-The major problem brought to light was the fact that other parser might be
-  required, instead of \emph{parse-latin}.
-This proved problematic because \emph{Retext} itself did not know about
-  \gls{textom}: \emph{parse-latin} directly used \gls{textom}.
-To enable the use of other parsers (the later created \emph{parse-english}
-  and \emph{parse-dutch}, or parsers for other scripts),
-  \emph{Retext} and \emph{parse-latin} changed severely.
+By rewriting the use case code into \emph{Retext} plug-ins, I validated if
+  the system integrated together and if the plug-in interface functioned
+  properly.
+This validation phase revealed a major problem: to function, \emph{Retext}
+  required \emph{parse-latin}.
+However, other parsers are needed for other scripts and other languages.
+To enable the use of other parsers, both \emph{Retext}'s and
+  \emph{parse-latin}'s code changed significantly.
+To validate if and how this change functioned, I developed the parsers
+  \emph{parse-english} and \emph{parse-dutch}.
 
-How much work went into creating the proposal is best explained by looking
-  at several metrics provided by both Git and GitHub.
-The metrics looked at are the number of \emph{commits}---a term for a
-  significant change, such as updating a version, fixing a typographic
-  mistake, or large rewrites---and lines added or removed.
-Note that the latter, line changes, counts a changed line (such as the
+Looking at several metrics provided by both Git and GitHub, best explains
+  the amount of effort that went into the development of the proposal.
+The provided metrics of importance are added or removed lines, and
+  significant changes (called \emph{commits} in Git), such as version
+  updates, grammar fixes, or large rewrites.
+Note that the former includes counting a changed line (such as the
   addition of a single missing letter) as both a removed, and an added line.
 In addition, note that the following metrics cover the complete code base,
   including documentation, benchmarks, licenses, unit tests, and more.
 
-\emph{Retext}, \emph{parse-latin}, \emph{parse-english}, \emph{parse-dutch},
-  and \gls{textom} together were created in 759 commits, 230,319 added lines,
-  and 193,804 removed lines.
-All 17 plug-ins used to validate the proposal\footnote{\emph{retext-ast},
+The development of \emph{Retext}, \emph{parse-latin}, \emph{parse-english},
+  \emph{parse-dutch}, and \gls{textom} together consisted of 759 commits,
+  230,319 added lines, and 193,804 removed lines.
+The development of all seventeen plug-ins to validate the
+  proposal\footnote{The seventeen plug-ins are \emph{retext-ast},
     \emph{retext-content},
     \emph{retext-directionality}, \emph{retext-dom},
     \emph{retext-double-metaphone}, \emph{retext-emoji},
@@ -113,16 +111,22 @@ All 17 plug-ins used to validate the proposal\footnote{\emph{retext-ast},
     \emph{retext-porter-stemmer}, \emph{retext-pos}, \emph{retext-range},
     \emph{retext-search}, \emph{retext-sentiment}, \emph{retext-smartypants},
     and \emph{retext-visit}.},
-  were created in 370 commits, 115,732 added lines, and 101,212 removed lines.
+  consisted of 370 commits, 115,732 added lines, and 101,212 removed lines.
 
-Note that does not cover other work that went into creating the proposal,
-  such as demos.
-Additionally, I wrote many of the algorithms use by the plug-ins seperatly
-  from \emph{Retext}, for others to use\footnote{\emph{gemoji},
-    \emph{direction}, \emph{franc}, \emph{stemmer}, \emph{metaphone},
-    \emph{double-metaphone}, \emph{dice-coefficient},
+Note that these metrics do not completely cover the amount of effort that
+  went into the development of the proposal:
+
+\begin{enumerate}
+\item The metrics cover functioning code, not pseudocode or the work that
+  went into its creation.
+\item The metrics exclude the creation of demos for eleven plug-ins.
+\item The metrics exclude several algorithms behind the plug-ins,
+  which were published separately\footnote{Algorithms inlcude
+    \emph{gemoji}, \emph{direction}, \emph{franc}, \emph{stemmer},
+    \emph{metaphone}, \emph{double-metaphone}, \emph{dice-coefficient},
     \emph{lancaster-stemmer}, \emph{levenshtein-edit-distance},
-    \emph{polarity}, \emph{afinn-111}, \emph{weasels}.
+    \emph{polarity}, and \emph{afinn-111}.
   }.
+\end{enumerate}
 
 \endgroup
