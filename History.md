@@ -1,4 +1,36 @@
 
+n.n.n / 2014-08-24
+==================
+
+ * Fixed some overfull hboxes
+ * Mention design paradigms in Addendum
+ * Fix Addendum intro; fix reference in Introduction to Addendum
+ * More grammar fixes to Addendum: Production
+ * Rewrote Addendum: Production
+ * Add section on the metrics of my work to Addendum: Production
+ * Add section on Retext to Addendum: Production
+ * Add section on inspiration of parse-*
+ * Add more information to Addendum: Production
+ * Add section on Production to Addendum
+ * Fix some grammar mistakes in addendum
+ * Fix typo in Introduction
+ * Add content to, and fix, addendum
+ * Add more in-depth information to Addendum: Validation
+ * Add addendum as a part, mention addendum in overview
+ * Add initial validation addendum to thesis
+ * Fix links and add more info in addendum
+ * Add list of NL challenges to addendum
+ * Add image to corpora
+ * Add initial addendum on research methodology
+ * Fix typo in Dedication
+ * Add scope to defence
+ * Add quote on NLP to defence
+ * Add outline of Motivation to defence
+ * Expand Objective in defence
+ * Add expanded outline of defence
+ * Add outline of defence
+ * Add thesis defence presentation
+
 0.1.0 / 2014-08-18
 ==================
 
