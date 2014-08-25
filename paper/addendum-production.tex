@@ -21,7 +21,7 @@ The proposal, \emph{Retext}, is capable of solving all of the target
 Before I started the development of the proposal, I wrote pseudocode to
   solve several use cases which depended on the (non-existent) proposal.
 The pseudocode was based on the implementations listed in the previous
-  Addendum, Use Cases (p.\,\pageref{addendum-use-cases}), which I argue is
+  addendum, Use Cases (p.\,\pageref{addendum-use-cases}), which I argue is
   user-centred design: how someone thinks is expressed through their coding
   style.
 Reading the implementation gave me explicit understanding of the user.
@@ -31,7 +31,7 @@ Then, I wrote the unit tests for the required functionality, and started
   the development of \gls{textom} (§\,\ref{object-model},
   p.\,\pageref{object-model}).
 During the development of both \gls{textom} and the pseudocode, missing
-  functionality was added and useless functionality was removed.
+  functionality was added and superfluous functionality was removed.
 An example of the former is the addition of events, a mechanism to detect
   changes.
 An example of the latter is the removal of `Range', a mechanism to store a
@@ -64,7 +64,7 @@ As described in Parser (§\,\ref{parser-parse-latin},
   \emph{Treebank}.
 However, \emph{parse-latin} contains added functionality to tokenise smarter.
 For example, \emph{Emphasis} ignores sentences ending in exclamation- or
-  interrogative points, and ignores affix punctuation, and \emph{Treebank}
+  interrogative points and ignores affix punctuation, and \emph{Treebank}
   discards everything non-word, while \emph{parse-latin} handles these
   problems as expected.
 
@@ -74,7 +74,7 @@ After \gls{textom} and \emph{parse-latin}, work started on the final
   p.\,\pageref{natural-language-system-retext}).
 In addition to providing \gls{textom} and \emph{parse-latin}, \emph{Retext}
   provided a plug-in system enabling users to develop plug-ins for others
-  to implement, and in turn enables users to implement others' plug-ins
+  to implement, and in turn enabled users to implement others' plug-ins
   in projects.
 
 By rewriting the use case code as \emph{Retext} plug-ins, I validated if
@@ -85,7 +85,7 @@ This validation phase revealed a major problem: to function, \emph{Retext}
 However, other parsers were needed for other scripts and other languages.
 To enable the use of other parsers, both \emph{Retext}'s and
   \emph{parse-latin}'s code changed significantly.
-To validate if and how this change functioned, I developed the
+To validate if and how this change functioned, I developed
   \emph{parse-english} and \emph{parse-dutch}.
 
 \medskip\noindent Looking at several metrics provided by both Git and
