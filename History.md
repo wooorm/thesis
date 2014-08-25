@@ -1,4 +1,11 @@
 
+n.n.n / 2014-08-25
+==================
+
+ * Fix several grammer errors in thesis
+ * Fix translation of defence
+ * Remove superfluous slides on research sub-questions
+
 0.1.1-rc.1 / 2014-08-24
 ==================
 
