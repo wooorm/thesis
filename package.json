@@ -14,12 +14,15 @@
       "make": "npm run build",
       "prebuild": "npm run makedir",
       "postbuild": "npm run move && npm run removedir",
-      "build": "npm run concat && npm run latex && npm run bibliography && npm run add-glossary && npm run latex && npm run latex",
+      "build": "npm run build-paper && npm run build-handout",
+      "build-paper": "npm run latex-paper && npm run bibliography && npm run add-glossary && npm run latex-paper && npm run latex-paper",
+      "build-handout": "npm run latex-handout",
       "makedir": "mkdir intermediate || exit 0",
-      "move": "mv intermediate/paper.pdf paper.pdf",
+      "move": "mv intermediate/paper.pdf paper.pdf && mv intermediate/handout.pdf handout.pdf",
       "removedir": "rm -rf intermediate",
       "bibliography": "cd intermediate && biber paper && cd ../",
-      "latex": "pdflatex -interaction=nonstopmode -output-directory=intermediate paper.tex || exit 0",
+      "latex-paper": "pdflatex -interaction=nonstopmode -output-directory=intermediate paper.tex || exit 0",
+      "latex-handout": "pdflatex -interaction=nonstopmode -output-directory=intermediate handout.tex || exit 0",
       "add-glossary": "makeglossaries -d intermediate paper"
     }
 }

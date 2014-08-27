@@ -1,0 +1,164 @@
+% ****************************************************************************
+% A Classic Thesis Style
+% An Homage to The Elements of Typographic Style
+%
+% Copyright (C) 2012 Andr\'e Miede http://www.miede.de
+%
+% If you like the style then I would appreciate a postcard. My address 
+% can be found in the file ClassicThesis.pdf. A collection of the 
+% postcards I received so far is available online at 
+% http://postcards.miede.de
+%
+% License:
+% This program is free software; you can redistribute it and/or modify
+% it under the terms of the GNU General Public License as published by
+% the Free Software Foundation; either version 2 of the License, or
+% (at your option) any later version.
+%
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+%
+% You should have received a copy of the GNU General Public License
+% along with this program; see the file COPYING.  If not, write to
+% the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+% Boston, MA 02111-1307, USA.
+%
+% ****************************************************************************
+% Note:
+%    * You must not use "u etc. in strings/commands that will be spaced out (use \"u or real umlauts instead)
+%    * New enumeration (small caps): \begin{aenumerate} \end{aenumerate}
+%    * For margin notes: \marginpar or \graffito{}
+%    * Do not use bold fonts in this style, it is designed around them
+%    * Use tables as in the examples
+%    * See classicthesis-preamble.sty for useful commands
+% ****************************************************************************
+
+\documentclass[
+  titlepage,
+  numbers=noenddot,
+  headinclude,
+  footinclude=true,
+  cleardoublepage=empty,
+  BCOR=5mm,
+  paper=a4,
+  fontsize=11pt,
+  11pt,
+  british,
+]{scrreprt}
+
+\input{config}
+
+%********************************************************************
+% CUSTOM!
+%********************************************************************
+\usepackage[style=british]{csquotes}
+
+\usepackage{setspace}
+
+% Formula:
+% (1 / 1.2) * 1.215
+%
+% Description:
+% (1 / 1.2): The number to set line height to 1.
+% 1.215: the heigth of a typical lower letter in Libertine (.215).
+\setstretch{1.0125}
+
+% Remove space between list items.
+\usepackage{enumitem}
+\setlist{noitemsep}
+
+% Don't reset footnote counter per chapter.
+\usepackage{chngcntr}
+\counterwithout{footnote}{chapter}
+
+% ``Borrowed'' from:
+%     https://github.com/wspr/thesis/blob/master/thesis-preamble.sty#L87
+\newcommand\notedesc[1]{\begin{quote}\textit{#1}\end{quote}}
+
+%********************************************************************
+% Hyphenation & Line breaking
+%********************************************************************
+\pretolerance=2000
+\tolerance=2000
+
+\hyphenation{
+  with-out
+  ECMA-script
+  whe-ther
+  pro-vide
+  hy-per-text
+  be-tween
+  al-go-rithm
+  sen-ten-ces
+  ma-chi-ne
+  trans-la-tion
+  whe-re
+  george-town
+  russ-ian
+  ma-chi-ne-trans-la-tion
+  key-word
+  sim-ple
+  Java-Script
+  geo-graph-i-cal
+  com-mon
+  eli-sion
+  text-om
+  Text-OM
+  pro-vides
+  in-te-gra-tion
+  de-tec-ting
+  retext-smarty-pants
+  retext-dou-ble-meta-pho-ne
+  retext-emoji
+  retext-dir-ect-ion-a-li-ty
+  retext-por-ter-stem-mer
+  retext-vis-it
+  retext-search
+  retext-pos
+  retext-key-words
+  heigh-ten-ed
+  to-ken
+  to-ken-i-sa-tion
+  pro-vi-ded
+  pro-vi-des
+  par-ser
+  de-vel-op-er
+  de-vel-op-ers
+  plat-form-neu-tral
+  de-fi-ne
+  de-fi-nes
+  chang-es
+  sen-ten-ce
+  link-ed
+  par-ties
+  chap-ters
+  chap-ter
+  plat-form-neu-tral
+  plat-form
+  neu-tral
+  prince-ton
+  uni-ver-si-ty
+  mark-up
+  lang-uage
+}
+
+% ********************************************************************
+% GO!GO!GO! MOVE IT!
+%********************************************************************
+\begin{document}
+\frenchspacing
+
+\raggedbottom
+\selectlanguage{british}
+\pagestyle{scrheadings}
+\pagenumbering{arabic}
+
+\manualmark
+\markboth{\spacedlowsmallcaps{\myName}, \emph{\myTitle}}{\spacedlowsmallcaps{\myName}, \emph{\myTitle}}
+
+\input{handout/frontpage}
+\input{handout/backpage}
+
+\end{document}

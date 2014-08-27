@@ -1,0 +1,56 @@
+\begingroup
+\let\cleardoublepage\relax
+\let\cleardoublepage\relax
+
+\pagebreak
+
+\section*{Summary}
+
+\spacedlowsmallcaps{nlp} covers many challenges.
+The process of accomplishing these challenges touches on well-defined stages,
+  such\,as \emph{tokenisation}, the focus of the proposal.
+Current implementations on the web platform are lacking.
+In part, because advanced machine learning techniques (such\,as
+  \emph{supervised learning}) do not work on the web.
+
+The audience that benefits the most from better parsing on the web platform,
+  are web developers, a group which is more interested in practical use, and
+  less so in theoretical applications.
+
+The target audience's use cases for \spacedlowsmallcaps{nlp} on the web are
+  vast.
+Examples include automatic summarisation, sentiment recognition, spam
+  detection, typographic enhancements, counting words, language recognition,
+  and more.
+
+The presented proposal is split into several smaller solutions.
+These solutions come together in a proposal: \emph{Retext}, a complete
+  natural language system.
+\emph{Retext} takes care of parsing natural language and enables users to
+  create and use plug-ins.
+
+Parsing is delegated to \emph{parse-latin} and others, which first\,tokenise
+  text into a list of words, punctuation, and white space.
+Later, these tokens are parsed into a syntax tree, containing paragraphs,
+  sentences, embedded content, and more. Their intellect extends several well
+  known techniques.
+
+The objects returned by \emph{parse-latin} and others are defined by
+  \spacedlowsmallcaps{nlcst}.
+\spacedlowsmallcaps{nlcst} defines the syntax for these objects.
+\spacedlowsmallcaps{nlcst} is designed in similarity to other popular syntax
+  tree specifications.
+
+The interface to analyse and manipulate these objects is implemented by
+  text\spacedlowsmallcaps{om}.
+text\spacedlowsmallcaps{om} is created in similarity to other, for the
+  target audience well-known, techniques.
+
+The proposal was validated both by solving the audience's use cases with
+  \emph{Retext}, and by measuring the audience's enthusiasm for \emph{Retext}.
+Use cases were validated by implementing many as plug-ins for
+  \emph{Retext}.
+The enthusiasm showed by the target audience on social networks, through
+  e-mail, and social coding was positive.
+
+\endgroup
