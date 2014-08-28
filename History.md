@@ -1,4 +1,14 @@
 
+n.n.n / 2014-08-28
+==================
+
+ * Defence: Fix final minor problems
+ * Add handout
+ * Fix alignment of bullet-points
+ * Defence: Fix two minor problems
+ * Defence: Fix numerous minor problems
+ * Defence: Add slides, translate to Dutch, fixes
+
 0.1.1 / 2014-08-25
 ==================
 
