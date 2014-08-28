@@ -1,5 +1,5 @@
 
-n.n.n / 2014-08-28
+0.1.2 / 2014-08-28
 ==================
 
  * Defence: Fix final minor problems
